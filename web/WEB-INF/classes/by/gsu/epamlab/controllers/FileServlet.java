@@ -20,19 +20,19 @@ import java.io.*;
 public class FileServlet extends AbstractNonGetController {
     @Override
     protected void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
-       // try {
-           /* Part part = request.getPart(Constants.FILE_PARAMETER);
+        try {
+            Part part = request.getPart(Constants.FILE_PARAMETER);
             String fileName = extractFileName(part);
-            String filePath = FileServlet.class.getProtectionDomain().getCodeSource().getLocation().getPath() + new File(fileName).getName();
-            part.write(filePath); */
-           download(request, response);
-            //HttpSession session = request.getSession();
-            //String id = (String)session.getAttribute(Constants.ID);
-            //TaskTypes.valueOf("TODAY").addTask(id, filePath, null);
+            String filePath = FileServlet.class.getProtectionDomain().getCodeSource().getLocation().getPath() + "/by/gsu/epamlab/files/" + fileName;
+            part.write(filePath);
+            download(request, response);
+            HttpSession session = request.getSession();
+            String id = (String)session.getAttribute(Constants.ID);
+            TaskTypes.valueOf("TODAY").addTask(id, filePath, null);
             request.getRequestDispatcher(Constants.MAIN_SERVLET_URL).forward(request, response);
-        //} catch (DaoException e) {
-       //     e.printStackTrace();
-            // }
+        } catch (DaoException e) {
+           e.printStackTrace();
+        }
     }
 
     private String extractFileName(Part part) {
@@ -47,14 +47,14 @@ public class FileServlet extends AbstractNonGetController {
     }
 
     private void download(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String path = request.getServletContext().getRealPath("Hz.csv");
-        String filePath = FileServlet.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        //String filePath = ;
         //String fileName = "C:" + File.separator + "Users" + File.separator + "Nazg'ul" +File.separator +  "WebProject" +File.separator + "Hz.csv";
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
         response.addHeader("Content-Disposition","attachment;filename="+"Hz.csv");
-        File f = new File(/*getServletContext().getRealPath("/"),filePath+"/"+*/"Hz.csv");
+        File f = new File(/*getServletContext().getRealPath("/"),filePath+"/"+*/
+                FileServlet.class.getProtectionDomain().getCodeSource().getLocation().getPath() + "/by/gsu/epamlab/files/" + "Hz.csv");
         long len = f.length();
         response.addHeader("Content-Length", String.valueOf(len));
         response.setContentType("application/download");
