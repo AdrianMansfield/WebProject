@@ -1,0 +1,46 @@
+
+.center_div{
+    margin: 0 auto;
+    width: 80%;
+}
+
+a{
+    color: #f85c37;
+}
+
+a:hover, a:focus {
+    color: #7b7b7b;
+    text-decoration: none;
+    outline: 0;
+}
+
+hr{
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.navbar{
+    font-weight: 900;
+    font-size: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.navbar-inverse{
+    background: #2d2d2d;
+    border-color: #2d2d2d;
+}
+
+.card{
+    margin-top: 14rem;
+    width: 30rem;
+    height: 20rem;
+}
+
+.card-body{
+    margin-top: 2rem;
+}

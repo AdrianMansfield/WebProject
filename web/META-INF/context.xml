@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="" allowCasualMultipartParsing = "true">
+    <Resource
+            name="jdbc/webproject"
+            author="Container"
+            type="javax.sql.DataSource"
+            maxActive="32"
+            maxIdle="8"
+            maxWait="10000"
+            username="epamlab"
+            password="111"
+            driverClassName="org.gjt.mm.mysql.Driver"
+            url="jdbc:mysql://localhost:3306/webproject"
+    />
+</Context>
