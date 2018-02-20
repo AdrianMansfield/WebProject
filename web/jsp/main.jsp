@@ -43,19 +43,11 @@
             <h5 class="my-0 font-weight-normal">
                 or upload .CSV file
             </h5>
-
-            <form method="post" action="/FileServlet" enctype="multipart/form-data">
-                    <input type="file" name="file">
-                        <input type="submit" value="Upload" />
-            </form>
-
             <form method="post" action="/FileServlet">
-                <div class="input-group">
-                    <input type="file" class="custom-file-control w-75" name="file">
-                    <div class="input-group-append">
-                        <input type="submit" value="Upload" class="btn btn-outline-danger"/>
-                    </div>
-                </div>
+                <label class="btn btn-primary">
+                    Browse <input type="file" class="custom-file-input"/>
+                </label>
+                <input type="submit" value="Upload" class="btn btn-outline-danger"/>
             </form>
         </div>
         <div class="col-md-6">
