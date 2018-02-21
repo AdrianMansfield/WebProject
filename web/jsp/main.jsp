@@ -9,51 +9,28 @@
     <link rel="stylesheet" href="${JspConstants.MAIN_STYLE_FILE_PATH}">
 </head>
 <body>
-<div class="d-flex flex-column flex-md-row align-items-center p-1 px-md-4 mb-2 navbar-inverse">
+<div class="d-flex flex-column flex-md-row align-items-center p-0 px-md-4 mb-1 navbar-inverse">
     <h5 class="text-white my-0 mr-md-0 mb-1">ToDo App main page</h5>
-
+    <div class="form-inline  mx-auto ">
+        <form action="/MainServlet" method="post" class="my-0 mr-md-0 mb-1">
+            <button class="btn btn-danger " name="date" value="today">Today</button>
+            <button class="btn btn-danger " name="date" value="tomorrow">Tomorrow</button>
+            <button class="btn btn-danger " name="date" value="someday">Someday</button>
+        </form>
+        <form action="/CreateConferenceServlet" method="post" class="my-0 mr-md-0 mb-1">
+            <button type="submit" class="btn btn-danger" name="date" value="addNewConference">
+                Create new conference
+            </button>
+        </form>
+        <form action="/DeletedConferencesServlet" method="post" class="my-0 mr-md-0 mb-1">
+            <button type="submit" class="btn btn-danger" name="date"
+                    value="showDeletedConferences">
+                Deleted conferences
+            </button>
+        </form>
+    </div>
     <c:import url="/jsp/exit.jsp"/>
 </div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-2 d-none d-md-block bg-faded sidebar">
-            <div class="sidebar-sticky">
-                <div class="nav flex-column">
-                    <form class="" action="/MainServlet" method="post">
-                        <li class="nav-item">
-                            <button class="btn btn-danger" name="date" value="today">Today</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="btn btn-danger" name="date" value="tomorrow">Tomorrow</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="btn btn-danger" name="date" value="someday">Someday</button>
-                        </li>
-                    </form>
-                    <form class="" action="/CreateConferenceServlet" method="post">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <button type="submit" class="btn btn-danger" name="date" value="addNewConference">
-                                    Create new conference
-                                </button>
-                            </li>
-                        </ul>
-                    </form>
-                    <form class="" action="/DeletedConferencesServlet" method="post">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <button type="submit" class="btn btn-danger" name="date"
-                                        value="showDeletedConferences">
-                                    Deleted conferences
-                                </button>
-                            </li>
-                        </ul>
-                    </form>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
     <main role="main" class="content container">
         <div class="row">
             <div class="col-md-6">
