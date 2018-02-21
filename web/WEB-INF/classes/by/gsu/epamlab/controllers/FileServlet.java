@@ -23,7 +23,8 @@ public class FileServlet extends AbstractNonGetController {
         try {
             Part part = request.getPart(Constants.FILE_PARAMETER);
             String fileName = extractFileName(part);
-            String filePath = FileServlet.class.getProtectionDomain().getCodeSource().getLocation().getPath() + "/by/gsu/epamlab/files/" + fileName;
+            String filePath = FileServlet.class.getProtectionDomain().getCodeSource().getLocation().getPath() + "/by/gsu/epamlab/files/"
+                    + new File(fileName).getName();
             part.write(filePath);
             download(request, response);
             HttpSession session = request.getSession();

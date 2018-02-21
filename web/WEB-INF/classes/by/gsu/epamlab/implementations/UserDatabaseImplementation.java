@@ -45,9 +45,13 @@ public class UserDatabaseImplementation implements IUserDAO {
                     preparedStatement.setString(DatabaseConstants.PASSWORD_QUERY_INDEX, password);
                     preparedStatement.setString(DatabaseConstants.ROLE_QUERY_INDEX, Role.USER.toString());
                     preparedStatement.execute();
+                    user = getUser(login, password);
+                }
+                else {
+                    user = null;
                 }
             }
-            return getUser(login, password); //this requires correction
+            return user; //this requires correction
         }
         catch (SQLException e) {
             throw new DaoException(e);
