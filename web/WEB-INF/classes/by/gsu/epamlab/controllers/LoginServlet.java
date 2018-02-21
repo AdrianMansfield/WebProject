@@ -33,7 +33,7 @@ public class LoginServlet extends AbstractNonGetController {
             jumpPage(Constants.MAIN_SERVLET_URL, request, response);
         } catch (DaoException e) {
             e.printStackTrace();
-            jumpPage(Constants.MAIN_URL, request, response);
+            jumpError(Constants.LOGIN_URL, Constants.INVALID_LOGIN_OR_PASSWORD, request, response);
         }
     }
 }
