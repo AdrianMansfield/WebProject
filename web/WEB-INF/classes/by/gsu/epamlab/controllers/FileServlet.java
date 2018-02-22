@@ -48,7 +48,6 @@ public class FileServlet extends AbstractNonGetController {
     }
 
     private void download(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        //String filePath = ;
         //String fileName = "C:" + File.separator + "Users" + File.separator + "Nazg'ul" +File.separator +  "WebProject" +File.separator + "Hz.csv";
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");

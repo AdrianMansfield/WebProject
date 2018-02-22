@@ -19,9 +19,7 @@
 </main>
 
 <footer class="footer fixed-bottom">
-    <div class="container">
-        <div class="text-muted text-center">Developed by <a href="#">Your name</a>.</div>
-    </div>
+    <c:import url="/jsp/jspchunks/developerName.jsp"/>
 </footer>
 </body>
 </html>
