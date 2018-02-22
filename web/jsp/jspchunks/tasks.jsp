@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<form action="/EventServlet" method="post">
+<form action="EventServlet" method="post">
     <div class="input-group">
         <select name="currentTask" class="custom-select w-75">
             <c:forEach var="task" items="${tasks}" varStatus="status">
