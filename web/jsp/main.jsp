@@ -24,11 +24,15 @@
                         <h5 class="my-0 font-weight-normal">
                             Choose conference
                         </h5>
-                        <c:import url="/jsp/jspchunks/tasks.jsp"/>
+                        <div>
+                            <c:import url="/jsp/jspchunks/taskOutput.jsp"/>
+                        </div>
                         <h5 class="my-0 font-weight-normal">
                             or upload .CSV file
                         </h5>
-                        <c:import url="/jsp/jspchunks/uploadFile.jsp"/>
+                        <div>
+                            <c:import url="/jsp/jspchunks/uploadFile.jsp"/>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <h1 class="text-center">Your events</h1>
