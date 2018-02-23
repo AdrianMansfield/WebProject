@@ -30,7 +30,7 @@ public class RegistrationServlet extends AbstractNonGetController {
             }
         } catch (DaoException e) {
             System.err.println(e);
-            jumpError(Constants.REGISTRATION_URL, Constants.INVALID_LOGIN_OR_PASSWORD, request, response);
+            jumpError(Constants.REGISTRATION_URL, Constants.SERVER_ERROR, request, response);
         }
     }
 }

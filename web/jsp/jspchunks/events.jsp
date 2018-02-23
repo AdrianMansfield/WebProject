@@ -1,10 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<html>--%>
-<%--<head>--%>
-    <%--<title>events</title>--%>
-<%--</head>--%>
-<%--<body>--%>
 <TABLE align="center">
     <thead>
     <th>Id</th>
@@ -25,5 +20,3 @@
     </c:forEach>
     </tbody>
 </TABLE>
-<%--</body>--%>
-<%--</html>--%>

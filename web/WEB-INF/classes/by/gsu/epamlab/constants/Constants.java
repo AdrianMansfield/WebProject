@@ -31,7 +31,7 @@ public class Constants {
 
     public static final String DATE_PARAMETER = "date";
 
-    public static final String EVENTS_URL = "/events";
+    public static final String SERVER_ERROR = "Sorry. Server temporary is not available";
 
     public static final String EVENTS_ATTRIBUTE = "events";
 
