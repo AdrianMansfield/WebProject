@@ -11,7 +11,7 @@
     <body>
             <div class="d-flex flex-column flex-md-row align-items-center p-0 px-md-4 mb-1 navbar-inverse">
                 <h5 class="text-white my-0 mr-md-0 mb-1">ToDo App main page</h5>
-                <div class="form-inline  mx-auto ">
+                <div class="form-inline  mx-auto">
                     <c:import url="/jsp/buttons/taskButtons.jsp"/>
                     <c:import url="/jsp/buttons/createConference.jsp"/>
                     <c:import url="/jsp/buttons/deletedConferences.jsp"/>
@@ -21,7 +21,7 @@
             <main role="main" class="content container">
                 <div class="row">
                     <div class="col-md-6">
-                        <h5 class="my-0 font-weight-normal">
+                        <h5 class="my-0 font-weight-normal text-center">
                             Choose conference
                         </h5>
                         <div>
