@@ -44,3 +44,21 @@ hr{
 .card-body{
     margin-top: 2rem;
 }
+.invisible-circle-label{
+    cursor: pointer;
+    visibility: hidden;
+}
+
+input:checked + label {
+    background: rgba(0, 0, 0, 0.075);
+}
+
+.task-table{
+    height: 2000px;
+}
+
+.table-container{
+    height: 500px;
+    overflow: auto;
+    background-color: #adadad;
+}

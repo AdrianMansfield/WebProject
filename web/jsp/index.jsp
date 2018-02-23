@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="${JspConstants.MAIN_STYLE_FILE_PATH}">
     </head>
     <body>
-        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 navbar-inverse">
+        <div class="d-flex flex-column flex-md-row align-items-center p-0 px-md-4 mb-1 navbar-inverse">
             <c:import url="${control}"/>
         </div>
         <main role="main" class="container">
