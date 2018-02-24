@@ -24,16 +24,18 @@ public class MainServlet extends AbstractBaseController {
     @Override
     protected void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         try {
+
             HttpSession session = request.getSession();
             session.removeAttribute(Constants.TASK_LIST_NAME);
             String date = request.getParameter(Constants.DATE_PARAMETER);
             if(date == null) {
                 date = "TODAY"; // CORRECT
             }
-            List<Task> taskList = TaskTypes.valueOf(date.toUpperCase()).getTasks((String)session.getAttribute(Constants.ID));
+            date = date.toUpperCase();
+            String id = (String)session.getAttribute(Constants.ID);
+            List<Task> taskList = TaskTypes.valueOf(date).getTasks(id);
             session.setAttribute(Constants.TASK_LIST_NAME, taskList);
             response.sendRedirect(Constants.MAIN_URL);
-
         } catch (DaoException e) {
             e.printStackTrace();
         }

@@ -1,5 +1,6 @@
 package by.gsu.epamlab.constants;
 
+
 public class Constants {
     public static final String RESOURCE_NAME = "java:comp/env/jdbc/webproject";
     public static final String IMPLEMENTATION = "implementation";
@@ -42,5 +43,16 @@ public class Constants {
     public static final String USUAL_DATE_FORMAT = "yyyy-MM-dd";
 
     public static final int DIFFERENCE_DAY = 1;
+
+
+    public static final String CLASSES_DIRECTORY = Constants.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+
+    public static final String FILES_DIRECTORY = CLASSES_DIRECTORY + "/by/gsu/epamlab/files";
+
+    public static final String DELIMITER = ";";
+
+    public static final String SIGN_EQUAL = "=";
+
+
 
 }
