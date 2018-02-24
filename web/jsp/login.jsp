@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="by.gsu.epamlab.constants.JspConstants" %>
 
-<html>
+<html lang="en">
     <head>
         <link rel="stylesheet" type="text/css" href="web/css/main.css"/>
         <title>Sigh in</title>
