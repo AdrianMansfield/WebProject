@@ -23,7 +23,7 @@ public class MainServlet extends AbstractBaseController {
             HttpSession session = request.getSession();
             session.removeAttribute(Constants.TASK_LIST_NAME);
             session.removeAttribute(Constants.FILE_MAP_PARAMETER);
-            String date = request.getParameter(Constants.DATE_PARAMETER);
+            String date = request.getParameter(Constants.DATE_TYPE_PARAMETER);
             if(date == null) {
                 date = "TODAY"; // CORRECT
             }

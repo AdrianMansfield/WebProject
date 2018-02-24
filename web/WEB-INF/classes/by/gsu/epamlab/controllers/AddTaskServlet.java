@@ -28,7 +28,7 @@ public class AddTaskServlet extends AbstractNonGetController {
             String taskName = request.getParameter(Constants.TASK_NAME_PARAMETER);
             String department = request.getParameter(Constants.DEPARTMENT_PARAMETER);
             String date = request.getParameter(Constants.DATE_PARAMETER);
-            Part part = request.getPart(Constants.FILE_PARAMETER);
+            Part part = request.getPart(Constants.FILE_PARAMETER); //Correct
 
             if(!"".equals(extractFileName(part))) {
                 uploadFile(request, taskName);
@@ -39,6 +39,7 @@ public class AddTaskServlet extends AbstractNonGetController {
             Task task = new Task(0, taskName, department, trueDate);
             ITaskDAO iTaskDAO = new TaskDatabaseImplementation();
             iTaskDAO.addTask(userId, task);
+            request.getRequestDispatcher(Constants.MAIN_SERVLET_URL).forward(request, response);
         } catch (DaoException | ParseException e) {
             e.printStackTrace();
         }

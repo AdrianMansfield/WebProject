@@ -30,6 +30,8 @@ public class Constants {
 
     public static final String FILE_PARAMETER = "file";
 
+    public static final String DATE_TYPE_PARAMETER = "dateType";
+
     public static final String DATE_PARAMETER = "date";
 
     public static final String SERVER_ERROR = "Sorry. Server temporary is not available";
