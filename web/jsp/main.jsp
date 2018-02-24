@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="${JspConstants.MAIN_STYLE_FILE_PATH}">
     </head>
     <body>
+            <c:import url="/jsp/jspchunks/addTasks.jsp"/>
             <div class="d-flex flex-column flex-md-row align-items-center p-0 px-md-4 mb-1 navbar-inverse">
                 <h5 class="text-white my-0 mr-md-0 mb-1">ToDo App main page</h5>
                 <div class="form-inline  mx-auto">

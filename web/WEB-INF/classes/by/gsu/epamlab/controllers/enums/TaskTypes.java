@@ -26,7 +26,7 @@ public enum  TaskTypes {
 
         @Override
         public void addTask(String id, String filePath, Date date) throws DaoException {
-            iTaskDAO.addTask(id, filePath, getTodayDate());
+            //iTaskDAO.addTask(id, filePath, getTodayDate());
         }
     }, TOMORROW {
 
@@ -37,7 +37,7 @@ public enum  TaskTypes {
 
         @Override
         public void addTask(String id, String filePath, Date date) throws DaoException {
-            iTaskDAO.addTask(id, filePath, getTomorrowDay());
+            //iTaskDAO.addTask(id, filePath, getTomorrowDay());
         }
 
     }, SOMEDAY  {
@@ -49,7 +49,7 @@ public enum  TaskTypes {
 
         @Override
         public void addTask(String id, String filePath, Date date) throws DaoException {
-            iTaskDAO.addTask(id, filePath, date);
+            //iTaskDAO.addTask(id, filePath, date);
         }
 
     };

@@ -13,11 +13,11 @@
     </script>
 </head>
 <body>
-<form action="EventServlet" method = "post" enctype="multipart/form-data">
-    Name:	<input name="Name" required/>
-    <p>Department:	<input name="Department" required/>
-    <p>Date: <input type="text" id="datepicker"></p>
-    <p>Attach task file:	<input type="file" name="File" required/>
+<form action="AddTaskServlet" method = "post" enctype="multipart/form-data">
+    Name:	<input name="taskName" required/>
+    <p>Department:	<input name="department" required/>
+    <p>Date: <input type="text" id="datepicker" name="date"></p>
+    <p>Attach task file:	<input type="file" name="file" required/>
     <p><input type="submit" value="Send">
 </form>
 </body>

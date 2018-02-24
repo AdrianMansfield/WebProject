@@ -45,13 +45,19 @@ public class Constants {
     public static final int DIFFERENCE_DAY = 1;
 
 
-    public static final String CLASSES_DIRECTORY = Constants.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+    public static final String CLASSES_DIRECTORY = Constants.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1,
+            Constants.class.getProtectionDomain().getCodeSource().getLocation().getPath().length());
 
-    public static final String FILES_DIRECTORY = CLASSES_DIRECTORY + "/by/gsu/epamlab/files";
-
-    public static final String DELIMITER = ";";
+    public static final String FILES_DIRECTORY = CLASSES_DIRECTORY + "by/gsu/epamlab/files";
 
     public static final String SIGN_EQUAL = "=";
+
+    public static final String TASK_NAME_PARAMETER = "taskName";
+
+    public static final String DEPARTMENT_PARAMETER = "department";
+
+    public static final String FILE_MAP_PARAMETER = "fileMap";
+
 
 
 

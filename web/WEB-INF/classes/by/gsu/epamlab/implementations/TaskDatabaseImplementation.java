@@ -66,30 +66,19 @@ public class TaskDatabaseImplementation implements ITaskDAO {
         }
     }
 
-    private int getCurrentConferenceId(Connection connection) throws SQLException {
-        try(Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(DatabaseConstants.SQL_SELECT_CURRENT_CONFERENCE_ID)) {
-            resultSet.next();
-            return resultSet.getInt(1);
-        }
-
-    }
-
     @Override
-    public void addTask(String id, String filePath, Date date) throws DaoException {
+    public void addTask(String userId, Task task) throws DaoException {
         try(Connection connection = DatabaseConnection.getConnection();
-            PreparedStatement conferencePreparedStatement = connection.prepareStatement(DatabaseConstants.SQL_INSERT_INTO_CONFERENCE);
-            PreparedStatement eventPreparedStatement = connection.prepareStatement(DatabaseConstants.SQL_INSERT_INTO_EVENTS);
-            Scanner scanner = new Scanner(new File(filePath)))
+            PreparedStatement conferencePreparedStatement = connection.prepareStatement(DatabaseConstants.SQL_INSERT_INTO_CONFERENCE)
+        //    PreparedStatement eventPreparedStatement = connection.prepareStatement(DatabaseConstants.SQL_INSERT_INTO_EVENTS)
+        )
         {
-            String conferenceName = scanner.nextLine();
-            String department = scanner.nextLine();
-            conferencePreparedStatement.setString(DatabaseConstants.CONFERENCE_USER_ID_QUERY_INDEX, id);
-            conferencePreparedStatement.setString(DatabaseConstants.CONFERENCE_NAME_QUERY_INDEX, conferenceName);
-            conferencePreparedStatement.setString(DatabaseConstants.CONFERENCE_DEPARTMENT_QUERY_INDEX, department);
-            conferencePreparedStatement.setDate(DatabaseConstants.CONFERENCE_DATE_QUERY_INDEX, date);
+            conferencePreparedStatement.setString(DatabaseConstants.CONFERENCE_USER_ID_QUERY_INDEX, userId);
+            conferencePreparedStatement.setString(DatabaseConstants.CONFERENCE_NAME_QUERY_INDEX, task.getName());
+            conferencePreparedStatement.setString(DatabaseConstants.CONFERENCE_DEPARTMENT_QUERY_INDEX, task.getDepartment());
+            conferencePreparedStatement.setDate(DatabaseConstants.CONFERENCE_DATE_QUERY_INDEX, task.getDate());
             conferencePreparedStatement.executeUpdate();
-
+            /*
             while(scanner.hasNext()) {
                 String eventName = scanner.nextLine();
                 String time = scanner.nextLine();
@@ -97,13 +86,11 @@ public class TaskDatabaseImplementation implements ITaskDAO {
                 eventPreparedStatement.setString(DatabaseConstants.EVENT_NAME_QUERY_INDEX, eventName);
                 eventPreparedStatement.setString(DatabaseConstants.EVENT_TIME_QUERY_INDEX, time);
                 eventPreparedStatement.executeUpdate();
-            }
+            }*/
 
         }
         catch (SQLException e) {
             throw new DaoException(e);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }

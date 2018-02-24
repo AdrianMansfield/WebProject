@@ -2,22 +2,17 @@ package by.gsu.epamlab.controllers;
 
 import by.gsu.epamlab.beans.Task;
 import by.gsu.epamlab.constants.Constants;
-import by.gsu.epamlab.constants.DatabaseConstants;
+import by.gsu.epamlab.constants.FileConstants;
 import by.gsu.epamlab.controllers.enums.TaskTypes;
 import by.gsu.epamlab.exceptions.DaoException;
-import by.gsu.epamlab.implementations.TaskDatabaseImplementation;
-import by.gsu.epamlab.interfaces.ITaskDAO;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class MainServlet extends AbstractBaseController {
 
@@ -27,6 +22,7 @@ public class MainServlet extends AbstractBaseController {
 
             HttpSession session = request.getSession();
             session.removeAttribute(Constants.TASK_LIST_NAME);
+            session.removeAttribute(Constants.FILE_MAP_PARAMETER);
             String date = request.getParameter(Constants.DATE_PARAMETER);
             if(date == null) {
                 date = "TODAY"; // CORRECT
@@ -35,9 +31,25 @@ public class MainServlet extends AbstractBaseController {
             String id = (String)session.getAttribute(Constants.ID);
             List<Task> taskList = TaskTypes.valueOf(date).getTasks(id);
             session.setAttribute(Constants.TASK_LIST_NAME, taskList);
+            session.setAttribute(Constants.FILE_MAP_PARAMETER, getFileForTask(request));
             response.sendRedirect(Constants.MAIN_URL);
         } catch (DaoException e) {
             e.printStackTrace();
         }
+    }
+
+    private Map<String, String> getFileForTask(HttpServletRequest request) {
+        String login = (String) request.getSession().getAttribute(Constants.LOGIN);
+        Map<String, String> fileMap = new HashMap<>();
+        File directory = new File(Constants.FILES_DIRECTORY + File.separator + login);
+        if(directory.isDirectory()) {
+            for(File file : directory.listFiles()) {
+                String [] fileNameParts = file.getName().split(FileConstants.FILE_DELIMITER);
+                String taskName = fileNameParts[FileConstants.TASK_INDEX];
+                String fileName = fileNameParts[FileConstants.FILE_NAME_INDEX];
+                fileMap.put(taskName, fileName);
+            }
+        }
+        return fileMap;
     }
 }

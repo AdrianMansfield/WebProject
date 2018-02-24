@@ -12,5 +12,5 @@ import java.util.List;
 public interface ITaskDAO {
     List<Task> getTasks(String userId, String query, Date date) throws DaoException;
     List<Event> getEvents(String conferenceName) throws DaoException;
-    void addTask(String id, String filePath, Date date) throws DaoException;
+    void addTask(String userId, Task task) throws DaoException;
 }

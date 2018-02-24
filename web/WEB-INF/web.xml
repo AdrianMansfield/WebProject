@@ -110,12 +110,21 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>FileServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.FileServlet</servlet-class>
+        <servlet-name>AddTaskServlet</servlet-name>
+        <servlet-class>by.gsu.epamlab.controllers.AddTaskServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>FileServlet</servlet-name>
-        <url-pattern>/FileServlet</url-pattern>
+        <servlet-name>AddTaskServlet</servlet-name>
+        <url-pattern>/AddTaskServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DownloadFileServlet</servlet-name>
+        <servlet-class>by.gsu.epamlab.controllers.DownloadFileServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DownloadFileServlet</servlet-name>
+        <url-pattern>/DownloadFileServlet</url-pattern>
     </servlet-mapping>
 
 
