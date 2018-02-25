@@ -16,8 +16,9 @@ public class RegistrationServlet extends AbstractNonGetController {
     protected void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter(Constants.LOGIN);
         String password = request.getParameter(Constants.PASSWORD);
-        if(isInvalidLoginAndPassword(login,password)) {
+        if(!goodValues(login, password)) {
             jumpError(Constants.REGISTRATION_URL, Constants.EMPTY_DATA, request, response);
+            return;
         }
         try {
             User user = iUserDAO.setUser(login, password);

@@ -1,4 +1,4 @@
-package by.gsu.epamlab.controllers.filters;
+package by.gsu.epamlab.filters;
 
 import by.gsu.epamlab.constants.Constants;
 

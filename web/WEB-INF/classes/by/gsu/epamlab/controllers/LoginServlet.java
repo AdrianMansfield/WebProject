@@ -19,7 +19,7 @@ public class LoginServlet extends AbstractNonGetController {
                                HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter(Constants.LOGIN);
         String password = request.getParameter(Constants.PASSWORD);
-        if(isInvalidLoginAndPassword(login, password)) {
+        if(!goodValues(login, password)) {
             jumpError(Constants.LOGIN_URL, Constants.EMPTY_DATA, request, response);
         }
         try {

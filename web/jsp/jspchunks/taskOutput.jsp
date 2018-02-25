@@ -2,7 +2,7 @@
 <form action="EventServlet" method="post" id="tasks">
     <div class="table-container">
         <table class="text-center table-bordered table-hover" style="table-layout: fixed; width: 540px">
-            <c:forEach var="task" items="${tasks}" varStatus="status">
+            <c:forEach var="task" items="${conferences}" varStatus="status">
                 <tr>
                     <td width="80%">
                         <input name="currentTask" type="radio" class="invisible-circle-label" value="${task.id}" id="${task.id}"/>
