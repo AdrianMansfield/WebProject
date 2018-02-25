@@ -7,7 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class Task {
+public class Conference {
     private int id;
     private String name;
     private String department;
@@ -16,16 +16,16 @@ public class Task {
     private final static SimpleDateFormat OUTPUT_DATE_FORMAT =
             new SimpleDateFormat(Constants.PRINT_DATE_FORMAT);
 
-    public Task() {}
+    public Conference() {}
 
-    public Task(int id, String name, String department, Date date) {
+    public Conference(int id, String name, String department, Date date) {
         setId(id);
         setName(name);
         setDepartment(department);
         setDate(date);
     }
 
-    public Task(int id, String name, String department, String date) {
+    public Conference(int id, String name, String department, String date) {
         setId(id);
         setName(name);
         setDepartment(department);

@@ -48,9 +48,6 @@ public abstract class AbstractBaseController extends HttpServlet {
         jump(url, message, request, response);
     }
 
-    protected boolean isInvalidLoginAndPassword(String login, String password){
-        return (Constants.EMPTY_STRING.equals(login) || Constants.EMPTY_STRING.equals(password) || login == null || password == null);
-    }
 
     protected void setCookie(HttpServletResponse response, String name, String parameter, int age) {
         Cookie cookie = new Cookie(name, parameter);
@@ -67,6 +64,22 @@ public abstract class AbstractBaseController extends HttpServlet {
         setCookie(response, Constants.ID, String.valueOf(user.getId()), Constants.COOKIE_AGE);
         setCookie(response, Constants.LOGIN, user.getName(), Constants.COOKIE_AGE);
         setCookie(response, Constants.ROLE, Role.USER.toString(), Constants.COOKIE_AGE);
+    }
+
+    protected boolean goodValues(String ... values) {
+        boolean good = true;
+        for(String value : values) {
+            if(value == null) {
+                good = false;
+                break;
+            }
+            if(value.isEmpty()) {
+                good = false;
+                break;
+            }
+
+        }
+        return good;
     }
 
 }

@@ -18,7 +18,7 @@ public class Constants {
 
     public static final String MAIN_SERVLET_URL = "/MainServlet";
 
-    public static final String TASK_LIST_NAME = "tasks";
+    public static final String CONFERENCE_LIST_NAME = "conferences";
 
     public static final String ID = "id";
 
@@ -54,13 +54,13 @@ public class Constants {
 
     public static final String SIGN_EQUAL = "=";
 
-    public static final String TASK_NAME_PARAMETER = "taskName";
+    public static final String CONFERENCE_NAME_PARAMETER = "taskName";
 
     public static final String DEPARTMENT_PARAMETER = "department";
 
     public static final String FILE_MAP_PARAMETER = "fileMap";
 
-
+    public static final String ADD_CONFERENCE_ERROR_MESSAGE = "Invalid parameter(s) of conference";
 
 
 }

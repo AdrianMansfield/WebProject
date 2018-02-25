@@ -20,9 +20,6 @@ public class DatabaseConnection {
             e.printStackTrace();
         }
         dataSource = temporaryDataSource;
-        if(dataSource == null) {
-            throw new RuntimeException(); // this is block requires editing
-        }
     }
 
     public static Connection getConnection() throws SQLException {
