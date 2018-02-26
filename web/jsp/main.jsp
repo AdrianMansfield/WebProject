@@ -15,7 +15,6 @@
             </h5>
             <hr>
         </c:if>
-        <c:import url="/jsp/jspchunks/addConferences.jsp"/>
         <div class="d-flex flex-column flex-md-row align-items-center p-0 px-md-4 mb-1 navbar-inverse">
             <h5 class="text-white my-0 mr-md-0 mb-1">ToDo App main page</h5>
             <div class="form-inline  mx-auto">
@@ -25,27 +24,38 @@
             </div>
             <c:import url="/jsp/buttons/exit.jsp"/>
             </div>
-        <main role="main" class="content container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h5 class="my-0 font-weight-normal text-center">
-                        Choose conference
-                    </h5>
-                    <div>
-                        <c:import url="/jsp/jspchunks/taskOutput.jsp"/>
-                    </div>
-                    <h5 class="my-0 font-weight-normal">
+        <main role="main" class="content">
+
+            <div id="slide">
+                <div id="toggle">&#9776;</div>
+                <div class="box">
+                    <c:import url="/jsp/jspchunks/addConferences.jsp"/>
+                </div>
+            </div>
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5 class="my-0 font-weight-normal text-center">
+                            Choose conference
+                        </h5>
+                        <div>
+                            <c:import url="/jsp/jspchunks/taskOutput.jsp"/>
+                        </div>
+                        <h5 class="my-0 font-weight-normal">
                             or upload .CSV file
-                    </h5>
-                    <div>
-                        <c:import url="/jsp/jspchunks/uploadFile.jsp"/>
-                    </div>
+                        </h5>
+                        <div>
+                            <c:import url="/jsp/jspchunks/uploadFile.jsp"/>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <h1 class="text-center">Your events</h1>
                         <c:import url="/jsp/jspchunks/events.jsp"/>
                     </div>
                 </div>
+            </div>
             </main>
         <footer class="footer fixed-bottom">
             <c:import url="/jsp/jspchunks/developerName.jsp"/>

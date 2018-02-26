@@ -1,10 +1,10 @@
 
-.center_div{
+.center_div {
     margin: 0 auto;
     width: 80%;
 }
 
-a{
+a {
     color: #f85c37;
 }
 
@@ -14,7 +14,7 @@ a:hover, a:focus {
     outline: 0;
 }
 
-hr{
+hr {
     display: block;
     height: 1px;
     border: 0;
@@ -23,33 +23,59 @@ hr{
     padding: 0;
 }
 
-.navbar{
+.navbar {
     font-weight: 900;
     font-size: 20px;
     padding-top: 15px;
     padding-bottom: 15px;
 }
 
-.navbar-inverse{
+.navbar-inverse {
     background: #2d2d2d;
     border-color: #2d2d2d;
 }
 
-.card{
+.card {
     margin-top: 14rem;
     width: 30rem;
     height: 20rem;
 }
 
-.card-body{
+.card-body {
     margin-top: 2rem;
 }
-.invisible-circle-label{
+
+.invisible-circle-label {
     cursor: pointer;
     visibility: hidden;
 }
 
-.table-container{
+.table-container {
     height: 500px;
     overflow: auto;
+}
+
+#slide{
+    position: fixed;
+    background: #999;
+    width: 300px;
+    left: -300px;
+    height: 500px;
+    transition: left 0.4s ease-in-out;
+    -o-transition: left 0.4s ease-in-out;
+    -ms-transition: left 0.4s ease-in-out;
+    -moz-transition: left 0.4s ease-in-out;
+    -webkit-transition: left 0.4s ease-in-out;
+}
+#toggle{
+    position: absolute;
+    left: 300px;
+    padding: 10px;
+    background: #ccc;
+}
+.box {
+    padding: 20px;
+}
+#slide:hover{
+    left: 0px;
 }
