@@ -50,6 +50,35 @@ hr {
     visibility: hidden;
 }
 
+table{
+    width: 100%;
+}
+
+table td{
+    height: 1rem;
+}
+
+table td label{
+    display: block;
+    height: 100%;
+}
+
+.table-container label{
+    width: 100%;
+    cursor: pointer;
+}
+
+.trash-button{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+.table-container input:checked + label{
+    background: rgba(0, 0, 0, 0.075);
+}
 .table-container {
     height: 500px;
     overflow: auto;
