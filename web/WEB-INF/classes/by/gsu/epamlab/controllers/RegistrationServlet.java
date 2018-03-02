@@ -24,7 +24,7 @@ public class RegistrationServlet extends AbstractNonGetController {
             User user = iUserDAO.setUser(login, password);
             if(user != null) {
                 setUserAuthorization(user, request, response);
-                jumpPage(Constants.MAIN_SERVLET_URL, request, response);
+                jumpPage(Constants.MAIN_URL, request, response);
             }
             else {
                 jumpError(Constants.REGISTRATION_URL, Constants.INVALID_LOGIN_OR_PASSWORD, request, response);

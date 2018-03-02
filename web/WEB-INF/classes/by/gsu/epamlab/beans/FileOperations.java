@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class FileOperations {
+public final class FileOperations {
     public static void uploadFile(HttpServletRequest request, String taskName) throws ServletException, IOException {
         Part part = request.getPart(Constants.FILE_PARAMETER);
         String fileName = extractFileName(part);

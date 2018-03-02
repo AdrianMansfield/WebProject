@@ -6,7 +6,7 @@
     Hello: <c:out value="${login}" default="visitor"/>
 </h5>
 <nav class="my-2 my-md-0 mr-md-3">
-    <a class="p-2 text-dark" href="/jsp/main.jsp">Main page</a>
+    <a class="p-2 text-dark" href="/main">Main page</a>
 </nav>
 <c:import url="/jsp/buttons/exit.jsp"/>
 

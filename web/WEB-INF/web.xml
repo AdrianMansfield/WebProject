@@ -92,17 +92,17 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>MainServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.MainServlet</servlet-class>
+        <servlet-name>PrintConferenceServlet</servlet-name>
+        <servlet-class>by.gsu.epamlab.controllers.PrintConferenceServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>MainServlet</servlet-name>
-        <url-pattern>/MainServlet</url-pattern>
+        <servlet-name>PrintConferenceServlet</servlet-name>
+        <url-pattern>/PrintConferenceServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>EventServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.EventServlet</servlet-class>
+        <servlet-class>by.gsu.epamlab.controllers.PrintEventServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>EventServlet</servlet-name>
@@ -146,15 +146,6 @@
     <filter-mapping>
         <filter-name>AuthorizationFilter</filter-name>
         <url-pattern>/index</url-pattern>
-    </filter-mapping>
-
-    <filter>
-        <filter-name>MainFilter</filter-name>
-        <filter-class>by.gsu.epamlab.filters.MainFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>MainFilter</filter-name>
-        <url-pattern>/jsp/main.jsp</url-pattern>
     </filter-mapping>
 
 </web-app>

@@ -9,21 +9,19 @@ import by.gsu.epamlab.interfaces.IConferenceDAO;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 
-public class EventServlet extends AbstractNonGetController {
+public class AddEventServlet extends AbstractNonGetController {
+
     @Override
     protected void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        IConferenceDAO iConferenceDAO = new ConferenceDatabaseImplementation();
         try {
-            String taskId = request.getParameter(Constants.CURRENT_TASK_PARAMETER);
-            HttpSession session = request.getSession();
-            session.removeAttribute(Constants.EVENTS_ATTRIBUTE);
-            List<Event> eventList = iConferenceDAO.getEvents(taskId);
-            session.setAttribute(Constants.EVENTS_ATTRIBUTE, eventList);
-            response.sendRedirect(Constants.MAIN_URL);
+            String conferenceId = (String) request.getSession().getAttribute("conferenceId");
+            String eventName = request.getParameter("eventName");
+            String eventTime = request.getParameter("eventTime");
+            Event event = new Event(Constants.ZERO, eventName, eventTime);
+            IConferenceDAO iConferenceDAO = new ConferenceDatabaseImplementation();
+            iConferenceDAO.addEvent(conferenceId, event);
         } catch (DaoException e) {
             e.printStackTrace();
         }

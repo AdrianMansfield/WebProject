@@ -19,8 +19,10 @@ public class LoginServlet extends AbstractNonGetController {
                                HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter(Constants.LOGIN);
         String password = request.getParameter(Constants.PASSWORD);
+        System.out.println(request.getContentType());
         if(!goodValues(login, password)) {
             jumpError(Constants.LOGIN_URL, Constants.EMPTY_DATA, request, response);
+            return;
         }
         try {
             User user = iUserDAO.getUser(login, password);
@@ -30,7 +32,7 @@ public class LoginServlet extends AbstractNonGetController {
                 return;
             }
             setUserAuthorization(user, request, response);
-            jumpPage(Constants.MAIN_SERVLET_URL, request, response);
+            jumpPage(Constants.MAIN_URL, request, response);
         } catch (DaoException e) {
             e.printStackTrace();
             jumpError(Constants.LOGIN_URL, Constants.SERVER_ERROR, request, response);

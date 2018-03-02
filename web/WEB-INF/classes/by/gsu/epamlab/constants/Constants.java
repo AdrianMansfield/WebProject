@@ -38,7 +38,7 @@ public class Constants {
 
     public static final String EVENTS_ATTRIBUTE = "events";
 
-    public static final String CURRENT_TASK_PARAMETER = "currentTask";
+    public static final String CURRENT_CONFERENCE_PARAMETER = "currentTask";
 
     public static final String PRINT_DATE_FORMAT = "dd.MM.yyyy";
 

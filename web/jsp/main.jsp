@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="by.gsu.epamlab.constants.JspConstants" %>
-
+<script src="../js/ajax-task-buttons.js"></script>
 <html lang="en">
     <head>
         <title>Main page</title>

@@ -40,11 +40,24 @@ public class DatabaseConstants {
     public static final int CONFERENCE_DEPARTMENT_QUERY_INDEX = 3;
     public static final int CONFERENCE_DATE_QUERY_INDEX = 4;
 
-    public static final String SQL_SELECT_CURRENT_CONFERENCE_ID = "SELECT max(id) FROM conference";
-
     public static final String SQL_INSERT_INTO_EVENTS = "INSERT INTO `events`(conferenceId, name, time) VALUES (?,?,?)";
     public static final int EVENT_CONFERENCE_ID_QUERY_INDEX = 1;
     public static final int EVENT_NAME_QUERY_INDEX = 2;
     public static final int EVENT_TIME_QUERY_INDEX = 3;
+
+    public static final String SQL_DELETE_CONFERENCE_EVENTS = "Delete from events Where conferenceId = ?";
+
+    public static final String SQL_DELETE_FROM_EVENTS = "Delete from events Where id = ?";
+    public static final int EVENTS_ID_INDEX = 1;
+
+    public static final String SQL_INSERT_INTO_BASKET_FROM_CONFERENCE = "Insert Into basket(id, userId, name, department, date)" +
+            " Select userId, name, department, date From conference" +
+            " Where id = ?";
+    public static final String SQL_INSERT_INTO_BASKET_FROM_FIXED = "Insert Into basket(id, userId, name, department, date)" +
+            " Select userId, name, department, date From conference" +
+            " Where id = ?";
+    public static final String SQL_DELETE_FROM_BASKET = "Delete From basket Where id = ?";
+    public static final int BASKET_QUERY_INDEX = 1;
+
 
 }

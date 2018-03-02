@@ -16,7 +16,7 @@ public enum ConferenceTypes {
 
         @Override
         public List<Conference> getTasks(String userId) throws DaoException {
-            return I_CONFERENCE_DAO.getTasks(userId, DatabaseConstants.SQL_SELECT_TODAY_TASKS, getTomorrowDay());
+            return I_CONFERENCE_DAO.getConferences(userId, DatabaseConstants.SQL_SELECT_TODAY_TASKS, getTomorrowDay());
         }
 
         private Date getTodayDate() {
@@ -27,31 +27,31 @@ public enum ConferenceTypes {
         @Override
         public void addTask(String userId, Conference task) throws DaoException {
             task.setDate(getTodayDate());
-            I_CONFERENCE_DAO.addTask(userId, task);
+            I_CONFERENCE_DAO.addConference(userId, task);
         }
     }, TOMORROW {
 
         @Override
         public List<Conference> getTasks(String userId) throws DaoException {
-            return I_CONFERENCE_DAO.getTasks(userId, DatabaseConstants.SQL_SELECT_TOMORROW_TASKS, getTomorrowDay());
+            return I_CONFERENCE_DAO.getConferences(userId, DatabaseConstants.SQL_SELECT_TOMORROW_TASKS, getTomorrowDay());
         }
 
         @Override
         public void addTask(String userId, Conference task) throws DaoException {
             task.setDate(getTomorrowDay());
-            I_CONFERENCE_DAO.addTask(userId, task);
+            I_CONFERENCE_DAO.addConference(userId, task);
         }
 
     }, SOMEDAY  {
 
         @Override
         public List<Conference> getTasks(String userId) throws DaoException {
-            return I_CONFERENCE_DAO.getTasks(userId, DatabaseConstants.SQL_SELECT_SOMEDAY_TASKS, getTomorrowDay());
+            return I_CONFERENCE_DAO.getConferences(userId, DatabaseConstants.SQL_SELECT_SOMEDAY_TASKS, getTomorrowDay());
         }
 
         @Override
         public void addTask(String userId, Conference task) throws DaoException {
-            I_CONFERENCE_DAO.addTask(userId, task);
+            I_CONFERENCE_DAO.addConference(userId, task);
         }
 
     };

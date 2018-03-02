@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ConferenceDatabaseImplementation implements IConferenceDAO {
     @Override
-    public List<Conference> getTasks(String userId, String query, Date date) throws DaoException {
+    public List<Conference> getConferences(String userId, String query, Date date) throws DaoException {
         try(Connection connection = DatabaseConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(query)
         )
@@ -61,10 +61,9 @@ public class ConferenceDatabaseImplementation implements IConferenceDAO {
     }
 
     @Override
-    public void addTask(String userId, Conference conference) throws DaoException {
+    public void addConference(String userId, Conference conference) throws DaoException {
         try(Connection connection = DatabaseConnection.getConnection();
             PreparedStatement conferencePreparedStatement = connection.prepareStatement(DatabaseConstants.SQL_INSERT_INTO_CONFERENCE)
-        //    PreparedStatement eventPreparedStatement = connection.prepareStatement(DatabaseConstants.SQL_INSERT_INTO_EVENTS)
         )
         {
             conferencePreparedStatement.setString(DatabaseConstants.CONFERENCE_USER_ID_QUERY_INDEX, userId);
@@ -72,15 +71,80 @@ public class ConferenceDatabaseImplementation implements IConferenceDAO {
             conferencePreparedStatement.setString(DatabaseConstants.CONFERENCE_DEPARTMENT_QUERY_INDEX, conference.getDepartment());
             conferencePreparedStatement.setDate(DatabaseConstants.CONFERENCE_DATE_QUERY_INDEX, conference.getDate());
             conferencePreparedStatement.executeUpdate();
-            /*
-            while(scanner.hasNext()) {
-                String eventName = scanner.nextLine();
-                String time = scanner.nextLine();
-                eventPreparedStatement.setInt(DatabaseConstants.EVENT_CONFERENCE_ID_QUERY_INDEX, getCurrentConferenceId(connection));
-                eventPreparedStatement.setString(DatabaseConstants.EVENT_NAME_QUERY_INDEX, eventName);
-                eventPreparedStatement.setString(DatabaseConstants.EVENT_TIME_QUERY_INDEX, time);
-                eventPreparedStatement.executeUpdate();
-            }*/
+
+        }
+        catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    public void workWithBasket(String [] conferenceIds, String query) throws DaoException {
+        try(Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            for(String conferenceId : conferenceIds) {
+                preparedStatement.setString(DatabaseConstants.BASKET_QUERY_INDEX, conferenceId);
+            }
+
+        }
+        catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+
+    public void removeConferenceEvents(String conferenceId) throws DaoException {
+        try(Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(DatabaseConstants.SQL_DELETE_CONFERENCE_EVENTS)) {
+
+            preparedStatement.setString(DatabaseConstants.EVENTS_ID_INDEX, conferenceId);
+            preparedStatement.executeUpdate();
+
+        }
+        catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    public void addEvent(String conferenceId, Event event) throws DaoException {
+        try(Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(DatabaseConstants.SQL_INSERT_INTO_EVENTS)) {
+
+                preparedStatement.setString(DatabaseConstants.EVENT_CONFERENCE_ID_QUERY_INDEX, conferenceId);
+                preparedStatement.setString(DatabaseConstants.EVENT_NAME_QUERY_INDEX, event.getName());
+                preparedStatement.setString(DatabaseConstants.EVENT_TIME_QUERY_INDEX, event.getTime());
+                preparedStatement.executeUpdate();
+
+        }
+        catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    public void removeEvents(String [] eventIds) throws DaoException {
+        try(Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(DatabaseConstants.SQL_DELETE_FROM_EVENTS)) {
+
+            for(String id : eventIds) {
+                preparedStatement.setString(DatabaseConstants.EVENTS_ID_INDEX, id);
+                preparedStatement.executeUpdate();
+            }
+
+        }
+        catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    @Override
+    public void removeConferences(String [] conferenceIds) throws DaoException {
+        try(Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(DatabaseConstants.SQL_DELETE_FROM_BASKET)) {
+            for(String conferenceId : conferenceIds) {
+                removeConferenceEvents(conferenceId);
+                preparedStatement.setString(DatabaseConstants.BASKET_QUERY_INDEX, conferenceId);
+                preparedStatement.executeUpdate();
+            }
 
         }
         catch (SQLException e) {

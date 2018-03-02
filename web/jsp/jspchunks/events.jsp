@@ -9,13 +9,9 @@
     <tbody>
     <c:forEach var="event" items="${events}">
         <TR>
-            <c:set var="color" value="black"/>
-            <c:if test="${event.name eq 'Opening'}">
-                <c:set var="color" value="red"/>
-            </c:if>
-            <TD><font color="${color}">${event.id}</font></TD>
-            <TD><font color="${color}">${event.name}</font></TD>
-            <TD><font color="${color}">${event.time}</font></TD>
+            <TD>${event.id}</TD>
+            <TD>${event.name}</TD>
+            <TD>${event.time}</TD>
         </TR>
     </c:forEach>
     </tbody>
