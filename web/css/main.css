@@ -68,14 +68,6 @@ table td label{
     cursor: pointer;
 }
 
-.trash-button{
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-
-
 .table-container input:checked + label{
     background: rgba(0, 0, 0, 0.075);
 }
@@ -107,4 +99,27 @@ table td label{
 }
 #slide:hover{
     left: 0px;
+}
+
+#slide1{
+    position: fixed;
+    background: #999;
+    width: 300px;
+    right: -300px;
+    height: 500px;
+    transition: right 0.4s ease-in-out;
+    -o-transition: right 0.4s ease-in-out;
+    -ms-transition: right 0.4s ease-in-out;
+    -moz-transition: right 0.4s ease-in-out;
+    -webkit-transition: right 0.4s ease-in-out;
+}
+#toggle1{
+    position: absolute;
+    right: 300px;
+    padding: 10px;
+    background: #ccc;
+}
+
+#slide1:hover{
+    right: 0px;
 }
