@@ -8,7 +8,6 @@
         <link rel="stylesheet" href="${JspConstants.BOOTSTRAP_STYLE_FILE_PATH}">
         <link rel="stylesheet" href="${JspConstants.MAIN_STYLE_FILE_PATH}">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-        <script src="/js/bootstrap.min.js"></script>
     </head>
     <body>
         <c:if test="${not empty errorMessage}">
@@ -21,17 +20,23 @@
             <h5 class="text-white my-0 mr-md-0 mb-1">ToDo App main page</h5>
             <div class="form-inline  mx-auto">
                 <c:import url="/jsp/buttons/taskButtons.jsp"/>
-                <c:import url="/jsp/buttons/createConference.jsp"/>
-                <c:import url="/jsp/buttons/deletedConferences.jsp"/>
             </div>
             <c:import url="/jsp/buttons/exit.jsp"/>
             </div>
         <main role="main" class="content">
 
             <div id="slide">
-                <div id="toggle">&#9776;</div>
+                <div id="toggle">AC</div>
+                <%--&#9776;--%>
                 <div class="box">
                     <c:import url="/jsp/jspchunks/addConferences.jsp"/>
+                </div>
+            </div>
+
+            <div id="slide1">
+                <div id="toggle1">AE</div>
+                <div class="box">
+                    <c:import url="/jsp/jspchunks/addEvent.jsp"/>
                 </div>
             </div>
 

@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<form action="EventServlet"  method="post" id="tasks">
+<form action="EventServlet" method="post" id="tasks">
     <div class="table-container">
-        <table class="text-center table-bordered table-hover" id = "taskTable">
+        <table class="text-center table-bordered table-hover" id="taskTable">
             <c:if test="${server}">
                 <c:forEach var="task" items="${conferences}" varStatus="status">
                     <tr>
@@ -19,10 +19,7 @@
                             </c:if>
                         </td>
                         <td>
-
-                            <button class="trash-button">
-                                <i class="fa fa-trash"></i>
-                            </button>
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1"> label
                         </td>
                     </tr>
                 </c:forEach>
@@ -30,4 +27,5 @@
         </table>
     </div>
     <input type="submit" name="Choose" class="btn btn-outline-danger"/>
+    <input type="button" name="Delete" class="btn btn-outline-danger" value="Delete"/>
 </form>

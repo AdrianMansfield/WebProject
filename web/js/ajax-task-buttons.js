@@ -119,9 +119,11 @@ function drawTaskTable(taskList, fileMap) {
         }
         td = document.createElement("td");
         tr.appendChild(td);
-        button = document.createElement("button");
-        button.setAttribute("class", "trash-button");
-        button.innerHTML = "<i class='fa fa-trash'></i>"
-        td.appendChild(button);
+        input = document.createElement("input");
+        input.setAttribute("type", "checkbox");
+        input.setAttribute("class","form-check-input");
+        input.setAttribute("id","exampleCheck1");
+        input.innerHTML = "label";
+        td.appendChild(input);
     }
 }
