@@ -123,7 +123,7 @@ function drawTaskTable(taskList, fileMap) {
         input.setAttribute("type", "checkbox");
         input.setAttribute("class","form-check-input");
         input.setAttribute("id","exampleCheck1");
-        input.innerHTML = "label";
+        input.setAttribute("onclick","showDeleteButton('tasks','deleteConf')");
         td.appendChild(input);
     }
 }

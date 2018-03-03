@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<form action="EventServlet" method="post" id="tasks">
+<form action="EventServlet" method="post" id="tasks" name="taskForm">
     <div class="table-container">
         <table class="text-center table-bordered table-hover" id="taskTable">
             <c:if test="${server}">
@@ -19,13 +19,15 @@
                             </c:if>
                         </td>
                         <td>
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1"> label
+                            <input type="checkbox" class="form-check-input" name="deleteConfCheck" onclick="showDeleteButton('tasks','deleteConf')">
                         </td>
                     </tr>
                 </c:forEach>
             </c:if>
         </table>
     </div>
-    <input type="submit" name="Choose" class="btn btn-outline-danger"/>
-    <input type="button" name="Delete" class="btn btn-outline-danger" value="Delete"/>
+    <input type="submit" name="Choose" class="btn btn-outline-danger" onclick="showEvents()"/>
+    <input type="button" name="checkAll" class="btn btn-outline-danger" value="check all" id="check" onclick="addStatement('checked','tasks'); showDeleteButton('tasks','deleteConf')"/>
+    <input type="button" name="uncheckAll" class="btn btn-outline-danger" value="uncheck all" id="uncheck" onclick="addStatement('','tasks');showDeleteButton('tasks','deleteConf')"/>
+    <input type="button" name="Delete" class="btn btn-outline-danger noneDisplay" value="Delete" id="deleteConf"/>
 </form>

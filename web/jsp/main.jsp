@@ -8,8 +8,9 @@
         <link rel="stylesheet" href="${JspConstants.BOOTSTRAP_STYLE_FILE_PATH}">
         <link rel="stylesheet" href="${JspConstants.MAIN_STYLE_FILE_PATH}">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <script src="/js/script.js"></script>
     </head>
-    <body>
+    <body onload="initDisplay()">
         <c:if test="${not empty errorMessage}">
             <h5 class="text-white">
                 <c:out value="${errorMessage}"/>
@@ -24,17 +25,15 @@
             <c:import url="/jsp/buttons/exit.jsp"/>
             </div>
         <main role="main" class="content">
-
-            <div id="slide">
-                <div id="toggle">AC</div>
-                <%--&#9776;--%>
+            <div id="leftSlide">
+                <div id="leftToggle">AC</div>
                 <div class="box">
                     <c:import url="/jsp/jspchunks/addConferences.jsp"/>
                 </div>
             </div>
 
-            <div id="slide1">
-                <div id="toggle1">AE</div>
+            <div id="rightSlide">
+                <div id="rightToggle">AE</div>
                 <div class="box">
                     <c:import url="/jsp/jspchunks/addEvent.jsp"/>
                 </div>
@@ -43,7 +42,7 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6" id="conference">
                         <h5 class="my-0 font-weight-normal text-center">
                             Choose conference
                         </h5>
@@ -57,10 +56,12 @@
                             <c:import url="/jsp/jspchunks/uploadFile.jsp"/>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div id="fixed"></div>
+                    <div class="col-md-6" id="events">
                         <h1 class="text-center">Your events</h1>
                         <c:import url="/jsp/jspchunks/events.jsp"/>
                     </div>
+                    <div id="bucket"></div>
                 </div>
             </div>
             </main>
