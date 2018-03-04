@@ -38,6 +38,4 @@
         </table>
     </div>
     <input type="submit" name="Choose" class="btn btn-outline-danger" onclick="showEvents(); sendQueryToPrintEventServlet(value); return false;"/>
-    <input type="button" name="checkAll" class="btn btn-outline-danger" value="check all" id="check" onclick="addStatement('checked','tasks'); showDeleteButton('tasks','deleteConf')"/>
-    <input type="button" name="uncheckAll" class="btn btn-outline-danger" value="uncheck all" id="uncheck" onclick="addStatement('','tasks');showDeleteButton('tasks','deleteConf')"/>
 </form>
