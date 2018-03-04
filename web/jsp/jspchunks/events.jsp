@@ -7,7 +7,7 @@
         <th>Event</th>
         <th>Time</th>
         </thead>
-        <tbody  name="eventTable">
+        <tbody  id="eventTable">
         <c:forEach var="event" items="${events}">
             <TR>
                 <TD>${event.id}</TD>

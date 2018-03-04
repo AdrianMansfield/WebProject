@@ -101,12 +101,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>EventServlet</servlet-name>
+        <servlet-name>PrintEventServlet</servlet-name>
         <servlet-class>by.gsu.epamlab.controllers.get.PrintEventServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>EventServlet</servlet-name>
-        <url-pattern>/EventServlet</url-pattern>
+        <servlet-name>PrintEventServlet</servlet-name>
+        <url-pattern>/PrintEventServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>

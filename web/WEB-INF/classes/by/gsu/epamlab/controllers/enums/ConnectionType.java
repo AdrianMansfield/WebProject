@@ -74,9 +74,11 @@ public enum ConnectionType {
             HttpSession session = request.getSession();
             List<Event> eventList = iConferenceDAO.getEvents(conferenceId);
             JSONArray jsonArrayEvent = getJsonArray(eventList);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("events", jsonArrayEvent);
             session.setAttribute(Constants.EVENTS_ATTRIBUTE, new ArrayList<>());
             session.setAttribute("conferenceId", conferenceId); ///<---- Hm...
-            response.getWriter().write(jsonArrayEvent.toJSONString());
+            response.getWriter().write(jsonObject.toJSONString());
         }
     },
     NO_AJAX {
