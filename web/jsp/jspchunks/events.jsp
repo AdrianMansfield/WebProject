@@ -1,13 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<form action="" method="post" id="events" name="events">
+<form action="" method="post" id="events">
     <TABLE align="center">
         <thead>
         <th>Id</th>
         <th>Event</th>
         <th>Time</th>
         </thead>
-        <tbody>
+        <tbody  name="eventTable">
         <c:forEach var="event" items="${events}">
             <TR>
                 <TD>${event.id}</TD>

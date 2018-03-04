@@ -1,14 +1,16 @@
 package by.gsu.epamlab.beans.conference;
 
+import by.gsu.epamlab.beans.Jsonable;
 import by.gsu.epamlab.beans.event.Event;
 import by.gsu.epamlab.constants.Constants;
+import org.json.simple.JSONObject;
 
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class Conference {
+public class Conference implements Jsonable {
     private int id;
     private String name;
     private String department;
@@ -84,5 +86,12 @@ public class Conference {
 
     public void setEvents(List<Event> events) {
         this.events = events;
+    }
+
+    public JSONObject toJson() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id", id);
+        jsonObject.put("taskName", name);
+        return jsonObject;
     }
 }

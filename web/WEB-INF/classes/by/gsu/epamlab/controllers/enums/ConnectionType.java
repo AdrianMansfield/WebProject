@@ -1,9 +1,13 @@
 package by.gsu.epamlab.controllers.enums;
 
+import by.gsu.epamlab.beans.Jsonable;
 import by.gsu.epamlab.beans.conference.Conference;
 import by.gsu.epamlab.beans.FileOperations;
+import by.gsu.epamlab.beans.event.Event;
 import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.exceptions.DaoException;
+import by.gsu.epamlab.implementations.ConferenceDatabaseImplementation;
+import by.gsu.epamlab.interfaces.IConferenceDAO;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -34,30 +38,27 @@ public enum ConnectionType {
         }
 
 
-        private JSONArray getJsonArray(List<Conference> list) {
+        private <T extends Jsonable> JSONArray getJsonArray(List<T> list) {
             JSONArray jsonArray = new JSONArray();
 
-            for(Conference conference : list) {
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put("id", conference.getId());
-                jsonObject.put("taskName", conference.getName());
-                jsonArray.add(jsonObject);
+            for(T someObject : list) {
+                jsonArray.add(someObject.toJson());
             }
 
             return jsonArray;
         }
 
         @Override
-        public void responseToClient(HttpServletRequest request, HttpServletResponse response) throws DaoException, IOException, ServletException {
+        public void conferenceResponse(HttpServletRequest request, HttpServletResponse response) throws DaoException, IOException, ServletException {
             HttpSession session = request.getSession();
             String dateType = request.getParameter(Constants.DATE_TYPE_PARAMETER);
             dateType = dateType.toUpperCase();
             String id = (String)session.getAttribute(Constants.ID);
-            List<Conference> taskList = ConferencePrintTypes.valueOf(dateType).getConferences(id);
-            JSONArray jsonArrayTaskList = getJsonArray(taskList);
+            List<Conference> conferenceList = ConferencePrintTypes.valueOf(dateType).getConferences(id);
+            JSONArray jsonArrayTaskList = getJsonArray(conferenceList);
             JSONArray jsonArrayFileMap = getJsonMap(FileOperations.getFileForTask(request));
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("taskList", jsonArrayTaskList);
+            jsonObject.put("conferenceList", jsonArrayTaskList);
             jsonObject.put("fileMap", jsonArrayFileMap);
             jsonObject.put("isBasket", dateType.equals("basket".toUpperCase()));
             session.setAttribute(Constants.CONFERENCE_LIST_NAME, new ArrayList<>());
@@ -65,10 +66,22 @@ public enum ConnectionType {
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(jsonObject.toJSONString());
         }
+
+        @Override
+        public void eventResponse(HttpServletRequest request, HttpServletResponse response) throws IOException, DaoException, ServletException {
+            IConferenceDAO iConferenceDAO = new ConferenceDatabaseImplementation();
+            String conferenceId = request.getParameter(Constants.CURRENT_CONFERENCE_PARAMETER);
+            HttpSession session = request.getSession();
+            List<Event> eventList = iConferenceDAO.getEvents(conferenceId);
+            JSONArray jsonArrayEvent = getJsonArray(eventList);
+            session.setAttribute(Constants.EVENTS_ATTRIBUTE, new ArrayList<>());
+            session.setAttribute("conferenceId", conferenceId); ///<---- Hm...
+            response.getWriter().write(jsonArrayEvent.toJSONString());
+        }
     },
     NO_AJAX {
         @Override
-        public void responseToClient(HttpServletRequest request, HttpServletResponse response) throws IOException, DaoException {
+        public void conferenceResponse(HttpServletRequest request, HttpServletResponse response) throws IOException, DaoException {
             HttpSession session = request.getSession();
             String dateType = request.getParameter(Constants.DATE_TYPE_PARAMETER);
             dateType = dateType.toUpperCase();
@@ -79,7 +92,20 @@ public enum ConnectionType {
             session.setAttribute("isBasket", dateType.equals("basket"));
             response.sendRedirect(Constants.MAIN_URL);
         }
+
+        @Override
+        public void eventResponse(HttpServletRequest request, HttpServletResponse response) throws IOException, DaoException, ServletException {
+            IConferenceDAO iConferenceDAO = new ConferenceDatabaseImplementation();
+            String conferenceId = request.getParameter(Constants.CURRENT_CONFERENCE_PARAMETER);
+            HttpSession session = request.getSession();
+            List<Event> eventList = iConferenceDAO.getEvents(conferenceId);
+            session.setAttribute(Constants.EVENTS_ATTRIBUTE, eventList);
+            session.setAttribute("conferenceId", conferenceId); ///<---- Hm...
+            response.sendRedirect(Constants.MAIN_URL);
+        }
     };
 
-    public abstract void responseToClient(HttpServletRequest request, HttpServletResponse response) throws IOException, DaoException, ServletException;
+    public abstract void conferenceResponse(HttpServletRequest request, HttpServletResponse response) throws IOException, DaoException, ServletException;
+
+    public abstract void eventResponse(HttpServletRequest request, HttpServletResponse response) throws IOException, DaoException, ServletException;
 }

@@ -1,6 +1,9 @@
 package by.gsu.epamlab.beans.event;
 
-public class Event {
+import by.gsu.epamlab.beans.Jsonable;
+import org.json.simple.JSONObject;
+
+public class Event implements Jsonable {
     private int id;
     private String name;
     private String time;
@@ -35,5 +38,14 @@ public class Event {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id", id);
+        jsonObject.put("eventName", name);
+        jsonObject.put("eventTime", time);
+        return jsonObject;
     }
 }

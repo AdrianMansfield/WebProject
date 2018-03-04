@@ -18,7 +18,7 @@ public class PrintConferenceServlet extends AbstractBaseController {
             String connectionType = request.getParameter("from");
             if(connectionType == null)
                 connectionType = "no_ajax";
-            ConnectionType.valueOf(connectionType.toUpperCase()).responseToClient(request, response);
+            ConnectionType.valueOf(connectionType.toUpperCase()).conferenceResponse(request, response);
 
         } catch (DaoException e) {
             e.printStackTrace();

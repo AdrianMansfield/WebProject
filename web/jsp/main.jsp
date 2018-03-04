@@ -14,7 +14,7 @@
         <script src="../js/new-xml-http-request.js"></script>
         <script src="../js/send-query.js"></script>
         <script src="../js/script.js"></script>
-        <script src="../js/ajax-conference-buttons.js"></script>
+        <script src="../js/ajax-conference-print.js"></script>
     </head>
     <body onload="initDisplay()">
         <c:if test="${not empty errorMessage}">

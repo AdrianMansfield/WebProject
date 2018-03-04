@@ -34,18 +34,18 @@ function getMapFromJson(map) {
 
 function printTaskTable(jsonObject) {
     removeAllElements(taskTable);
-    var taskList = jsonObject.taskList;
+    var conferenceList = jsonObject.conferenceList;
     var fileMap = getMapFromJson(jsonObject.fileMap);
     var isBasket = jsonObject.isBasket;
-    drawTaskTable(taskList, fileMap, isBasket);
+    drawTaskTable(conferenceList, fileMap, isBasket);
 
 }
 
-function drawTaskTable(taskList, fileMap, isBasket) {
+function drawTaskTable(conferenceList, fileMap, isBasket) {
 
-    for(var counter in taskList) {
-        var currentTaskId = taskList[counter].id;
-        var currentTask = taskList[counter].taskName;
+    for(var counter in conferenceList) {
+        var currentTaskId = conferenceList[counter].id;
+        var currentTask = conferenceList[counter].taskName;
         var tr = document.createElement(TR_TAG);
         taskTable.appendChild(tr);
         var td = document.createElement(TD_TAG);
