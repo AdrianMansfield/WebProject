@@ -42,13 +42,33 @@ function printTaskTable(jsonObject) {
 }
 
 function drawTaskTable(conferenceList, fileMap, isBasket) {
-
+    var thead = document.createElement("thead");
+    taskTable.appendChild(thead);
+    var th = document.createElement("th");
+    th.innerHTML = "name";
+    thead.appendChild(th);
+    var th = document.createElement("th");
+    th.innerHTML = "file";
+    thead.appendChild(th);
+    var th = document.createElement("th");
+    input = document.createElement("input");
+    input.setAttribute("type", "checkbox");
+    input.setAttribute("id","checkAll");
+    input.setAttribute("onclick","addStatement('checkAll','tasks'); showDeleteButton('tasks','deleteConf')");
+    th.appendChild(input);
+    var label = document.createElement("label");
+    label.setAttribute("for","checkAll");
+    th.appendChild(label);
+    thead.appendChild(th);
+    var tbody = document.createElement("tbody");
+    taskTable.appendChild(tbody);
     for(var counter in conferenceList) {
         var currentTaskId = conferenceList[counter].id;
         var currentTask = conferenceList[counter].taskName;
         var tr = document.createElement(TR_TAG);
         taskTable.appendChild(tr);
         var td = document.createElement(TD_TAG);
+        td.setAttribute("width","100px");
         tr.appendChild(td);
         var input = document.createElement(INPUT_TAG);
         input.setAttribute(NAME_ATTRIBUTE, "currentTask");
@@ -62,6 +82,7 @@ function drawTaskTable(conferenceList, fileMap, isBasket) {
         label.innerHTML = currentTask;
         td.appendChild(label);
         td = document.createElement(TD_TAG);
+        td.setAttribute("width","380px");
         tr.appendChild(td);
         var fileName = fileMap[currentTask];
 
@@ -87,7 +108,6 @@ function drawTaskTable(conferenceList, fileMap, isBasket) {
         tr.appendChild(td);
         input = document.createElement(INPUT_TAG);
         input.setAttribute(TYPE_ATTRIBUTE, "checkbox");
-        input.setAttribute(CLASS_ATTRIBUTE,"form-check-input");
         input.setAttribute(ID_ATTRIBUTE,"exampleCheck1");
         input.setAttribute(ONCLICK_ATTRIBUTE,"showDeleteButton('tasks','deleteConf')");
         input.setAttribute(VALUE_ATTRIBUTE, fileName);
