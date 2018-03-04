@@ -1,7 +1,7 @@
 package by.gsu.epamlab.controllers;
 
-import by.gsu.epamlab.beans.Role;
-import by.gsu.epamlab.beans.User;
+import by.gsu.epamlab.beans.user.Role;
+import by.gsu.epamlab.beans.user.User;
 import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.constants.JspConstants;
 import by.gsu.epamlab.factories.UserDAOFactory;

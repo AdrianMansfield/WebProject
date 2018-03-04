@@ -1,7 +1,7 @@
 package by.gsu.epamlab.implementations;
 
-import by.gsu.epamlab.beans.Event;
-import by.gsu.epamlab.beans.Conference;
+import by.gsu.epamlab.beans.event.Event;
+import by.gsu.epamlab.beans.conference.Conference;
 import by.gsu.epamlab.constants.DatabaseConstants;
 import by.gsu.epamlab.database.DatabaseConnection;
 import by.gsu.epamlab.exceptions.DaoException;
@@ -12,6 +12,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConferenceDatabaseImplementation implements IConferenceDAO {
+
+    private List<Conference> getConferenceList(PreparedStatement preparedStatement) throws SQLException {
+        List<Conference> conferenceList = new ArrayList<>();
+        try(ResultSet resultSet = preparedStatement.executeQuery()) {
+            while(resultSet.next()) {
+                int id = resultSet.getInt(DatabaseConstants.CONFERENCE_ID_TABLE_INDEX);
+                String name = resultSet.getString(DatabaseConstants.CONFERENCE_NAME_TABLE_INDEX);
+                String department = resultSet.getString(DatabaseConstants.CONFERENCE_DEPARTMENT_TABLE_INDEX);
+                String stringDate = resultSet.getString(DatabaseConstants.CONFERENCE_DATE_TABLE_INDEX);
+                Conference task = new Conference(id, name, department, stringDate);
+                conferenceList.add(task);
+            }
+            return conferenceList;
+        }
+    }
+
     @Override
     public List<Conference> getConferences(String userId, String query, Date date) throws DaoException {
         try(Connection connection = DatabaseConnection.getConnection();
@@ -20,18 +36,22 @@ public class ConferenceDatabaseImplementation implements IConferenceDAO {
         {
             preparedStatement.setString(DatabaseConstants.USER_QUERY_INDEX, userId);
             preparedStatement.setDate(DatabaseConstants.DATE_QUERY_INDEX, date);
-            List<Conference> taskList = new ArrayList<>();
-            try(ResultSet resultSet = preparedStatement.executeQuery()) {
-                while(resultSet.next()) {
-                    int id = resultSet.getInt(DatabaseConstants.CONFERENCE_ID_TABLE_INDEX);
-                    String name = resultSet.getString(DatabaseConstants.CONFERENCE_NAME_TABLE_INDEX);
-                    String department = resultSet.getString(DatabaseConstants.CONFERENCE_DEPARTMENT_TABLE_INDEX);
-                    String stringDate = resultSet.getString(DatabaseConstants.CONFERENCE_DATE_TABLE_INDEX);
-                    Conference task = new Conference(id, name, department, stringDate);
-                    taskList.add(task);
-                }
-            }
-            return taskList;
+            return getConferenceList(preparedStatement);
+        }
+        catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+
+    @Override
+    public List<Conference> getConferences(String userId, String query) throws DaoException {
+        try(Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query)
+        )
+        {
+            preparedStatement.setString(DatabaseConstants.USER_QUERY_INDEX, userId);
+            return getConferenceList(preparedStatement);
         }
         catch (SQLException e) {
             throw new DaoException(e);
@@ -83,7 +103,8 @@ public class ConferenceDatabaseImplementation implements IConferenceDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             for(String conferenceId : conferenceIds) {
-                preparedStatement.setString(DatabaseConstants.BASKET_QUERY_INDEX, conferenceId);
+                preparedStatement.setString(DatabaseConstants.CONFERENCE_ID_INDEX, conferenceId);
+                preparedStatement.executeUpdate();
             }
 
         }
@@ -93,7 +114,7 @@ public class ConferenceDatabaseImplementation implements IConferenceDAO {
     }
 
 
-    public void removeConferenceEvents(String conferenceId) throws DaoException {
+    private void removeConferenceEvents(String conferenceId) throws DaoException {
         try(Connection connection = DatabaseConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(DatabaseConstants.SQL_DELETE_CONFERENCE_EVENTS)) {
 
@@ -139,10 +160,24 @@ public class ConferenceDatabaseImplementation implements IConferenceDAO {
     @Override
     public void removeConferences(String [] conferenceIds) throws DaoException {
         try(Connection connection = DatabaseConnection.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(DatabaseConstants.SQL_DELETE_FROM_BASKET)) {
+            PreparedStatement preparedStatement = connection.prepareStatement(DatabaseConstants.SQL_DELETE_CONFERENCE)) {
             for(String conferenceId : conferenceIds) {
                 removeConferenceEvents(conferenceId);
-                preparedStatement.setString(DatabaseConstants.BASKET_QUERY_INDEX, conferenceId);
+                preparedStatement.setString(DatabaseConstants.CONFERENCE_ID_INDEX, conferenceId);
+                preparedStatement.executeUpdate();
+            }
+
+        }
+        catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    public void getOutOfBasket(String [] conferenceIds) throws DaoException {
+        try(Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(DatabaseConstants.SQL_GET_FOR_MAIN)) {
+            for(String conferenceId : conferenceIds) {
+                preparedStatement.setString(DatabaseConstants.CONFERENCE_ID_INDEX, conferenceId);
                 preparedStatement.executeUpdate();
             }
 

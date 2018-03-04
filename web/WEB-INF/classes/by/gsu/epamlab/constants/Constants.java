@@ -16,7 +16,7 @@ public class Constants {
     public static final String INVALID_LOGIN_OR_PASSWORD = "Invalid login or password!";
     public static final String ROLE = "role";
 
-    public static final String MAIN_SERVLET_URL = "/MainServlet";
+    public static final String PRINT_CONFERENCE_SERVLET_URL = "/PrintConferenceServlet";
 
     public static final String CONFERENCE_LIST_NAME = "conferences";
 

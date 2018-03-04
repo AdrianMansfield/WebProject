@@ -1,9 +1,7 @@
 package by.gsu.epamlab.interfaces;
 
-import by.gsu.epamlab.beans.Event;
-import by.gsu.epamlab.beans.Conference;
-import by.gsu.epamlab.constants.DatabaseConstants;
-import by.gsu.epamlab.database.DatabaseConnection;
+import by.gsu.epamlab.beans.event.Event;
+import by.gsu.epamlab.beans.conference.Conference;
 import by.gsu.epamlab.exceptions.DaoException;
 
 import java.sql.*;
@@ -18,11 +16,13 @@ public interface IConferenceDAO {
 
     void workWithBasket(String [] conferenceIds, String query) throws DaoException;
 
-    void removeConferenceEvents(String conferenceId) throws DaoException;
-
     void addEvent(String conferenceId, Event event) throws DaoException;
 
     void removeEvents(String [] eventIds) throws DaoException;
 
     void removeConferences(String [] conferenceIds) throws DaoException;
+
+    void getOutOfBasket(String [] conferenceIds) throws DaoException;
+
+    public List<Conference> getConferences(String userId, String query) throws DaoException;
 }

@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<form action="" method="post" id="events">
+<form action="" method="post" id="events" name="events">
     <TABLE align="center">
         <thead>
         <th>Id</th>

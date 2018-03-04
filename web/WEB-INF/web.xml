@@ -68,7 +68,7 @@
     <!-- SERVLET  -->
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.LoginServlet</servlet-class>
+        <servlet-class>by.gsu.epamlab.controllers.post.LoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -76,7 +76,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>RegistrationServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.RegistrationServlet</servlet-class>
+        <servlet-class>by.gsu.epamlab.controllers.post.RegistrationServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegistrationServlet</servlet-name>
@@ -84,7 +84,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>ExitServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.ExitServlet</servlet-class>
+        <servlet-class>by.gsu.epamlab.controllers.post.ExitServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ExitServlet</servlet-name>
@@ -93,7 +93,7 @@
 
     <servlet>
         <servlet-name>PrintConferenceServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.PrintConferenceServlet</servlet-class>
+        <servlet-class>by.gsu.epamlab.controllers.get.PrintConferenceServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PrintConferenceServlet</servlet-name>
@@ -102,7 +102,7 @@
 
     <servlet>
         <servlet-name>EventServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.PrintEventServlet</servlet-class>
+        <servlet-class>by.gsu.epamlab.controllers.get.PrintEventServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>EventServlet</servlet-name>
@@ -111,7 +111,7 @@
 
     <servlet>
         <servlet-name>AddTaskServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.AddConferenceServlet</servlet-class>
+        <servlet-class>by.gsu.epamlab.controllers.post.AddConferenceServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddTaskServlet</servlet-name>
@@ -120,11 +120,38 @@
 
     <servlet>
         <servlet-name>DownloadFileServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.DownloadFileServlet</servlet-class>
+        <servlet-class>by.gsu.epamlab.controllers.post.DownloadFileServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DownloadFileServlet</servlet-name>
         <url-pattern>/DownloadFileServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MoveConferenceServlet</servlet-name>
+        <servlet-class>by.gsu.epamlab.controllers.post.MoveConferenceServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MoveConferenceServlet</servlet-name>
+        <url-pattern>/MoveConferenceServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteConferenceServlet</servlet-name>
+        <servlet-class>by.gsu.epamlab.controllers.post.DeleteConferenceServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteConferenceServlet</servlet-name>
+        <url-pattern>/DeleteConferenceServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteFileServlet</servlet-name>
+        <servlet-class>by.gsu.epamlab.controllers.post.DeleteFileServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteFileServlet</servlet-name>
+        <url-pattern>/DeleteFileServlet</url-pattern>
     </servlet-mapping>
 
 

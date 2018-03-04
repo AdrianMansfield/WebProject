@@ -2,8 +2,8 @@ package by.gsu.epamlab.implementations;
 
 import by.gsu.epamlab.database.DatabaseConnection;
 import by.gsu.epamlab.interfaces.IUserDAO;
-import by.gsu.epamlab.beans.Role;
-import by.gsu.epamlab.beans.User;
+import by.gsu.epamlab.beans.user.Role;
+import by.gsu.epamlab.beans.user.User;
 import by.gsu.epamlab.constants.DatabaseConstants;
 import by.gsu.epamlab.exceptions.DaoException;
 

@@ -1,6 +1,6 @@
 package by.gsu.epamlab.controllers.enums;
 
-import by.gsu.epamlab.beans.Conference;
+import by.gsu.epamlab.beans.conference.Conference;
 import by.gsu.epamlab.beans.FileOperations;
 import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.exceptions.DaoException;
@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -52,13 +53,14 @@ public enum ConnectionType {
             String dateType = request.getParameter(Constants.DATE_TYPE_PARAMETER);
             dateType = dateType.toUpperCase();
             String id = (String)session.getAttribute(Constants.ID);
-            List<Conference> taskList = ConferenceTypes.valueOf(dateType).getTasks(id);
+            List<Conference> taskList = ConferencePrintTypes.valueOf(dateType).getConferences(id);
             JSONArray jsonArrayTaskList = getJsonArray(taskList);
             JSONArray jsonArrayFileMap = getJsonMap(FileOperations.getFileForTask(request));
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("taskList", jsonArrayTaskList);
             jsonObject.put("fileMap", jsonArrayFileMap);
-            session.setAttribute("server", false); //<--- Hm...
+            jsonObject.put("isBasket", dateType.equals("basket".toUpperCase()));
+            session.setAttribute(Constants.CONFERENCE_LIST_NAME, new ArrayList<>());
             response.setContentType("application/x-json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(jsonObject.toJSONString());
@@ -71,10 +73,10 @@ public enum ConnectionType {
             String dateType = request.getParameter(Constants.DATE_TYPE_PARAMETER);
             dateType = dateType.toUpperCase();
             String id = (String)session.getAttribute(Constants.ID);
-            List<Conference> taskList = ConferenceTypes.valueOf(dateType).getTasks(id);
+            List<Conference> taskList = ConferencePrintTypes.valueOf(dateType).getConferences(id);
             session.setAttribute(Constants.CONFERENCE_LIST_NAME, taskList);
             session.setAttribute(Constants.FILE_MAP_PARAMETER, FileOperations.getFileForTask(request));
-            session.setAttribute("server", true); //<--- Hm...
+            session.setAttribute("isBasket", dateType.equals("basket"));
             response.sendRedirect(Constants.MAIN_URL);
         }
     };

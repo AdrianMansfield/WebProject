@@ -89,4 +89,17 @@ public final class FileOperations {
         fileInputStream.close();
         response.getOutputStream().close();
     }
+
+    public static void deleteFile(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String [] fileNames = request.getParameterValues("deleteConferenceCheck");
+        String login = (String) request.getSession().getAttribute(Constants.LOGIN);
+        for(String fileName : fileNames) {
+            int fileIndex = fileName.indexOf(":") + 1;
+            fileName = fileName.substring(fileIndex);
+            if(!"No file".equals(fileName)) {
+                new File(Constants.FILES_DIRECTORY + File.separator + login + File.separator + fileName).delete();
+            }
+        }
+        response.sendRedirect(Constants.MAIN_URL);
+    }
 }

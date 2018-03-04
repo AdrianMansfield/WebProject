@@ -1,14 +1,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="by.gsu.epamlab.constants.JspConstants" %>
-<script src="../js/ajax-task-buttons.js"></script>
 <html lang="en">
     <head>
         <title>Main page</title>
         <link rel="stylesheet" href="${JspConstants.BOOTSTRAP_STYLE_FILE_PATH}">
         <link rel="stylesheet" href="${JspConstants.MAIN_STYLE_FILE_PATH}">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-        <script src="/js/script.js"></script>
+        <script src="../js/general-constants.js"></script>
+        <script src="../js/tag-constants.js"></script>
+        <script src="../js/attribute-constants.js"></script>
+        <script src="../js/remove-all-elements-from-table.js"></script>
+        <script src="../js/new-xml-http-request.js"></script>
+        <script src="../js/send-query.js"></script>
+        <script src="../js/script.js"></script>
+        <script src="../js/ajax-conference-buttons.js"></script>
     </head>
     <body onload="initDisplay()">
         <c:if test="${not empty errorMessage}">

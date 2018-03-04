@@ -1,6 +1,6 @@
 package by.gsu.epamlab.filters;
 
-import by.gsu.epamlab.beans.Role;
+import by.gsu.epamlab.beans.user.Role;
 import by.gsu.epamlab.constants.Constants;
 
 import javax.servlet.*;

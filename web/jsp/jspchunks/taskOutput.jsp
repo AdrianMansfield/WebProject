@@ -2,32 +2,42 @@
 <form action="EventServlet" method="post" id="tasks" name="taskForm">
     <div class="table-container">
         <table class="text-center table-bordered table-hover" id="taskTable">
-            <c:if test="${server}">
-                <c:forEach var="task" items="${conferences}" varStatus="status">
-                    <tr>
-                        <td>
-                            <input name="currentTask" type="radio" class="invisible-circle-label" value="${task.id}"
-                                   id="${task.id}"/>
-                            <label for="${task.id}">${task.name}</label>
-                        </td>
-                        <td>
-                            <c:if test="${fileMap.get(task.name) != null}">
-                                <button form="tasks" formaction="DownloadFileServlet" class="btn btn-outline-danger"
-                                        formmethod="post" name="file" value="${task.name};${fileMap.get(task.name)}">
-                                        ${fileMap.get(task.name)}
-                                </button>
-                            </c:if>
-                        </td>
-                        <td>
-                            <input type="checkbox" class="form-check-input" name="deleteConfCheck" onclick="showDeleteButton('tasks','deleteConf')">
-                        </td>
-                    </tr>
-                </c:forEach>
+            <c:forEach var="task" items="${conferences}" varStatus="status">
+                <tr>
+                    <td>
+                        <input name="currentTask" type="radio" class="invisible-circle-label" value="${task.id}"
+                               id="${task.id}"/>
+                        <label for="${task.id}">${task.name}</label>
+                    </td>
+                    <td>
+                        <c:if test="${fileMap.get(task.name) != null}">
+                            <button form="tasks" formaction="DownloadFileServlet" class="btn btn-outline-danger"
+                                    formmethod="post" name="file" value="${task.name};${fileMap.get(task.name)}">
+                                    ${fileMap.get(task.name)}
+                            </button>
+                            <c:set var="file" value="${fileMap.get(task.name)}" scope="page"/>
+                        </c:if>
+                        <c:if test="${fileMap.get(task.name) == null}">
+                            <c:set var="file" value="No file" scope="page"/>
+                        </c:if>
+                    </td>
+                    <td>
+                        <input type="checkbox" class="form-check-input" name="deleteConferenceCheck" onclick="showDeleteButton('tasks','deleteConf')"
+                               value="${task.id}:${task.name};${file}">
+                    </td>
+                </tr>
+            </c:forEach>
+            <c:if test="${!isBasket && conference.length > 0}">
+                <button form="tasks" formmethod="post" formaction="MoveConferenceServlet"  name="typeLocation"
+                        class="btn btn-outline-danger noneDisplay" value= "basket" id="deleteConf">Move to basket</button>
+            </c:if>
+            <c:if test="${isBasket && conference.length > 0}">
+                <button form="tasks" formmethod="post" formaction="DeleteConferenceServlet"  name="Delete"
+                        class="btn btn-outline-danger noneDisplay" value= "delete" id="deleteConf">Delete</button>
             </c:if>
         </table>
     </div>
-    <input type="submit" name="Choose" class="btn btn-outline-danger" onclick="showEvents()"/>
+    <input type="submit" name="Choose" class="btn btn-outline-danger" onclick="showEvents(); sendQueryToPrintEventServlet(value); return false;"/>
     <input type="button" name="checkAll" class="btn btn-outline-danger" value="check all" id="check" onclick="addStatement('checked','tasks'); showDeleteButton('tasks','deleteConf')"/>
     <input type="button" name="uncheckAll" class="btn btn-outline-danger" value="uncheck all" id="uncheck" onclick="addStatement('','tasks');showDeleteButton('tasks','deleteConf')"/>
-    <input type="button" name="Delete" class="btn btn-outline-danger noneDisplay" value="Delete" id="deleteConf"/>
 </form>

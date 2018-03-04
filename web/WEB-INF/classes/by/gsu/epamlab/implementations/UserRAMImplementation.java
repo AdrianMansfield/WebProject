@@ -1,8 +1,8 @@
 package by.gsu.epamlab.implementations;
 
 import by.gsu.epamlab.interfaces.IUserDAO;
-import by.gsu.epamlab.beans.Role;
-import by.gsu.epamlab.beans.User;
+import by.gsu.epamlab.beans.user.Role;
+import by.gsu.epamlab.beans.user.User;
 
 import java.util.HashMap;
 import java.util.Map;
