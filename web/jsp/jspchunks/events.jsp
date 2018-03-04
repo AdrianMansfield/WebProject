@@ -13,14 +13,15 @@
                 <TD>${event.id}</TD>
                 <TD>${event.name}</TD>
                 <TD>${event.time}</TD>
-                <td>#file-name</td>
                 <td>
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1"> label
+                    <input type="checkbox" class="form-check-input" name="deleteEventCheck" onclick="showDeleteButton('events','deleteEvent')">
                 </td>
             </TR>
         </c:forEach>
         </tbody>
     </TABLE>
-    <input type="submit" name="delete" class="btn btn-outline-danger" value="Delete"/>
+    <input type="button" name="checkAll" class="btn btn-outline-danger" value="check all" id="check" onclick="addStatement('checked','events'); showDeleteButton('events','deleteEvent')"/>
+    <input type="button" name="uncheckAll" class="btn btn-outline-danger" value="uncheck all" id="uncheck" onclick="addStatement('','events');showDeleteButton('events','deleteEvent')"/>
+    <input type="submit" name="delete" class="btn btn-outline-danger" value="Delete" id="deleteEvent"/>
 </form>
 
