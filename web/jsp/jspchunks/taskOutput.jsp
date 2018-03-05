@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<form action="EventServlet" method="post" id="tasks" name="taskForm">
+<form action="PrintEventServlet" method="post" id="tasks" name="taskForm">
     <div class="table-container">
         <table class="text-center table-bordered table-hover" id="taskTable">
             <c:forEach var="task" items="${conferences}" varStatus="status">

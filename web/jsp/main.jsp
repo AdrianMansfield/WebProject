@@ -16,6 +16,8 @@
         <script src="../js/script.js"></script>
         <script src="../js/ajax-conference-print.js"></script>
         <script src="../js/ajax-event-print.js"></script>
+        <script src="../js/get-checked-checkbox.js"></script>
+        <script src="../js/ajax-move-conference.js"></script>
     </head>
     <body onload="initDisplay()">
         <c:if test="${not empty errorMessage}">

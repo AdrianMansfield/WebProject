@@ -1,23 +1,12 @@
-function sendQuery2(method, servlet, query) {
-    var xmlHttpRequest = newXMLHttpRequest();
-    xmlHttpRequest.onreadystatechange = function() {
-        if(xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200) {
-            var data = xmlHttpRequest.responseText;
-            printTaskTable(JSON.parse(data));
-        }
-    };
-
-    xmlHttpRequest.onreadystatechange();
-
-    xmlHttpRequest.open(POST_METHOD, servlet, true);
-    xmlHttpRequest.setRequestHeader(HEADER_CONTENT_TYPE,
-        HEADER_TEXT);
-
-    xmlHttpRequest.send("from=ajax" + query);
+function printConferenceResponseHandler() {
+    if(xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200) {
+        var data = xmlHttpRequest.responseText;
+        printTaskTable(JSON.parse(data));
+    }
 }
 
 function sendQueryToPrintConferenceServlet(value) {
-    sendQuery2(POST_METHOD, "/PrintConferenceServlet", formQuery("dateType", value));
+    sendQuery(POST_METHOD, printConferenceResponseHandler,"/PrintConferenceServlet", formQuery("dateType", value));
 }
 
 
@@ -46,6 +35,7 @@ function drawTaskTable(conferenceList, fileMap, isBasket) {
         var currentTaskId = conferenceList[counter].id;
         var currentTask = conferenceList[counter].taskName;
         var tr = document.createElement(TR_TAG);
+        tr.setAttribute(ID_ATTRIBUTE, currentTaskId);
         taskTable.appendChild(tr);
         var td = document.createElement(TD_TAG);
         tr.appendChild(td);
@@ -54,7 +44,7 @@ function drawTaskTable(conferenceList, fileMap, isBasket) {
         input.setAttribute(TYPE_ATTRIBUTE, "submit");
         input.setAttribute(CLASS_ATTRIBUTE, "invisible-circle-label");
         input.setAttribute(VALUE_ATTRIBUTE, currentTaskId);
-        input.setAttribute(ID_ATTRIBUTE, currentTaskId);
+        //input.setAttribute(ID_ATTRIBUTE, currentTaskId);
         input.setAttribute(ONCLICK_ATTRIBUTE,"showEvents(); sendQueryToPrintEventServlet(value); return false;"); /// <------
         td.appendChild(input);
         var label = document.createElement(LABEL_TAG);
@@ -105,10 +95,12 @@ function drawTaskTable(conferenceList, fileMap, isBasket) {
     if(isBasket) {
         button.setAttribute(FORMACTION_ATTRIBUTE,"DeleteConferenceServlet");
         button.innerHTML = "Delete";
+        button.setAttribute(ONCLICK_ATTRIBUTE, "ajax-delete-conference()");
     }
     else {
         button.setAttribute(FORMACTION_ATTRIBUTE,"MoveConferenceServlet");
         button.innerHTML = "Move to basket";
+        button.setAttribute(ONCLICK_ATTRIBUTE, "sendQueryToMoveConferenceServlet(value); return false;");
     }
     taskTable.appendChild(button);
 }
