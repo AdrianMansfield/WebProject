@@ -5,7 +5,9 @@
             <c:forEach var="task" items="${conferences}" varStatus="status">
                 <tr>
                     <td>
-                        <input name="completeAttribute" type="button" value="d" id="${task.id}"/>
+                        <%--<input name="completeAttribute" type="submit" value="d" id="${task.id}"/>--%>
+                        <input type="submit" name="Choose" class="btn btn-outline-danger"
+                               onclick="showEvents(); sendQueryToPrintEventServlet(value); return false;"/>
                     </td>
                     <td>
                         <label class="holder">
@@ -33,24 +35,22 @@
                         </label>
                     </td>
                     <td>
-                        <input type="checkbox" name="deleteConferenceCheck"
-                               onclick="showDeleteButton('tasks','deleteConf')"
-                               value="${task.id}:${task.name};${file}">
+                        <c:if test="${!isBasket && conference.length > 0}">
+                            <button form="tasks" formmethod="post" formaction="MoveConferenceServlet"
+                                    name="typeLocation"
+                                    class="btn btn-outline-danger" value="basket" id="deleteConf">Move to basket
+                            </button>
+                        </c:if>
+                        <c:if test="${isBasket && conference.length > 0}">
+                            <button form="tasks" formmethod="post" formaction="DeleteConferenceServlet" name="Delete"
+                                    class="btn btn-outline-danger" value="delete" id="deleteConf">Delete
+                            </button>
+                        </c:if>
                     </td>
                 </tr>
             </c:forEach>
-            <c:if test="${!isBasket && conference.length > 0}">
-                <button form="tasks" formmethod="post" formaction="MoveConferenceServlet" name="typeLocation"
-                        class="btn btn-outline-danger noneDisplay" value="basket" id="deleteConf">Move to basket
-                </button>
-            </c:if>
-            <c:if test="${isBasket && conference.length > 0}">
-                <button form="tasks" formmethod="post" formaction="DeleteConferenceServlet" name="Delete"
-                        class="btn btn-outline-danger noneDisplay" value="delete" id="deleteConf">Delete
-                </button>
-            </c:if>
         </table>
     </div>
-    <input type="submit" name="Choose" class="btn btn-outline-danger"
-           onclick="showEvents(); sendQueryToPrintEventServlet(value); return false;"/>
+    <%--<input type="submit" name="Choose" class="btn btn-outline-danger"--%>
+           <%--onclick="showEvents(); sendQueryToPrintEventServlet(value); return false;"/>--%>
 </form>

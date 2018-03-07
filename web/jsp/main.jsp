@@ -46,7 +46,7 @@
         <div class="row">
             <div class="col-md-6" id="conference">
                 <h5 class="my-0 font-weight-normal text-center">
-                    Choose conference
+                    Choose task
                 </h5>
                 <div>
                     <c:import url="/jsp/jspchunks/taskOutput.jsp"/>
@@ -54,8 +54,8 @@
             </div>
             <div id="fixed"></div>
             <div class="col-md-6" id="events">
-                <h1 class="text-center">Your events</h1>
-                <c:import url="/jsp/jspchunks/events.jsp"/>
+                <h1 class="text-center">Task description</h1>
+                <c:import url="/jsp/jspchunks/description.jsp"/>
             </div>
             <div id="bucket"></div>
         </div>
