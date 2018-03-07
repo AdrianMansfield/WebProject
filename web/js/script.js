@@ -1,14 +1,4 @@
 
-function showConference() {
-    document.getElementById('conference').style.display = 'block';
-    document.getElementById('fixed').style.display = 'none';
-    document.getElementById('bucket').style.display = 'none';
-}
-
-function showEvents() {
-    document.getElementById('events').style.display = 'block';
-}
-
 function addStatement(checkboxStatemnt, checkboxId){
     var checkboxArray = document.getElementById(checkboxId);
     var mainCheckbox = document.getElementById(checkboxStatemnt);

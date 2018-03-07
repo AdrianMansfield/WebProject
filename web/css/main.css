@@ -127,3 +127,20 @@ table td label{
 .noneDisplay{
     display: none;
 }
+
+.holder{
+    position:relative;
+}
+.block{
+    position:absolute;
+    left:0;
+    bottom:0;
+    right:0;
+    top:0;
+    background:rgba(255,255,255, 0.7);
+    padding:5px;
+    display:none;
+}
+.holder:hover .block{
+    display:block;
+}

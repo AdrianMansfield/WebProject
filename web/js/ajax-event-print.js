@@ -33,7 +33,6 @@ function printEventTable(jsonObject) {
         td = document.createElement(TD_TAG);
         var input = document.createElement(INPUT_TAG);
         input.setAttribute(TYPE_ATTRIBUTE, "checkbox");
-        input.setAttribute(CLASS_ATTRIBUTE, "form-check-input");
         input.setAttribute(NAME_ATTRIBUTE, "deleteEventCheck");
         input.setAttribute(ONCLICK_ATTRIBUTE, "showDeleteButton('events','deleteEvent')");
         td.appendChild(input);
