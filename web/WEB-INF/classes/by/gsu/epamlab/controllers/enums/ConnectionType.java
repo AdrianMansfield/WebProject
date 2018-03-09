@@ -3,11 +3,8 @@ package by.gsu.epamlab.controllers.enums;
 import by.gsu.epamlab.beans.Jsonable;
 import by.gsu.epamlab.beans.conference.Conference;
 import by.gsu.epamlab.beans.FileOperations;
-import by.gsu.epamlab.beans.event.Event;
 import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.exceptions.DaoException;
-import by.gsu.epamlab.implementations.ConferenceDatabaseImplementation;
-import by.gsu.epamlab.interfaces.IConferenceDAO;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -67,41 +64,14 @@ public enum ConnectionType {
             response.getWriter().write(jsonObject.toJSONString());
         }
 
-        @Override
-        public void eventResponse(HttpServletRequest request, HttpServletResponse response) throws IOException, DaoException, ServletException {
-            IConferenceDAO iConferenceDAO = new ConferenceDatabaseImplementation();
-            String conferenceId = request.getParameter(Constants.CURRENT_CONFERENCE_PARAMETER);
-            HttpSession session = request.getSession();
-            List<Event> eventList = iConferenceDAO.getEvents(conferenceId);
-            JSONArray jsonArrayEvent = getJsonArray(eventList);
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("events", jsonArrayEvent);
-            session.setAttribute(Constants.EVENTS_ATTRIBUTE, new ArrayList<>());
-            session.setAttribute("conferenceId", conferenceId); ///<---- Hm...
-            response.getWriter().write(jsonObject.toJSONString());
-        }
 
         @Override
         public void moveConferenceResponse(HttpServletRequest request, HttpServletResponse response) throws IOException, DaoException, ServletException {
-            String [] parameters = request.getParameterValues("deleteConferenceCheck");
-            String [] conferenceIds = new String[parameters.length];
-            //List<String> conferenceIds = new ArrayList<>();
-            int i = 0;
-            for(String parameter : parameters) {
-                conferenceIds[i++] = new String(parameter.substring(Constants.ZERO, parameter.indexOf(":")));
-                //conferenceIds.add(new String(parameter.substring(Constants.ZERO, parameter.indexOf(":"))));
-            }
-            JSONArray jsonArray = new JSONArray();
-            for(String string : conferenceIds) {
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put("id", string);
-                jsonArray.add(jsonObject);
-            }
-
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("conferenceIds", jsonArray);
+            String conferenceId = request.getParameter("deleteConferenceCheck");
             String typeLocation = request.getParameter("typeLocation");
-            ConferenceLocationTypes.valueOf(typeLocation.toUpperCase()).moveConference(conferenceIds);
+            ConferenceLocationTypes.valueOf(typeLocation.toUpperCase()).moveConference(conferenceId);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("conferenceId",conferenceId);
             response.getWriter().write(jsonObject.toJSONString());
         }
     },
@@ -119,34 +89,17 @@ public enum ConnectionType {
             response.sendRedirect(Constants.MAIN_URL);
         }
 
-        @Override
-        public void eventResponse(HttpServletRequest request, HttpServletResponse response) throws IOException, DaoException, ServletException {
-            IConferenceDAO iConferenceDAO = new ConferenceDatabaseImplementation();
-            String conferenceId = request.getParameter(Constants.CURRENT_CONFERENCE_PARAMETER);
-            HttpSession session = request.getSession();
-            List<Event> eventList = iConferenceDAO.getEvents(conferenceId);
-            session.setAttribute(Constants.EVENTS_ATTRIBUTE, eventList);
-            session.setAttribute("conferenceId", conferenceId); ///<---- Hm...
-            response.sendRedirect(Constants.MAIN_URL);
-        }
 
         @Override
         public void moveConferenceResponse(HttpServletRequest request, HttpServletResponse response) throws IOException, DaoException, ServletException {
-            String [] parameters = request.getParameterValues("deleteConferenceCheck");
-            String [] conferenceIds = new String[parameters.length];
-            int i = 0;
-            for(String parameter : parameters) {
-                conferenceIds[i++] = new String(parameter.substring(Constants.ZERO, parameter.indexOf(":")));
-            }
+            String  conferenceId = request.getParameter("deleteConferenceCheck");
             String typeLocation = request.getParameter("typeLocation");
-            ConferenceLocationTypes.valueOf(typeLocation.toUpperCase()).moveConference(conferenceIds);
+            ConferenceLocationTypes.valueOf(typeLocation.toUpperCase()).moveConference(conferenceId);
             response.sendRedirect(Constants.MAIN_URL);
         }
     };
 
     public abstract void conferenceResponse(HttpServletRequest request, HttpServletResponse response) throws IOException, DaoException, ServletException;
-
-    public abstract void eventResponse(HttpServletRequest request, HttpServletResponse response) throws IOException, DaoException, ServletException;
 
     public abstract void moveConferenceResponse(HttpServletRequest request, HttpServletResponse response) throws IOException, DaoException, ServletException;
 }

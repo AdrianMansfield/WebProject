@@ -1,56 +1,71 @@
+<!-- Ты наверное задаешься вопросом, почему я предпочел формы кнопкам. Все просто, с кнопками особо не разгонишься,
+а формы проще и легче совершенствовать и что-то в них добавлять по необходимости. в добавок ко всему, я хочу потом все распихать по разным
+файлам. Главной формы больше нет, но она и не нужна. Проще связывать кнопки с конкретными формами, под конкретную задачу.-->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<form action="PrintEventServlet" method="post" id="tasks" name="taskForm">
-    <div class="table-container">
-        <table class="text-center table-bordered table-hover" id="taskTable">
-            <c:forEach var="task" items="${conferences}" varStatus="status">
-                <tr>
-                    <td>
-                        <%--<input name="completeAttribute" type="submit" value="d" id="${task.id}"/>--%>
-                        <input type="submit" name="Choose" class="btn btn-outline-danger"
-                               onclick="showEvents(); sendQueryToPrintEventServlet(value); return false;"/>
-                    </td>
-                    <td>
-                        <label class="holder">
-                            <c:if test="${fileMap.get(task.name) != null}">
-                                ${fileMap.get(task.name)}
-                                <div class="block">
-                                    <button form="tasks" formaction="DownloadFileServlet"
-                                            class="btn btn-outline-danger">
-                                        Download
-                                    </button>
-                                    <button form="tasks" formaction="DeleteFileServlet" class="btn btn-outline-danger">
-                                        Delete
-                                    </button>
-                                </div>
-                                <c:set var="file" value="${fileMap.get(task.name)}" scope="page"/>
-                            </c:if>
-                            <c:if test="${fileMap.get(task.name) == null}">
-                                <div class="block">
-                                    <button form="tasks" formaction="UploadFileServlet" class="btn btn-outline-danger">
-                                        Upload
-                                    </button>
-                                </div>
-                                <c:set var="file" value="No file" scope="page"/>
-                            </c:if>
-                        </label>
-                    </td>
-                    <td>
-                        <c:if test="${!isBasket && conference.length > 0}">
-                            <button form="tasks" formmethod="post" formaction="MoveConferenceServlet"
-                                    name="typeLocation"
-                                    class="btn btn-outline-danger" value="basket" id="deleteConf">Move to basket
-                            </button>
+<div class="table-container">
+    <table class="text-center table-bordered table-hover" id="taskTable">
+        <c:forEach var="task" items="${conferences}" varStatus="status">
+            <tr>
+                <td>
+                    <form action="MoveConferenceServlet" method="post">
+                        <input name = "typeLocation" type = "hidden" value = "fixed"/>
+                        <input type = "hidden" name="deleteConferenceCheck" value="${task.id}"/>
+                        <input type = "submit" value = "done"/>
+                        <!-- Оформи красиво кнопку выполнения таски -->
+                    </form>
+                </td>
+                <td>
+                    <button name = "taskId" value="${task.id}">
+                            ${task.name} <!-- Еще одна форма. Или просто кнопка, если варик с css прокатит -->
+                    </button>
+                </td>
+                <td>
+                    <label class="holder">
+                        <c:if test="${fileMap.get(task.name) != null}">
+                            ${fileMap.get(task.name)}
+                            <div class="block">
+                                <form action="DownloadFileServlet" method="post">
+                                    <input type="hidden" name = "file" value = "${fileMap.get(task.name)}"/>
+                                    <input type="submit" value="Download" class="btn btn-outline-danger"/>
+                                </form>
+                                <form action="DeleteFileServlet" method="post">
+                                    <input type="hidden" name = "file" value = "${fileMap.get(task.name)}"/>
+                                    <input type="submit" value="Delete" class="btn btn-outline-danger"/>
+                                </form>
+                            </div>
+                            <c:set var="file" value="${fileMap.get(task.name)}" scope="page"/>
                         </c:if>
-                        <c:if test="${isBasket && conference.length > 0}">
-                            <button form="tasks" formmethod="post" formaction="DeleteConferenceServlet" name="Delete"
-                                    class="btn btn-outline-danger" value="delete" id="deleteConf">Delete
-                            </button>
+                        <c:if test="${fileMap.get(task.name) == null}">
+                            <div class="block">
+                                <form action="UploadFileServlet" method="post" enctype="multipart/form-data">
+                                    <input type="file"/>
+                                    <input type = "submit" value="Upload">
+                                </form>
+                            </div>
+                            <c:set var="file" value="No file" scope="page"/>
                         </c:if>
-                    </td>
-                </tr>
-            </c:forEach>
-        </table>
-    </div>
-    <%--<input type="submit" name="Choose" class="btn btn-outline-danger"--%>
-           <%--onclick="showEvents(); sendQueryToPrintEventServlet(value); return false;"/>--%>
-</form>
+                    </label>
+                </td>
+                <td>
+                    <c:if test="${!isBasket && conference.length > 0}">
+                        <form action = "MoveConferenceServlet" method = "post">
+                            <input type = "hidden" name = "typeLocation" value="basket"/>
+                            <input type = "submit" value = "Basket" class="btn btn-outline-danger"/>
+                        </form>
+                    </c:if>
+                    <c:if test="${isBasket && conference.length > 0}">
+                        <form method = "post" action = "DeleteConferenceServlet">
+                            <input type = "hidden"/>
+                            <input type = "submit" value = "Delete"/>
+                        </form> <!-- Нет того, что я просил. Нужны чек боксы, которые будут появляться в корзине -->
+                    </c:if>
+                </td>
+            </tr>
+            <tr>
+                ${task.description}
+            </tr>
+        </c:forEach>
+        <!-- Где-то тут стоит расположить кнопки, которые будут появляться в корзине. Кнопка полного удаления,
+         восстановления, которые будут связаны с чекбоксами. Будут проблемы, спрашивай. Я объсню, как сделать-->
+    </table>
+</div>
