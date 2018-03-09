@@ -53,10 +53,6 @@
                 </div>
             </div>
             <div id="fixed"></div>
-            <div class="col-md-6" id="events">
-                <h1 class="text-center">Task description</h1>
-                <c:import url="/jsp/jspchunks/description.jsp"/>
-            </div>
             <div id="bucket"></div>
         </div>
     </div>
