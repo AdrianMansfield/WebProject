@@ -10,8 +10,8 @@
                     <form action="MoveConferenceServlet" method="post">
                         <input name = "typeLocation" type = "hidden" value = "fixed"/>
                         <input type = "hidden" name="deleteConferenceCheck" value="${task.id}"/>
-                        <input type = "submit" value = "done"/>
-                        <!-- Оформи красиво кнопку выполнения таски -->
+                        <input type = "submit" value = "done" class="btn btn-outline-danger"/>
+                        <!-- с работающим js будет еще лучше... там есть иконки .. но они черещ js  -->
                     </form>
                 </td>
                 <td>
@@ -36,10 +36,11 @@
                             <c:set var="file" value="${fileMap.get(task.name)}" scope="page"/>
                         </c:if>
                         <c:if test="${fileMap.get(task.name) == null}">
+                            No file
                             <div class="block">
                                 <form action="UploadFileServlet" method="post" enctype="multipart/form-data">
                                     <input type="file"/>
-                                    <input type = "submit" value="Upload">
+                                    <input type = "submit" value="Upload" class="btn btn-outline-danger">
                                 </form>
                             </div>
                             <c:set var="file" value="No file" scope="page"/>
