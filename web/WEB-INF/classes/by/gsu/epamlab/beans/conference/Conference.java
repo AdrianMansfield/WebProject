@@ -1,37 +1,34 @@
 package by.gsu.epamlab.beans.conference;
 
 import by.gsu.epamlab.beans.Jsonable;
-import by.gsu.epamlab.beans.event.Event;
 import by.gsu.epamlab.constants.Constants;
 import org.json.simple.JSONObject;
 
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
 
 public class Conference implements Jsonable {
     private int id;
     private String name;
-    private String department;
+    private String description;
     private Date date;
-    private List<Event> events;
     private final static SimpleDateFormat OUTPUT_DATE_FORMAT =
             new SimpleDateFormat(Constants.PRINT_DATE_FORMAT);
 
     public Conference() {}
 
-    public Conference(int id, String name, String department, Date date) {
+    public Conference(int id, String name, String description, Date date) {
         setId(id);
         setName(name);
-        setDepartment(department);
+        setDescription(description);
         setDate(date);
     }
 
-    public Conference(int id, String name, String department, String date) {
+    public Conference(int id, String name, String description, String date) {
         setId(id);
         setName(name);
-        setDepartment(department);
+        setDescription(description);
         setDate(date);
     }
 
@@ -51,12 +48,12 @@ public class Conference implements Jsonable {
         this.name = name;
     }
 
-    public String getDepartment() {
-        return department;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Date getDate() {
@@ -80,13 +77,6 @@ public class Conference implements Jsonable {
         }
     }
 
-    public List<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(List<Event> events) {
-        this.events = events;
-    }
 
     public JSONObject toJson() {
         JSONObject jsonObject = new JSONObject();

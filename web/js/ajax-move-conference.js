@@ -15,9 +15,9 @@ function sendQueryToMoveConferenceServlet(value) {
 }
 
 function deleteConferenceFromTable(jsonObject) {
-    var conferenceIds = jsonObject.conferenceIds;
-    for(var counter in conferenceIds) {
-        var tr = document.getElementById(conferenceIds[counter].id);
-        taskTable.removeChild(tr);
-    }
+    var conferenceId = jsonObject.conferenceId;
+
+    var tr = document.getElementById(conferenceId);
+    taskTable.removeChild(tr);
+
 }

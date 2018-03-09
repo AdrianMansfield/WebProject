@@ -9,27 +9,27 @@ public enum ConferenceLocationTypes {
     MAIN {
 
         @Override
-        public void moveConference(String[] conferenceIds) throws DaoException {
-            I_CONFERENCE_DAO.workWithBasket(conferenceIds, DatabaseConstants.SQL_GET_FOR_MAIN);
+        public void moveConference(String conferenceId) throws DaoException {
+            I_CONFERENCE_DAO.moveConference(conferenceId, DatabaseConstants.SQL_GET_FOR_MAIN);
         }
 
     }, FIXED {
 
         @Override
-        public void moveConference(String[] conferenceIds) throws DaoException {
-            I_CONFERENCE_DAO.workWithBasket(conferenceIds, DatabaseConstants.SQL_THROW_INTO_FIXED);
+        public void moveConference(String conferenceId) throws DaoException {
+            I_CONFERENCE_DAO.moveConference(conferenceId, DatabaseConstants.SQL_THROW_INTO_FIXED);
         }
 
     }, BASKET {
 
         @Override
-        public void moveConference(String[] conferenceIds) throws DaoException {
-            I_CONFERENCE_DAO.workWithBasket(conferenceIds, DatabaseConstants.SQL_THROW_INTO_BASKET);
+        public void moveConference(String conferenceId) throws DaoException {
+            I_CONFERENCE_DAO.moveConference(conferenceId, DatabaseConstants.SQL_THROW_INTO_BASKET);
         }
 
     };
 
-    public abstract void moveConference(String [] conferenceIds) throws DaoException;
+    public abstract void moveConference(String conferenceId) throws DaoException;
 
     protected static final IConferenceDAO I_CONFERENCE_DAO = new ConferenceDatabaseImplementation();
 }
