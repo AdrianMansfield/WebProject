@@ -85,7 +85,7 @@ public enum ConnectionType {
             List<Conference> taskList = ConferencePrintTypes.valueOf(dateType).getConferences(id);
             session.setAttribute(Constants.CONFERENCE_LIST_NAME, taskList);
             session.setAttribute(Constants.FILE_MAP_PARAMETER, FileOperations.getFileForTask(request));
-            session.setAttribute("isBasket", dateType.equals("basket"));
+            session.setAttribute("isBasket", dateType.equals("BASKET"));
             response.sendRedirect(Constants.MAIN_URL);
         }
 
