@@ -1,23 +1,25 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="by.gsu.epamlab.constants.JspConstants" %>
-<html lang="en">
+<html>
 <head>
     <title>Main page</title>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="${JspConstants.BOOTSTRAP_STYLE_FILE_PATH}">
     <link rel="stylesheet" href="${JspConstants.MAIN_STYLE_FILE_PATH}">
     <link rel="stylesheet" href="css/fontawesome-all.css">
-    <script src="../js/general-constants.js"></script>
-    <script src="../js/tag-constants.js"></script>
-    <script src="../js/attribute-constants.js"></script>
-    <script src="../js/remove-all-elements-from-table.js"></script>
-    <script src="../js/new-xml-http-request.js"></script>
-    <script src="../js/send-query.js"></script>
-    <script src="../js/script.js"></script>
-    <script src="../js/ajax-conference-print.js"></script>
-    <script src="../js/ajax-event-print.js"></script>
-    <script src="../js/get-checked-checkbox.js"></script>
-    <script src="../js/ajax-move-conference.js"></script>
+    <link rel="stylesheet" href="css/modalWindow.css">
+    <script src="js/general-constants.js"></script>
+    <script src="js/tag-constants.js"></script>
+    <script src="js/attribute-constants.js"></script>
+    <script src="js/remove-all-elements-from-table.js"></script>
+    <script src="js/new-xml-http-request.js"></script>
+    <script src="js/send-query.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/ajax-conference-print.js"></script>
+    <script src="js/ajax-event-print.js"></script>
+    <script src="js/get-checked-checkbox.js"></script>
+    <script src="js/ajax-move-conference.js"></script>
 </head>
 <body>
 <c:if test="${not empty errorMessage}">
@@ -52,11 +54,21 @@
                     <c:import url="/jsp/jspchunks/taskOutput.jsp"/>
                 </div>
             </div>
-            <div id="fixed"></div>
             <div class="col-md-6" id="events">
                 <h1 class="text-center">Task description</h1>
+                <a href="#modalWindow">Открыть модальное окно</a>
+                <aside class="modalWindow" id="modalWindow">
+                    <header>
+                        <h2>Task description</h2>
+                    </header>
+                    <section>
+                        Some task description...
+                    </section>
+                    <footer class="footer">
+                        <a href="#" class="btn">close</a>
+                    </footer>
+                </aside>
             </div>
-            <div id="bucket"></div>
         </div>
     </div>
 </main>
