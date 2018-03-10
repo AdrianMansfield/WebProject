@@ -6,7 +6,7 @@
     <title>Main page</title>
     <link rel="stylesheet" href="${JspConstants.BOOTSTRAP_STYLE_FILE_PATH}">
     <link rel="stylesheet" href="${JspConstants.MAIN_STYLE_FILE_PATH}">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/fontawesome-all.css">
     <script src="../js/general-constants.js"></script>
     <script src="../js/tag-constants.js"></script>
     <script src="../js/attribute-constants.js"></script>
@@ -53,6 +53,9 @@
                 </div>
             </div>
             <div id="fixed"></div>
+            <div class="col-md-6" id="events">
+                <h1 class="text-center">Task description</h1>
+            </div>
             <div id="bucket"></div>
         </div>
     </div>
