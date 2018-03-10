@@ -10,8 +10,13 @@
                     <form action="MoveConferenceServlet" method="post">
                         <input name = "typeLocation" type = "hidden" value = "fixed"/>
                         <input type = "hidden" name="deleteConferenceCheck" value="${task.id}"/>
-                        <input type = "submit" value = "done" class="btn btn-outline-danger"/>
-                        <!-- с работающим js будет еще лучше... там есть иконки .. но они черещ js  -->
+                        <c:if test="${!isBasket && conference.length > 0}">
+                            <input type = "submit" value = "done" class="btn btn-outline-danger"/>
+                        </c:if>
+                        <c:if test="${isBasket && conference.length > 0}">
+                            <input type = "submit" value = "delete" class="btn btn-outline-danger"/>
+                        </c:if>
+                        <!-- с работающим js будет еще лучше... там есть иконки .. но они через js  -->
                     </form>
                 </td>
                 <td>
@@ -49,15 +54,15 @@
                 </td>
                 <td>
                     <c:if test="${!isBasket && conference.length > 0}">
-                        <form action = "MoveConferenceServlet" method = "post">
+                        <form action = "MoveConferenceServlet" method = "post" id="conferenceForm">
                             <input type = "hidden" name = "typeLocation" value="basket"/>
                             <input type = "submit" value = "Basket" class="btn btn-outline-danger"/>
                         </form>
                     </c:if>
                     <c:if test="${isBasket && conference.length > 0}">
-                        <form method = "post" action = "DeleteConferenceServlet">
+                        <form method = "post" action = "DeleteConferenceServlet" id="basketForm">
                             <input type = "hidden"/>
-                            <input type = "submit" value = "Delete"/>
+                            <input type="checkbox" name="deleteConfCheck">
                         </form> <!-- Нет того, что я просил. Нужны чек боксы, которые будут появляться в корзине -->
                     </c:if>
                 </td>
@@ -66,7 +71,11 @@
                 ${task.description}
             </tr>
         </c:forEach>
+        <c:if test="${isBasket && conference.length > 0}">
+            <input type = "submit" value = "Delete" form="basketForm"/>
+        </c:if>
         <!-- Где-то тут стоит расположить кнопки, которые будут появляться в корзине. Кнопка полного удаления,
          восстановления, которые будут связаны с чекбоксами. Будут проблемы, спрашивай. Я объсню, как сделать-->
     </table>
+
 </div>
