@@ -45,6 +45,16 @@
 .modalWindow h2 {
     margin: 0;
 }
-.modalWindow .btn {
-    float: right;
+
+
+
+.modalDescription {
+   visibility: hidden;
+    position: absolute;
+}
+
+
+.modalDescription:target {
+    visibility: visible;
+    position: static;
 }
