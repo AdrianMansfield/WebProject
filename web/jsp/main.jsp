@@ -7,19 +7,19 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="${JspConstants.BOOTSTRAP_STYLE_FILE_PATH}">
     <link rel="stylesheet" href="${JspConstants.MAIN_STYLE_FILE_PATH}">
-    <link rel="stylesheet" href="css/fontawesome-all.css">
-    <link rel="stylesheet" href="css/modalWindow.css">
-    <script src="js/general-constants.js"></script>
-    <script src="js/tag-constants.js"></script>
-    <script src="js/attribute-constants.js"></script>
-    <script src="js/remove-all-elements-from-table.js"></script>
-    <script src="js/new-xml-http-request.js"></script>
-    <script src="js/send-query.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/ajax-conference-print.js"></script>
-    <script src="js/ajax-event-print.js"></script>
-    <script src="js/get-checked-checkbox.js"></script>
-    <script src="js/ajax-move-conference.js"></script>
+    <link rel="stylesheet" href="../css/fontawesome-all.css">
+    <link rel="stylesheet" href="../css/modalWindow.css">
+    <script src="../js/general-constants.js"></script>
+    <script src="../js/tag-constants.js"></script>
+    <script src="../js/attribute-constants.js"></script>
+    <script src="../js/remove-all-elements-from-table.js"></script>
+    <script src="../js/new-xml-http-request.js"></script>
+    <script src="../js/send-query.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/ajax-conference-print.js"></script>
+    <script src="../js/ajax-event-print.js"></script>
+    <script src="../js/get-checked-checkbox.js"></script>
+    <script src="../js/ajax-move-conference.js"></script>
 </head>
 <body>
 <c:if test="${not empty errorMessage}">
@@ -37,37 +37,27 @@
 </div>
 
 <main role="main" class="content">
-    <div id="leftSlide">
-        <div id="leftToggle">AC</div>
-        <div class="box">
-            <c:import url="/jsp/jspchunks/addConferences.jsp"/>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6" id="conference">
-                <h5 class="my-0 font-weight-normal text-center">
-                    Choose task
-                </h5>
-                <div>
-                    <c:import url="/jsp/jspchunks/taskOutput.jsp"/>
-                </div>
+    <div class="row">
+        <div class="col-md-3">
+            <a href="#leftSlide" class="bigFont text-center">&#9998 Add task</a>
+            <div class="modalWindow" id="leftSlide">
+                <header>
+                    <h2>Add task</h2>
+                </header>
+                <section>
+                    <c:import url="/jsp/jspchunks/addConferences.jsp"/>
+                </section>
+                <footer class="footer">
+                    <a href="#">close</a>
+                </footer>
             </div>
-            <div class="col-md-6" id="events">
-                <h1 class="text-center">Task description</h1>
-                <a href="#modalWindow">Открыть модальное окно</a>
-                <aside class="modalWindow" id="modalWindow">
-                    <header>
-                        <h2>Task description</h2>
-                    </header>
-                    <section>
-                        Some task description...
-                    </section>
-                    <footer class="footer">
-                        <a href="#" class="btn">close</a>
-                    </footer>
-                </aside>
+        </div>
+        <div class="col-md-9" id="conference">
+            <h5 class="my-0 font-weight-normal text-center">
+                Choose task
+            </h5>
+            <div>
+                <c:import url="/jsp/jspchunks/taskOutput.jsp"/>
             </div>
         </div>
     </div>
