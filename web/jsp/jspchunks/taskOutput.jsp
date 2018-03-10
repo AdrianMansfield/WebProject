@@ -10,10 +10,10 @@
                     <form action="MoveConferenceServlet" method="post">
                         <input name = "typeLocation" type = "hidden" value = "fixed"/>
                         <input type = "hidden" name="deleteConferenceCheck" value="${task.id}"/>
-                        <c:if test="${!isBasket && conference.length > 0}">
+                        <c:if test="${!isBasket}">
                             <input type = "submit" value = "done" class="btn btn-outline-danger"/>
                         </c:if>
-                        <c:if test="${isBasket && conference.length > 0}">
+                        <c:if test="${isBasket}">
                             <input type = "submit" value = "delete" class="btn btn-outline-danger"/>
                         </c:if>
                         <!-- с работающим js будет еще лучше... там есть иконки .. но они через js  -->
@@ -44,7 +44,7 @@
                             No file
                             <div class="block">
                                 <form action="UploadFileServlet" method="post" enctype="multipart/form-data">
-                                    <input type="file"/>
+                                    <input name = "file" type="file"/>
                                     <input type = "submit" value="Upload" class="btn btn-outline-danger">
                                 </form>
                             </div>
@@ -53,13 +53,13 @@
                     </label>
                 </td>
                 <td>
-                    <c:if test="${!isBasket && conference.length > 0}">
+                    <c:if test="${!isBasket}">
                         <form action = "MoveConferenceServlet" method = "post" id="conferenceForm">
                             <input type = "hidden" name = "typeLocation" value="basket"/>
                             <input type = "submit" value = "Basket" class="btn btn-outline-danger"/>
                         </form>
                     </c:if>
-                    <c:if test="${isBasket && conference.length > 0}">
+                    <c:if test="${isBasket}">
                         <form method = "post" action = "DeleteConferenceServlet" id="basketForm">
                             <input type = "hidden"/>
                             <input type="checkbox" name="deleteConfCheck">
@@ -71,7 +71,7 @@
                 ${task.description}
             </tr>
         </c:forEach>
-        <c:if test="${isBasket && conference.length > 0}">
+        <c:if test="${isBasket && conferences != null}">
             <input type = "submit" value = "Delete" form="basketForm"/>
         </c:if>
         <!-- Где-то тут стоит расположить кнопки, которые будут появляться в корзине. Кнопка полного удаления,
