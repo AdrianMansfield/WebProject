@@ -44,7 +44,7 @@
                             No file
                             <div class="block">
                                 <form action="UploadFileServlet" method="post" enctype="multipart/form-data">
-                                    <input type="file"/>
+                                    <input name = "file" type="file"/>
                                     <input type = "submit" value="Upload" class="btn btn-outline-danger">
                                 </form>
                             </div>
