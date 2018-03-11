@@ -1,35 +1,37 @@
 package by.gsu.epamlab.beans;
 
+import by.gsu.epamlab.beans.task.Task;
 import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.constants.FileConstants;
+import by.gsu.epamlab.exceptions.DaoException;
+import by.gsu.epamlab.implementations.TaskDatabaseImplementation;
+import by.gsu.epamlab.interfaces.ITaskDAO;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public final class FileOperations {
-    public static void uploadFile(HttpServletRequest request, String taskName) throws ServletException, IOException {
-        Part part = request.getPart(Constants.FILE_PARAMETER);
+
+    public static String uploadFile(Part part, String userLogin, String taskName) throws IOException {
         String fileName = extractFileName(part);
         if(Constants.EMPTY_STRING.equals(fileName)) {
-            return;
+            fileName = "No file";
         }
-        String login = (String) request.getSession().getAttribute(Constants.LOGIN);
-        String userDirectory = Constants.FILES_DIRECTORY + File.separator + login;
-        Path path = Paths.get(userDirectory);
-        System.out.println(path.getRoot());
-        if(!Files.exists(path)) {
-            new File(userDirectory).mkdir();
+        else {
+            String userDirectory = Constants.FILES_DIRECTORY + File.separator + userLogin;
+            Path path = Paths.get(userDirectory);
+            if(!Files.exists(path)) {
+                new File(userDirectory).mkdir();
+            }
+            String filePath = userDirectory + File.separator + taskName + FileConstants.FILE_DELIMITER + new File(fileName).getName();
+            part.write(filePath);
         }
-        String filePath = userDirectory + File.separator + taskName + FileConstants.FILE_DELIMITER + new File(fileName).getName();
-        part.write(filePath);
+        return fileName;
     }
 
 
@@ -45,61 +47,40 @@ public final class FileOperations {
         return fileName;
     }
 
-    public static Map<String, String> getFileForTask(HttpServletRequest request) {
-        String login = (String) request.getSession().getAttribute(Constants.LOGIN);
-        Map<String, String> fileMap = new HashMap<>();
-        File directory = new File(Constants.FILES_DIRECTORY + File.separator + login);
-        if(directory.isDirectory()) {
-            for(File file : directory.listFiles()) {
-                String [] fileNameParts = file.getName().split(FileConstants.FILE_DELIMITER);
-                String taskName = fileNameParts[FileConstants.TASK_INDEX];
-                String fileName = fileNameParts[FileConstants.FILE_NAME_INDEX];
-                fileMap.put(taskName, fileName);
-            }
-        }
-        return fileMap;
-    }
-
-    public static void downloadFile(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String fullFileName = request.getParameter(Constants.FILE_PARAMETER);
-        String login = (String) request.getSession().getAttribute(Constants.LOGIN);
-
-        request.setCharacterEncoding(FileConstants.UTF8_CHARACTER_ENCODING);
-        response.setCharacterEncoding(FileConstants.UTF8_CHARACTER_ENCODING);
-
-        String simpleFileName = fullFileName.split(FileConstants.FILE_DELIMITER)[FileConstants.FILE_NAME_INDEX];
+    public static void downloadFile(HttpServletResponse response, String userLogin, Task task) throws IOException {
 
         response.addHeader(FileConstants.HTTP_HEADER_CONTENT_DISPOSITION,FileConstants.HTTP_PARAMETER_ATTACHMENT
-                + FileConstants.FILE_DELIMITER + FileConstants.HTTP_PARAMETER_FILE_NAME + Constants.SIGN_EQUAL + simpleFileName);
+                + FileConstants.FILE_DELIMITER + FileConstants.HTTP_PARAMETER_FILE_NAME + Constants.SIGN_EQUAL + task.getFileName());
 
-        File file = new File( Constants.FILES_DIRECTORY + File.separator + login + File.separator + fullFileName);
+        File file = new File( Constants.FILES_DIRECTORY + File.separator + userLogin + File.separator + task.getName() + FileConstants.FILE_DELIMITER +
+                task.getFileName());
+
         long length = file.length();
 
         response.addHeader(FileConstants.HTTP_PARAMETER_CONTENT_LENGTH, String.valueOf(length));
         response.setContentType(FileConstants.CONTENT_TYPE);
 
-        FileInputStream fileInputStream = new FileInputStream(file);
-        BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+        try(FileInputStream fileInputStream = new FileInputStream(file);
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+            OutputStream outputStream = response.getOutputStream())
+        {
 
-        int i;
-        while((i=bufferedInputStream.read())!=-1){
-            response.getOutputStream().write(i);
-        }
-        bufferedInputStream.close();
-        fileInputStream.close();
-        response.getOutputStream().close();
-    }
-
-    public static void deleteFile(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String [] fileNames = request.getParameterValues("deleteConferenceCheck");
-        String login = (String) request.getSession().getAttribute(Constants.LOGIN);
-        for(String fileName : fileNames) {
-            int fileIndex = fileName.indexOf(":") + 1;
-            fileName = fileName.substring(fileIndex);
-            if(!"No file".equals(fileName)) {
-                new File(Constants.FILES_DIRECTORY + File.separator + login + File.separator + fileName).delete();
+            int i;
+            while((i=bufferedInputStream.read())!=-1){
+                outputStream.write(i);
             }
         }
-        response.sendRedirect(Constants.MAIN_URL);
+    }
+
+    public static void deleteFile(String userId, List<Task> taskList, String userLogin) throws DaoException {
+
+        ITaskDAO iTaskDAO = new TaskDatabaseImplementation();
+        for(Task task : taskList) {
+
+            new File(Constants.FILES_DIRECTORY + File.separator + userLogin + File.separator + task.getName() +
+                    FileConstants.FILE_DELIMITER + task.getFileName()).delete();
+            iTaskDAO.updateFileName(userId, "No file", task.getName());
+        }
+
     }
 }

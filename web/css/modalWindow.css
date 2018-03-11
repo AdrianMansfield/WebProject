@@ -56,5 +56,5 @@
 
 .modalDescription:target {
     visibility: visible;
-    position: static;
+    position: relative;
 }

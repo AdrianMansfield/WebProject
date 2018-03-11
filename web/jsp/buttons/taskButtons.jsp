@@ -1,8 +1,8 @@
-<form action="PrintConferenceServlet" method="post" class="my-0 mr-md-0 mb-1">
-    <button class="btn btn-danger" name="dateType" value="today" onclick="sendQueryToPrintConferenceServlet(value);return false" >Today</button>
-    <button class="btn btn-danger" name="dateType" value="tomorrow" onclick="sendQueryToPrintConferenceServlet(value);return false" >Tomorrow</button>
-    <button class="btn btn-danger" name="dateType" value="someday" onclick="sendQueryToPrintConferenceServlet(value);return false" >Someday</button>
-    <button class="btn btn-danger" name="dateType" value="fixed" onclick="sendQueryToPrintConferenceServlet(value);return false" >Fixed</button>
-    <button class="btn btn-danger" name="dateType" value="basket" onclick="sendQueryToPrintConferenceServlet(value);return false" >Basket</button>
+<form action="PrintTaskServlet" method="post" class="my-0 mr-md-0 mb-1">
+    <button class="btn btn-danger" name="taskType" value="today" onclick="sendQueryToPrintTaskServlet(value);return false" >Today</button>
+    <button class="btn btn-danger" name="taskType" value="tomorrow" onclick="sendQueryToPrintTaskServlet(value);return false" >Tomorrow</button>
+    <button class="btn btn-danger" name="taskType" value="someday" onclick="sendQueryToPrintTaskServlet(value);return false" >Someday</button>
+    <button class="btn btn-danger" name="taskType" value="fixed" onclick="sendQueryToPrintTaskServlet(value);return false" >Fixed</button>
+    <button class="btn btn-danger" name="taskType" value="basket" onclick="sendQueryToPrintTaskServlet(value);return false" >Basket</button>
     <input type="hidden" name = "from" value="no_ajax"/>
 </form>

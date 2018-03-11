@@ -55,14 +55,6 @@
         <servlet-name>main</servlet-name>
         <url-pattern>/main</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>events</servlet-name>
-        <jsp-file>/jsp/events.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>events</servlet-name>
-        <url-pattern>/events</url-pattern>
-    </servlet-mapping>
 
 
     <!-- SERVLET  -->
@@ -92,26 +84,17 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>PrintConferenceServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.get.PrintConferenceServlet</servlet-class>
+        <servlet-name>PrintTaskServlet</servlet-name>
+        <servlet-class>by.gsu.epamlab.controllers.get.PrintTaskServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>PrintConferenceServlet</servlet-name>
-        <url-pattern>/PrintConferenceServlet</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>PrintEventServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.get.PrintEventServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>PrintEventServlet</servlet-name>
-        <url-pattern>/PrintEventServlet</url-pattern>
+        <servlet-name>PrintTaskServlet</servlet-name>
+        <url-pattern>/PrintTaskServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>AddTaskServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.post.AddConferenceServlet</servlet-class>
+        <servlet-class>by.gsu.epamlab.controllers.post.AddTaskServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddTaskServlet</servlet-name>
@@ -128,21 +111,30 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>MoveConferenceServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.post.MoveConferenceServlet</servlet-class>
+        <servlet-name>UploadFileServlet</servlet-name>
+        <servlet-class>by.gsu.epamlab.controllers.post.UploadFileServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>MoveConferenceServlet</servlet-name>
-        <url-pattern>/MoveConferenceServlet</url-pattern>
+        <servlet-name>UploadFileServlet</servlet-name>
+        <url-pattern>/UploadFileServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>DeleteConferenceServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.post.DeleteConferenceServlet</servlet-class>
+        <servlet-name>MoveTaskServlet</servlet-name>
+        <servlet-class>by.gsu.epamlab.controllers.post.MoveTaskServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>DeleteConferenceServlet</servlet-name>
-        <url-pattern>/DeleteConferenceServlet</url-pattern>
+        <servlet-name>MoveTaskServlet</servlet-name>
+        <url-pattern>/MoveTaskServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteTaskServlet</servlet-name>
+        <servlet-class>by.gsu.epamlab.controllers.post.DeleteTaskServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteTaskServlet</servlet-name>
+        <url-pattern>/DeleteTaskServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
