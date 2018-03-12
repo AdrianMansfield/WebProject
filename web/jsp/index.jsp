@@ -6,8 +6,8 @@
         <meta charset="utf-8">
         <meta name = "viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Web project</title>
-        <link rel="stylesheet" href="${JspConstants.BOOTSTRAP_STYLE_FILE_PATH}">
-        <link rel="stylesheet" href="${JspConstants.MAIN_STYLE_FILE_PATH}">
+        <<link rel="stylesheet" href="../css/bootstrap.css">
+        <link rel="stylesheet" href="../css/main.css">
     </head>
     <body>
         <div class="d-flex flex-column flex-md-row align-items-center p-0 px-md-4 mb-1 navbar-inverse">

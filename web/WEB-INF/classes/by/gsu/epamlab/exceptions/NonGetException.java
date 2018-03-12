@@ -1,6 +1,7 @@
 package by.gsu.epamlab.exceptions;
 
 public class NonGetException extends RuntimeException {
+
     public NonGetException() {
         super();
     }
