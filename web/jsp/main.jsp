@@ -5,8 +5,8 @@
 <head>
     <title>Main page</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="${JspConstants.BOOTSTRAP_STYLE_FILE_PATH}">
-    <link rel="stylesheet" href="${JspConstants.MAIN_STYLE_FILE_PATH}">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/fontawesome-all.css">
     <link rel="stylesheet" href="../css/modalWindow.css">
     <script src="../js/general-constants.js"></script>
@@ -14,12 +14,11 @@
     <script src="../js/attribute-constants.js"></script>
     <script src="../js/remove-all-elements-from-table.js"></script>
     <script src="../js/new-xml-http-request.js"></script>
-    <script src="../js/send-query.js"></script>
+    <script src="../js/send-request.js"></script>
     <script src="../js/script.js"></script>
-    <script src="../js/ajax-conference-print.js"></script>
-    <script src="../js/ajax-event-print.js"></script>
+    <script src="../js/ajax-task-print.js"></script>
     <script src="../js/get-checked-checkbox.js"></script>
-    <script src="../js/ajax-move-conference.js"></script>
+    <script src="../js/ajax-move-task.js"></script>
 </head>
 <body>
 <c:if test="${not empty errorMessage}">
@@ -39,22 +38,14 @@
 <main role="main" class="content">
     <div class="custom-row">
         <div class="col-md-3">
-            <a href="#leftSlide" class="bigFont text-center">&#9998 Add task</a>
+            <a href="#leftSlide" class="bigFont text-center">&#9998 Add Task</a>
             <div class="modalWindow" id="leftSlide">
-                <header>
-                    <h2>Add task</h2>
-                </header>
-                <section>
-                    <c:import url="/jsp/jspchunks/addConferences.jsp"/>
-                </section>
-                <footer class="footer">
-                    <a href="#">close</a>
-                </footer>
+                <c:import url="/jsp/jspchunks/addTasks.jsp"/>
             </div>
         </div>
-        <div class="col-md-9" id="conference">
+        <div class="col-md-9" id="task">
             <h5 class="my-0 font-weight-normal text-center">
-                Choose task
+                Choose Task
             </h5>
             <div>
                 <c:import url="/jsp/jspchunks/taskOutput.jsp"/>

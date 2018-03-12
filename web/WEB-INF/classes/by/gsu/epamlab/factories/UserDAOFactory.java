@@ -5,23 +5,36 @@ import by.gsu.epamlab.implementations.UserDatabaseImplementation;
 import by.gsu.epamlab.implementations.UserRAMImplementation;
 
 public class UserDAOFactory {
+
+    private static IUserDAO iUserDAO;
+
     private enum Implementation {
         RAM {
+
             @Override
-            IUserDAO getImplementation() {
-                return new UserRAMImplementation();
+            void setImplementation() {
+                iUserDAO = UserRAMImplementation.getUserRAMImplementation();
             }
+
         }, DATABASE {
+
             @Override
-            IUserDAO getImplementation() {
-                return new UserDatabaseImplementation();
+            void setImplementation() {
+                iUserDAO = UserDatabaseImplementation.getUserRAMImplementation();
             }
+
         };
 
-        abstract IUserDAO getImplementation();
+        abstract void setImplementation();
     }
 
-    public static IUserDAO getUserDAOFromFactory(String implementationName) {
-        return Implementation.valueOf(implementationName).getImplementation();
+    public static void setUserDAO(String implementationName) {
+        if(iUserDAO == null) {
+            Implementation.valueOf(implementationName).setImplementation();
+        }
+    }
+
+    public static IUserDAO getUserDAOFromFactory() {
+        return iUserDAO;
     }
 }

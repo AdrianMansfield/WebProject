@@ -2,6 +2,8 @@ package by.gsu.epamlab.filters;
 
 import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.constants.JspConstants;
+import by.gsu.epamlab.constants.ParameterConstants;
+import by.gsu.epamlab.constants.UrlConstants;
 
 import javax.servlet.*;
 import javax.servlet.http.Cookie;
@@ -27,27 +29,27 @@ public class AuthorizationFilter implements Filter {
         Cookie roleCookie = null;
         if(cookies != null) {
             for (Cookie cookie : cookies) {
-                if (cookie.getName().equals(Constants.ID)) {
+                if (cookie.getName().equals(ParameterConstants.USER_ID_PARAMETER)) {
                     idCookie = cookie;
                 }
-                if (cookie.getName().equals(Constants.LOGIN)) {
+                if (cookie.getName().equals(ParameterConstants.LOGIN_PARAMETER)) {
                     loginCookie = cookie;
                 }
-                if (cookie.getName().equals(Constants.ROLE)) {
+                if (cookie.getName().equals(ParameterConstants.ROLE_PARAMETER)) {
                     roleCookie = cookie;
                 }
             }
             if (idCookie != null && loginCookie != null && roleCookie != null) {
-                session.setAttribute(Constants.ID, idCookie.getValue());
-                session.setAttribute(Constants.LOGIN, loginCookie.getValue());
-                session.setAttribute(Constants.ROLE, roleCookie.getValue());
+                session.setAttribute(ParameterConstants.USER_ID_PARAMETER, idCookie.getValue());
+                session.setAttribute(ParameterConstants.LOGIN_PARAMETER, loginCookie.getValue());
+                session.setAttribute(ParameterConstants.ROLE_PARAMETER, roleCookie.getValue());
                 session.setAttribute(JspConstants.ATTRIBUTE_CONTROL, JspConstants.STARTING_PAGE_FOR_USER_PATH);
             }
             else {
                 session.setAttribute(JspConstants.ATTRIBUTE_CONTROL, JspConstants.STARTING_PAGE_FOR_VISITOR_PATH);
             }
         }
-        request.getRequestDispatcher(Constants.INDEX_URL).forward(request, response);
+        request.getRequestDispatcher(UrlConstants.INDEX_URL).forward(request, response);
     }
 
     @Override

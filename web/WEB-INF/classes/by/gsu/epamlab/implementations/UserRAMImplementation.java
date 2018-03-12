@@ -7,10 +7,15 @@ import by.gsu.epamlab.beans.user.User;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserRAMImplementation implements IUserDAO {
+public final class UserRAMImplementation implements IUserDAO {
+
     private static final Map<User, String> memory = new HashMap<>();
 
-    public UserRAMImplementation() {
+    private static final UserRAMImplementation userRAMImplementation = new UserRAMImplementation();
+
+    private UserRAMImplementation() {}
+
+    static {
         memory.put(new User(0,"admin", Role.ADMIN), "admin");
     }
 
@@ -33,5 +38,9 @@ public class UserRAMImplementation implements IUserDAO {
             }
         }
         return user;
+    }
+
+    public static UserRAMImplementation getUserRAMImplementation() {
+        return userRAMImplementation;
     }
 }
