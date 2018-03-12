@@ -2,6 +2,7 @@ package by.gsu.epamlab.beans.task;
 
 import by.gsu.epamlab.beans.Jsonable;
 import by.gsu.epamlab.constants.Constants;
+import by.gsu.epamlab.constants.ParameterConstants;
 import org.json.simple.JSONObject;
 
 import java.sql.Date;
@@ -91,8 +92,8 @@ public class Task implements Jsonable, Comparable<Task> {
 
     public JSONObject toJson() {
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("id", id);
-        jsonObject.put("taskName", name);
+        jsonObject.put(ParameterConstants.TASK_ID_PARAMETER, id);
+        jsonObject.put(ParameterConstants.TASK_NAME_PARAMETER, name);
         return jsonObject;
     }
 

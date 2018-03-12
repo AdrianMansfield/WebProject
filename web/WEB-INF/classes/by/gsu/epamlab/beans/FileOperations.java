@@ -4,6 +4,7 @@ import by.gsu.epamlab.beans.task.Task;
 import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.constants.FileConstants;
 import by.gsu.epamlab.exceptions.DaoException;
+import by.gsu.epamlab.factories.TaskDAOFactory;
 import by.gsu.epamlab.implementations.TaskDatabaseImplementation;
 import by.gsu.epamlab.interfaces.ITaskDAO;
 
@@ -74,11 +75,11 @@ public final class FileOperations {
 
     public static void deleteFile(String userId, List<Task> taskList, String userLogin) throws DaoException {
 
-        ITaskDAO iTaskDAO = new TaskDatabaseImplementation();
+        ITaskDAO iTaskDAO = TaskDAOFactory.getTaskDAOFromFactory();
         for(Task task : taskList) {
-
-            new File(Constants.FILES_DIRECTORY + File.separator + userLogin + File.separator + task.getName() +
-                    FileConstants.FILE_DELIMITER + task.getFileName()).delete();
+            String string = Constants.FILES_DIRECTORY + File.separator + userLogin + File.separator + task.getName() +
+                    FileConstants.FILE_DELIMITER + task.getFileName();
+            new File(string).delete();
             iTaskDAO.updateFileName(userId, "No file", task.getName());
         }
 

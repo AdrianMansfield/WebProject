@@ -5,8 +5,8 @@
 <head>
     <title>Main page</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="${JspConstants.BOOTSTRAP_STYLE_FILE_PATH}">
-    <link rel="stylesheet" href="${JspConstants.MAIN_STYLE_FILE_PATH}">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/fontawesome-all.css">
     <link rel="stylesheet" href="../css/modalWindow.css">
     <script src="../js/general-constants.js"></script>

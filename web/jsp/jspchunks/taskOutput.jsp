@@ -45,12 +45,12 @@
 
                             <!-- Form for basket -->
                             <c:if test="${taskType == \"BASKET\"}">
-                                <form method="post" action="DeleteTaskServlet" id="basketForm">
+                                <form method="post" action="DeleteTaskServlet"">
                                     <input type = "hidden" name = "taskIds" value = "${task.id}"/>
                                     <input type = "hidden" name = "taskNames" value = "${task.name}"/>
                                     <input type = "hidden" name = "fileNames" value = "${task.fileName}"/>
                                     <input type = "hidden" name = "taskType" value = "${taskType}"/>
-                                    <input type="submit" value=&#9760 form="basketForm"/>
+                                    <input type="submit" value="&#9760"/>
                                 </form>
                             </c:if>
                         </td>
@@ -65,7 +65,7 @@
                     </tr>
 
 
-                    <!-- Form for file choose file action -->
+                    <!-- Form for choose file action -->
                     <c:if test="${task.fileName != \"No file\"}">
                         <aside class="modalWindow left-side" id="${task.id}">
                             <header>
@@ -101,7 +101,7 @@
                             </header>
                             <section>
                                 <form action="UploadFileServlet" method="post" enctype="multipart/form-data">
-                                    <input type = "hidden" name = "locationType" value = "${taskType}"/>
+                                    <input type = "hidden" name = "taskType" value = "${taskType}"/>
                                     <input type = "hidden" name = "taskName" value = "${task.name}"/>
                                     <input name="file" type="file" value="Upload" class="form-control-file mb-1" style="overflow: hidden"/>
                                     <input type="submit" value="Upload" class="btn btn-outline-danger btn-sm">

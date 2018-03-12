@@ -9,7 +9,7 @@ import java.util.List;
 public interface ITaskDAO {
     List<Task> getTasks(String userId, String query, Date date) throws DaoException;
 
-    void addTask(String userId, Task task) throws DaoException;
+    boolean addTask(String userId, Task task) throws DaoException;
 
     void moveTask(String taskId, String query) throws DaoException;
 

@@ -6,8 +6,8 @@
     <head>
         <link rel="stylesheet" type="text/css" href="web/css/main.css"/>
         <title>Sigh in</title>
-        <link rel="stylesheet" href="${JspConstants.BOOTSTRAP_STYLE_FILE_PATH}">
-        <link rel="stylesheet" href="${JspConstants.MAIN_STYLE_FILE_PATH}">
+        <link rel="stylesheet" href="../css/bootstrap.css">
+        <link rel="stylesheet" href="../css/main.css">
     </head>
     <body class="bg-faded">
         <div class="bg-danger text-center">

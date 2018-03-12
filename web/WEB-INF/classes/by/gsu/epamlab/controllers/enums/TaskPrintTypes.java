@@ -2,8 +2,9 @@ package by.gsu.epamlab.controllers.enums;
 
 import by.gsu.epamlab.beans.task.Task;
 import by.gsu.epamlab.constants.Constants;
-import by.gsu.epamlab.constants.DatabaseConstants;
+import by.gsu.epamlab.constants.database.SelectTasksConstants;
 import by.gsu.epamlab.exceptions.DaoException;
+import by.gsu.epamlab.factories.TaskDAOFactory;
 import by.gsu.epamlab.implementations.TaskDatabaseImplementation;
 import by.gsu.epamlab.interfaces.ITaskDAO;
 
@@ -16,14 +17,18 @@ public enum TaskPrintTypes {
 
         @Override
         public List<Task> getTasks(String userId) throws DaoException {
-            return I_TASK_DAO.getTasks(userId, DatabaseConstants.SQL_SELECT_TODAY_TASKS, getTomorrowDay());
+
+            return I_TASK_DAO.getTasks(userId, SelectTasksConstants.SQL_SELECT_TODAY_TASKS, getTomorrowDay());
+
         }
 
     }, TOMORROW {
 
         @Override
         public List<Task> getTasks(String userId) throws DaoException {
-            return I_TASK_DAO.getTasks(userId, DatabaseConstants.SQL_SELECT_TOMORROW_TASKS, getTomorrowDay());
+
+            return I_TASK_DAO.getTasks(userId, SelectTasksConstants.SQL_SELECT_TOMORROW_TASKS, getTomorrowDay());
+
         }
 
 
@@ -31,32 +36,42 @@ public enum TaskPrintTypes {
 
         @Override
         public List<Task> getTasks(String userId) throws DaoException {
-            return I_TASK_DAO.getTasks(userId, DatabaseConstants.SQL_SELECT_SOMEDAY_TASKS, getTomorrowDay());
+
+            return I_TASK_DAO.getTasks(userId, SelectTasksConstants.SQL_SELECT_SOMEDAY_TASKS, getTomorrowDay());
+
         }
 
     }, FIXED {
 
         @Override
         public List<Task> getTasks(String userId) throws DaoException {
-            return I_TASK_DAO.getTasks(userId, DatabaseConstants.SQL_SELECT_FIXED_TASKS);
+
+            return I_TASK_DAO.getTasks(userId, SelectTasksConstants.SQL_SELECT_FIXED_TASKS);
+
         }
     }, BASKET {
 
         @Override
         public List<Task> getTasks(String userId) throws DaoException {
-            return I_TASK_DAO.getTasks(userId, DatabaseConstants.SQL_SELECT_BASKET_TASKS);
+
+            return I_TASK_DAO.getTasks(userId, SelectTasksConstants.SQL_SELECT_BASKET_TASKS);
+
         }
     };
 
-    protected static final ITaskDAO I_TASK_DAO = new TaskDatabaseImplementation();
+    protected static final ITaskDAO I_TASK_DAO = TaskDAOFactory.getTaskDAOFromFactory();
 
 
     public abstract List<Task> getTasks(String userId) throws DaoException;
 
 
     protected Date getTomorrowDay() {
+
         Calendar calendar = Calendar.getInstance();
+
         calendar.add(Calendar.DAY_OF_MONTH, Constants.DIFFERENCE_DAY);
+
         return new Date(calendar.getTime().getTime());
+
     }
 }

@@ -1,6 +1,10 @@
-package by.gsu.epamlab.controllers.post;
+package by.gsu.epamlab.controllers.post.task;
 
+import by.gsu.epamlab.constants.ParameterConstants;
+import by.gsu.epamlab.constants.UrlConstants;
+import by.gsu.epamlab.controllers.post.AbstractNonGetController;
 import by.gsu.epamlab.exceptions.DaoException;
+import by.gsu.epamlab.factories.TaskDAOFactory;
 import by.gsu.epamlab.implementations.TaskDatabaseImplementation;
 import by.gsu.epamlab.interfaces.ITaskDAO;
 
@@ -15,13 +19,13 @@ public class DeleteTaskServlet extends AbstractNonGetController {
     @Override
     protected void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            String [] taskIds = request.getParameterValues("taskIds");
+            String [] taskIds = request.getParameterValues(ParameterConstants.TASK_IDS_PARAMETER);
 
-            ITaskDAO iTaskDAO = new TaskDatabaseImplementation();
+            ITaskDAO iTaskDAO = TaskDAOFactory.getTaskDAOFromFactory();
 
             iTaskDAO.removeTasks(taskIds);
 
-            request.getRequestDispatcher("/DeleteFileServlet").forward(request, response);
+            request.getRequestDispatcher(UrlConstants.DELETE_SERVLET_URL).forward(request, response);
 
         } catch (DaoException e) {
 

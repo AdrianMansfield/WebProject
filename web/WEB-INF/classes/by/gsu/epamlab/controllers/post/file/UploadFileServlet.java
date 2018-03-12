@@ -1,8 +1,12 @@
-package by.gsu.epamlab.controllers.post;
+package by.gsu.epamlab.controllers.post.file;
 
 import by.gsu.epamlab.beans.FileOperations;
 import by.gsu.epamlab.constants.Constants;
+import by.gsu.epamlab.constants.ParameterConstants;
+import by.gsu.epamlab.constants.UrlConstants;
+import by.gsu.epamlab.controllers.post.AbstractNonGetController;
 import by.gsu.epamlab.exceptions.DaoException;
+import by.gsu.epamlab.factories.TaskDAOFactory;
 import by.gsu.epamlab.implementations.TaskDatabaseImplementation;
 import by.gsu.epamlab.interfaces.ITaskDAO;
 
@@ -20,21 +24,21 @@ public class UploadFileServlet extends AbstractNonGetController {
         try {
             HttpSession session =  request.getSession();
 
-            String userId = (String) session.getAttribute(Constants.ID);
+            String userId = (String) session.getAttribute(ParameterConstants.USER_ID_PARAMETER);
 
-            String userLogin = (String) session.getAttribute(Constants.LOGIN);
+            String userLogin = (String) session.getAttribute(ParameterConstants.LOGIN_PARAMETER);
 
-            String taskName = request.getParameter(Constants.TASK_NAME_PARAMETER);
+            String taskName = request.getParameter(ParameterConstants.TASK_NAME_PARAMETER);
 
-            Part part = request.getPart(Constants.FILE_PARAMETER);
+            Part part = request.getPart(ParameterConstants.FILE_PARAMETER);
 
             String fileName = FileOperations.uploadFile(part, userLogin, taskName);
 
-            ITaskDAO iTaskDAO = new TaskDatabaseImplementation();
+            ITaskDAO iTaskDAO = TaskDAOFactory.getTaskDAOFromFactory();
 
             iTaskDAO.updateFileName(userId, fileName, taskName);
 
-            jumpPage(Constants.PRINT_TASK_SERVLET_URL, request, response);
+            jumpPage(UrlConstants.PRINT_TASK_SERVLET_URL, request, response);
 
         } catch (DaoException e) {
 
