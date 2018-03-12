@@ -37,7 +37,7 @@
 </div>
 
 <main role="main" class="content">
-    <div class="row">
+    <div class="custom-row">
         <div class="col-md-3">
             <a href="#leftSlide" class="bigFont text-center">&#9998 Add task</a>
             <div class="modalWindow" id="leftSlide">
