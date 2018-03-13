@@ -49,13 +49,14 @@
     </div>
 </main>
 <footer class="footer fixed-bottom">
-    <div class="alert alert-danger text-center">
-        <c:if test="${not empty errorMessage}">
+    <c:if test="${not empty errorMessage}">
+        <div class="alert alert-danger text-center">
             <h5>
                 <c:out value="${errorMessage}"/>
             </h5>
-        </c:if>
-    </div>
+        </div>
+    </c:if>
+
     <c:import url="/jsp/jspchunks/developerName.jsp"/>
 </footer>
 </body>
