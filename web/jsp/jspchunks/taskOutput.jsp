@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<div class="row">
+<div class="custom-row">
     <div class="col-md-8">
         <div class="table-container">
             <table class="text-center table-bordered table-hover" id="taskTable">
