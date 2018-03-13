@@ -8,6 +8,7 @@
         <title>Web project</title>
         <link rel="stylesheet" href="../css/bootstrap.css">
         <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="../css/bars.css">
     </head>
     <body>
         <div class="d-flex flex-column flex-md-row align-items-center p-0 px-md-4 mb-1 navbar-inverse">
