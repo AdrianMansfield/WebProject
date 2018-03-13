@@ -6,6 +6,9 @@ import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.constants.ParameterConstants;
 import by.gsu.epamlab.constants.UrlConstants;
 import by.gsu.epamlab.exceptions.DaoException;
+import by.gsu.epamlab.factories.UserDAOFactory;
+import by.gsu.epamlab.interfaces.IUserDAO;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +32,9 @@ public class RegistrationServlet extends AbstractAuthorizationController {
 
         }
         try {
+
+            IUserDAO iUserDAO = UserDAOFactory.getUserDAOFromFactory();
+
             User user = iUserDAO.setUser(login, password);
 
             if(user != null) {

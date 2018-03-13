@@ -10,25 +10,21 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
 
-    private static final DataSource dataSource;
+    private static  DataSource dataSource;
 
     static {
-
-        DataSource temporaryDataSource = null;
 
         try {
 
             InitialContext initialContext =  new InitialContext();
 
-            temporaryDataSource = (DataSource) initialContext.lookup(Constants.RESOURCE_NAME);
+            dataSource = (DataSource) initialContext.lookup(Constants.RESOURCE_NAME);
 
         } catch (NamingException e) {
 
             e.printStackTrace();
 
         }
-
-        dataSource = temporaryDataSource;
     }
 
     public static Connection getConnection() throws SQLException {
