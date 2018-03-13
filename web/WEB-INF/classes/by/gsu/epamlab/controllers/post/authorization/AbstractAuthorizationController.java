@@ -9,13 +9,13 @@ import by.gsu.epamlab.controllers.post.AbstractNonGetController;
 import by.gsu.epamlab.factories.UserDAOFactory;
 import by.gsu.epamlab.interfaces.IUserDAO;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public abstract class AbstractAuthorizationController extends AbstractNonGetController {
-    protected static final IUserDAO iUserDAO = UserDAOFactory.getUserDAOFromFactory();
 
     protected void setCookie(HttpServletResponse response, String name, String parameter, int age) {
 

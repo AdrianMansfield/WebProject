@@ -10,13 +10,13 @@
                             <form action="MoveTaskServlet" method="post">
                                 <input type="hidden" name="taskId" value="${task.id}"/>
                                 <!-- Part of form for add to fixed -->
-                                <c:if test="${taskType != \"BASKET\"}">
+                                <c:if test="${taskType != \"BASKET\" && taskType != \"FIXED\"}">
                                     <input name="taskType" type="hidden" value="${taskType}"/>
                                     <input name="locationType" type="hidden" value="fixed"/>
                                     <input type="submit" value=&#10004 class="btn btn-outline-danger"/>
                                 </c:if>
                                 <!-- Part of form for restore from basket -->
-                                <c:if test="${taskType == \"BASKET\"}">
+                                <c:if test="${taskType == \"BASKET\" || taskType == \"FIXED\"}">
                                     <input name="taskType" type="hidden" value="${taskType}"/>
                                     <input name="locationType" type="hidden" value="main"/>
                                     <input type="submit" value=&#10226 class="btn btn-outline-danger"/>
