@@ -32,28 +32,11 @@ public class AddTaskServlet extends AbstractNonGetController {
 
             String description = request.getParameter(ParameterConstants.DESCRIPTION_PARAMETER);
 
-            String date = request.getParameter(ParameterConstants.DATE_PARAMETER);
+            Date date = (Date) request.getAttribute(ParameterConstants.DATE_PARAMETER);
 
             String fileName = Constants.NO_FILE;
 
-            if(!goodValues(userId, taskName, description)) {
-                jumpError(UrlConstants.MAIN_URL, ErrorConstants.ADD_TASK_ERROR, request, response);
-                return;
-            }
-
-            if(Constants.EMPTY_STRING.equals(date) && Constants.SOMEDAY.equals(taskType)) {
-                jumpError(UrlConstants.MAIN_URL, ErrorConstants.EMPTY_DATE_ERROR, request, response);
-                return;
-            }
-
-            Date usualDate = null;
-
-            if(!Constants.EMPTY_STRING.equals(date)) {
-                long time = new SimpleDateFormat(Constants.PRINT_DATE_FORMAT).parse(date).getTime();
-                usualDate = new Date(time);
-            }
-
-            Task task = new Task(Constants.ZERO, taskName, description, usualDate, fileName);
+            Task task = new Task(Constants.ZERO, taskName, description, date, fileName);
 
             ITaskDAO iTaskDAO = TaskDAOFactory.getTaskDAOFromFactory();
 
@@ -66,7 +49,7 @@ public class AddTaskServlet extends AbstractNonGetController {
 
             sendRedirectToPrintTaskServlet(request, response);
 
-        } catch (DaoException | ParseException e) {
+        } catch (DaoException e) {
             e.printStackTrace();
         }
     }

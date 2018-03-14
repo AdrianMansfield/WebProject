@@ -33,7 +33,7 @@ public abstract class AbstractAuthorizationController extends AbstractNonGetCont
 
         session.setAttribute(ParameterConstants.ROLE_PARAMETER, Role.USER.toString());
 
-        session.setAttribute(JspConstants.ATTRIBUTE_CONTROL, JspConstants.STARTING_PAGE_FOR_USER_PATH);
+        session.setAttribute(JspConstants.ATTRIBUTE_CONTROL, JspConstants.STARTING_PAGE_FOR_USER);
 
         setCookie(response, ParameterConstants.USER_ID_PARAMETER, String.valueOf(user.getId()), Constants.COOKIE_AGE);
 

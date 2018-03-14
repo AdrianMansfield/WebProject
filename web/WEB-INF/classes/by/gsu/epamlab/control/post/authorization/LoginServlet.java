@@ -19,20 +19,11 @@ public class LoginServlet extends AbstractAuthorizationController {
     @Override
     protected void performTask(HttpServletRequest request,
                                HttpServletResponse response) throws ServletException, IOException {
-
-        String login = request.getParameter(ParameterConstants.LOGIN_PARAMETER);
-
-        String password = request.getParameter(ParameterConstants.PASSWORD_PARAMETER);
-
-        if(!goodValues(login, password)) {
-
-            jumpError(UrlConstants.LOGIN_URL, Constants.EMPTY_DATA, request, response);
-
-            return;
-
-        }
-
         try {
+
+            String login = request.getParameter(ParameterConstants.LOGIN_PARAMETER);
+
+            String password = request.getParameter(ParameterConstants.PASSWORD_PARAMETER);
 
             IUserDAO iUserDAO = UserDAOFactory.getUserDAOFromFactory();
 

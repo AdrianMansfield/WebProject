@@ -164,24 +164,54 @@
     <!-- Filters  -->
 
     <filter>
-        <filter-name>AccessFilter</filter-name>
-        <filter-class>by.gsu.epamlab.filters.AccessFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>AccessFilter</filter-name>
-        <url-pattern>/main</url-pattern>
-    </filter-mapping>
-
-    <filter>
         <filter-name>AuthorizationFilter</filter-name>
         <filter-class>by.gsu.epamlab.filters.AuthorizationFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/main</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>CookieValidationFilter</filter-name>
+        <filter-class>by.gsu.epamlab.filters.CookieValidationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CookieValidationFilter</filter-name>
         <url-pattern>/index</url-pattern>
     </filter-mapping>
 
+    <filter>
+        <filter-name>AddTaskFilter</filter-name>
+        <filter-class>by.gsu.epamlab.filters.AddTaskFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AddTaskFilter</filter-name>
+        <url-pattern>/AddTaskServlet</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>by.gsu.epamlab.filters.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </filter-mapping>
+
+
+    <filter>
+        <filter-name>RegistrationFilter</filter-name>
+        <filter-class>by.gsu.epamlab.filters.RegistrationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>RegistrationFilter</filter-name>
+        <url-pattern>/RegistrationServlet</url-pattern>
+    </filter-mapping>
+    
+
     <!-- Listeners -->
+
     <listener>
         <listener-class>by.gsu.epamlab.listeners.ApplicationContextParameter</listener-class>
     </listener>

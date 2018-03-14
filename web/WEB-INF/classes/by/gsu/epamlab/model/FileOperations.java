@@ -79,14 +79,19 @@ public final class FileOperations {
         for(int i = 0; i<taskNames.length; i++) {
             String string = ApplicationContextParameter.getFilesDirectory() + File.separator + userLogin + File.separator + taskNames[i] +
                     FileConstants.FILE_DELIMITER + fileNames[i];
-            boolean isDeleted = new File(string).delete();
-            if(isDeleted) {
-                iTaskDAO.updateFileName(userId, Constants.NO_FILE, taskNames[i]);
-            }
-            else {
-                throw new FileProblemException(ExceptionConstants.DELETE_FILE__EXCEPTION_MESSAGE);
-            }
+            File file = new File(string);
 
+            boolean isExist = file.exists();
+
+            if(isExist) {
+                boolean isDeleted = file.delete();
+                if(isDeleted) {
+                    iTaskDAO.updateFileName(userId, Constants.NO_FILE, taskNames[i]);
+                }
+                else {
+                    throw new FileProblemException(ExceptionConstants.DELETE_FILE__EXCEPTION_MESSAGE);
+                }
+            }
         }
 
     }

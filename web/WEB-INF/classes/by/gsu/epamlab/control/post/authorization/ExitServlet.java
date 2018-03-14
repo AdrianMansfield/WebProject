@@ -22,7 +22,7 @@ public class ExitServlet extends AbstractAuthorizationController {
         setCookie(response, ParameterConstants.ROLE_PARAMETER, Constants.EMPTY_STRING, Constants.ZERO);
         setCookie(response, ParameterConstants.LOGIN_PARAMETER, Constants.EMPTY_STRING, Constants.ZERO);
         session = request.getSession();
-        session.setAttribute(JspConstants.ATTRIBUTE_CONTROL, JspConstants.STARTING_PAGE_FOR_VISITOR_PATH);
+        session.setAttribute(JspConstants.ATTRIBUTE_CONTROL, JspConstants.STARTING_PAGE_FOR_VISITOR);
         response.sendRedirect(UrlConstants.INDEX_URL);
     }
 }

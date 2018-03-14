@@ -25,14 +25,6 @@ public class RegistrationServlet extends AbstractAuthorizationController {
 
             String password = request.getParameter(ParameterConstants.PASSWORD_PARAMETER);
 
-            if(!goodValues(login, password)) {
-
-                jumpError(UrlConstants.REGISTRATION_URL, Constants.EMPTY_DATA, request, response);
-
-                return;
-
-            }
-
             IUserDAO iUserDAO = UserDAOFactory.getUserDAOFromFactory();
 
             boolean isAdded = iUserDAO.setUser(login, password);

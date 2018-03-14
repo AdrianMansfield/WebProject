@@ -41,7 +41,7 @@ public abstract class AbstractBaseController extends HttpServlet {
 
     protected void jumpPage (String url, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
-        jump(url, Constants.EMPTY_STRING,request,response);
+        jump(url, Constants.EMPTY_STRING, request, response);
 
     }
 

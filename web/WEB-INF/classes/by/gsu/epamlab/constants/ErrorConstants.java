@@ -16,4 +16,8 @@ public final class ErrorConstants {
 
     public static final String SERVER_ERROR = "Sorry. Server temporary is not available";
 
+    public static final String WRONG_DATE_ERROR = "Wrong date.";
+
+    public static final String AUTHORISATION_ERROR = "You are not authorized.";
+
 }

@@ -1,6 +1,7 @@
 package by.gsu.epamlab.implementations.database.task.enums;
 
 import by.gsu.epamlab.constants.Constants;
+import by.gsu.epamlab.model.DateOperations;
 
 import java.sql.Date;
 import java.util.Calendar;
@@ -10,21 +11,21 @@ public enum  DateTypes {
 
         @Override
         public Date getDate() {
-            return getTomorrowDay();
+            return DateOperations.getTomorrowDay();
         }
 
     }, TOMORROW {
 
         @Override
         public Date getDate() {
-            return getTomorrowDay();
+            return DateOperations.getTomorrowDay();
         }
 
     }, SOMEDAY  {
 
         @Override
         public Date getDate() {
-            return getTomorrowDay();
+            return DateOperations.getTomorrowDay();
         }
 
     }, FIXED {
@@ -46,15 +47,6 @@ public enum  DateTypes {
 
     public abstract Date getDate();
 
-    protected Date getTomorrowDay() {
-
-        Calendar calendar = Calendar.getInstance();
-
-        calendar.add(Calendar.DAY_OF_MONTH, Constants.DIFFERENCE_DAY);
-
-        return new Date(calendar.getTime().getTime());
-
-    }
 
     protected Date getPastDate() {
         return new Date(Constants.ZERO);
