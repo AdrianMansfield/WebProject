@@ -18,7 +18,7 @@ public class DatabaseConnection {
 
             InitialContext initialContext =  new InitialContext();
 
-            dataSource = (DataSource) initialContext.lookup(Constants.RESOURCE_NAME);
+            dataSource = (DataSource) initialContext.lookup(Constants.RESOURCE_NAME); //may be move this parameter to context
 
         } catch (NamingException e) {
 

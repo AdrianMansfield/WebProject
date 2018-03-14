@@ -1,8 +1,6 @@
 package by.gsu.epamlab.controllers.post.authorization;
 
 
-import by.gsu.epamlab.beans.user.Role;
-import by.gsu.epamlab.beans.user.User;
 import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.constants.ErrorConstants;
 import by.gsu.epamlab.constants.ParameterConstants;

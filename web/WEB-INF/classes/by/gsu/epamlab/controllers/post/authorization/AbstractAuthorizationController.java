@@ -1,15 +1,12 @@
 package by.gsu.epamlab.controllers.post.authorization;
 
-import by.gsu.epamlab.beans.user.Role;
-import by.gsu.epamlab.beans.user.User;
+import by.gsu.epamlab.model.user.Role;
+import by.gsu.epamlab.model.user.User;
 import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.constants.JspConstants;
 import by.gsu.epamlab.constants.ParameterConstants;
 import by.gsu.epamlab.controllers.post.AbstractNonGetController;
-import by.gsu.epamlab.factories.UserDAOFactory;
-import by.gsu.epamlab.interfaces.IUserDAO;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

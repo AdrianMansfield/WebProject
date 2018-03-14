@@ -1,6 +1,6 @@
-package by.gsu.epamlab.beans;
+package by.gsu.epamlab.model;
 
-import by.gsu.epamlab.beans.task.Task;
+import by.gsu.epamlab.model.task.Task;
 import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.constants.ExceptionConstants;
 import by.gsu.epamlab.constants.FileConstants;
@@ -8,7 +8,7 @@ import by.gsu.epamlab.exceptions.DaoException;
 import by.gsu.epamlab.exceptions.FileProblemException;
 import by.gsu.epamlab.factories.TaskDAOFactory;
 import by.gsu.epamlab.interfaces.ITaskDAO;
-import by.gsu.epamlab.listener.ApplicationContextParameter;
+import by.gsu.epamlab.listeners.ApplicationContextParameter;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
@@ -63,7 +63,7 @@ public final class FileOperations {
                 OutputStream outputStream = response.getOutputStream())
             {
                 int i;
-                while((i=bufferedInputStream.read())!=-1){
+                while((i=bufferedInputStream.read())!=-1){ //need a constant
                     outputStream.write(i);
                 }
             }

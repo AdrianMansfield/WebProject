@@ -1,13 +1,16 @@
 package by.gsu.epamlab.implementations.ram;
 
+import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.interfaces.IUserDAO;
-import by.gsu.epamlab.beans.user.Role;
-import by.gsu.epamlab.beans.user.User;
+import by.gsu.epamlab.model.user.Role;
+import by.gsu.epamlab.model.user.User;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public final class UserRAMImplementation implements IUserDAO {
+
+    private static final String ADMIN = "admin";
 
     private static final Map<User, String> memory = new HashMap<>();
 
@@ -16,12 +19,12 @@ public final class UserRAMImplementation implements IUserDAO {
     private UserRAMImplementation() {}
 
     static {
-        memory.put(new User(0,"admin", Role.ADMIN), "admin");
+        memory.put(new User(Constants.ZERO, ADMIN, Role.ADMIN), ADMIN);
     }
 
     @Override
     public User getUser(String login, String password) {
-        User user = new User(0,login, Role.USER);
+        User user = new User(Constants.ZERO, login, Role.USER);
         String truePassword = memory.get(user);
         if(truePassword == null || !truePassword.equals(password)) {
             user = null;
@@ -32,7 +35,7 @@ public final class UserRAMImplementation implements IUserDAO {
     @Override
     public boolean setUser(String login, String password) {
         boolean isAdded = false;
-        User user = new User(0, login, Role.USER);
+        User user = new User(Constants.ZERO, login, Role.USER);
         synchronized (memory) {
             if(!memory.containsKey(user)) {
                 memory.put(user, password);

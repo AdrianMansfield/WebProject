@@ -1,8 +1,7 @@
 package by.gsu.epamlab.controllers.post.file;
 
-import by.gsu.epamlab.beans.FileOperations;
+import by.gsu.epamlab.model.FileOperations;
 import by.gsu.epamlab.constants.ParameterConstants;
-import by.gsu.epamlab.constants.UrlConstants;
 import by.gsu.epamlab.controllers.post.AbstractNonGetController;
 import by.gsu.epamlab.exceptions.DaoException;
 import by.gsu.epamlab.factories.TaskDAOFactory;

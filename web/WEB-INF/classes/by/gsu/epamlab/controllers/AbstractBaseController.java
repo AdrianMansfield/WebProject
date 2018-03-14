@@ -31,7 +31,7 @@ public abstract class AbstractBaseController extends HttpServlet {
     protected abstract void performTask(HttpServletRequest request,
                                         HttpServletResponse response) throws ServletException, IOException;
 
-    protected void jump(String url, String message, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void jump(String url, String message, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.setAttribute(Constants.KEY_ERROR_MESSAGE, message);
 

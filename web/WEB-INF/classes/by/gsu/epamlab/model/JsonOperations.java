@@ -1,4 +1,4 @@
-package by.gsu.epamlab.beans;
+package by.gsu.epamlab.model;
 
 import org.json.simple.JSONArray;
 

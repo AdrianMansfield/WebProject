@@ -1,9 +1,8 @@
 package by.gsu.epamlab.interfaces;
 
-import by.gsu.epamlab.beans.task.Task;
+import by.gsu.epamlab.model.task.Task;
 import by.gsu.epamlab.exceptions.DaoException;
 
-import java.sql.*;
 import java.util.List;
 
 public interface ITaskDAO {

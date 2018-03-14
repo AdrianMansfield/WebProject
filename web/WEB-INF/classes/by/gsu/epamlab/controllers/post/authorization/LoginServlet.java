@@ -1,6 +1,6 @@
 package by.gsu.epamlab.controllers.post.authorization;
 
-import by.gsu.epamlab.beans.user.User;
+import by.gsu.epamlab.model.user.User;
 import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.constants.ErrorConstants;
 import by.gsu.epamlab.constants.ParameterConstants;
@@ -31,6 +31,7 @@ public class LoginServlet extends AbstractAuthorizationController {
             return;
 
         }
+
         try {
 
             IUserDAO iUserDAO = UserDAOFactory.getUserDAOFromFactory();
@@ -44,6 +45,7 @@ public class LoginServlet extends AbstractAuthorizationController {
                 return;
 
             }
+
             setUserAuthorization(user, request, response);
 
             jumpPage(UrlConstants.MAIN_URL, request, response);

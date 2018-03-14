@@ -1,6 +1,6 @@
 package by.gsu.epamlab.controllers.post.task;
 
-import by.gsu.epamlab.beans.task.Task;
+import by.gsu.epamlab.model.task.Task;
 import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.constants.ErrorConstants;
 import by.gsu.epamlab.constants.ParameterConstants;

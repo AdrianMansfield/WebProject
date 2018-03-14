@@ -1,6 +1,6 @@
-package by.gsu.epamlab.beans.task;
+package by.gsu.epamlab.model.task;
 
-import by.gsu.epamlab.beans.Jsonable;
+import by.gsu.epamlab.model.Jsonable;
 import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.constants.ParameterConstants;
 import org.json.simple.JSONObject;

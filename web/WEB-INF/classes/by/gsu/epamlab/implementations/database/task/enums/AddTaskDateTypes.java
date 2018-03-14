@@ -1,10 +1,7 @@
 package by.gsu.epamlab.implementations.database.task.enums;
 
-import by.gsu.epamlab.beans.task.Task;
+import by.gsu.epamlab.model.task.Task;
 import by.gsu.epamlab.constants.Constants;
-import by.gsu.epamlab.exceptions.DaoException;
-import by.gsu.epamlab.factories.TaskDAOFactory;
-import by.gsu.epamlab.interfaces.ITaskDAO;
 
 import java.sql.Date;
 import java.util.Calendar;
@@ -20,7 +17,7 @@ public enum AddTaskDateTypes {
         }
 
         @Override
-        public void setTaskDate(Task task) throws DaoException {
+        public void setTaskDate(Task task) {
 
             task.setDate(getTodayDate());
 
@@ -39,7 +36,7 @@ public enum AddTaskDateTypes {
         }
 
         @Override
-        public void setTaskDate(Task task) throws DaoException {
+        public void setTaskDate(Task task) {
 
             task.setDate(getTomorrowDay());
 
@@ -48,13 +45,13 @@ public enum AddTaskDateTypes {
     }, SOMEDAY  {
 
         @Override
-        public void setTaskDate(Task task) throws DaoException {
+        public void setTaskDate(Task task)  {
 
         }
 
     };
 
-    public abstract void setTaskDate(Task task) throws DaoException;
+    public abstract void setTaskDate(Task task);
 
 
 }

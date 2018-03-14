@@ -1,4 +1,4 @@
-package by.gsu.epamlab.listener;
+package by.gsu.epamlab.listeners;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;

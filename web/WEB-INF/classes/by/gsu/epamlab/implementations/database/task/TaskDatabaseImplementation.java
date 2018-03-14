@@ -1,6 +1,6 @@
 package by.gsu.epamlab.implementations.database.task;
 
-import by.gsu.epamlab.beans.task.Task;
+import by.gsu.epamlab.model.task.Task;
 import by.gsu.epamlab.constants.database.*;
 import by.gsu.epamlab.database.DatabaseConnection;
 import by.gsu.epamlab.exceptions.DaoException;

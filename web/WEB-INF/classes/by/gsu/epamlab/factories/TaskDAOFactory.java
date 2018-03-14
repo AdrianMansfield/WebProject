@@ -2,7 +2,7 @@ package by.gsu.epamlab.factories;
 
 import by.gsu.epamlab.implementations.database.task.TaskDatabaseImplementation;
 import by.gsu.epamlab.interfaces.ITaskDAO;
-import by.gsu.epamlab.listener.ApplicationContextParameter;
+import by.gsu.epamlab.listeners.ApplicationContextParameter;
 
 public class TaskDAOFactory {
     private static ITaskDAO iTaskDAO;

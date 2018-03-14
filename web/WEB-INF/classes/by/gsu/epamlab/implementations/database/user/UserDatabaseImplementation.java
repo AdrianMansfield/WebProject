@@ -3,8 +3,8 @@ package by.gsu.epamlab.implementations.database.user;
 import by.gsu.epamlab.constants.database.UserConstants;
 import by.gsu.epamlab.database.DatabaseConnection;
 import by.gsu.epamlab.interfaces.IUserDAO;
-import by.gsu.epamlab.beans.user.Role;
-import by.gsu.epamlab.beans.user.User;
+import by.gsu.epamlab.model.user.Role;
+import by.gsu.epamlab.model.user.User;
 import by.gsu.epamlab.exceptions.DaoException;
 
 import java.sql.*;

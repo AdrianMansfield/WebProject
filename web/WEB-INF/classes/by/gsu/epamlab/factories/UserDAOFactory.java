@@ -3,7 +3,7 @@ package by.gsu.epamlab.factories;
 import by.gsu.epamlab.interfaces.IUserDAO;
 import by.gsu.epamlab.implementations.database.user.UserDatabaseImplementation;
 import by.gsu.epamlab.implementations.ram.UserRAMImplementation;
-import by.gsu.epamlab.listener.ApplicationContextParameter;
+import by.gsu.epamlab.listeners.ApplicationContextParameter;
 
 public class UserDAOFactory {
 

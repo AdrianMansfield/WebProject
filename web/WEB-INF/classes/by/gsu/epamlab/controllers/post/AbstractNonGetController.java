@@ -14,7 +14,7 @@ public abstract  class AbstractNonGetController extends AbstractBaseController {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendError(response.SC_BAD_REQUEST, ExceptionConstants.NON_GET_EXCEPTION_MESSAGE);
+        response.sendError(response.SC_BAD_REQUEST, ExceptionConstants.NON_GET_EXCEPTION_MESSAGE); //will check this function
         throw new NonHttpMethodException(ExceptionConstants.NON_GET_EXCEPTION_MESSAGE);
     }
 }

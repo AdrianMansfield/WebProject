@@ -1,4 +1,4 @@
-package by.gsu.epamlab.beans.user;
+package by.gsu.epamlab.model.user;
 
 public class User {
     private int id;

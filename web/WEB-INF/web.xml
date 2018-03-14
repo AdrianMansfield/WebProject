@@ -183,7 +183,7 @@
 
     <!-- Listeners -->
     <listener>
-        <listener-class>by.gsu.epamlab.listener.ApplicationContextParameter</listener-class>
+        <listener-class>by.gsu.epamlab.listeners.ApplicationContextParameter</listener-class>
     </listener>
 
 </web-app>

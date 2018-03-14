@@ -1,7 +1,7 @@
 package by.gsu.epamlab.controllers.post.file;
 
-import by.gsu.epamlab.beans.FileOperations;
-import by.gsu.epamlab.beans.task.Task;
+import by.gsu.epamlab.model.FileOperations;
+import by.gsu.epamlab.model.task.Task;
 import by.gsu.epamlab.constants.*;
 import by.gsu.epamlab.controllers.post.AbstractNonGetController;
 

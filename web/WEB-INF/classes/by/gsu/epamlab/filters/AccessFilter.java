@@ -1,7 +1,6 @@
 package by.gsu.epamlab.filters;
 
-import by.gsu.epamlab.beans.user.Role;
-import by.gsu.epamlab.constants.Constants;
+import by.gsu.epamlab.model.user.Role;
 import by.gsu.epamlab.constants.ParameterConstants;
 import by.gsu.epamlab.constants.UrlConstants;
 

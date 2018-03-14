@@ -1,10 +1,7 @@
 package by.gsu.epamlab.controllers.post.file;
 
-import by.gsu.epamlab.beans.FileOperations;
-import by.gsu.epamlab.beans.task.Task;
-import by.gsu.epamlab.constants.Constants;
+import by.gsu.epamlab.model.FileOperations;
 import by.gsu.epamlab.constants.ParameterConstants;
-import by.gsu.epamlab.constants.UrlConstants;
 import by.gsu.epamlab.controllers.post.AbstractNonGetController;
 import by.gsu.epamlab.exceptions.DaoException;
 
@@ -12,9 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DeleteFileServlet extends AbstractNonGetController {
     @Override
