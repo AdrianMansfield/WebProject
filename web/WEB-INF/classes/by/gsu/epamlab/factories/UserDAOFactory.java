@@ -1,8 +1,9 @@
 package by.gsu.epamlab.factories;
 
 import by.gsu.epamlab.interfaces.IUserDAO;
-import by.gsu.epamlab.implementations.UserDatabaseImplementation;
-import by.gsu.epamlab.implementations.UserRAMImplementation;
+import by.gsu.epamlab.implementations.database.user.UserDatabaseImplementation;
+import by.gsu.epamlab.implementations.ram.UserRAMImplementation;
+import by.gsu.epamlab.listener.ApplicationContextParameter;
 
 public class UserDAOFactory {
 
@@ -28,13 +29,10 @@ public class UserDAOFactory {
         abstract void setImplementation();
     }
 
-    public static void setUserDAO(String implementationName) {
-        if(iUserDAO == null) {
-            Implementation.valueOf(implementationName).setImplementation();
-        }
-    }
-
     public static IUserDAO getUserDAOFromFactory() {
+        if(iUserDAO == null) {
+            Implementation.valueOf(ApplicationContextParameter.getUserImplementationName()).setImplementation();
+        }
         return iUserDAO;
     }
 }

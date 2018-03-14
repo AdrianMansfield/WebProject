@@ -2,9 +2,7 @@ package by.gsu.epamlab.controllers.post.file;
 
 import by.gsu.epamlab.beans.FileOperations;
 import by.gsu.epamlab.beans.task.Task;
-import by.gsu.epamlab.constants.Constants;
-import by.gsu.epamlab.constants.FileConstants;
-import by.gsu.epamlab.constants.ParameterConstants;
+import by.gsu.epamlab.constants.*;
 import by.gsu.epamlab.controllers.post.AbstractNonGetController;
 
 import javax.servlet.ServletException;
@@ -28,9 +26,12 @@ public class DownloadFileServlet extends AbstractNonGetController {
 
             request.setCharacterEncoding(Constants.UTF8_CHARACTER_ENCODING);
 
-            response.setCharacterEncoding(Constants.UTF8_CHARACTER_ENCODING);
-
-            FileOperations.downloadFile(response, userLogin, task);
+            if(FileOperations.downloadFile(response, userLogin, task)) {
+                jumpPage(UrlConstants.MAIN_URL, request, response);
+            }
+            else {
+                jumpError(UrlConstants.MAIN_URL, ErrorConstants.FILE_DOES_NOT_EXIST_ERROR, request, response);
+            }
         }
         catch (IOException e) {
 

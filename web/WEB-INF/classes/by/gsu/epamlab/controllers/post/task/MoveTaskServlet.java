@@ -1,12 +1,12 @@
 package by.gsu.epamlab.controllers.post.task;
 
 
-import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.constants.ParameterConstants;
-import by.gsu.epamlab.constants.UrlConstants;
-import by.gsu.epamlab.controllers.enums.TaskLocationTypes;
+import by.gsu.epamlab.factories.TaskDAOFactory;
+import by.gsu.epamlab.implementations.database.task.enums.LocationChangeTypes;
 import by.gsu.epamlab.controllers.post.AbstractNonGetController;
 import by.gsu.epamlab.exceptions.DaoException;
+import by.gsu.epamlab.interfaces.ITaskDAO;
 import org.json.simple.JSONObject;
 
 
@@ -25,9 +25,13 @@ public class MoveTaskServlet extends AbstractNonGetController {
 
             String  taskId = request.getParameter(ParameterConstants.TASK_ID_PARAMETER);
 
-            String typeLocation = request.getParameter(ParameterConstants.LOCATION_TYPE_PARAMETER);
+            String locationType = request.getParameter(ParameterConstants.LOCATION_TYPE_PARAMETER);
 
-            TaskLocationTypes.valueOf(typeLocation.toUpperCase()).moveTask(taskId);
+            locationType = locationType.toUpperCase();
+
+            ITaskDAO iTaskDAO = TaskDAOFactory.getTaskDAOFromFactory();
+
+            iTaskDAO.moveTask(taskId, locationType);
 
             if(ParameterConstants.AJAX_PARAMETER.equals(connectionType)) {
 
@@ -40,7 +44,7 @@ public class MoveTaskServlet extends AbstractNonGetController {
             }
             else {
 
-                jumpPage(UrlConstants.PRINT_TASK_SERVLET_URL, request, response);
+                sendRedirectToPrintTaskServlet(request, response);
 
             }
         } catch (DaoException e) {

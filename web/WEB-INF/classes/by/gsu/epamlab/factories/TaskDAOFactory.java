@@ -1,7 +1,8 @@
 package by.gsu.epamlab.factories;
 
-import by.gsu.epamlab.implementations.TaskDatabaseImplementation;
+import by.gsu.epamlab.implementations.database.task.TaskDatabaseImplementation;
 import by.gsu.epamlab.interfaces.ITaskDAO;
+import by.gsu.epamlab.listener.ApplicationContextParameter;
 
 public class TaskDAOFactory {
     private static ITaskDAO iTaskDAO;
@@ -12,7 +13,7 @@ public class TaskDAOFactory {
             @Override
             void setImplementation() {
 
-                iTaskDAO = TaskDatabaseImplementation.getTaskDarabaseImplementation();
+                iTaskDAO = TaskDatabaseImplementation.getTaskDatabaseImplementation();
             }
         };
 
@@ -21,17 +22,12 @@ public class TaskDAOFactory {
 
     }
 
-    public static void setTaskDAO(String implementationName) {
-
+    public static ITaskDAO getTaskDAOFromFactory() {
         if(iTaskDAO == null) {
 
-            Implementation.valueOf(implementationName).setImplementation();
+            Implementation.valueOf(ApplicationContextParameter.getTaskImplementationName()).setImplementation();
 
         }
-
-    }
-
-    public static ITaskDAO getTaskDAOFromFactory() {
         return iTaskDAO;
     }
 }

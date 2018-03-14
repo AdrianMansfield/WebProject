@@ -1,6 +1,9 @@
 package by.gsu.epamlab.constants;
 
-public class JspConstants {
+public final class JspConstants {
+
+    private JspConstants() {}
+
     public static final String STARTING_PAGE_FOR_USER_PATH = "/jsp/jspchunks/userHello.jsp";
     public static final String STARTING_PAGE_FOR_VISITOR_PATH = "/jsp/jspchunks/visitorHello.jsp";
 

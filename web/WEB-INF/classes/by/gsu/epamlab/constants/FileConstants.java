@@ -1,6 +1,9 @@
 package by.gsu.epamlab.constants;
 
-public class FileConstants {
+public final class FileConstants {
+
+    private FileConstants() {}
+
     public static final String HTTP_HEADER_CONTENT_DISPOSITION = "Content-Disposition";
 
     public static final String HTTP_PARAMETER_FILE_NAME = "filename";

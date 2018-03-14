@@ -1,6 +1,9 @@
 package by.gsu.epamlab.constants.database;
 
-public class UserConstants {
+public final class UserConstants {
+
+    private UserConstants() {}
+
     public static final String SQL_SELECT_USER = "Select * From user " +
             " Where login = ? and password = ?";
     public static final String SQL_INSERT_USER = "Insert Into user(login, password, role) values(?, ?, ?)";

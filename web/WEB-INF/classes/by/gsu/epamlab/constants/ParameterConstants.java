@@ -1,6 +1,8 @@
 package by.gsu.epamlab.constants;
 
-public class ParameterConstants {
+public final class ParameterConstants {
+
+    private ParameterConstants() {}
 
     public static final String TASK_TYPE_PARAMETER = "taskType";
 
@@ -36,7 +38,4 @@ public class ParameterConstants {
 
     public static final String TASK_ID_PARAMETER = "taskId";
 
-    public static final String USER_IMPLEMENTATION_PARAMETER = "userImplementation";
-
-    public static final String TASK_IMPLEMENTATION_PARAMETER = "taskImplementation";
 }

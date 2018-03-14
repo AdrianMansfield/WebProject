@@ -5,9 +5,9 @@ import by.gsu.epamlab.beans.task.Task;
 import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.constants.ParameterConstants;
 import by.gsu.epamlab.constants.UrlConstants;
-import by.gsu.epamlab.controllers.AbstractBaseController;
-import by.gsu.epamlab.controllers.enums.TaskPrintTypes;
+import by.gsu.epamlab.factories.TaskDAOFactory;
 import by.gsu.epamlab.exceptions.DaoException;
+import by.gsu.epamlab.interfaces.ITaskDAO;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrintTaskServlet extends AbstractBaseController {
+public class PrintTaskServlet extends AbstractNonPostController {
 
     @Override
     protected void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -28,9 +28,16 @@ public class PrintTaskServlet extends AbstractBaseController {
             String connectionType = request.getParameter(ParameterConstants.FROM_PARAMETER);
             HttpSession session = request.getSession();
             String taskType = request.getParameter(ParameterConstants.TASK_TYPE_PARAMETER);
+
+            //That check needs for version without js
+            if(taskType == null) {
+                taskType = (String) session.getAttribute(ParameterConstants.TASK_TYPE_PARAMETER);
+            }
+
             taskType = taskType.toUpperCase();
-            String id = (String)session.getAttribute(ParameterConstants.USER_ID_PARAMETER);
-            List<Task> taskList = TaskPrintTypes.valueOf(taskType).getTasks(id);
+            String userId = (String)session.getAttribute(ParameterConstants.USER_ID_PARAMETER);
+            ITaskDAO iTaskDAO = TaskDAOFactory.getTaskDAOFromFactory();
+            List<Task> taskList = iTaskDAO.getTasks(userId, taskType);
 
             if(ParameterConstants.AJAX_PARAMETER.equals(connectionType)) {
                 JSONArray jsonArrayTaskList = JsonOperations.getJsonArray(taskList);

@@ -1,13 +1,11 @@
 package by.gsu.epamlab.controllers.post.file;
 
 import by.gsu.epamlab.beans.FileOperations;
-import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.constants.ParameterConstants;
 import by.gsu.epamlab.constants.UrlConstants;
 import by.gsu.epamlab.controllers.post.AbstractNonGetController;
 import by.gsu.epamlab.exceptions.DaoException;
 import by.gsu.epamlab.factories.TaskDAOFactory;
-import by.gsu.epamlab.implementations.TaskDatabaseImplementation;
 import by.gsu.epamlab.interfaces.ITaskDAO;
 
 import javax.servlet.ServletException;
@@ -16,12 +14,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import java.io.IOException;
+import javax.servlet.annotation.MultipartConfig;
 
+@MultipartConfig
 public class UploadFileServlet extends AbstractNonGetController {
 
     @Override
     protected void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+
             HttpSession session =  request.getSession();
 
             String userId = (String) session.getAttribute(ParameterConstants.USER_ID_PARAMETER);
@@ -38,12 +39,15 @@ public class UploadFileServlet extends AbstractNonGetController {
 
             iTaskDAO.updateFileName(userId, fileName, taskName);
 
-            jumpPage(UrlConstants.PRINT_TASK_SERVLET_URL, request, response);
+            sendRedirectToPrintTaskServlet(request, response);
 
         } catch (DaoException e) {
 
             e.printStackTrace();
 
         }
+
+
+
     }
 }

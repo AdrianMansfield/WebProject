@@ -1,8 +1,10 @@
 package by.gsu.epamlab.controllers.post.authorization;
 
 
+import by.gsu.epamlab.beans.user.Role;
 import by.gsu.epamlab.beans.user.User;
 import by.gsu.epamlab.constants.Constants;
+import by.gsu.epamlab.constants.ErrorConstants;
 import by.gsu.epamlab.constants.ParameterConstants;
 import by.gsu.epamlab.constants.UrlConstants;
 import by.gsu.epamlab.exceptions.DaoException;
@@ -19,39 +21,37 @@ public class RegistrationServlet extends AbstractAuthorizationController {
 
     @Override
     protected void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        String login = request.getParameter(ParameterConstants.LOGIN_PARAMETER);
-
-        String password = request.getParameter(ParameterConstants.PASSWORD_PARAMETER);
-
-        if(!goodValues(login, password)) {
-
-            jumpError(UrlConstants.REGISTRATION_URL, Constants.EMPTY_DATA, request, response);
-
-            return;
-
-        }
         try {
+
+            String login = request.getParameter(ParameterConstants.LOGIN_PARAMETER);
+
+            String password = request.getParameter(ParameterConstants.PASSWORD_PARAMETER);
+
+            if(!goodValues(login, password)) {
+
+                jumpError(UrlConstants.REGISTRATION_URL, Constants.EMPTY_DATA, request, response);
+
+                return;
+
+            }
 
             IUserDAO iUserDAO = UserDAOFactory.getUserDAOFromFactory();
 
-            User user = iUserDAO.setUser(login, password);
+            boolean isAdded = iUserDAO.setUser(login, password);
 
-            if(user != null) {
+            if(isAdded) {
 
-                setUserAuthorization(user, request, response);
-
-                jumpPage(UrlConstants.MAIN_URL, request, response);
+                jumpPage(UrlConstants.LOGIN_SERVLET_URL, request, response);
 
             }
             else {
 
-                jumpError(UrlConstants.REGISTRATION_URL, Constants.INVALID_LOGIN_OR_PASSWORD, request, response);
+                jumpError(UrlConstants.REGISTRATION_URL, ErrorConstants.INVALID_LOGIN_OR_PASSWORD_ERROR, request, response);
 
             }
         } catch (DaoException e) {
 
-            jumpError(UrlConstants.REGISTRATION_URL, Constants.SERVER_ERROR, request, response);
+            jumpError(UrlConstants.REGISTRATION_URL, ErrorConstants.SERVER_ERROR, request, response);
 
         }
     }

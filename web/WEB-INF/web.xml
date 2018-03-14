@@ -4,6 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+
     <!-- Connection pool  -->
     <description>MySQL</description>
     <resource-ref>
@@ -22,6 +23,10 @@
     <context-param>
         <param-name>taskImplementation</param-name>
         <param-value>DATABASE</param-value>
+    </context-param>
+    <context-param>
+        <param-name>filesDirectory</param-name>
+        <param-value>C:\WebServerFiles</param-value>
     </context-param>
 
     <!-- JSP  -->
@@ -116,6 +121,12 @@
     <servlet>
         <servlet-name>UploadFileServlet</servlet-name>
         <servlet-class>by.gsu.epamlab.controllers.post.file.UploadFileServlet</servlet-class>
+        <multipart-config>
+            <!-- 52MB max -->
+            <max-file-size>52428800</max-file-size>
+            <max-request-size>52428800</max-request-size>
+            <file-size-threshold>0</file-size-threshold>
+        </multipart-config>
     </servlet>
     <servlet-mapping>
         <servlet-name>UploadFileServlet</servlet-name>
@@ -169,5 +180,10 @@
         <filter-name>AuthorizationFilter</filter-name>
         <url-pattern>/index</url-pattern>
     </filter-mapping>
+
+    <!-- Listeners -->
+    <listener>
+        <listener-class>by.gsu.epamlab.listener.ApplicationContextParameter</listener-class>
+    </listener>
 
 </web-app>

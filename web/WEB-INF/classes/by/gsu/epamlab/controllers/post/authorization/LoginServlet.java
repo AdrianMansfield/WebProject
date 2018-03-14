@@ -2,6 +2,7 @@ package by.gsu.epamlab.controllers.post.authorization;
 
 import by.gsu.epamlab.beans.user.User;
 import by.gsu.epamlab.constants.Constants;
+import by.gsu.epamlab.constants.ErrorConstants;
 import by.gsu.epamlab.constants.ParameterConstants;
 import by.gsu.epamlab.constants.UrlConstants;
 import by.gsu.epamlab.exceptions.DaoException;
@@ -18,6 +19,7 @@ public class LoginServlet extends AbstractAuthorizationController {
     @Override
     protected void performTask(HttpServletRequest request,
                                HttpServletResponse response) throws ServletException, IOException {
+
         String login = request.getParameter(ParameterConstants.LOGIN_PARAMETER);
 
         String password = request.getParameter(ParameterConstants.PASSWORD_PARAMETER);
@@ -37,7 +39,7 @@ public class LoginServlet extends AbstractAuthorizationController {
 
             if(user == null) {
 
-                jumpError(UrlConstants.LOGIN_URL, Constants.INVALID_LOGIN_OR_PASSWORD, request, response);
+                jumpError(UrlConstants.LOGIN_URL, ErrorConstants.INVALID_LOGIN_OR_PASSWORD_ERROR, request, response);
 
                 return;
 
@@ -50,7 +52,7 @@ public class LoginServlet extends AbstractAuthorizationController {
 
             e.printStackTrace();
 
-            jumpError(UrlConstants.LOGIN_URL, Constants.SERVER_ERROR, request, response);
+            jumpError(UrlConstants.LOGIN_URL, ErrorConstants.SERVER_ERROR, request, response);
 
         }
     }

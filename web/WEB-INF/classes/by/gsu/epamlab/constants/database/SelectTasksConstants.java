@@ -1,6 +1,8 @@
 package by.gsu.epamlab.constants.database;
 
-public class SelectTasksConstants {
+public final class SelectTasksConstants {
+
+    private SelectTasksConstants() {}
 
     public static final String SQL_SELECT_TODAY_TASKS = "Select * from task Where userId = ? and date < ? and location = 'MAIN'";
 
@@ -8,9 +10,9 @@ public class SelectTasksConstants {
 
     public static final String SQL_SELECT_SOMEDAY_TASKS = "Select * from task Where userId = ? and date > ? and location = 'MAIN'";
 
-    public static final String SQL_SELECT_FIXED_TASKS = "Select * from task Where userId = ? and location = 'FIXED'";
+    public static final String SQL_SELECT_FIXED_TASKS = "Select * from task Where userId = ? and date <> ? and location = 'FIXED'";
 
-    public static final String SQL_SELECT_BASKET_TASKS = "Select * from task Where userId = ? and location = 'BASKET'";
+    public static final String SQL_SELECT_BASKET_TASKS = "Select * from task Where userId = ? and date <> ? and location = 'BASKET'";
 
     public static final int USER_ID_INDEX = 1;
     public static final int DATE_INDEX = 2;

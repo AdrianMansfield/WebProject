@@ -1,6 +1,8 @@
 package by.gsu.epamlab.constants.database;
 
-public class InsertTaskConstants {
+public final class InsertTaskConstants {
+
+    private InsertTaskConstants() {}
 
     public static final String SQL_INSERT_INTO_TASK = "INSERT INTO task(userId, name, department, date, fileName) VALUES(?, ?, ?, ?, ?)";
     public static final int USER_ID_INDEX = 1;

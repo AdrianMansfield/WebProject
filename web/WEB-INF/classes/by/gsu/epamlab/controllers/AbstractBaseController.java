@@ -1,30 +1,18 @@
 package by.gsu.epamlab.controllers;
 
-import by.gsu.epamlab.beans.user.Role;
-import by.gsu.epamlab.beans.user.User;
 import by.gsu.epamlab.constants.Constants;
-import by.gsu.epamlab.constants.JspConstants;
 import by.gsu.epamlab.constants.ParameterConstants;
-import by.gsu.epamlab.factories.TaskDAOFactory;
-import by.gsu.epamlab.factories.UserDAOFactory;
-import by.gsu.epamlab.interfaces.IUserDAO;
+import by.gsu.epamlab.constants.UrlConstants;
+import com.sun.deploy.net.HttpRequest;
+import com.sun.deploy.net.HttpResponse;
 
-import javax.servlet.ServletContext;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.IOException;
 
 public abstract class AbstractBaseController extends HttpServlet {
-
-    @Override
-    public void init() throws ServletException {
-        ServletContext servletContext = getServletContext();
-        String userImplementation = servletContext.getInitParameter(ParameterConstants.USER_IMPLEMENTATION_PARAMETER);
-        String taskImplementation = servletContext.getInitParameter(ParameterConstants.TASK_IMPLEMENTATION_PARAMETER);
-        UserDAOFactory.setUserDAO(userImplementation);
-        TaskDAOFactory.setTaskDAO(taskImplementation);
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -59,8 +47,8 @@ public abstract class AbstractBaseController extends HttpServlet {
 
     }
 
-    protected void jumpError(String url, String message, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-
+    protected void jumpError(String url, String message, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
         jump(url, message, request, response);
 
     }
@@ -82,5 +70,20 @@ public abstract class AbstractBaseController extends HttpServlet {
 
         return good;
     }
+
+    protected void sendRedirectToPrintTaskServlet(HttpServletRequest request,
+                                                  HttpServletResponse response) throws IOException {
+
+        String taskType = request.getParameter(ParameterConstants.TASK_TYPE_PARAMETER);
+
+        HttpSession session = request.getSession();
+
+        session.setAttribute(ParameterConstants.TASK_TYPE_PARAMETER, taskType);
+
+        response.sendRedirect(UrlConstants.PRINT_TASK_SERVLET_URL);
+
+    }
+
+
 
 }

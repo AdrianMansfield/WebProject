@@ -6,6 +6,8 @@ import java.util.List;
 
 public final class JsonOperations {
 
+    private JsonOperations() {}
+
     public static  <T extends Jsonable> JSONArray getJsonArray(List<T> list) {
         JSONArray jsonArray = new JSONArray();
 

@@ -29,11 +29,10 @@ public class DeleteFileServlet extends AbstractNonGetController {
 
             String userLogin = (String) request.getSession().getAttribute(ParameterConstants.LOGIN_PARAMETER);
 
-            List<Task> taskList = getTaskList(taskNames, fileNames);
+            FileOperations.deleteFile(userId, taskNames, fileNames, userLogin);
 
-            FileOperations.deleteFile(userId, taskList, userLogin);
+            sendRedirectToPrintTaskServlet(request, response);
 
-            jumpPage(UrlConstants.PRINT_TASK_SERVLET_URL, request, response);
 
         } catch (DaoException e) {
 
@@ -42,12 +41,4 @@ public class DeleteFileServlet extends AbstractNonGetController {
         }
     }
 
-    private List<Task> getTaskList(String [] taskNames, String [] fileNames) {
-        List<Task> taskList = new ArrayList<>();
-        for(int i = 0; i<taskNames.length; i++) {
-            Task task = new Task( Constants.ZERO, taskNames[i], Constants.EMPTY_STRING, new Date(Constants.ZERO), fileNames[i]);
-            taskList.add(task);
-        }
-        return taskList;
-    }
 }

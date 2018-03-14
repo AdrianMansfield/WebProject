@@ -5,7 +5,6 @@ import by.gsu.epamlab.constants.UrlConstants;
 import by.gsu.epamlab.controllers.post.AbstractNonGetController;
 import by.gsu.epamlab.exceptions.DaoException;
 import by.gsu.epamlab.factories.TaskDAOFactory;
-import by.gsu.epamlab.implementations.TaskDatabaseImplementation;
 import by.gsu.epamlab.interfaces.ITaskDAO;
 
 import javax.servlet.ServletException;
@@ -25,7 +24,7 @@ public class DeleteTaskServlet extends AbstractNonGetController {
 
             iTaskDAO.removeTasks(taskIds);
 
-            request.getRequestDispatcher(UrlConstants.DELETE_SERVLET_URL).forward(request, response);
+            jumpPage(UrlConstants.DELETE_SERVLET_URL, request, response);
 
         } catch (DaoException e) {
 

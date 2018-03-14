@@ -1,6 +1,8 @@
 package by.gsu.epamlab.constants;
 
-public class UrlConstants {
+public final class UrlConstants {
+
+    private UrlConstants() {}
 
     public static final String MAIN_URL = "/main";
 
@@ -15,5 +17,9 @@ public class UrlConstants {
     public static final String UPLOAD_SERVLET_URL = "/UploadFileServlet";
 
     public static final String DELETE_SERVLET_URL = "/DeleteFileServlet";
+
+    public static final String ADD_TASK_SERVLET_URL = "/AddTaskServlet";
+
+    public static final String LOGIN_SERVLET_URL = "/LoginServlet";
 
 }
