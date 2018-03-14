@@ -6,9 +6,9 @@ import by.gsu.epamlab.constants.ExceptionConstants;
 import by.gsu.epamlab.constants.FileConstants;
 import by.gsu.epamlab.exceptions.DaoException;
 import by.gsu.epamlab.exceptions.FileProblemException;
-import by.gsu.epamlab.factories.TaskDAOFactory;
-import by.gsu.epamlab.interfaces.ITaskDAO;
-import by.gsu.epamlab.listeners.ApplicationContextParameter;
+import by.gsu.epamlab.model.factories.TaskDAOFactory;
+import by.gsu.epamlab.model.interfaces.ITaskDAO;
+import by.gsu.epamlab.control.listeners.ApplicationContextParameter;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;

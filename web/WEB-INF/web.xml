@@ -6,6 +6,7 @@
 
 
     <!-- Connection pool  -->
+    
     <description>MySQL</description>
     <resource-ref>
         <description>MySQL DB Connection Pool</description>
@@ -68,7 +69,7 @@
     <!-- SERVLET  -->
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.control.post.authorization.LoginServlet</servlet-class>
+        <servlet-class>by.gsu.epamlab.control.post.authentication.LoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -76,7 +77,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>RegistrationServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.control.post.authorization.RegistrationServlet</servlet-class>
+        <servlet-class>by.gsu.epamlab.control.post.authentication.RegistrationServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegistrationServlet</servlet-name>
@@ -84,7 +85,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>ExitServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.control.post.authorization.ExitServlet</servlet-class>
+        <servlet-class>by.gsu.epamlab.control.post.authentication.ExitServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ExitServlet</servlet-name>
@@ -165,7 +166,7 @@
 
     <filter>
         <filter-name>AuthorizationFilter</filter-name>
-        <filter-class>by.gsu.epamlab.filters.AuthorizationFilter</filter-class>
+        <filter-class>by.gsu.epamlab.control.filters.AuthorizationFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>AuthorizationFilter</filter-name>
@@ -174,7 +175,7 @@
 
     <filter>
         <filter-name>CookieValidationFilter</filter-name>
-        <filter-class>by.gsu.epamlab.filters.CookieValidationFilter</filter-class>
+        <filter-class>by.gsu.epamlab.control.filters.CookieValidationFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>CookieValidationFilter</filter-name>
@@ -183,7 +184,7 @@
 
     <filter>
         <filter-name>AddTaskFilter</filter-name>
-        <filter-class>by.gsu.epamlab.filters.AddTaskFilter</filter-class>
+        <filter-class>by.gsu.epamlab.control.filters.AddTaskFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>AddTaskFilter</filter-name>
@@ -192,7 +193,7 @@
 
     <filter>
         <filter-name>LoginFilter</filter-name>
-        <filter-class>by.gsu.epamlab.filters.LoginFilter</filter-class>
+        <filter-class>by.gsu.epamlab.control.filters.LoginFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
@@ -202,18 +203,18 @@
 
     <filter>
         <filter-name>RegistrationFilter</filter-name>
-        <filter-class>by.gsu.epamlab.filters.RegistrationFilter</filter-class>
+        <filter-class>by.gsu.epamlab.control.filters.RegistrationFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>RegistrationFilter</filter-name>
         <url-pattern>/RegistrationServlet</url-pattern>
     </filter-mapping>
-    
+
 
     <!-- Listeners -->
 
     <listener>
-        <listener-class>by.gsu.epamlab.listeners.ApplicationContextParameter</listener-class>
+        <listener-class>by.gsu.epamlab.control.listeners.ApplicationContextParameter</listener-class>
     </listener>
 
 </web-app>

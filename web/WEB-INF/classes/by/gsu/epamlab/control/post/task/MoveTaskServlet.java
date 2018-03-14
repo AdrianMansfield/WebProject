@@ -2,10 +2,10 @@ package by.gsu.epamlab.control.post.task;
 
 
 import by.gsu.epamlab.constants.ParameterConstants;
-import by.gsu.epamlab.factories.TaskDAOFactory;
+import by.gsu.epamlab.model.factories.TaskDAOFactory;
 import by.gsu.epamlab.control.post.AbstractNonGetController;
 import by.gsu.epamlab.exceptions.DaoException;
-import by.gsu.epamlab.interfaces.ITaskDAO;
+import by.gsu.epamlab.model.interfaces.ITaskDAO;
 import org.json.simple.JSONObject;
 
 

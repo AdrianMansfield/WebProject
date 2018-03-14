@@ -5,9 +5,9 @@ import by.gsu.epamlab.model.task.Task;
 import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.constants.ParameterConstants;
 import by.gsu.epamlab.constants.UrlConstants;
-import by.gsu.epamlab.factories.TaskDAOFactory;
+import by.gsu.epamlab.model.factories.TaskDAOFactory;
 import by.gsu.epamlab.exceptions.DaoException;
-import by.gsu.epamlab.interfaces.ITaskDAO;
+import by.gsu.epamlab.model.interfaces.ITaskDAO;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
