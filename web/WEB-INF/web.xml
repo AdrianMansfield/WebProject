@@ -33,7 +33,7 @@
 
     <servlet>
         <servlet-name>index</servlet-name>
-        <jsp-file>/jsp/index.jsp</jsp-file>
+        <jsp-file>/view/jsp/index.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>index</servlet-name>
@@ -41,7 +41,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>login</servlet-name>
-        <jsp-file>/jsp/login.jsp</jsp-file>
+        <jsp-file>/view/jsp/login.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
@@ -49,7 +49,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>registration</servlet-name>
-        <jsp-file>/jsp/registration.jsp</jsp-file>
+        <jsp-file>/view/jsp/registration.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>registration</servlet-name>
@@ -57,7 +57,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>main</servlet-name>
-        <jsp-file>/jsp/main.jsp</jsp-file>
+        <jsp-file>/view/jsp/main.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>main</servlet-name>
@@ -68,7 +68,7 @@
     <!-- SERVLET  -->
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.post.authorization.LoginServlet</servlet-class>
+        <servlet-class>by.gsu.epamlab.control.post.authorization.LoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -76,7 +76,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>RegistrationServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.post.authorization.RegistrationServlet</servlet-class>
+        <servlet-class>by.gsu.epamlab.control.post.authorization.RegistrationServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegistrationServlet</servlet-name>
@@ -84,7 +84,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>ExitServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.post.authorization.ExitServlet</servlet-class>
+        <servlet-class>by.gsu.epamlab.control.post.authorization.ExitServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ExitServlet</servlet-name>
@@ -93,7 +93,7 @@
 
     <servlet>
         <servlet-name>PrintTaskServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.get.PrintTaskServlet</servlet-class>
+        <servlet-class>by.gsu.epamlab.control.get.PrintTaskServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PrintTaskServlet</servlet-name>
@@ -102,7 +102,7 @@
 
     <servlet>
         <servlet-name>AddTaskServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.post.task.AddTaskServlet</servlet-class>
+        <servlet-class>by.gsu.epamlab.control.post.task.AddTaskServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddTaskServlet</servlet-name>
@@ -111,7 +111,7 @@
 
     <servlet>
         <servlet-name>DownloadFileServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.post.file.DownloadFileServlet</servlet-class>
+        <servlet-class>by.gsu.epamlab.control.post.file.DownloadFileServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DownloadFileServlet</servlet-name>
@@ -120,7 +120,7 @@
 
     <servlet>
         <servlet-name>UploadFileServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.post.file.UploadFileServlet</servlet-class>
+        <servlet-class>by.gsu.epamlab.control.post.file.UploadFileServlet</servlet-class>
         <multipart-config>
             <!-- 52MB max -->
             <max-file-size>52428800</max-file-size>
@@ -135,7 +135,7 @@
 
     <servlet>
         <servlet-name>MoveTaskServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.post.task.MoveTaskServlet</servlet-class>
+        <servlet-class>by.gsu.epamlab.control.post.task.MoveTaskServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MoveTaskServlet</servlet-name>
@@ -144,7 +144,7 @@
 
     <servlet>
         <servlet-name>DeleteTaskServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.post.task.DeleteTaskServlet</servlet-class>
+        <servlet-class>by.gsu.epamlab.control.post.task.DeleteTaskServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DeleteTaskServlet</servlet-name>
@@ -153,7 +153,7 @@
 
     <servlet>
         <servlet-name>DeleteFileServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.controllers.post.file.DeleteFileServlet</servlet-class>
+        <servlet-class>by.gsu.epamlab.control.post.file.DeleteFileServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DeleteFileServlet</servlet-name>
