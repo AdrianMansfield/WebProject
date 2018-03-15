@@ -166,7 +166,7 @@
 
     <filter>
         <filter-name>AuthorizationFilter</filter-name>
-        <filter-class>by.gsu.epamlab.control.filters.AuthorizationFilter</filter-class>
+        <filter-class>by.gsu.epamlab.control.filters.user.AuthorizationFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>AuthorizationFilter</filter-name>
@@ -175,7 +175,7 @@
 
     <filter>
         <filter-name>CookieValidationFilter</filter-name>
-        <filter-class>by.gsu.epamlab.control.filters.CookieValidationFilter</filter-class>
+        <filter-class>by.gsu.epamlab.control.filters.user.CookieValidationFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>CookieValidationFilter</filter-name>
@@ -184,7 +184,7 @@
 
     <filter>
         <filter-name>AddTaskFilter</filter-name>
-        <filter-class>by.gsu.epamlab.control.filters.AddTaskFilter</filter-class>
+        <filter-class>by.gsu.epamlab.control.filters.task.AddTaskFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>AddTaskFilter</filter-name>
@@ -193,7 +193,7 @@
 
     <filter>
         <filter-name>LoginFilter</filter-name>
-        <filter-class>by.gsu.epamlab.control.filters.LoginFilter</filter-class>
+        <filter-class>by.gsu.epamlab.control.filters.user.LoginFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
@@ -203,11 +203,20 @@
 
     <filter>
         <filter-name>RegistrationFilter</filter-name>
-        <filter-class>by.gsu.epamlab.control.filters.RegistrationFilter</filter-class>
+        <filter-class>by.gsu.epamlab.control.filters.user.RegistrationFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>RegistrationFilter</filter-name>
         <url-pattern>/RegistrationServlet</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>DeleteTaskFilter</filter-name>
+        <filter-class>by.gsu.epamlab.control.filters.task.DeleteTaskFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>DeleteTaskFilter</filter-name>
+        <url-pattern>/DeleteTaskServlet</url-pattern>
     </filter-mapping>
 
 

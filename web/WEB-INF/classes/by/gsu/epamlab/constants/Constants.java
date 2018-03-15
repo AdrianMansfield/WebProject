@@ -33,4 +33,8 @@ public final class Constants {
 
     public static final String SOMEDAY = "SOMEDAY";
 
+    public static String COMMA = ",";
+
+    public static String QUESTION_MARK = "?";
+
 }

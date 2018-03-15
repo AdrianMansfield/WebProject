@@ -1,5 +1,6 @@
 package by.gsu.epamlab.model.implementations.database.task;
 
+import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.model.task.Task;
 import by.gsu.epamlab.constants.database.*;
 import by.gsu.epamlab.model.database.DatabaseConnection;
@@ -42,6 +43,80 @@ public final class TaskDatabaseImplementation implements ITaskDAO {
                 }
                 return taskList;
             }
+        }
+        catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    @Override
+    public Task getTaskById(String userId, String taskId) throws DaoException {
+        try(Connection connection = DatabaseConnection.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(SelectTaskById.SELECT_TASK_BY_ID))
+        {
+            preparedStatement.setString(SelectTaskById.USER_ID, userId);
+            preparedStatement.setString(SelectTaskById.TASK_ID, taskId);
+            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+                String taskName = null;
+                String description = null;
+                String stringDate = null;
+                String fileName = null;
+                if(resultSet.next()) {
+                    taskName = resultSet.getString(SelectTaskById.TASK_NAME_COLUMN_INDEX);
+                    description = resultSet.getString(SelectTaskById.TASK_DESCRIPTION_COLUMN_INDEX);
+                    stringDate = resultSet.getString(SelectTaskById.TASK_DATE_COLUMN_INDEX);
+                    fileName = resultSet.getString(SelectTaskById.TASK_FILE_NAME_COLUMN_INDEX);
+                }
+
+                return new Task(Integer.parseInt(taskId), taskName, description, stringDate, fileName);
+            }
+        }
+        catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    private String getParameterListForOperatorIn(int count) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append(Constants.QUESTION_MARK);
+
+        for(int i = 1; i < count; i++) {
+            stringBuilder.append(Constants.COMMA).append(Constants.QUESTION_MARK);
+        }
+
+        return stringBuilder.toString();
+    }
+
+    public List<Task> getTasksById(String userId, String [] taskIds) throws DaoException {
+        try(Connection connection = DatabaseConnection.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(SelectTaskById.SELECT_TASK_BY_IDS_HEAD
+                + getParameterListForOperatorIn(taskIds.length) + SelectTaskById.SELECT_TASK_BY_IDS_TAIL))
+        {
+            preparedStatement.setString(SelectTaskById.USER_ID, userId);
+            int i = SelectTaskById.USER_ID + 1;
+            for(String taskId : taskIds) {
+                preparedStatement.setString(i++, taskId);
+            }
+            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+                List<Task> taskList = new ArrayList<>();
+                while(resultSet.next()) {
+
+                    int taskId = resultSet.getInt(SelectTaskById.TASK_ID_COLUMN_INDEX);
+                    String taskName = resultSet.getString(SelectTaskById.TASK_NAME_COLUMN_INDEX);
+                    String description = resultSet.getString(SelectTaskById.TASK_DESCRIPTION_COLUMN_INDEX);
+                    String stringDate = resultSet.getString(SelectTaskById.TASK_DATE_COLUMN_INDEX);
+                    String fileName = resultSet.getString(SelectTaskById.TASK_FILE_NAME_COLUMN_INDEX);
+
+                    Task task = new Task(taskId, taskName, description, stringDate, fileName);
+
+                    taskList.add(task);
+
+                }
+
+                return taskList;
+            }
+
         }
         catch (SQLException e) {
             throw new DaoException(e);

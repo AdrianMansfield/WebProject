@@ -15,4 +15,8 @@ public interface ITaskDAO {
     void removeTasks(String [] taskIds) throws DaoException;
 
     void updateFileName(String userId, String fileName, String taskName) throws DaoException;
+
+    List<Task> getTasksById(String userId, String [] taskIds) throws DaoException;
+
+    Task getTaskById(String userId, String taskId) throws DaoException;
 }

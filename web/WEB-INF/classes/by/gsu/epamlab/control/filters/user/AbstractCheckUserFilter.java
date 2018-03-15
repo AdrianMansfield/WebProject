@@ -1,7 +1,8 @@
-package by.gsu.epamlab.control.filters;
+package by.gsu.epamlab.control.filters.user;
 
 import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.constants.ParameterConstants;
+import by.gsu.epamlab.control.filters.AbstractFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;

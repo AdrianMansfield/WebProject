@@ -16,6 +16,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 public final class FileOperations {
 
@@ -74,25 +75,29 @@ public final class FileOperations {
 
     }
 
-    public static void deleteFile(String userId, String [] taskNames, String [] fileNames, String userLogin) throws DaoException {
+    public static void deleteFile(String userId, Task task, String userLogin) throws DaoException {
         ITaskDAO iTaskDAO = TaskDAOFactory.getTaskDAOFromFactory();
-        for(int i = 0; i<taskNames.length; i++) {
-            String string = ApplicationContextParameter.getFilesDirectory() + File.separator + userLogin + File.separator + taskNames[i] +
-                    FileConstants.FILE_DELIMITER + fileNames[i];
-            File file = new File(string);
+        String string = ApplicationContextParameter.getFilesDirectory() + File.separator + userLogin + File.separator + task.getName() +
+                FileConstants.FILE_DELIMITER + task.getFileName();
+        File file = new File(string);
 
-            boolean isExist = file.exists();
+        boolean isExist = file.exists();
 
-            if(isExist) {
-                boolean isDeleted = file.delete();
-                if(isDeleted) {
-                    iTaskDAO.updateFileName(userId, Constants.NO_FILE, taskNames[i]);
-                }
-                else {
-                    throw new FileProblemException(ExceptionConstants.DELETE_FILE__EXCEPTION_MESSAGE);
-                }
+        if(isExist) {
+            boolean isDeleted = file.delete();
+            if(isDeleted) {
+                iTaskDAO.updateFileName(userId, Constants.NO_FILE, task.getName());
+            }
+            else {
+                throw new FileProblemException(ExceptionConstants.DELETE_FILE__EXCEPTION_MESSAGE);
             }
         }
+    }
 
+    public static void deleteFiles(String userId, List<Task> taskList, String userLogin) throws DaoException {
+
+        for(Task task : taskList) {
+            deleteFile(userId, task, userLogin);
+        }
     }
 }

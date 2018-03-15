@@ -1,8 +1,9 @@
-package by.gsu.epamlab.control.filters;
+package by.gsu.epamlab.control.filters.user;
 
 import by.gsu.epamlab.constants.JspConstants;
 import by.gsu.epamlab.constants.ParameterConstants;
 import by.gsu.epamlab.constants.UrlConstants;
+import by.gsu.epamlab.control.filters.AbstractFilter;
 import by.gsu.epamlab.model.user.Role;
 
 import javax.servlet.*;
