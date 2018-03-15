@@ -18,31 +18,7 @@
             <c:set var = "fileExists" value = "${task.fileName == \"No file\"}" scope = "request"/>
             <c:set var = "formNumber" value = "${status.index}" scope = "request"/>
 
-            <tr>
-                <!-- Form for move task -->
-                <c:import url="/view/jsp/jspchunks/table/moveTaskTableData.jsp"/>
-                <!-- Link for modal window of description of task -->
-                <c:import url="/view/jsp/jspchunks/table/taskNameTableData.jsp"/>
-                <!-- Link for modal window of file -->
-                <c:import url="/view/jsp/jspchunks/table/fileNameTableData.jsp"/>
-                <!-- Form for add to basket -->
-                <!-- Form for add to basket -->
-                <td>
-                    <c:if test="${!isBasket}">
-                        <form action="MoveTaskServlet" method="post" id="taskForm" class="mb-0">
-                            <input type="hidden" name="taskId" value="${taskId}"/>
-                            <input type="hidden" name="locationType" value="basket"/>
-                            <input name="taskType" type="hidden" value="${taskType}"/>
-                            <input type="submit" value=&#10006; class="btn btn-outline-danger"/>
-                        </form>
-                    </c:if>
-
-                    <!-- Form for basket -->
-                    <c:if test="${isBasket}">
-                        <input type="checkbox" name="taskIds" value="${task.id}" form = "delete"/>
-                    </c:if>
-                </td>
-            </tr>
+            <c:import url="/view/jsp/jspchunks/table/firstTableRow.jsp"/>
 
             <c:import url="/view/jsp/jspchunks/table/descriptionSecondTableRow.jsp"/>
 
@@ -52,19 +28,8 @@
 
         </c:forEach>
 
-        <c:if test="${isBasket and tasks.size()>0}">
-            <tr>
-                <td colspan="4">
-                    <form method = "post" action = "DeleteTaskServlet" id = "delete">
-                        <input type="hidden" name="taskType" value="${taskType}"/>
-                        <input type = "submit" value = "Delete" form="delete"/>
-                    </form>
-                </td>
-            </tr>
-        </c:if>
+        <c:import url="/view/jsp/jspchunks/table/deleteTaskForm.jsp"/>
 
     </table>
-
-
 
 </div>
