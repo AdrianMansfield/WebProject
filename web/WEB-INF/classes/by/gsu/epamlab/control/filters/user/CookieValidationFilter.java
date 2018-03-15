@@ -9,7 +9,6 @@ import by.gsu.epamlab.model.user.Role;
 import javax.servlet.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
@@ -18,8 +17,6 @@ public class CookieValidationFilter extends AbstractFilter {
     @Override
     public void filter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
-
-        HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         Cookie[] cookies = request.getCookies();
 
@@ -69,7 +66,7 @@ public class CookieValidationFilter extends AbstractFilter {
 
         session.setAttribute(JspConstants.ATTRIBUTE_CONTROL, control);
 
-        request.getRequestDispatcher(UrlConstants.INDEX_URL).forward(request, response);
+        filterChain.doFilter(servletRequest, servletResponse);
 
     }
 

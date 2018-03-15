@@ -1,11 +1,13 @@
 package by.gsu.epamlab.control.post.file;
 
+import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.model.FileOperations;
 import by.gsu.epamlab.constants.ParameterConstants;
 import by.gsu.epamlab.control.post.AbstractNonGetController;
 import by.gsu.epamlab.exceptions.DaoException;
 import by.gsu.epamlab.model.factories.TaskDAOFactory;
 import by.gsu.epamlab.model.interfaces.ITaskDAO;
+import by.gsu.epamlab.model.task.Task;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import java.io.IOException;
+import java.sql.Date;
 import javax.servlet.annotation.MultipartConfig;
 
 @MultipartConfig
@@ -36,7 +39,9 @@ public class UploadFileServlet extends AbstractNonGetController {
 
             ITaskDAO iTaskDAO = TaskDAOFactory.getTaskDAOFromFactory();
 
-            iTaskDAO.updateFileName(userId, fileName, taskName);
+            Task task = new Task(Constants.ZERO, taskName, Constants.EMPTY_STRING, new Date(Constants.ZERO), fileName);
+
+            iTaskDAO.updateFileName(userId, task);
 
             sendRedirectToPrintTaskServlet(request, response);
 

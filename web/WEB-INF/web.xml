@@ -219,6 +219,15 @@
         <url-pattern>/DeleteTaskServlet</url-pattern>
     </filter-mapping>
 
+    <filter>
+        <filter-name>UploadFileFilter</filter-name>
+        <filter-class>by.gsu.epamlab.control.filters.file.UploadFileFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>UploadFileFilter</filter-name>
+        <url-pattern>/UploadFileServlet</url-pattern>
+    </filter-mapping>
+
 
     <!-- Listeners -->
 

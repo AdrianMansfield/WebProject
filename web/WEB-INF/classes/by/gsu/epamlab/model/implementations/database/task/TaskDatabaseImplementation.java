@@ -195,19 +195,41 @@ public final class TaskDatabaseImplementation implements ITaskDAO {
     }
 
     @Override
-    public void updateFileName(String userId, String fileName, String taskName) throws DaoException {
+    public void updateFileName(String userId, Task task) throws DaoException {
         try(Connection connection = DatabaseConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(UpdateFileNameConstants.SQL_UPDATE_FILE_NAME)) {
 
-            preparedStatement.setString(UpdateFileNameConstants.FILE_NAME_QUERY_INDEX, fileName);
+            preparedStatement.setString(UpdateFileNameConstants.FILE_NAME_QUERY_INDEX, task.getFileName());
             preparedStatement.setString(UpdateFileNameConstants.FILE_NAME_USER_ID_QUERY_INDEX, userId);
-            preparedStatement.setString(UpdateFileNameConstants.FILE_NAME_TASK_NAME_QUERY_INDEX, taskName);
+            preparedStatement.setString(UpdateFileNameConstants.FILE_NAME_TASK_NAME_QUERY_INDEX, task.getName());
             preparedStatement.executeUpdate();
         }
         catch (SQLException e) {
             throw new DaoException(e);
         }
     }
+
+    /*@Override
+    public void updateFilesName(String userId, List<Task> taskList) throws DaoException {
+        try(Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(UpdateFileNameConstants.SQL_UPDATE_FILE_NAME)) {
+
+            connection.setAutoCommit(false);
+
+            for(Task task : taskList) {
+                preparedStatement.setString(UpdateFileNameConstants.FILE_NAME_QUERY_INDEX, task.getFileName());
+                preparedStatement.setString(UpdateFileNameConstants.FILE_NAME_USER_ID_QUERY_INDEX, userId);
+                preparedStatement.setString(UpdateFileNameConstants.FILE_NAME_TASK_NAME_QUERY_INDEX, task.getName());
+                preparedStatement.addBatch();
+            }
+
+            preparedStatement.executeBatch();
+            connection.commit();
+        }
+        catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    } */
 
     public static TaskDatabaseImplementation getTaskDatabaseImplementation() {
         return taskDatabaseImplementation;

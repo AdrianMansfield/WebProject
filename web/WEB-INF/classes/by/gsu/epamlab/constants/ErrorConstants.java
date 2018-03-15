@@ -22,4 +22,6 @@ public final class ErrorConstants {
 
     public static final String DID_NOT_CHOOSE_TASK_ERROR = "You must select a task(s) to delete.";
 
+    public static final String DID_NOT_CHOOSE_FILE_FOR_UPLOAD_ERROR = "You did not choose file for upload.";
+
 }

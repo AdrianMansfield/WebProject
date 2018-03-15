@@ -6,8 +6,6 @@ import by.gsu.epamlab.constants.ExceptionConstants;
 import by.gsu.epamlab.constants.FileConstants;
 import by.gsu.epamlab.exceptions.DaoException;
 import by.gsu.epamlab.exceptions.FileProblemException;
-import by.gsu.epamlab.model.factories.TaskDAOFactory;
-import by.gsu.epamlab.model.interfaces.ITaskDAO;
 import by.gsu.epamlab.control.listeners.ApplicationContextParameter;
 
 import javax.servlet.http.HttpServletResponse;
@@ -76,19 +74,19 @@ public final class FileOperations {
     }
 
     public static void deleteFile(String userId, Task task, String userLogin) throws DaoException {
-        ITaskDAO iTaskDAO = TaskDAOFactory.getTaskDAOFromFactory();
+
         String string = ApplicationContextParameter.getFilesDirectory() + File.separator + userLogin + File.separator + task.getName() +
                 FileConstants.FILE_DELIMITER + task.getFileName();
+
         File file = new File(string);
 
         boolean isExist = file.exists();
 
         if(isExist) {
+
             boolean isDeleted = file.delete();
-            if(isDeleted) {
-                iTaskDAO.updateFileName(userId, Constants.NO_FILE, task.getName());
-            }
-            else {
+
+            if(!isDeleted) {
                 throw new FileProblemException(ExceptionConstants.DELETE_FILE__EXCEPTION_MESSAGE);
             }
         }
