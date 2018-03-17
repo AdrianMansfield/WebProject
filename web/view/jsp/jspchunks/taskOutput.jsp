@@ -4,6 +4,11 @@
 <div class="table-container">
 
     <table class="text-center table-bordered table-hover" id="taskTable">
+        <c:set var="isBasket" value="${taskType == \"BASKET\"}" scope="request"/>
+        <c:set var="isFixed" value="${taskType == \"FIXED\"}" scope="request"/>
+        <c:set var="isMain" value="${!isBasket && !isFixed}" scope="request"/>
+        <c:set var="isSomeday" value="SOMEDAY" scope="request"/>
+
         <thead>
             <th>complete</th>
             <th>description</th>
@@ -14,9 +19,6 @@
             </c:if>
         </thead>
         <tbody>
-        <c:set var="isBasket" value="${taskType == \"BASKET\"}" scope="request"/>
-        <c:set var="isFixed" value="${taskType == \"FIXED\"}" scope="request"/>
-        <c:set var="isMain" value="${!isBasket && !isFixed}" scope="request"/>
 
         <c:forEach var="task" items="${tasks}" varStatus="status">
 
