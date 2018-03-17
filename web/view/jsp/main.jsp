@@ -42,7 +42,7 @@
         </div>
         <div class="col-md-6" id="task">
             <h5 class="my-0 font-weight-normal text-center">
-                Choose Task
+                ${taskType}
             </h5>
             <c:import url="/view/jsp/jspchunks/taskOutput.jsp"/>
         </div>
