@@ -1,14 +1,11 @@
 package by.gsu.epamlab.model.implementations.database.task;
 
 import by.gsu.epamlab.constants.Constants;
+import by.gsu.epamlab.model.implementations.database.task.enums.*;
 import by.gsu.epamlab.model.task.Task;
 import by.gsu.epamlab.constants.database.*;
 import by.gsu.epamlab.model.database.DatabaseConnection;
 import by.gsu.epamlab.exceptions.DaoException;
-import by.gsu.epamlab.model.implementations.database.task.enums.AddTaskDateTypes;
-import by.gsu.epamlab.model.implementations.database.task.enums.LocationChangeTypes;
-import by.gsu.epamlab.model.implementations.database.task.enums.SelectTaskTypes;
-import by.gsu.epamlab.model.implementations.database.task.enums.DateTypes;
 import by.gsu.epamlab.model.interfaces.ITaskDAO;
 
 import java.sql.*;
@@ -175,7 +172,19 @@ public final class TaskDatabaseImplementation implements ITaskDAO {
         }
     }
 
+    @Override
+    public void changeTaskInfo(String taskId, String infoType, String description) throws DaoException {
+        try(Connection connection = DatabaseConnection.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(TaskInfoChangeType.valueOf(infoType).getChangeTaskInfoQuery())){
+            preparedStatement.setString(TaskInfoChangeConstants.ID_INDEX, taskId);
+            preparedStatement.setString(TaskInfoChangeConstants.TASK_INFO_INDEX, description);
+            System.out.println(description);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e){
+            throw new DaoException(e);
+        }
 
+    }
 
     @Override
     public void removeTasks(String [] taskIds) throws DaoException {

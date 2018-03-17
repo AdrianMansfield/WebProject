@@ -5,18 +5,18 @@
 
     <table class="text-center table-bordered table-hover" id="taskTable">
 
-        <c:set var = "isBasket" value = "${taskType == \"BASKET\"}" scope = "request"/>
-        <c:set var = "isFixed" value = "${taskType == \"FIXED\"}" scope = "request"/>
-        <c:set var = "isMain" value = "${!isBasket && !isFixed}" scope = "request"/>
+        <c:set var="isBasket" value="${taskType == \"BASKET\"}" scope="request"/>
+        <c:set var="isFixed" value="${taskType == \"FIXED\"}" scope="request"/>
+        <c:set var="isMain" value="${!isBasket && !isFixed}" scope="request"/>
 
-        <c:forEach var = "task" items = "${tasks}" varStatus = "status">
+        <c:forEach var="task" items="${tasks}" varStatus="status">
 
-            <c:set var = "taskId" value = "${task.id}" scope = "request"/>
-            <c:set var = "taskName" value = "${task.name}" scope = "request"/>
-            <c:set var = "description" value = "${task.description}" scope = "request"/>
-            <c:set var = "fileName" value = "${task.fileName}" scope = "request"/>
-            <c:set var = "fileExists" value = "${task.fileName == \"No file\"}" scope = "request"/>
-            <c:set var = "formNumber" value = "${status.index}" scope = "request"/>
+            <c:set var="taskId" value="${task.id}" scope="request"/>
+            <c:set var="taskName" value="${task.name}" scope="request"/>
+            <c:set var="description" value="${task.description}" scope="request"/>
+            <c:set var="fileName" value="${task.fileName}" scope="request"/>
+            <c:set var="fileExists" value="${task.fileName == \"No file\"}" scope="request"/>
+            <c:set var="formNumber" value="${status.index}" scope="request"/>
 
             <c:import url="/view/jsp/jspchunks/table/firstTableRow.jsp"/>
 
@@ -28,8 +28,8 @@
 
         </c:forEach>
 
-        <c:import url="/view/jsp/jspchunks/table/deleteTaskForm.jsp"/>
-
     </table>
+
+    <c:import url="/view/jsp/jspchunks/table/deleteTaskForm.jsp"/>
 
 </div>
