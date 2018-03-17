@@ -8,4 +8,9 @@
     <c:import url="/view/jsp/jspchunks/table/fileNameTableData.jsp"/>
     <!-- Form for add to basket and remove task -->
     <c:import url="/view/jsp/jspchunks/table/throwTaskTableData.jsp"/>
+
+    <c:if test="${taskType eq 'SOMEDAY'}">
+        <c:import url="/view/jsp/jspchunks/table/taskDateTableData.jsp"/>
+    </c:if>
+
 </tr>
