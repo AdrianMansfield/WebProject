@@ -4,7 +4,13 @@
 <div class="table-container">
 
     <table class="text-center table-bordered table-hover" id="taskTable">
-
+        <thead>
+            <th>complete</th>
+            <th>description</th>
+            <th>file</th>
+            <th>delete</th>
+        </thead>
+        <tbody>
         <c:set var="isBasket" value="${taskType == \"BASKET\"}" scope="request"/>
         <c:set var="isFixed" value="${taskType == \"FIXED\"}" scope="request"/>
         <c:set var="isMain" value="${!isBasket && !isFixed}" scope="request"/>
@@ -22,11 +28,14 @@
 
             <c:import url="/view/jsp/jspchunks/table/descriptionSecondTableRow.jsp"/>
 
+            <c:import url="/view/jsp/jspchunks/table/changeDescriptionRow.jsp"/>
+
             <c:import url="/view/jsp/jspchunks/table/chooseFileAction.jsp"/>
 
             <c:import url="/view/jsp/jspchunks/table/uploadFile.jsp"/>
 
         </c:forEach>
+        </tbody>
 
     </table>
 

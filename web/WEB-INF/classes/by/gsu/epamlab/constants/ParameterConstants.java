@@ -38,4 +38,6 @@ public final class ParameterConstants {
 
     public static final String TASK_ID_PARAMETER = "taskId";
 
+    public static final String INFO_TYPE = "infoType";
+
 }
