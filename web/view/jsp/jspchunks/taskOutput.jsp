@@ -9,6 +9,9 @@
             <th>description</th>
             <th>file</th>
             <th>delete</th>
+            <c:if test="${taskType eq 'SOMEDAY'}">
+                <th>date</th>
+            </c:if>
         </thead>
         <tbody>
         <c:set var="isBasket" value="${taskType == \"BASKET\"}" scope="request"/>
@@ -23,12 +26,15 @@
             <c:set var="fileName" value="${task.fileName}" scope="request"/>
             <c:set var="fileExists" value="${task.fileName == \"No file\"}" scope="request"/>
             <c:set var="formNumber" value="${status.index}" scope="request"/>
+            <c:set var="taskDate" value="${task.date}" scope="request"/>
 
             <c:import url="/view/jsp/jspchunks/table/firstTableRow.jsp"/>
 
             <c:import url="/view/jsp/jspchunks/table/descriptionSecondTableRow.jsp"/>
 
             <c:import url="/view/jsp/jspchunks/table/changeDescriptionRow.jsp"/>
+
+            <c:import url="/view/jsp/jspchunks/table/changeNameRow.jsp"/>
 
             <c:import url="/view/jsp/jspchunks/table/chooseFileAction.jsp"/>
 
