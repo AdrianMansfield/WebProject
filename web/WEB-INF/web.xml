@@ -64,6 +64,14 @@
         <servlet-name>main</servlet-name>
         <url-pattern>/main</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>errorPage</servlet-name>
+        <jsp-file>/view/jsp/jspchunks/errorPage.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>errorPage</servlet-name>
+        <url-pattern>/errorPage</url-pattern>
+    </servlet-mapping>
 
 
     <!-- SERVLET  -->
@@ -141,6 +149,15 @@
     <servlet-mapping>
         <servlet-name>MoveTaskServlet</servlet-name>
         <url-pattern>/MoveTaskServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ChangeTaskInfoServlet</servlet-name>
+        <servlet-class>by.gsu.epamlab.control.post.task.ChangeTaskInfoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangeTaskInfoServlet</servlet-name>
+        <url-pattern>/ChangeTaskInfoServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
