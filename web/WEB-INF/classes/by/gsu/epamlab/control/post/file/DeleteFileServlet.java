@@ -30,7 +30,7 @@ public class DeleteFileServlet extends AbstractNonGetController {
 
             String userLogin = (String) request.getSession().getAttribute(ParameterConstants.LOGIN_PARAMETER);
 
-            FileOperations.deleteFile(userId, task, userLogin);
+            FileOperations.deleteFile(task, userLogin);
 
             task.setFileName(Constants.NO_FILE);
 

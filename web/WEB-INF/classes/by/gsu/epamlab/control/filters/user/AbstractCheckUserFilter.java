@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public abstract class AbstractCheckUserFilter extends AbstractFilter {
+
     protected void checkAttributesFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain, String url)
             throws ServletException, IOException {
 

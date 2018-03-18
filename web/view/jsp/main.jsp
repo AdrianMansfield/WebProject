@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../../view/css/modalWindow.css">
     <script src="../../view/js/general-constants.js"></script>
     <script src="../../view/js/tag-constants.js"></script>
-    <script src="../../view/js/attribute-constants.js"></script>
+    <script src="../../view/js/tag-attribute-constants.js"></script>
     <script src="../../view/js/remove-all-elements-from-table.js"></script>
     <script src="../../view/js/new-xml-http-request.js"></script>
     <script src="../../view/js/send-request.js"></script>

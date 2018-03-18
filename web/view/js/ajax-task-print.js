@@ -1,139 +1,352 @@
-function printTaskResponseHandler() {
-    if (xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200) {
-        var data = xmlHttpRequest.responseText;
-        printTaskTable(JSON.parse(data));
-    }
-}
-
 function sendQueryToPrintTaskServlet(value) {
-    sendQuery(POST_METHOD, printTaskResponseHandler, "/PrintTaskServlet", formQuery("dateType", value));
+    var xmlHttpRequest = newXMLHttpRequest();
+    sendRequest(xmlHttpRequest, "get", printTaskTable, "/PrintTaskServlet", makeRequestBody("taskType", value));
+    //xmlHttpRequest.close();
 }
 
-
-function getMapFromJson(map) {
-    var objectMap = {};
-    for (var i in map) {
-        objectMap[map[i].taskName] = map[i].fileName;
-    }
-    return objectMap;
-}
 
 
 function printTaskTable(jsonObject) {
     removeAllElements(taskTable);
-    var taskList = jsonObject.taskList;
-    var fileMap = getMapFromJson(jsonObject.fileMap);
-    var isBasket = jsonObject.isBasket;
-    drawTaskTable(taskList, fileMap, isBasket);
+    var taskList = jsonObject.tasks;
+    var taskType = jsonObject.taskType;
+    drawTaskTable(taskList,taskType);
 
 }
 
-function drawTaskTable(taskList, fileMap, isBasket) {
-    for (var counter in taskList) {
-        var currentTaskId = taskList[counter].id;
-        var currentTask = taskList[counter].taskName;
-        var tr = document.createElement(TR_TAG);
-        tr.setAttribute(ID_ATTRIBUTE, currentTaskId);
+function drawTaskTable(tasks, taskType) {
+    var isBasket = taskType === "BASKET";
+
+    var isFixed = taskType === "FIXED";
+
+    var isMain = !isBasket && !isFixed;
+
+    for(var counter in tasks) {
+
+        var taskId = tasks[counter].taskId;
+
+        var taskName = tasks[counter].taskName;
+
+        var description = tasks[counter].description;
+
+        var fileName = tasks[counter].fileName;
+
+        var fileExists = fileName !== "No file";
+
+        var tr = firstTableRow(taskId, taskName, fileName, isMain, isBasket);
+
         taskTable.appendChild(tr);
-        var td = document.createElement(TD_TAG);
-        tr.appendChild(td);
-        var input = document.createElement(INPUT_TAG);
-        input.setAttribute(NAME_ATTRIBUTE, "completeAttribute");
-        input.setAttribute(TYPE_ATTRIBUTE, "button");
-        input.setAttribute(VALUE_ATTRIBUTE, "d");
-        input.setAttribute(ID_ATTRIBUTE,currentTaskId);
-        td.appendChild(input);
-        td = document.createElement(TD_TAG);
-        tr.appendChild(td);
-        input = document.createElement(INPUT_TAG);
-        input.setAttribute(NAME_ATTRIBUTE, "currentTask");
-        input.setAttribute(CLASS_ATTRIBUTE, "invisible-circle-label");
-        input.setAttribute(VALUE_ATTRIBUTE, currentTaskId);
-        //input.setAttribute(ID_ATTRIBUTE, currentTaskId);
-        input.setAttribute(ONCLICK_ATTRIBUTE, "showEvents(); sendQueryToPrintEventServlet(value); return false;"); /// <------
-        td.appendChild(input);
-        var label = document.createElement(LABEL_TAG);
-        label.setAttribute(FOR_ATTRIBUTE, currentTaskId);
-        label.innerHTML = currentTask;
-        td.appendChild(label);
-        td = document.createElement(TD_TAG);
-        tr.appendChild(td);
-        var fileName = fileMap[currentTask];
 
-        var label = document.createElement(LABEL_TAG);
-        label.setAttribute(NAME_ATTRIBUTE, "fileLabel");
-        label.setAttribute(CLASS_ATTRIBUTE, "holder");
-        if (fileName) {
-            label.innerHTML = fileName;
-            fileName = currentTaskId + ":" + currentTask + ";" + fileName;
-            var div = document.createElement("div");
-            div.setAttribute(CLASS_ATTRIBUTE, "block");
-            label.appendChild(div);
-            var button = document.createElement(BUTTON_TAG);
-            button.setAttribute(FORM_ATTRIBUTE, "tasks");
-            button.setAttribute(FORMACTION_ATTRIBUTE, "DownloadFileServlet");
-            button.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger");
-            button.innerHTML  = "Download";
-            button.setAttribute(FORMMETHOD_ATTRIBUTE, POST_METHOD);
-            button.setAttribute(NAME_ATTRIBUTE, "file");
-            fileName = currentTaskId + ":" + currentTask + ";" + fileName;
-            div.appendChild(button);
-            var button = document.createElement(BUTTON_TAG);
-            button.setAttribute(FORM_ATTRIBUTE, "tasks");
-            button.setAttribute(FORMACTION_ATTRIBUTE, "DeleteFileServlet");
-            button.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger");
-            button.innerHTML  = "Delete";
-            button.setAttribute(FORMMETHOD_ATTRIBUTE, POST_METHOD);
-            button.setAttribute(NAME_ATTRIBUTE, "file");
-            fileName = currentTaskId + ":" + currentTask + ";" + fileName;
-            div.appendChild(button);
-        } else {
-            fileName = currentTaskId + ":" + currentTask + ";" + "No file";
-            label.innerHTML = "No file";
-            var div = document.createElement("div");
-            div.setAttribute(CLASS_ATTRIBUTE, "block");
-            label.appendChild(div);
-            var button = document.createElement(BUTTON_TAG);
-            button.setAttribute(FORM_ATTRIBUTE, "tasks");
-            button.setAttribute(FORMACTION_ATTRIBUTE, "UploadFileServlet");
-            button.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger");
-            button.innerHTML  = "Upload";
-            button.setAttribute(FORMMETHOD_ATTRIBUTE, POST_METHOD);
-            button.setAttribute(NAME_ATTRIBUTE, "file");
-            fileName = currentTaskId + ":" + currentTask + ";" + "No file";
-            div.appendChild(button);
-        }
-        label.setAttribute(VALUE_ATTRIBUTE, fileName);
-        td.appendChild(label);
+        tr = descriptionSecondTableRow(taskName, description);
+
+        taskTable.appendChild(tr);
+
+        tr = changeTaskInfoSecondRow(taskId, description, taskName + "ChangeDescription");
+
+        taskTable.appendChild(tr);
+
+        tr = changeTaskInfoSecondRow(taskId, taskName, taskName + "ChangeName");
+
+        taskTable.appendChild(tr);
 
 
-        td = document.createElement(TD_TAG);
-        tr.appendChild(td);
-        input = document.createElement(INPUT_TAG);
-        input.setAttribute(TYPE_ATTRIBUTE, "checkbox");
-        input.setAttribute(ID_ATTRIBUTE, "exampleCheck1");
-        input.setAttribute(ONCLICK_ATTRIBUTE, "showDeleteButton('tasks','deleteConf')");
-        input.setAttribute(VALUE_ATTRIBUTE, fileName);
-        input.setAttribute(NAME_ATTRIBUTE, "deleteTaskCheck");
-        td.appendChild(input);
     }
-
-    button = document.createElement(BUTTON_TAG);
-    button.setAttribute(FORM_ATTRIBUTE, "tasks");
-    button.setAttribute(FORMMETHOD_ATTRIBUTE, POST_METHOD);
-    button.setAttribute(ID_ATTRIBUTE, "deleteConf");
-    button.setAttribute(NAME_ATTRIBUTE, "typeLocation");
-    button.setAttribute(VALUE_ATTRIBUTE, "basket");
-    button.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger noneDisplay");
-    if (isBasket) {
-        button.setAttribute(FORMACTION_ATTRIBUTE, "DeleteTaskServlet");
-        button.innerHTML = "Delete";
-        button.setAttribute(ONCLICK_ATTRIBUTE, "ajax-delete-task()");
-    }
-    else {
-        button.setAttribute(FORMACTION_ATTRIBUTE, "MoveTaskServlet");
-        button.innerHTML = "Move to basket";
-        button.setAttribute(ONCLICK_ATTRIBUTE, "sendQueryToMoveTaskServlet(value); return false;");
-    }
-    taskTable.appendChild(button);
 }
+
+
+function firstTableRow(taskId, taskName, fileName, isMain, isBasket) {
+
+    var tr = document.createElement(TR_TAG);
+
+    var td = moveTaskTableData(taskId, isMain);
+
+    tr.appendChild(td);
+
+    td = taskNameTableData(taskName);
+
+    tr.appendChild(td);
+
+    td = fileNameTableData(taskId, fileName);
+
+    tr.appendChild(td);
+
+    td = throwTaskTabledata(taskId, isBasket);
+
+    tr.appendChild(td);
+
+    return tr;
+}
+
+
+function descriptionSecondTableRow(taskName, description) {
+
+    var tr = document.createElement(TR_TAG);
+
+    tr.setAttribute(ID_ATTRIBUTE, taskName);
+
+    tr.setAttribute(CLASS_ATTRIBUTE, "modalDescription");
+
+    var td = document.createElement(TD_TAG);
+
+    td.setAttribute("colspan", 5);
+
+    var p = document.createElement("p");
+
+    p.innerHTML = description;
+
+    td.appendChild(p);
+
+    var a = document.createElement("a");
+
+    a.setAttribute("href", "#" + taskName + "ChangeDescription");
+
+    a.innerHTML = "Change description";
+
+    td.appendChild(a);
+
+    a = document.createElement("a");
+
+    a.setAttribute("href", "#" + taskName + "ChangeName");
+
+    a.innerHTML = "Change name";
+
+    td.appendChild(a);
+
+    a = document.createElement("a");
+
+    a.setAttribute("href", "#");
+
+    a.setAttribute(CLASS_ATTRIBUTE, "btn");
+
+    a.innerHTML = "close";
+
+    td.appendChild(a);
+
+    tr.appendChild(td);
+
+    return tr;
+}
+
+function changeTaskInfoSecondRow(taskId, taskInfo, formId) {
+
+    var tr = document.createElement(TR_TAG);
+
+    tr.setAttribute(ID_ATTRIBUTE, formId);
+
+    tr.setAttribute(CLASS_ATTRIBUTE, "modalDescription");
+
+    var td = document.createElement(TD_TAG);
+
+    td.setAttribute("colspan", 5);
+
+    var form = document.createElement("form");
+
+    form.setAttribute("action", "ChangeTaskInfoServlet");
+
+    form.setAttribute("method", POST_METHOD);
+
+    var input = document.createElement(INPUT_TAG);
+
+    input.setAttribute(TYPE_ATTRIBUTE, "hidden");
+
+    input.setAttribute(NAME_ATTRIBUTE, "taskId");
+
+    input.setAttribute(VALUE_ATTRIBUTE, taskId);
+
+    form.appendChild(input);
+
+    input = document.createElement(INPUT_TAG);
+
+    input.setAttribute(TYPE_ATTRIBUTE, "hidden");
+
+    input.setAttribute(NAME_ATTRIBUTE, "infoType");
+
+    input.setAttribute(VALUE_ATTRIBUTE, "description");
+
+    form.appendChild(input);
+
+    var textarea = document.createElement("textarea");
+
+    textarea.setAttribute(NAME_ATTRIBUTE, "description");
+
+    textarea.innerHTML = taskInfo;
+
+    form.appendChild(textarea);
+
+    input = document.createElement(INPUT_TAG);
+
+    input.setAttribute(TYPE_ATTRIBUTE, "submit");
+
+    input.setAttribute(CLASS_ATTRIBUTE, "btn btn-sm btn-outline-danger");
+
+    form.appendChild(input);
+
+    td.appendChild(form);
+
+    var a = document.createElement("a");
+
+    a.setAttribute("href", "#");
+
+    a.setAttribute(CLASS_ATTRIBUTE, "btn");
+
+    a.innerHTML = "close";
+
+    td.appendChild(a);
+
+    tr.appendChild(td);
+
+    return tr;
+
+}
+
+
+
+function moveTaskTableData(taskId, isMain) {
+
+    var td = document.createElement(TD_TAG);
+
+    var form = document.createElement("form");
+
+    form.setAttribute("action", "MoveTaskServlet");
+
+    form.setAttribute("method", POST_METHOD);
+
+    form.setAttribute(CLASS_ATTRIBUTE, "mb-0");
+
+    var input = document.createElement(INPUT_TAG);
+
+    input.setAttribute(TYPE_ATTRIBUTE, "hidden");
+
+    input.setAttribute(NAME_ATTRIBUTE, "taskId");
+
+    input.setAttribute(VALUE_ATTRIBUTE, taskId);
+
+    form.appendChild(input);
+
+    input = document.createElement(INPUT_TAG);
+
+    input.setAttribute(TYPE_ATTRIBUTE, "hidden");
+
+    input.setAttribute(NAME_ATTRIBUTE, "locationType");
+
+    if(isMain) {
+        input.setAttribute(VALUE_ATTRIBUTE, "fixed");
+    }
+
+    else {
+        input.setAttribute(VALUE_ATTRIBUTE, "main");
+    }
+
+    form.appendChild(input);
+
+    input = document.createElement(INPUT_TAG);
+
+    input.setAttribute(TYPE_ATTRIBUTE, "submit");
+
+    input.setAttribute(VALUE_ATTRIBUTE, "&#10004");
+
+    input.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger");
+
+    form.appendChild(input);
+
+    td.appendChild(form);
+
+    return td;
+}
+
+function taskNameTableData(taskName) {
+
+    var td = document.createElement(TD_TAG);
+
+    var a = document.createElement("a");
+
+    a.setAttribute("href", "#" + taskName);
+
+    a.innerHTML = taskName;
+
+    td.appendChild(a);
+
+    return td;
+}
+
+function fileNameTableData(taskId, fileName) {
+
+    var td = document.createElement(TD_TAG);
+
+    var a = document.createElement("a");
+
+    a.setAttribute("href", "#" + taskId);
+
+    a.innerHTML = fileName;
+
+    td.appendChild(a);
+
+    return td;
+}
+
+function throwTaskTabledata(taskId, isBasket) {
+
+    var td = document.createElement(TD_TAG);
+
+    if(!isBasket) {
+        var form = document.createElement("form");
+
+        form.setAttribute("action", "MoveTaskServlet");
+
+        form.setAttribute(ID_ATTRIBUTE, "taskForm"); // HM....
+
+        form.setAttribute("method", POST_METHOD);
+
+        form.setAttribute(CLASS_ATTRIBUTE, "mb-0");
+
+        var input = document.createElement(INPUT_TAG);
+
+        input.setAttribute(TYPE_ATTRIBUTE, "hidden");
+
+        input.setAttribute(NAME_ATTRIBUTE, "taskId");
+
+        input.setAttribute(VALUE_ATTRIBUTE, taskId);
+
+        form.appendChild(input);
+
+        input = document.createElement(INPUT_TAG);
+
+        input.setAttribute(TYPE_ATTRIBUTE, "hidden");
+
+        input.setAttribute(NAME_ATTRIBUTE, "locationType");
+
+        input.setAttribute(VALUE_ATTRIBUTE, "basket");
+
+        form.appendChild(input);
+
+        input = document.createElement(INPUT_TAG);
+
+        input.setAttribute(TYPE_ATTRIBUTE, "submit");
+
+        input.setAttribute(VALUE_ATTRIBUTE, "&#10006");
+
+        input.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger");
+
+        form.appendChild(input);
+
+        td.appendChild(form);
+    }
+
+    else {
+
+        input = document.createElement(INPUT_TAG);
+
+        input.setAttribute(TYPE_ATTRIBUTE, "checkbox");
+
+        input.setAttribute(NAME_ATTRIBUTE, "taskIds");
+
+        input.setAttribute(VALUE_ATTRIBUTE, taskId);
+
+        input.setAttribute(FORM_ATTRIBUTE, "delete");
+
+        td.appendChild(input);
+    }
+
+    return td;
+}
+

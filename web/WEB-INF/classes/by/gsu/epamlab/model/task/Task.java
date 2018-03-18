@@ -8,6 +8,7 @@ import org.json.simple.JSONObject;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 
 public class Task implements Jsonable, Comparable<Task> {
     private int id;
@@ -94,6 +95,8 @@ public class Task implements Jsonable, Comparable<Task> {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put(ParameterConstants.TASK_ID_PARAMETER, id);
         jsonObject.put(ParameterConstants.TASK_NAME_PARAMETER, name);
+        jsonObject.put("description", description);
+        jsonObject.put("fileName", fileName);
         return jsonObject;
     }
 

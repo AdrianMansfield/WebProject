@@ -19,10 +19,15 @@ public class AuthorizationFilter extends AbstractFilter {
     public void filter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
+
         String role = (String) request.getSession().getAttribute(ParameterConstants.ROLE_PARAMETER);
+
         if(!Role.USER.toString().equals(role) && !Role.ADMIN.toString().equals(role)) {
+
             jumpError(UrlConstants.INDEX_URL, ErrorConstants.AUTHORISATION_ERROR, request, response);
+
         }
+
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
