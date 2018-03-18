@@ -26,7 +26,9 @@ public class DownloadFileServlet extends AbstractNonGetController {
 
             request.setCharacterEncoding(Constants.UTF8_CHARACTER_ENCODING);
 
-            if(FileOperations.downloadFile(response, userLogin, task)) {
+            boolean isExist = FileOperations.downloadFile(response, userLogin, task);
+
+            if(isExist) {
                 jumpPage(UrlConstants.MAIN_URL, request, response);
             }
             else {

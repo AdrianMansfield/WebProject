@@ -9,9 +9,9 @@ function sendQueryToMoveTaskServlet(value) {
     var checkBoxes = getCheckedCheckBoxes("deleteTaskCheck");
     var query = "";
     for(var i = 0; i<checkBoxes.length; i++)
-        query += formQuery("deleteTaskCheck", checkBoxes[i]);
+        query += makeRequestBody("deleteTaskCheck", checkBoxes[i]);
     sendQuery(POST_METHOD,moveTaskResponseHandler,"/MoveTaskServlet",
-        query + formQuery("typeLocation", value));
+        query + makeRequestBody("typeLocation", value));
 }
 
 function deleteTaskFromTable(jsonObject) {

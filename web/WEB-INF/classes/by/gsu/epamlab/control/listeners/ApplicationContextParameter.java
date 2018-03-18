@@ -24,6 +24,7 @@ public class ApplicationContextParameter implements ServletContextListener {
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
         userImplementation = null;
         taskImplementation = null;
+        filesDirectory = null;
     }
 
     public static String getUserImplementationName() {
