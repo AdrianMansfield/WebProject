@@ -18,10 +18,11 @@
     <script src="../../view/js/remove-all-elements-from-table.js"></script>
     <script src="../../view/js/new-xml-http-request.js"></script>
     <script src="../../view/js/send-request.js"></script>
-    <script src="../../view/js/script.js"></script>
     <script src="../../view/js/ajax-task-print.js"></script>
     <script src="../../view/js/get-checked-checkbox.js"></script>
     <script src="../../view/js/ajax-move-task.js"></script>
+    <script src="../../view/js/script.js"></script>
+    <script src="../../view/js/dram-modal-window.js"></script>
 </head>
 <body>
 <div class="d-flex flex-column flex-md-row align-items-center p-0 px-md-4 mb-1 navbar-inverse">
@@ -47,6 +48,7 @@
             <c:import url="/view/jsp/jspchunks/taskOutput.jsp"/>
         </div>
     </div>
+    <div id="fileModalWindow"></div>
 </main>
 <footer class="footer fixed-bottom">
     <c:if test="${not empty errorMessage}">

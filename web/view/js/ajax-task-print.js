@@ -66,7 +66,7 @@ function firstTableRow(taskId, taskName, fileName, isMain, isBasket) {
 
     tr.appendChild(td);
 
-    td = fileNameTableData(taskId, fileName);
+    td = fileNameTableData(taskId, fileName, taskName);
 
     tr.appendChild(td);
 
@@ -269,17 +269,17 @@ function taskNameTableData(taskName) {
     return td;
 }
 
-function fileNameTableData(taskId, fileName) {
+function fileNameTableData(taskId, fileName, taskName) {
 
     var td = document.createElement(TD_TAG);
+    var button = document.createElement("button");
 
-    var a = document.createElement("a");
+    button.setAttribute("class","btn btn-outline-danger");
+    button.setAttribute("onclick","drawModalWindow("+taskId+","+fileName.replace(' ','_')+","+taskName+")");
 
-    a.setAttribute("href", "#" + taskId);
+    button.innerHTML = fileName;
 
-    a.innerHTML = fileName;
-
-    td.appendChild(a);
+    td.appendChild(button);
 
     return td;
 }
