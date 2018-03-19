@@ -22,6 +22,76 @@ var EQUAL_SIGN = "=";
 
 var AMPERSAND_CHARACTER = "&";
 
+var TASK_TYPE = "taskType";
+
+var PRINT_TASK_SERVLET = "/PrintTaskServlet";
+
+var BASKET = "BASKET";
+
+var FIXED = "FIXED";
+
+var NO_FILE = "No file";
+
+var CHANGE_DESCRIPTION = "ChangeDescription";
+
+var CHANGE_NAME = "ChangeName";
+
+var MODAL_DESCRIPTION = "modalDescription";
+
+var CHANGE_DESCRIPTION_HREF = "Change description";
+
+var CHANGE_NAME_HREF = "Change name";
+
+var CLOSE_HREF = "close";
+
+var CHANGE_TASK_INFO_SERVLET = "ChangeTaskInfoServlet";
+
+var MOVE_TASK_SERVLET = "MoveTaskServlet";
+
+var DOWNLOAD_FILE_SERVLET = "DownloadFileServlet";
+
+var DELETE_FILE_SERVLET = "DeleteFileServlet";
+
+var UPLOAD_FILE_SERVLET = "UploadFileServlet";
+
+var TASK_ID = "taskId";
+
+var INFO_TYPE = "infoType";
+
+var DESCRIPTION = "description";
+
+var LOCATION_TYPE = "locationType";
+
+var MAIN = "main";
+
+var TASK_FORM = "taskForm";
+
+var TASK_IDS = "taskIds";
+
+var DELETE = "delete";
+
+var FILE_MODAL_WINDOW = "fileModalWindow";
+
+var JS_MODAL_WINDOW = "jsModalWindow";
+
+var CHOOSE_FILE_ACTION = "Choose file action";
+
+var FILE_FORM = "fileForm";
+
+var FILE_NAMES = "fileNames";
+
+var UPLOAD_FILE = "Upload file";
+
+var TASK_NAME = "taskName";
+
+var FILE = "file";
+
+var UPLOAD = "Upload";
+
+
+
+
+
 
 
 
