@@ -2,11 +2,13 @@ function drawModalWindow(taskId, fileName, taskName) {
     var aside = document.createElement("aside");
     var fileModalWindow = document.getElementById("fileModalWindow");
 
-    aside.setAttribute("class","modalWindow");
+    aside.setAttribute("class","jsModalWindow");
     aside.setAttribute("id",taskId);
 
     var header = document.createElement("header");
     var h2 = document.createElement("h2");
+
+    h2.innerHTML = "Choose file action";
 
     header.appendChild(h2);
     aside.appendChild(header);
@@ -75,13 +77,15 @@ function drawModalWindow(taskId, fileName, taskName) {
     var deleteButton = document.createElement("button");
 
     deleteButton.setAttribute("form","fileForm");
-    deleteButton.setAttribute("formaction","DownloadFileServlet");
+    deleteButton.setAttribute("formaction","DeleteFileServlet");
     deleteButton.setAttribute("class","btn btn-outline-danger");
 
-    deleteButton.innerHTML = "Download";
+    deleteButton.innerHTML = "Delete";
 
     colSecondDiv.appendChild(deleteButton);
     div.appendChild(colSecondDiv);
+    section.appendChild(div);
+    aside.appendChild(section);
 
     var footer = document.createElement("footer");
 

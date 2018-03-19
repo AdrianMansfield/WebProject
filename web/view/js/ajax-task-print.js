@@ -275,7 +275,7 @@ function fileNameTableData(taskId, fileName, taskName) {
     var button = document.createElement("button");
 
     button.setAttribute("class","btn btn-outline-danger");
-    button.setAttribute("onclick","drawModalWindow("+taskId+","+fileName.replace(' ','_')+","+taskName+")");
+    button.setAttribute("onclick","drawModalWindow("+taskId+",'"+fileName+"',"+taskName+")");
 
     button.innerHTML = fileName;
 
