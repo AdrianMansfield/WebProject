@@ -17,3 +17,19 @@ var FORMACTION_ATTRIBUTE = "formaction";
 var FORMMETHOD_ATTRIBUTE = "formmethod";
 
 var ONCLICK_ATTRIBUTE = "onclick";
+
+var SUBMIT_ATTRIBUTE = "submit";
+
+var HIDDEN_ATTRIBUTE = "hidden";
+
+var METHOD_ATTRIBUTE = "method";
+
+var ACTION_ATTRIBUTE = "action";
+
+var HREF_ATTRIBUTE = "href";
+
+var COLSPAN_ATTRIBUTE = "colspan";
+
+var ECTYPE = "enctype";
+
+var MULTIPART = "multipart/form-data";

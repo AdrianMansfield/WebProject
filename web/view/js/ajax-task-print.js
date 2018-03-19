@@ -1,6 +1,6 @@
 function sendQueryToPrintTaskServlet(value) {
     var xmlHttpRequest = newXMLHttpRequest();
-    sendRequest(xmlHttpRequest, "get", printTaskTable, "/PrintTaskServlet", makeRequestBody("taskType", value));
+    sendRequest(xmlHttpRequest, GET_METHOD, printTaskTable, PRINT_TASK_SERVLET, makeRequestBody(TASK_TYPE, value));
     //xmlHttpRequest.close();
 }
 
@@ -15,9 +15,9 @@ function printTaskTable(jsonObject) {
 }
 
 function drawTaskTable(tasks, taskType) {
-    var isBasket = taskType === "BASKET";
+    var isBasket = taskType === BASKET;
 
-    var isFixed = taskType === "FIXED";
+    var isFixed = taskType === FIXED;
 
     var isMain = !isBasket && !isFixed;
 
@@ -31,7 +31,7 @@ function drawTaskTable(tasks, taskType) {
 
         var fileName = tasks[counter].fileName;
 
-        var fileExists = fileName !== "No file";
+        var fileExists = fileName !== NO_FILE;
 
         var tr = firstTableRow(taskId, taskName, fileName, isMain, isBasket);
 
@@ -41,11 +41,11 @@ function drawTaskTable(tasks, taskType) {
 
         taskTable.appendChild(tr);
 
-        tr = changeTaskInfoSecondRow(taskId, description, taskName + "ChangeDescription");
+        tr = changeTaskInfoSecondRow(taskId, description, taskName + CHANGE_DESCRIPTION);
 
         taskTable.appendChild(tr);
 
-        tr = changeTaskInfoSecondRow(taskId, taskName, taskName + "ChangeName");
+        tr = changeTaskInfoSecondRow(taskId, taskName, taskName + CHANGE_NAME);
 
         taskTable.appendChild(tr);
 
@@ -66,7 +66,7 @@ function firstTableRow(taskId, taskName, fileName, isMain, isBasket) {
 
     tr.appendChild(td);
 
-    td = fileNameTableData(taskId, fileName);
+    td = fileNameTableData(taskId, fileName, taskName);
 
     tr.appendChild(td);
 
@@ -84,11 +84,11 @@ function descriptionSecondTableRow(taskName, description) {
 
     tr.setAttribute(ID_ATTRIBUTE, taskName);
 
-    tr.setAttribute(CLASS_ATTRIBUTE, "modalDescription");
+    tr.setAttribute(CLASS_ATTRIBUTE, MODAL_DESCRIPTION);
 
     var td = document.createElement(TD_TAG);
 
-    td.setAttribute("colspan", 5);
+    td.setAttribute(COLSPAN_ATTRIBUTE, 5);
 
     var p = document.createElement("p");
 
@@ -98,27 +98,27 @@ function descriptionSecondTableRow(taskName, description) {
 
     var a = document.createElement("a");
 
-    a.setAttribute("href", "#" + taskName + "ChangeDescription");
+    a.setAttribute(HREF_ATTRIBUTE, "#" + taskName + CHANGE_DESCRIPTION);
 
-    a.innerHTML = "Change description";
-
-    td.appendChild(a);
-
-    a = document.createElement("a");
-
-    a.setAttribute("href", "#" + taskName + "ChangeName");
-
-    a.innerHTML = "Change name";
+    a.innerHTML = CHANGE_DESCRIPTION_HREF;
 
     td.appendChild(a);
 
-    a = document.createElement("a");
+    a = document.createElement(A_TAG);
 
-    a.setAttribute("href", "#");
+    a.setAttribute(HREF_ATTRIBUTE, "#" + taskName + CHANGE_NAME);
+
+    a.innerHTML = CHANGE_NAME_HREF;
+
+    td.appendChild(a);
+
+    a = document.createElement(A_TAG);
+
+    a.setAttribute(HREF_ATTRIBUTE, "#");
 
     a.setAttribute(CLASS_ATTRIBUTE, "btn");
 
-    a.innerHTML = "close";
+    a.innerHTML = CLOSE_HREF;
 
     td.appendChild(a);
 
@@ -133,23 +133,23 @@ function changeTaskInfoSecondRow(taskId, taskInfo, formId) {
 
     tr.setAttribute(ID_ATTRIBUTE, formId);
 
-    tr.setAttribute(CLASS_ATTRIBUTE, "modalDescription");
+    tr.setAttribute(CLASS_ATTRIBUTE, MODAL_DESCRIPTION);
 
     var td = document.createElement(TD_TAG);
 
-    td.setAttribute("colspan", 5);
+    td.setAttribute(COLSPAN_ATTRIBUTE, 5);
 
     var form = document.createElement("form");
 
-    form.setAttribute("action", "ChangeTaskInfoServlet");
+    form.setAttribute(ACTION_ATTRIBUTE, CHANGE_TASK_INFO_SERVLET);
 
-    form.setAttribute("method", POST_METHOD);
+    form.setAttribute(METHOD_ATTRIBUTE, POST_METHOD);
 
     var input = document.createElement(INPUT_TAG);
 
-    input.setAttribute(TYPE_ATTRIBUTE, "hidden");
+    input.setAttribute(TYPE_ATTRIBUTE, HIDDEN_ATTRIBUTE);
 
-    input.setAttribute(NAME_ATTRIBUTE, "taskId");
+    input.setAttribute(NAME_ATTRIBUTE, TASK_ID);
 
     input.setAttribute(VALUE_ATTRIBUTE, taskId);
 
@@ -157,17 +157,17 @@ function changeTaskInfoSecondRow(taskId, taskInfo, formId) {
 
     input = document.createElement(INPUT_TAG);
 
-    input.setAttribute(TYPE_ATTRIBUTE, "hidden");
+    input.setAttribute(TYPE_ATTRIBUTE, HIDDEN_ATTRIBUTE);
 
-    input.setAttribute(NAME_ATTRIBUTE, "infoType");
+    input.setAttribute(NAME_ATTRIBUTE, INFO_TYPE);
 
-    input.setAttribute(VALUE_ATTRIBUTE, "description");
+    input.setAttribute(VALUE_ATTRIBUTE, DESCRIPTION);
 
     form.appendChild(input);
 
-    var textarea = document.createElement("textarea");
+    var textarea = document.createElement(TEXTAREA_TAG);
 
-    textarea.setAttribute(NAME_ATTRIBUTE, "description");
+    textarea.setAttribute(NAME_ATTRIBUTE, DESCRIPTION);
 
     textarea.innerHTML = taskInfo;
 
@@ -175,7 +175,7 @@ function changeTaskInfoSecondRow(taskId, taskInfo, formId) {
 
     input = document.createElement(INPUT_TAG);
 
-    input.setAttribute(TYPE_ATTRIBUTE, "submit");
+    input.setAttribute(TYPE_ATTRIBUTE, SUBMIT_ATTRIBUTE);
 
     input.setAttribute(CLASS_ATTRIBUTE, "btn btn-sm btn-outline-danger");
 
@@ -183,13 +183,13 @@ function changeTaskInfoSecondRow(taskId, taskInfo, formId) {
 
     td.appendChild(form);
 
-    var a = document.createElement("a");
+    var a = document.createElement(A_TAG);
 
-    a.setAttribute("href", "#");
+    a.setAttribute(HREF_ATTRIBUTE, "#");
 
     a.setAttribute(CLASS_ATTRIBUTE, "btn");
 
-    a.innerHTML = "close";
+    a.innerHTML = CLOSE_HREF;
 
     td.appendChild(a);
 
@@ -205,19 +205,19 @@ function moveTaskTableData(taskId, isMain) {
 
     var td = document.createElement(TD_TAG);
 
-    var form = document.createElement("form");
+    var form = document.createElement(FORM_ATTRIBUTE);
 
-    form.setAttribute("action", "MoveTaskServlet");
+    form.setAttribute(ACTION_ATTRIBUTE, MOVE_TASK_SERVLET);
 
-    form.setAttribute("method", POST_METHOD);
+    form.setAttribute(METHOD_ATTRIBUTE, POST_METHOD);
 
     form.setAttribute(CLASS_ATTRIBUTE, "mb-0");
 
     var input = document.createElement(INPUT_TAG);
 
-    input.setAttribute(TYPE_ATTRIBUTE, "hidden");
+    input.setAttribute(TYPE_ATTRIBUTE, HIDDEN_ATTRIBUTE);
 
-    input.setAttribute(NAME_ATTRIBUTE, "taskId");
+    input.setAttribute(NAME_ATTRIBUTE, TASK_ID);
 
     input.setAttribute(VALUE_ATTRIBUTE, taskId);
 
@@ -225,23 +225,23 @@ function moveTaskTableData(taskId, isMain) {
 
     input = document.createElement(INPUT_TAG);
 
-    input.setAttribute(TYPE_ATTRIBUTE, "hidden");
+    input.setAttribute(TYPE_ATTRIBUTE, HIDDEN_ATTRIBUTE);
 
-    input.setAttribute(NAME_ATTRIBUTE, "locationType");
+    input.setAttribute(NAME_ATTRIBUTE, LOCATION_TYPE);
 
     if(isMain) {
-        input.setAttribute(VALUE_ATTRIBUTE, "fixed");
+        input.setAttribute(VALUE_ATTRIBUTE, FIXED.toLowerCase());
     }
 
     else {
-        input.setAttribute(VALUE_ATTRIBUTE, "main");
+        input.setAttribute(VALUE_ATTRIBUTE, MAIN);
     }
 
     form.appendChild(input);
 
     input = document.createElement(INPUT_TAG);
 
-    input.setAttribute(TYPE_ATTRIBUTE, "submit");
+    input.setAttribute(TYPE_ATTRIBUTE, SUBMIT_ATTRIBUTE);
 
     input.setAttribute(VALUE_ATTRIBUTE, "&#10004");
 
@@ -258,9 +258,9 @@ function taskNameTableData(taskName) {
 
     var td = document.createElement(TD_TAG);
 
-    var a = document.createElement("a");
+    var a = document.createElement(A_TAG);
 
-    a.setAttribute("href", "#" + taskName);
+    a.setAttribute(HREF_ATTRIBUTE, "#" + taskName);
 
     a.innerHTML = taskName;
 
@@ -269,17 +269,17 @@ function taskNameTableData(taskName) {
     return td;
 }
 
-function fileNameTableData(taskId, fileName) {
+function fileNameTableData(taskId, fileName, taskName) {
 
     var td = document.createElement(TD_TAG);
+    var button = document.createElement(BUTTON_TAG);
 
-    var a = document.createElement("a");
+    button.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger");
+    button.setAttribute(ONCLICK_ATTRIBUTE,"drawModalWindows("+taskId+",'"+fileName+"',"+taskName+")");
 
-    a.setAttribute("href", "#" + taskId);
+    button.innerHTML = fileName;
 
-    a.innerHTML = fileName;
-
-    td.appendChild(a);
+    td.appendChild(button);
 
     return td;
 }
@@ -291,19 +291,19 @@ function throwTaskTabledata(taskId, isBasket) {
     if(!isBasket) {
         var form = document.createElement("form");
 
-        form.setAttribute("action", "MoveTaskServlet");
+        form.setAttribute(ACTION_ATTRIBUTE, MOVE_TASK_SERVLET);
 
-        form.setAttribute(ID_ATTRIBUTE, "taskForm"); // HM....
+        form.setAttribute(ID_ATTRIBUTE, TASK_FORM); // HM....
 
-        form.setAttribute("method", POST_METHOD);
+        form.setAttribute(METHOD_ATTRIBUTE, POST_METHOD);
 
         form.setAttribute(CLASS_ATTRIBUTE, "mb-0");
 
         var input = document.createElement(INPUT_TAG);
 
-        input.setAttribute(TYPE_ATTRIBUTE, "hidden");
+        input.setAttribute(TYPE_ATTRIBUTE, HIDDEN_ATTRIBUTE);
 
-        input.setAttribute(NAME_ATTRIBUTE, "taskId");
+        input.setAttribute(NAME_ATTRIBUTE, TASK_ID);
 
         input.setAttribute(VALUE_ATTRIBUTE, taskId);
 
@@ -311,17 +311,17 @@ function throwTaskTabledata(taskId, isBasket) {
 
         input = document.createElement(INPUT_TAG);
 
-        input.setAttribute(TYPE_ATTRIBUTE, "hidden");
+        input.setAttribute(TYPE_ATTRIBUTE, HIDDEN_ATTRIBUTE);
 
-        input.setAttribute(NAME_ATTRIBUTE, "locationType");
+        input.setAttribute(NAME_ATTRIBUTE, LOCATION_TYPE);
 
-        input.setAttribute(VALUE_ATTRIBUTE, "basket");
+        input.setAttribute(VALUE_ATTRIBUTE, BASKET.toLowerCase());
 
         form.appendChild(input);
 
         input = document.createElement(INPUT_TAG);
 
-        input.setAttribute(TYPE_ATTRIBUTE, "submit");
+        input.setAttribute(TYPE_ATTRIBUTE, SUBMIT_ATTRIBUTE);
 
         input.setAttribute(VALUE_ATTRIBUTE, "&#10006");
 
@@ -336,13 +336,13 @@ function throwTaskTabledata(taskId, isBasket) {
 
         input = document.createElement(INPUT_TAG);
 
-        input.setAttribute(TYPE_ATTRIBUTE, "checkbox");
+        input.setAttribute(TYPE_ATTRIBUTE, CHECKBOX_TAG);
 
-        input.setAttribute(NAME_ATTRIBUTE, "taskIds");
+        input.setAttribute(NAME_ATTRIBUTE, TASK_IDS);
 
         input.setAttribute(VALUE_ATTRIBUTE, taskId);
 
-        input.setAttribute(FORM_ATTRIBUTE, "delete");
+        input.setAttribute(FORM_ATTRIBUTE, DELETE);
 
         td.appendChild(input);
     }
