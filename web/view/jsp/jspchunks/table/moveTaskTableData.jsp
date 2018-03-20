@@ -7,12 +7,15 @@
         <!-- Part of form for add to fixed -->
         <c:if test="${isMain}">
             <input name="locationType" type="hidden" value="fixed"/>
+            <c:set scope="page" var="icon" value="&#10004"/>
         </c:if>
         <!-- Part of form for restore from basket -->
         <c:if test="${!isMain}">
             <input name="locationType" type="hidden" value="main"/>
+            <c:set scope="page" var="icon" value="&#10226"/>
         </c:if>
-        <input type="submit" value=&#10226 class="btn btn-outline-danger"/>
+        <input type="submit" value=${icon} class="btn btn-outline-danger"/>
+
     </form>
 </td>
 

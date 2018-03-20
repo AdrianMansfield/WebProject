@@ -97,6 +97,7 @@ public class Task implements Jsonable, Comparable<Task> {
         jsonObject.put(ParameterConstants.TASK_NAME_PARAMETER, name);
         jsonObject.put("description", description);
         jsonObject.put("fileName", fileName);
+        jsonObject.put("date", getStringDate());
         return jsonObject;
     }
 

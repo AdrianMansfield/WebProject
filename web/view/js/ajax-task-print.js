@@ -6,6 +6,7 @@ function sendQueryToPrintTaskServlet(value) {
 
 
 
+
 function printTaskTable(jsonObject) {
     removeAllElements(taskTable);
     var taskList = jsonObject.tasks;
@@ -31,34 +32,42 @@ function drawTaskTable(tasks, taskType) {
 
         var fileName = tasks[counter].fileName;
 
-        var fileExists = fileName !== NO_FILE;
+        var date = tasks[counter].date;
 
-        var tr = firstTableRow(taskId, taskName, fileName, isMain, isBasket);
+        var fileExists = fileName !== NO_FILE; // use this, Andrew ^__^
 
-        taskTable.appendChild(tr);
+        var div = document.createElement("div");
+
+        div.setAttribute(ID_ATTRIBUTE, taskId);
+
+        var tr = firstTableRow(taskId, taskName, fileName, isMain, isBasket, taskType, date);
+
+        div.appendChild(tr);
 
         tr = descriptionSecondTableRow(taskName, description);
 
-        taskTable.appendChild(tr);
+        div.appendChild(tr);
 
         tr = changeTaskInfoSecondRow(taskId, description, taskName + CHANGE_DESCRIPTION);
 
-        taskTable.appendChild(tr);
+        div.appendChild(tr);
 
         tr = changeTaskInfoSecondRow(taskId, taskName, taskName + CHANGE_NAME);
 
-        taskTable.appendChild(tr);
+        div.appendChild(tr);
+
+        taskTable.appendChild(div);
 
 
     }
 }
 
 
-function firstTableRow(taskId, taskName, fileName, isMain, isBasket) {
+function firstTableRow(taskId, taskName, fileName, isMain, isBasket, taskType, date) {
 
     var tr = document.createElement(TR_TAG);
 
-    var td = moveTaskTableData(taskId, isMain);
+    var td = moveTaskTableData(taskId, isMain, taskType);
 
     tr.appendChild(td);
 
@@ -70,11 +79,27 @@ function firstTableRow(taskId, taskName, fileName, isMain, isBasket) {
 
     tr.appendChild(td);
 
-    td = throwTaskTabledata(taskId, isBasket);
+    if(taskType === "SOMEDAY") {
+
+        td = dateTableData(date);
+
+        tr.appendChild(td);
+    }
+
+    td = throwTaskTableData(taskId, isBasket);
 
     tr.appendChild(td);
 
     return tr;
+}
+
+function dateTableData(date) {
+
+    var td = document.createElement(TD_TAG);
+
+    td.innerHTML = date;
+
+    return td;
 }
 
 
@@ -201,15 +226,15 @@ function changeTaskInfoSecondRow(taskId, taskInfo, formId) {
 
 
 
-function moveTaskTableData(taskId, isMain) {
+function moveTaskTableData(taskId, isMain, taskType) {
 
     var td = document.createElement(TD_TAG);
 
     var form = document.createElement(FORM_ATTRIBUTE);
 
-    form.setAttribute(ACTION_ATTRIBUTE, MOVE_TASK_SERVLET);
+    //form.setAttribute(ACTION_ATTRIBUTE, MOVE_TASK_SERVLET);
 
-    form.setAttribute(METHOD_ATTRIBUTE, POST_METHOD);
+    //form.setAttribute(METHOD_ATTRIBUTE, POST_METHOD);
 
     form.setAttribute(CLASS_ATTRIBUTE, "mb-0");
 
@@ -229,23 +254,28 @@ function moveTaskTableData(taskId, isMain) {
 
     input.setAttribute(NAME_ATTRIBUTE, LOCATION_TYPE);
 
+    var locationType = FIXED;
+
     if(isMain) {
-        input.setAttribute(VALUE_ATTRIBUTE, FIXED.toLowerCase());
+        input.setAttribute(VALUE_ATTRIBUTE, FIXED.toLowerCase()); //correct this, FUCKING LAZY MAN -__-
     }
 
     else {
+        locationType = MAIN;
         input.setAttribute(VALUE_ATTRIBUTE, MAIN);
     }
 
     form.appendChild(input);
 
-    input = document.createElement(INPUT_TAG);
+    input = document.createElement(BUTTON_TAG);
 
-    input.setAttribute(TYPE_ATTRIBUTE, SUBMIT_ATTRIBUTE);
+    //input.setAttribute(TYPE_ATTRIBUTE, SUBMIT_ATTRIBUTE);
 
     input.setAttribute(VALUE_ATTRIBUTE, "&#10004");
 
     input.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger");
+
+    input.onclick = sendQueryToMoveTaskServlet.bind(this, taskId, locationType);
 
     form.appendChild(input);
 
@@ -274,8 +304,11 @@ function fileNameTableData(taskId, fileName, taskName) {
     var td = document.createElement(TD_TAG);
     var button = document.createElement(BUTTON_TAG);
 
+    button.setAttribute(ID_ATTRIBUTE, taskName + ";" + fileName);
+
     button.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger");
-    button.setAttribute(ONCLICK_ATTRIBUTE,"drawModalWindows("+taskId+",'"+fileName+"',"+taskName+")");
+
+    button.setAttribute(ONCLICK_ATTRIBUTE,"drawModalWindows("+taskId+",'"+fileName+"','"+taskName+"')");
 
     button.innerHTML = fileName;
 
@@ -284,7 +317,7 @@ function fileNameTableData(taskId, fileName, taskName) {
     return td;
 }
 
-function throwTaskTabledata(taskId, isBasket) {
+function throwTaskTableData(taskId, isBasket) {
 
     var td = document.createElement(TD_TAG);
 
