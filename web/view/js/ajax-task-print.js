@@ -15,6 +15,7 @@ function printTaskTable(jsonObject) {
 
 }
 
+
 function drawTaskTable(tasks, taskType) {
     var isBasket = taskType === BASKET;
 
@@ -24,9 +25,14 @@ function drawTaskTable(tasks, taskType) {
 
     var taskTable = document.getElementById("taskTable");
 
-    var thead = tableHeader(taskType);
+    if (tasks.length !== 0){
+        var thead = tableHeader(taskType);
+        taskTable.appendChild(thead);
+    } else{
+       document.getElementById("tasksType").innerHTML = "";
+    }
 
-    taskTable.appendChild(thead);
+
 
     for (var counter in tasks) {
 
@@ -79,13 +85,17 @@ function tableHeader(taskType) {
     var thead = document.createElement("thead");
     var th = document.createElement("th");
 
-    th.innerHTML = 'complete';
+    if (taskType === 'FIXED' || taskType === 'BASKET'){
+        th.innerHTML = "restore";
+    } else{
+        th.innerHTML = 'complete';
+    }
 
     thead.appendChild(th);
 
     th = document.createElement("th");
 
-    th.innerHTML = 'description';
+    th.innerHTML = 'task name';
 
     thead.appendChild(th);
 
@@ -111,13 +121,15 @@ function tableHeader(taskType) {
 
         checkbox.setAttribute(ID_ATTRIBUTE,"checkAll");
 
-        checkbox.onclick = toggleAll.bind(this,this);
+        // checkbox.onchange = checkAll();
 
         th.appendChild(checkbox);
 
         var label = document.createElement(LABEL_TAG);
 
         label.setAttribute(FOR_ATTRIBUTE,"checkAll");
+
+        // label.onclick = checkAll();
 
         label.innerHTML = "check all";
 
@@ -127,7 +139,7 @@ function tableHeader(taskType) {
     } else {
         th = document.createElement("th");
 
-        th.innerHTML = 'delete';
+        th.innerHTML = 'throw';
 
         thead.appendChild(th);
     }
@@ -187,6 +199,12 @@ function descriptionSecondTableRow(taskName, description) {
 
     td.setAttribute(COLSPAN_ATTRIBUTE, 5);
 
+    var h5 = document.createElement(H5_TAG);
+
+    h5.innerHTML = "description: ";
+
+    td.appendChild(h5);
+
     var p = document.createElement("p");
 
     p.innerHTML = description;
@@ -196,6 +214,7 @@ function descriptionSecondTableRow(taskName, description) {
     var a = document.createElement(A_TAG);
 
     a.setAttribute(HREF_ATTRIBUTE, "#" + taskName + CHANGE_DESCRIPTION);
+    a.setAttribute(CLASS_ATTRIBUTE,"mr-3");
 
     a.innerHTML = CHANGE_DESCRIPTION_HREF;
 
@@ -204,6 +223,7 @@ function descriptionSecondTableRow(taskName, description) {
     a = document.createElement(A_TAG);
 
     a.setAttribute(HREF_ATTRIBUTE, "#" + taskName + CHANGE_NAME);
+    a.setAttribute(CLASS_ATTRIBUTE,"mr-3");
 
     a.innerHTML = CHANGE_NAME_HREF;
 
@@ -212,6 +232,7 @@ function descriptionSecondTableRow(taskName, description) {
     a = document.createElement(A_TAG);
 
     a.setAttribute(HREF_ATTRIBUTE, "#" + taskName + CHANGE_DATE);
+    a.setAttribute(CLASS_ATTRIBUTE,"mr-3");
 
     a.innerHTML = CHANGE_DATE_HREF;
 
@@ -368,7 +389,7 @@ function fileNameTableData(taskId, fileName, taskName) {
 
     button.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger");
 
-    button.onclick = drawModalWindows.bind(taskId, fileName, taskName);
+    button.onclick = drawModalWindows.bind(this,taskId, fileName, taskName);
 
     button.innerHTML = fileName;
 

@@ -42,9 +42,11 @@
             </div>
         </div>
         <div class="col-md-6" id="task">
-            <h5 class="my-0 font-weight-normal text-center" id="tasksType">
-                ${taskType}
-            </h5>
+            <c:if test="${not empty tasks}">
+                <h5 class="my-0 font-weight-normal text-center" id="tasksType">
+                        ${taskType}
+                </h5>
+            </c:if>
             <c:import url="/view/jsp/jspchunks/taskOutput.jsp"/>
         </div>
     </div>
