@@ -10,14 +10,20 @@ function removeTaskFromTable(jsonObject) {
 
     var taskTable = document.getElementById("taskTable");
 
-    var div = document.getElementById(taskId);
+    var tr = document.getElementsByName(taskId);
+
+    for(var i = 0; i<tr.length; i++) {
+     //   while(tr[i].firstChild) {
+    //        tr[i].removeChild(tr[i].firstChild);
+       // }
+        taskTable.removeChild(tr[i]);
+    }
+
 
     //div.innerHTML = "";
 
-    while(div.firstChild) {
-        div.removeChild(div.firstChild);
-    }
+    //
 
-    taskTable.removeChild(div);
+   // taskTable.removeChild(div);
 
 }
