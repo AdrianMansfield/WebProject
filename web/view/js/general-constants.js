@@ -36,11 +36,15 @@ var CHANGE_DESCRIPTION = "ChangeDescription";
 
 var CHANGE_NAME = "ChangeName";
 
+var CHANGE_DATE = "ChangeDate";
+
 var MODAL_DESCRIPTION = "modalDescription";
 
 var CHANGE_DESCRIPTION_HREF = "Change description";
 
 var CHANGE_NAME_HREF = "Change name";
+
+var CHANGE_DATE_HREF = "Change date";
 
 var CLOSE_HREF = "close";
 
@@ -59,6 +63,8 @@ var TASK_ID = "taskId";
 var INFO_TYPE = "infoType";
 
 var DESCRIPTION = "description";
+
+var TASK_ATTRIBUTE = "taskAttribute";
 
 var LOCATION_TYPE = "locationType";
 

@@ -33,6 +33,8 @@
 
             <c:import url="/view/jsp/jspchunks/table/changeNameRow.jsp"/>
 
+            <c:import url="/view/jsp/jspchunks/table/changeDateRow.jsp"/>
+
             <c:import url="/view/jsp/jspchunks/table/chooseFileAction.jsp"/>
 
             <c:import url="/view/jsp/jspchunks/table/uploadFile.jsp"/>

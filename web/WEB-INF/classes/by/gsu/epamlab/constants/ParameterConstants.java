@@ -12,6 +12,8 @@ public final class ParameterConstants {
 
     public static final String DATE_PARAMETER = "date";
 
+    public static final String TASK_ATTRIBUTE_PARAMETER = "taskAttribute";
+
     public static final String DESCRIPTION_PARAMETER = "description";
 
     public static final String LOCATION_TYPE_PARAMETER = "locationType";

@@ -55,9 +55,9 @@ function drawFileModalWindow(taskId, fileName, taskName) {
 
     input = document.createElement("input");
 
-    input.setAttribute("type", "hidden");
-    input.setAttribute("name", "taskNames");
-    input.setAttribute("value", taskName);
+    input.setAttribute(TYPE_ATTRIBUTE, HIDDEN_ATTRIBUTE);
+    input.setAttribute(NAME_ATTRIBUTE, "taskNames");
+    input.setAttribute(VALUE_ATTRIBUTE, taskName);
 
     form.appendChild(input);
 

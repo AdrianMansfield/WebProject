@@ -54,13 +54,19 @@ function drawTaskTable(tasks, taskType) {
 
         taskTable.appendChild(tr);
 
-        tr = changeTaskInfoSecondRow(taskId, description, taskName + CHANGE_DESCRIPTION);
+        tr = changeTaskInfoSecondRow('description',taskId, description, taskName + CHANGE_DESCRIPTION);
 
         tr.setAttribute(NAME_ATTRIBUTE, taskId);
 
         taskTable.appendChild(tr);
 
-        tr = changeTaskInfoSecondRow(taskId, taskName, taskName + CHANGE_NAME);
+        tr = changeTaskInfoSecondRow('name',taskId, taskName, taskName + CHANGE_NAME);
+
+        tr.setAttribute(NAME_ATTRIBUTE, taskId);
+
+        taskTable.appendChild(tr);
+
+        tr = changeTaskInfoSecondRow('date',taskId, date, taskName + CHANGE_DATE);
 
         tr.setAttribute(NAME_ATTRIBUTE, taskId);
 
@@ -187,7 +193,7 @@ function descriptionSecondTableRow(taskName, description) {
 
     td.appendChild(p);
 
-    var a = document.createElement("a");
+    var a = document.createElement(A_TAG);
 
     a.setAttribute(HREF_ATTRIBUTE, "#" + taskName + CHANGE_DESCRIPTION);
 
@@ -200,6 +206,14 @@ function descriptionSecondTableRow(taskName, description) {
     a.setAttribute(HREF_ATTRIBUTE, "#" + taskName + CHANGE_NAME);
 
     a.innerHTML = CHANGE_NAME_HREF;
+
+    td.appendChild(a);
+
+    a = document.createElement(A_TAG);
+
+    a.setAttribute(HREF_ATTRIBUTE, "#" + taskName + CHANGE_DATE);
+
+    a.innerHTML = CHANGE_DATE_HREF;
 
     td.appendChild(a);
 
@@ -218,7 +232,7 @@ function descriptionSecondTableRow(taskName, description) {
     return tr;
 }
 
-function changeTaskInfoSecondRow(taskId, taskInfo, formId) {
+function changeTaskInfoSecondRow(attributeName, taskId, taskInfo, formId) {
 
     var tr = document.createElement(TR_TAG);
 
@@ -252,7 +266,7 @@ function changeTaskInfoSecondRow(taskId, taskInfo, formId) {
 
     input.setAttribute(NAME_ATTRIBUTE, INFO_TYPE);
 
-    input.setAttribute(VALUE_ATTRIBUTE, DESCRIPTION);
+    input.setAttribute(VALUE_ATTRIBUTE, attributeName);
 
     form.appendChild(input);
 
@@ -264,7 +278,7 @@ function changeTaskInfoSecondRow(taskId, taskInfo, formId) {
 
     var textarea = document.createElement(TEXTAREA_TAG);
 
-    textarea.setAttribute(NAME_ATTRIBUTE, DESCRIPTION);
+    textarea.setAttribute(NAME_ATTRIBUTE, TASK_ATTRIBUTE);
 
     textarea.innerHTML = taskInfo;
 
