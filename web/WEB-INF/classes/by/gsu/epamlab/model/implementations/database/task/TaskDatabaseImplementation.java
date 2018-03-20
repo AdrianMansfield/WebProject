@@ -173,12 +173,12 @@ public final class TaskDatabaseImplementation implements ITaskDAO {
     }
 
     @Override
-    public void changeTaskInfo(String taskId, String infoType, String description) throws DaoException {
+    public void changeTaskInfo(String taskId, String infoType, String taskAttribute) throws DaoException {
         try(Connection connection = DatabaseConnection.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(TaskInfoChangeType.valueOf(infoType).getChangeTaskInfoQuery())){
             preparedStatement.setString(TaskInfoChangeConstants.ID_INDEX, taskId);
-            preparedStatement.setString(TaskInfoChangeConstants.TASK_INFO_INDEX, description);
-            System.out.println(description);
+            preparedStatement.setString(TaskInfoChangeConstants.TASK_INFO_INDEX, taskAttribute);
+            System.out.println(taskAttribute);
             preparedStatement.executeUpdate();
         } catch (SQLException e){
             throw new DaoException(e);

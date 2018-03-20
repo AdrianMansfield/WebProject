@@ -5,6 +5,7 @@
         <p>${description}</p>
         <a href="#${taskName}ChangeDescription">Change description</a>
         <a href="#${taskName}ChangeName">Change name</a>
+        <a href="#${taskName}ChangeDate">Change date</a>
         <a href="#" class="btn">close</a>
     </td>
 </tr>

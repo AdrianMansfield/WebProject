@@ -20,7 +20,7 @@ public interface ITaskDAO {
 
     Task getTaskById(String userId, String taskId) throws DaoException;
 
-    void changeTaskInfo(String taskId, String infoType, String description) throws DaoException;
+    void changeTaskInfo(String taskId, String infoType, String taskAttribute) throws DaoException;
 
     //void updateFilesName(String userId, List<Task> taskList) throws DaoException;
 }

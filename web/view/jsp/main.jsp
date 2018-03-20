@@ -18,7 +18,6 @@
     <script src="../../view/js/remove-all-elements-from-table.js"></script>
     <script src="../../view/js/new-xml-http-request.js"></script>
     <script src="../../view/js/send-request.js"></script>
-    <script src="../../view/js/ajax-delete-task.js"></script> <!-- ATTENTION -->
     <script src="../../view/js/ajax-task-print.js"></script>
     <script src="../../view/js/get-checked-checkbox.js"></script>
     <script src="../../view/js/ajax-move-task.js"></script>
@@ -43,7 +42,7 @@
             </div>
         </div>
         <div class="col-md-6" id="task">
-            <h5 class="my-0 font-weight-normal text-center">
+            <h5 class="my-0 font-weight-normal text-center" id="tasksType">
                 ${taskType}
             </h5>
             <c:import url="/view/jsp/jspchunks/taskOutput.jsp"/>

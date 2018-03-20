@@ -10,22 +10,7 @@
         <c:set var="isMain" value="${!isBasket && !isFixed}" scope="request"/>
         <c:set var="isSomeday" value="SOMEDAY" scope="request"/>
 
-        <thead>
-            <th>complete</th>
-
-            <th>description</th>
-
-            <th>file</th>
-
-            <th>delete</th>
-
-            <c:if test="${taskType eq 'SOMEDAY'}">
-
-                <th>date</th>
-
-            </c:if>
-
-        </thead>
+        <c:import url="/view/jsp/jspchunks/table/tableHeader.jsp"/>
 
         <tbody>
 
@@ -47,6 +32,8 @@
             <c:import url="/view/jsp/jspchunks/table/changeDescriptionRow.jsp"/>
 
             <c:import url="/view/jsp/jspchunks/table/changeNameRow.jsp"/>
+
+            <c:import url="/view/jsp/jspchunks/table/changeDateRow.jsp"/>
 
             <c:import url="/view/jsp/jspchunks/table/chooseFileAction.jsp"/>
 

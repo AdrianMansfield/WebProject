@@ -1,23 +1,19 @@
-/*function moveTaskResponseHandler() {
-    if(xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200) {
-        var data = xmlHttpRequest.responseText;
-        deleteTaskFromTable(JSON.parse(data));
-    }
+function sendQueryToMoveTaskServlet(taskId, locationType) {
+    var xmlHttpRequest = newXMLHttpRequest();
+    sendRequest(xmlHttpRequest, POST_METHOD, removeTaskFromTable, MOVE_TASK_SERVLET, makeRequestBody(TASK_ID, taskId, LOCATION_TYPE, locationType));
+//xmlHttpRequest.close();
+    return false;
 }
 
-function sendQueryToMoveTaskServlet(value) {
-    var checkBoxes = getCheckedCheckBoxes("deleteTaskCheck");
-    var query = "";
-    for(var i = 0; i<checkBoxes.length; i++)
-        query += makeRequestBody("deleteTaskCheck", checkBoxes[i]);
-    sendQuery(POST_METHOD,moveTaskResponseHandler,"/MoveTaskServlet",
-        query + makeRequestBody("typeLocation", value));
-}
-
-function deleteTaskFromTable(jsonObject) {
+function removeTaskFromTable(jsonObject) {
     var taskId = jsonObject.taskId;
 
-    var tr = document.getElementById(taskId);
-    taskTable.removeChild(tr);
+    var taskTable = document.getElementById("taskTable");
 
-}*/
+    var tr = document.getElementsByName(taskId);
+
+    for(var i = 0; i<tr.length; i++) {
+        taskTable.removeChild(tr[i]);
+    }
+
+}
