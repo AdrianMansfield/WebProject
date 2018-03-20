@@ -1,4 +1,4 @@
-function moveTaskResponseHandler() {
+/*function moveTaskResponseHandler() {
     if(xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200) {
         var data = xmlHttpRequest.responseText;
         deleteTaskFromTable(JSON.parse(data));
@@ -20,4 +20,4 @@ function deleteTaskFromTable(jsonObject) {
     var tr = document.getElementById(taskId);
     taskTable.removeChild(tr);
 
-}
+}*/

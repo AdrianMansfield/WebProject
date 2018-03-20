@@ -1,23 +1,24 @@
 modalWindowType = {};
 
-modalWindowType[true] = drawNo_FileModalWindow;
-modalWindowType[false] = drawFileModalWindow;
+modalWindowType[true] = drawFileModalWindow;
+modalWindowType[false] = drawNoFileModalWindow;
 
 
 function drawModalWindows(taskId, fileName, taskName) {
+
     var isFileExist = fileName !== NO_FILE;
 
     modalWindowType[isFileExist](taskId, fileName, taskName);
 }
 
 
-function drawNo_FileModalWindow(taskId, fileName, taskName) {
+function drawFileModalWindow(taskId, fileName, taskName) {
 
     var aside = document.createElement(ASIDE_TAG);
     var fileModalWindow = document.getElementById(FILE_MODAL_WINDOW);
 
     aside.setAttribute(CLASS_ATTRIBUTE,JS_MODAL_WINDOW);
-    aside.setAttribute(ID_ATTRIBUTE,taskId);
+    //aside.setAttribute(ID_ATTRIBUTE,taskId);
 
     var header = document.createElement(HEADER_TAG);
     var h2 = document.createElement(H2_TAG);
@@ -39,10 +40,10 @@ function drawNo_FileModalWindow(taskId, fileName, taskName) {
 
     var form = document.createElement(FORM_ATTRIBUTE);
 
-    form.setAttribute(ID_ATTRIBUTE,FILE_FORM);
-    form.setAttribute(ACTION_ATTRIBUTE,DOWNLOAD_FILE_SERVLET);
-    form.setAttribute(METHOD_ATTRIBUTE,POST_METHOD);
-    form.setAttribute(CLASS_ATTRIBUTE,"mb-0");
+    form.setAttribute(ID_ATTRIBUTE, FILE_FORM);
+    form.setAttribute(ACTION_ATTRIBUTE, DOWNLOAD_FILE_SERVLET);
+    form.setAttribute(METHOD_ATTRIBUTE, POST_METHOD);
+    form.setAttribute(CLASS_ATTRIBUTE, "mb-0");
 
     var input = document.createElement(INPUT_TAG);
 
@@ -54,30 +55,30 @@ function drawNo_FileModalWindow(taskId, fileName, taskName) {
 
     input = document.createElement("input");
 
-    input.setAttribute("type","hidden");
-    input.setAttribute("name","taskNames");
-    input.setAttribute("value",taskName);
+    input.setAttribute("type", "hidden");
+    input.setAttribute("name", "taskNames");
+    input.setAttribute("value", taskName);
 
     form.appendChild(input);
 
     input = document.createElement(INPUT_TAG);
 
-    input.setAttribute(TYPE_ATTRIBUTE,HIDDEN_ATTRIBUTE);
-    input.setAttribute(NAME_ATTRIBUTE,FILE_NAMES);
-    input.setAttribute(VALUE_ATTRIBUTE,fileName.replace('_',' '));
+    input.setAttribute(TYPE_ATTRIBUTE, HIDDEN_ATTRIBUTE);
+    input.setAttribute(NAME_ATTRIBUTE, FILE_NAMES);
+    input.setAttribute(VALUE_ATTRIBUTE, fileName.replace('_',' '));
 
     form.appendChild(input);
     div.appendChild(form);
 
     var colFirstDiv = document.createElement(DIV_TAG);
 
-    colFirstDiv.setAttribute(CLASS_ATTRIBUTE,"col");
+    colFirstDiv.setAttribute(CLASS_ATTRIBUTE, "col");
 
     var downloadButton = document.createElement(BUTTON_TAG);
 
-    downloadButton.setAttribute(FORM_ATTRIBUTE,FILE_FORM);
-    downloadButton.setAttribute(FORMACTION_ATTRIBUTE,DOWNLOAD_FILE_SERVLET);
-    downloadButton.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger");
+    downloadButton.setAttribute(FORM_ATTRIBUTE, FILE_FORM);
+    downloadButton.setAttribute(FORMACTION_ATTRIBUTE, DOWNLOAD_FILE_SERVLET);
+    downloadButton.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger");
 
     downloadButton.innerHTML = "Download";
 
@@ -86,12 +87,12 @@ function drawNo_FileModalWindow(taskId, fileName, taskName) {
 
     var colSecondDiv = document.createElement("div");
 
-    colSecondDiv.setAttribute(CLASS_ATTRIBUTE,"col");
+    colSecondDiv.setAttribute(CLASS_ATTRIBUTE, "col");
 
     var deleteButton = document.createElement(BUTTON_TAG);
 
-    deleteButton.setAttribute(FORM_ATTRIBUTE,FILE_FORM);
-    deleteButton.setAttribute(FORMACTION_ATTRIBUTE,DELETE_FILE_SERVLET);
+    deleteButton.setAttribute(FORM_ATTRIBUTE, FILE_FORM);
+    deleteButton.setAttribute(FORMACTION_ATTRIBUTE, DELETE_FILE_SERVLET);
     deleteButton.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger");
 
     deleteButton.innerHTML = DELETE;
@@ -103,7 +104,7 @@ function drawNo_FileModalWindow(taskId, fileName, taskName) {
 
     var footer = document.createElement(FOOTER_TAG);
 
-    footer.setAttribute(CLASS_ATTRIBUTE,FOOTER_TAG);
+    footer.setAttribute(CLASS_ATTRIBUTE, FOOTER_TAG);
 
     var closeButton = document.createElement(BUTTON_TAG);
 
@@ -117,13 +118,13 @@ function drawNo_FileModalWindow(taskId, fileName, taskName) {
     fileModalWindow.appendChild(aside);
 }
 
-function drawFileModalWindow(taskId, fileName, taskName) {
+function drawNoFileModalWindow(taskId, fileName, taskName) {
 
     var aside = document.createElement(ASIDE_TAG);
     var fileModalWindow = document.getElementById(FILE_MODAL_WINDOW);
 
-    aside.setAttribute(CLASS_ATTRIBUTE,JS_MODAL_WINDOW);
-    aside.setAttribute(ID_ATTRIBUTE,taskId);
+    aside.setAttribute(CLASS_ATTRIBUTE, JS_MODAL_WINDOW);
+    //aside.setAttribute(ID_ATTRIBUTE, taskId);
 
     var header = document.createElement(HEADER_TAG);
     var h2 = document.createElement(H2_TAG);
@@ -136,31 +137,32 @@ function drawFileModalWindow(taskId, fileName, taskName) {
     var section = document.createElement(SECTION_TAG);
     var form = document.createElement(FORM_ATTRIBUTE);
 
-    form.setAttribute(ACTION_ATTRIBUTE,UPLOAD_FILE_SERVLET);
-    form.setAttribute(METHOD_ATTRIBUTE,POST_METHOD);
+    form.setAttribute(ACTION_ATTRIBUTE, UPLOAD_FILE_SERVLET);
+    form.setAttribute(METHOD_ATTRIBUTE, POST_METHOD);
     form.setAttribute(ECTYPE,MULTIPART);
-    form.setAttribute(CLASS_ATTRIBUTE,"mb-0");
+    form.setAttribute(CLASS_ATTRIBUTE, "mb-0");
+    form.setAttribute(ID_ATTRIBUTE, "uploadFile");
 
     var input = document.createElement(INPUT_TAG);
 
-    input.setAttribute(TYPE_ATTRIBUTE,HIDDEN_ATTRIBUTE);
-    input.setAttribute(NAME_ATTRIBUTE,TASK_NAME);
-    input.setAttribute(VALUE_ATTRIBUTE,taskName);
+    input.setAttribute(TYPE_ATTRIBUTE, HIDDEN_ATTRIBUTE);
+    input.setAttribute(NAME_ATTRIBUTE, TASK_NAME);
+    input.setAttribute(VALUE_ATTRIBUTE, taskName);
 
     form.appendChild(input);
 
     input = document.createElement(INPUT_TAG);
-    input.setAttribute(NAME_ATTRIBUTE,FILE);
-    input.setAttribute(TYPE_ATTRIBUTE,FILE);
-    input.setAttribute(VALUE_ATTRIBUTE,UPLOAD);
-    input.setAttribute(CLASS_ATTRIBUTE,"form-control-file mb-1");
+    input.setAttribute(NAME_ATTRIBUTE, FILE);
+    input.setAttribute(NAME_ATTRIBUTE, FILE);
+    input.setAttribute(VALUE_ATTRIBUTE, UPLOAD);
+    input.setAttribute(CLASS_ATTRIBUTE, "form-control-file mb-1");
 
     form.appendChild(input);
 
     input = document.createElement(INPUT_TAG);
-    input.setAttribute(TYPE_ATTRIBUTE,SUBMIT_ATTRIBUTE);
-    input.setAttribute(VALUE_ATTRIBUTE,UPLOAD);
-    input.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger btn-sm");
+    input.setAttribute(TYPE_ATTRIBUTE, SUBMIT_ATTRIBUTE);
+    input.setAttribute(VALUE_ATTRIBUTE, UPLOAD);
+    input.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger btn-sm");
 
     form.appendChild(input);
 
@@ -169,12 +171,12 @@ function drawFileModalWindow(taskId, fileName, taskName) {
 
     var footer = document.createElement(FOOTER_TAG);
 
-    footer.setAttribute(CLASS_ATTRIBUTE,FOOTER_TAG);
+    footer.setAttribute(CLASS_ATTRIBUTE, FOOTER_TAG);
 
     var closeButton = document.createElement(BUTTON_TAG);
 
-    closeButton.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger");
-    closeButton.setAttribute(ONCLICK_ATTRIBUTE,"closeModalWindow();");
+    closeButton.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger");
+    closeButton.setAttribute(ONCLICK_ATTRIBUTE, "closeModalWindow();");
 
     closeButton.innerHTML = CLOSE_HREF;
 
