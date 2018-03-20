@@ -22,6 +22,8 @@ function drawTaskTable(tasks, taskType) {
 
     var isMain = !isBasket && !isFixed;
 
+    var  taskTable = document.getElementById("taskTable");
+
     for(var counter in tasks) {
 
         var taskId = tasks[counter].taskId;
@@ -36,27 +38,35 @@ function drawTaskTable(tasks, taskType) {
 
         var fileExists = fileName !== NO_FILE; // use this, Andrew ^__^
 
-        var div = document.createElement("div");
+        //var div = document.createElement("div");
 
-        div.setAttribute(ID_ATTRIBUTE, taskId);
+        //taskTable.setAttribute(ID_ATTRIBUTE, taskId);
 
         var tr = firstTableRow(taskId, taskName, fileName, isMain, isBasket, taskType, date);
 
-        div.appendChild(tr);
+        tr.setAttribute(NAME_ATTRIBUTE, taskId);
+
+        taskTable.appendChild(tr);
 
         tr = descriptionSecondTableRow(taskName, description);
 
-        div.appendChild(tr);
+        tr.setAttribute(NAME_ATTRIBUTE, taskId);
+
+        taskTable.appendChild(tr);
 
         tr = changeTaskInfoSecondRow(taskId, description, taskName + CHANGE_DESCRIPTION);
 
-        div.appendChild(tr);
+        tr.setAttribute(NAME_ATTRIBUTE, taskId);
+
+        taskTable.appendChild(tr);
 
         tr = changeTaskInfoSecondRow(taskId, taskName, taskName + CHANGE_NAME);
 
-        div.appendChild(tr);
+        tr.setAttribute(NAME_ATTRIBUTE, taskId);
 
-        taskTable.appendChild(div);
+        taskTable.appendChild(tr);
+
+       // taskTable.appendChild(div);
 
 
     }
