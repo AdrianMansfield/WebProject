@@ -15,6 +15,7 @@ function printTaskTable(jsonObject) {
 
 }
 
+
 function drawTaskTable(tasks, taskType) {
     var isBasket = taskType === BASKET;
 
@@ -24,9 +25,14 @@ function drawTaskTable(tasks, taskType) {
 
     var taskTable = document.getElementById("taskTable");
 
-    var thead = tableHeader(taskType);
+    if (tasks.length !== 0){
+        var thead = tableHeader(taskType);
+        taskTable.appendChild(thead);
+    } else{
+       document.getElementById("tasksType").innerHTML = "";
+    }
 
-    taskTable.appendChild(thead);
+
 
     for (var counter in tasks) {
 
@@ -115,13 +121,15 @@ function tableHeader(taskType) {
 
         checkbox.setAttribute(ID_ATTRIBUTE,"checkAll");
 
-        checkbox.onclick = toggleAll.bind(this,this);
+        // checkbox.onchange = checkAll();
 
         th.appendChild(checkbox);
 
         var label = document.createElement(LABEL_TAG);
 
         label.setAttribute(FOR_ATTRIBUTE,"checkAll");
+
+        // label.onclick = checkAll();
 
         label.innerHTML = "check all";
 

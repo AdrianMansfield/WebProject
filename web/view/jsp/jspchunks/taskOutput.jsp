@@ -10,7 +10,10 @@
         <c:set var="isMain" value="${!isBasket && !isFixed}" scope="request"/>
         <c:set var="isSomeday" value="SOMEDAY" scope="request"/>
 
-        <c:import url="/view/jsp/jspchunks/table/tableHeader.jsp"/>
+        <c:if test="${not empty tasks}">
+            <c:import url="/view/jsp/jspchunks/table/tableHeader.jsp"/>
+        </c:if>
+
 
         <tbody>
 
