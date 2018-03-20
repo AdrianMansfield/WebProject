@@ -1,7 +1,7 @@
 modalWindowType = {};
 
-modalWindowType[false] = drawFileModalWindow;
-modalWindowType[true] = drawNoFileModalWindow;
+modalWindowType[true] = drawFileModalWindow;
+modalWindowType[false] = drawNoFileModalWindow;
 
 
 function drawModalWindows(taskId, fileName, taskName) {
