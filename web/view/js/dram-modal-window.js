@@ -1,7 +1,7 @@
 modalWindowType = {};
 
-modalWindowType[true] = drawFileModalWindow;
-modalWindowType[false] = drawNoFileModalWindow;
+modalWindowType[false] = drawFileModalWindow;
+modalWindowType[true] = drawNoFileModalWindow;
 
 
 function drawModalWindows(taskId, fileName, taskName) {
@@ -153,7 +153,7 @@ function drawNoFileModalWindow(taskId, fileName, taskName) {
 
     input = document.createElement(INPUT_TAG);
     input.setAttribute(NAME_ATTRIBUTE, FILE);
-    input.setAttribute(NAME_ATTRIBUTE, FILE);
+    input.setAttribute(TYPE_ATTRIBUTE, FILE);
     input.setAttribute(VALUE_ATTRIBUTE, UPLOAD);
     input.setAttribute(CLASS_ATTRIBUTE, "form-control-file mb-1");
 
