@@ -54,7 +54,8 @@ function sendPostWithFileRequest(xmlHttpRequest, servletUrl, query) {
 
 function makeRequestBody() {
 
-    var query = FROM_NAME_PARAMETER + EQUAL_SIGN + FROM_VALUE_PARAMETER;
+    var query = FROM_NAME_PARAMETER + EQUAL_SIGN + encodeURIComponent(FROM_VALUE_PARAMETER);
+
     for(var i = 0; i<arguments.length; i++) {
         var name = arguments[i++];
         var value = arguments[i];
@@ -62,4 +63,31 @@ function makeRequestBody() {
     }
 
     return query;
+}
+
+
+function makeFormData() {
+
+    var formData = new FormData();
+
+    formData.append(FROM_NAME_PARAMETER, FROM_VALUE_PARAMETER);
+
+    for(var i = 0; i<arguments.length; i++) {
+        var name = arguments[i++];
+        var value = arguments[i];
+        formData.append(name, value);
+    }
+
+    return formData;
+}
+
+function makeRequestBodyForArray(name, values) {
+    var query = FROM_NAME_PARAMETER + EQUAL_SIGN + encodeURIComponent(FROM_VALUE_PARAMETER);
+
+    for(var i = 0; i<values.length; i++) {
+        query += AMPERSAND_CHARACTER + name + EQUAL_SIGN + encodeURIComponent(values[i]);
+    }
+
+    return query;
+
 }

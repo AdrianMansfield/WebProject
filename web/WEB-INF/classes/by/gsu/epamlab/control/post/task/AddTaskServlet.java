@@ -9,6 +9,7 @@ import by.gsu.epamlab.model.factories.TaskDAOFactory;
 import by.gsu.epamlab.control.post.AbstractNonGetController;
 import by.gsu.epamlab.exceptions.DaoException;
 import by.gsu.epamlab.model.interfaces.ITaskDAO;
+import org.json.simple.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,7 @@ public class AddTaskServlet extends AbstractNonGetController {
     protected void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
 
-            String connectionType = request.getParameter(ParameterConstants.AJAX_PARAMETER);
+            String connectionType = request.getParameter(ParameterConstants.FROM_PARAMETER);
 
             String taskType = request.getParameter(ParameterConstants.TASK_TYPE_PARAMETER);
 
@@ -50,7 +51,10 @@ public class AddTaskServlet extends AbstractNonGetController {
 
             if(ParameterConstants.AJAX_PARAMETER.equals(connectionType)) {
                 task = iTaskDAO.getTaskByName(userId, taskName);
-                //Correct----------------------------------------------------
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("task", task.toJson());
+                jsonObject.put(ParameterConstants.TASK_TYPE_PARAMETER, taskType);
+                response.getWriter().write(jsonObject.toJSONString());
             }
             else {
                 sendRedirectToPrintTaskServlet(request, response);

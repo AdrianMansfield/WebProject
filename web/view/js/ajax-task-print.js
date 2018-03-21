@@ -1,10 +1,6 @@
 function sendQueryToPrintTaskServlet(value) {
     var xmlHttpRequest = newXMLHttpRequest();
     sendRequest(xmlHttpRequest, GET_METHOD, printTaskTable, PRINT_TASK_SERVLET, makeRequestBody(TASK_TYPE, value));
-    // var tasksTypeHeader = document.getElementById("tasksType"); // It is pizdec
-    // if(tasksTypeHeader) {
-    //     tasksTypeHeader.innerHTML = value;
-    // }
 
     //xmlHttpRequest.close();
 }
@@ -33,52 +29,77 @@ function drawTaskTable(tasks, taskType) {
         taskTable.appendChild(thead);
     }
 
+    var p = document.createElement("p");
 
+    p.setAttribute(ID_ATTRIBUTE, "sectionName"); //Correct. We need header, Andrew
+
+    p.setAttribute(NAME_ATTRIBUTE, taskType);
+
+    taskTable.appendChild(p);
 
     for (var counter in tasks) {
 
-        var taskId = tasks[counter].taskId;
+        printTask(tasks[counter], isMain, isBasket, taskType);
 
-        var taskName = tasks[counter].taskName;
 
-        var description = tasks[counter].description;
-
-        var fileName = tasks[counter].fileName;
-
-        var date = tasks[counter].date;
-
-        var fileExists = fileName !== NO_FILE; // use this, Andrew ^__^
-
-        var tr = firstTableRow(taskId, taskName, fileName, isMain, isBasket, taskType, date);
-
-        tr.setAttribute(NAME_ATTRIBUTE, taskId);
-
-        taskTable.appendChild(tr);
-
-        tr = descriptionSecondTableRow(taskName, description);
-
-        tr.setAttribute(NAME_ATTRIBUTE, taskId);
-
-        taskTable.appendChild(tr);
-
-        tr = changeTaskInfoSecondRow('description',taskId, description, taskName + CHANGE_DESCRIPTION);
-
-        tr.setAttribute(NAME_ATTRIBUTE, taskId);
-
-        taskTable.appendChild(tr);
-
-        tr = changeTaskInfoSecondRow('name',taskId, taskName, taskName + CHANGE_NAME);
-
-        tr.setAttribute(NAME_ATTRIBUTE, taskId);
-
-        taskTable.appendChild(tr);
-
-        tr = changeTaskInfoSecondRow('date',taskId, date, taskName + CHANGE_DATE);
-
-        tr.setAttribute(NAME_ATTRIBUTE, taskId);
-
-        taskTable.appendChild(tr);
     }
+
+    if(taskType === BASKET) {
+        var button = document.createElement(BUTTON_TAG);
+        button.setAttribute(FORM_ATTRIBUTE, DELETE);
+        button.innerHTML = DELETE;
+
+        var func = function () {
+            var values = getCheckedCheckBoxes(TASK_IDS);
+            sendRequestToDeleteTaskServlet(values);
+        };
+        button.addEventListener("click", func);
+        taskTable.appendChild(button);
+    }
+}
+
+function printTask(task, isMain, isBasket, taskType) {
+    var taskTable = document.getElementById("taskTable");
+
+    var taskId = task.taskId;
+
+    var taskName = task.taskName;
+
+    var description = task.description;
+
+    var fileName = task.fileName;
+
+    var date = task.date;
+
+    var tr = firstTableRow(taskId, taskName, fileName, isMain, isBasket, taskType, date);
+
+    tr.setAttribute(NAME_ATTRIBUTE, taskId);
+
+    taskTable.appendChild(tr);
+
+    tr = descriptionSecondTableRow(taskName, description);
+
+    tr.setAttribute(NAME_ATTRIBUTE, taskId);
+
+    taskTable.appendChild(tr);
+
+    tr = changeTaskInfoSecondRow('description', taskId, description, taskName + CHANGE_DESCRIPTION);
+
+    tr.setAttribute(NAME_ATTRIBUTE, taskId);
+
+    taskTable.appendChild(tr);
+
+    tr = changeTaskInfoSecondRow('name', taskId, taskName, taskName + CHANGE_NAME);
+
+    tr.setAttribute(NAME_ATTRIBUTE, taskId);
+
+    taskTable.appendChild(tr);
+
+    tr = changeTaskInfoSecondRow('date', taskId, date, taskName + CHANGE_DATE);
+
+    tr.setAttribute(NAME_ATTRIBUTE, taskId);
+
+    taskTable.appendChild(tr);
 }
 
 function tableHeader(taskType) {
@@ -411,58 +432,16 @@ function throwTaskTableData(taskId, isBasket) {
 
         button.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger");
 
-        button.onclick = sendQueryToPrintTaskServlet.bind(this, taskId, locationType); //think about it
+        button.onclick = sendQueryToMoveTaskServlet.bind(this, taskId, locationType); //think about it
 
         button.innerHTML = 'Throw';
 
         td.appendChild(button);
-
-        // var form = document.createElement("form");
-        //
-        // form.setAttribute(ACTION_ATTRIBUTE, MOVE_TASK_SERVLET);
-        //
-        // form.setAttribute(ID_ATTRIBUTE, TASK_FORM); // HM....
-        //
-        // form.setAttribute(METHOD_ATTRIBUTE, POST_METHOD);
-        //
-        // form.setAttribute(CLASS_ATTRIBUTE, "mb-0");
-        //
-        // var input = document.createElement(INPUT_TAG);
-        //
-        // input.setAttribute(TYPE_ATTRIBUTE, HIDDEN_ATTRIBUTE);
-        //
-        // input.setAttribute(NAME_ATTRIBUTE, TASK_ID);
-        //
-        // input.setAttribute(VALUE_ATTRIBUTE, taskId);
-        //
-        // form.appendChild(input);
-        //
-        // input = document.createElement(INPUT_TAG);
-        //
-        // input.setAttribute(TYPE_ATTRIBUTE, HIDDEN_ATTRIBUTE);
-        //
-        // input.setAttribute(NAME_ATTRIBUTE, LOCATION_TYPE);
-        //
-        // input.setAttribute(VALUE_ATTRIBUTE, BASKET.toLowerCase());
-        //
-        // form.appendChild(input);
-        //
-        // input = document.createElement(INPUT_TAG);
-        //
-        // input.setAttribute(TYPE_ATTRIBUTE, SUBMIT_ATTRIBUTE);
-        //
-        // input.setAttribute(VALUE_ATTRIBUTE, "&#10006");
-        //
-        // input.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger");
-        //
-        // form.appendChild(input);
-        //
-        // td.appendChild(form);
     }
 
     else {
 
-        input = document.createElement(INPUT_TAG);
+        var input = document.createElement(INPUT_TAG);
 
         input.setAttribute(TYPE_ATTRIBUTE, CHECKBOX_TAG);
 
