@@ -11,6 +11,12 @@ table td label{
     height: 100%;
 }
 
+table td:nth-child(3) button{
+    width: 25rem;
+    word-break: break-all !important;
+    white-space: normal !important;
+}
+
 .table-container label{
     width: 100%;
     cursor: pointer;

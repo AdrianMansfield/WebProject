@@ -48,14 +48,6 @@ function drawFileModalWindow(/*taskId,*/ fileName, taskName) {
     form.setAttribute(CLASS_ATTRIBUTE, "mb-0");
 
     var input = document.createElement(INPUT_TAG);
-/*
-    input.setAttribute(TYPE_ATTRIBUTE,HIDDEN_ATTRIBUTE);
-    input.setAttribute(NAME_ATTRIBUTE,TASK_ID);
-    input.setAttribute(VALUE_ATTRIBUTE,taskId); */
-
-    // form.appendChild(input);
-    //
-    // input = document.createElement("input");
 
     input.setAttribute(TYPE_ATTRIBUTE, HIDDEN_ATTRIBUTE);
     input.setAttribute(NAME_ATTRIBUTE, "taskNames");
@@ -126,7 +118,6 @@ function drawNoFileModalWindow(/*taskId,*/ fileName, taskName) {
     var fileModalWindow = document.getElementById(FILE_MODAL_WINDOW);
 
     aside.setAttribute(CLASS_ATTRIBUTE, JS_MODAL_WINDOW);
-    //aside.setAttribute(ID_ATTRIBUTE, taskId);
 
     var header = document.createElement(HEADER_TAG);
     var h2 = document.createElement(H2_TAG);

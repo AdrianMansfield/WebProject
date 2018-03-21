@@ -29,13 +29,13 @@ function drawTaskTable(tasks, taskType) {
         taskTable.appendChild(thead);
     }
 
-    var p = document.createElement("p");
-
-    p.setAttribute(ID_ATTRIBUTE, "sectionName"); //Correct. We need header, Andrew
-
-    p.setAttribute(NAME_ATTRIBUTE, taskType);
-
-    taskTable.appendChild(p);
+    // var p = document.createElement("p");
+    //
+    // p.setAttribute(ID_ATTRIBUTE, "sectionName"); //Correct. We need header, Andrew
+    //
+    // p.setAttribute(NAME_ATTRIBUTE, taskType);
+    //
+    // taskTable.appendChild(p);
 
     for (var counter in tasks) {
 
@@ -83,19 +83,19 @@ function printTask(task, isMain, isBasket, taskType) {
 
     taskTable.appendChild(tr);
 
-    tr = changeTaskInfoSecondRow('description', taskId, description, taskName + CHANGE_DESCRIPTION);
+    tr = changeTaskInfoSecondRow('description', taskId, description, taskName + CHANGE_DESCRIPTION, taskName);
 
     tr.setAttribute(NAME_ATTRIBUTE, taskId);
 
     taskTable.appendChild(tr);
 
-    tr = changeTaskInfoSecondRow('name', taskId, taskName, taskName + CHANGE_NAME);
+    tr = changeTaskInfoSecondRow('name', taskId, taskName, taskName + CHANGE_NAME, taskName);
 
     tr.setAttribute(NAME_ATTRIBUTE, taskId);
 
     taskTable.appendChild(tr);
 
-    tr = changeTaskInfoSecondRow('date', taskId, date, taskName + CHANGE_DATE);
+    tr = changeTaskInfoSecondRow('date', taskId, date, taskName + CHANGE_DATE, taskName);
 
     tr.setAttribute(NAME_ATTRIBUTE, taskId);
 
@@ -161,11 +161,12 @@ function tableHeader(taskType) {
     } else {
         th = document.createElement("th");
 
-        th.innerHTML = 'delete';
+        th.innerHTML = 'to basket';
 
         thead.appendChild(th);
     }
 
+    // var thead = drawTableHeader(taskType);
     return thead;
 }
 
@@ -275,7 +276,7 @@ function descriptionSecondTableRow(taskName, description) {
     return tr;
 }
 
-function changeTaskInfoSecondRow(attributeName, taskId, taskInfo, formId) {
+function changeTaskInfoSecondRow(attributeName, taskId, taskInfo, formId, taskName) {
 
     var tr = document.createElement(TR_TAG);
 
@@ -323,15 +324,21 @@ function changeTaskInfoSecondRow(attributeName, taskId, taskInfo, formId) {
 
     textarea.setAttribute(NAME_ATTRIBUTE, TASK_ATTRIBUTE);
 
+    textarea.setAttribute(CLASS_ATTRIBUTE,"form-control");
+
     textarea.innerHTML = taskInfo;
 
     form.appendChild(textarea);
 
     input = document.createElement(INPUT_TAG);
 
-    input.setAttribute(TYPE_ATTRIBUTE, SUBMIT_ATTRIBUTE);
+    input.setAttribute(TYPE_ATTRIBUTE, BUTTON_TAG);
 
     input.setAttribute(CLASS_ATTRIBUTE, "btn btn-sm btn-outline-danger");
+
+    input.setAttribute(VALUE_ATTRIBUTE,"Change");
+
+    input.setAttribute(ONCLICK_ATTRIBUTE,"window.location.href='#"+taskName+"'");
 
     form.appendChild(input);
 
@@ -339,7 +346,7 @@ function changeTaskInfoSecondRow(attributeName, taskId, taskInfo, formId) {
 
     var a = document.createElement(A_TAG);
 
-    a.setAttribute(HREF_ATTRIBUTE, "#");
+    a.setAttribute(HREF_ATTRIBUTE, "#" + taskName);
 
     a.setAttribute(CLASS_ATTRIBUTE, "btn");
 
