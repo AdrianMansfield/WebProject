@@ -8,6 +8,8 @@ function drawModalWindows(/*taskId,*/ fileName, taskName) {
 
     var isFileExist = fileName !== NO_FILE;
 
+    document.getElementById("fileModalWindow").innerHTML = "";
+
     modalWindowType[isFileExist](/*taskId,*/ fileName, taskName);
 }
 
@@ -51,9 +53,9 @@ function drawFileModalWindow(/*taskId,*/ fileName, taskName) {
     input.setAttribute(NAME_ATTRIBUTE,TASK_ID);
     input.setAttribute(VALUE_ATTRIBUTE,taskId); */
 
-    form.appendChild(input);
-
-    input = document.createElement("input");
+    // form.appendChild(input);
+    //
+    // input = document.createElement("input");
 
     input.setAttribute(TYPE_ATTRIBUTE, HIDDEN_ATTRIBUTE);
     input.setAttribute(NAME_ATTRIBUTE, "taskNames");

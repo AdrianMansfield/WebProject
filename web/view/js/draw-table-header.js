@@ -1,0 +1,3 @@
+taskType = {}
+
+taskType[someday]
