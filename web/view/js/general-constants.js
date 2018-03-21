@@ -48,15 +48,15 @@ var CHANGE_DATE_HREF = "Change date";
 
 var CLOSE_HREF = "close";
 
-var CHANGE_TASK_INFO_SERVLET = "ChangeTaskInfoServlet";
+var CHANGE_TASK_INFO_SERVLET = "/ChangeTaskInfoServlet";
 
-var MOVE_TASK_SERVLET = "MoveTaskServlet";
+var MOVE_TASK_SERVLET = "/MoveTaskServlet";
 
-var DOWNLOAD_FILE_SERVLET = "DownloadFileServlet";
+var DOWNLOAD_FILE_SERVLET = "/DownloadFileServlet";
 
-var DELETE_FILE_SERVLET = "DeleteFileServlet";
+var DELETE_FILE_SERVLET = "/DeleteFileServlet";
 
-var UPLOAD_FILE_SERVLET = "UploadFileServlet";
+var UPLOAD_FILE_SERVLET = "/UploadFileServlet";
 
 var TASK_ID = "taskId";
 

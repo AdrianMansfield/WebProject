@@ -18,7 +18,8 @@
         Date: <input type="text" id="datepicker" class="form-control" name="date"
                      pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" data-valid-example="24.02.2018"
                      placeholder="dd.mm.yyyy"/>
-        <input type="submit" value="Add" class=" btn btn-outline-danger float-left btn-sm">
+        <input type="submit" value="Add" class=" btn btn-outline-danger float-left btn-sm"
+               onclick = "sendQueryToAddTaskServlet(taskType.value, taskName.value, description.value, date.value);return false;">
     </form>
 </div>
 </section>
