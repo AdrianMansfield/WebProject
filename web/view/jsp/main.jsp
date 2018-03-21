@@ -23,6 +23,8 @@
     <script src="../../view/js/ajax-move-task.js"></script>
     <script src="../../view/js/script.js"></script>
     <script src="../../view/js/dram-modal-window.js"></script>
+    <script src="../../view/js/ajax-add-task.js"></script>
+    <script src="../../view/js/ajax-upload-file.js"></script>
 </head>
 <body>
 <div class="d-flex flex-column flex-md-row align-items-center p-0 px-md-4 mb-1 navbar-inverse">

@@ -20,6 +20,9 @@ public class AddTaskServlet extends AbstractNonGetController {
     @Override
     protected void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+
+            String connectionType = request.getParameter(ParameterConstants.AJAX_PARAMETER);
+
             String taskType = request.getParameter(ParameterConstants.TASK_TYPE_PARAMETER);
 
             taskType = taskType.toUpperCase();
@@ -45,7 +48,13 @@ public class AddTaskServlet extends AbstractNonGetController {
                 return;
             }
 
-            sendRedirectToPrintTaskServlet(request, response);
+            if(ParameterConstants.AJAX_PARAMETER.equals(connectionType)) {
+                task = iTaskDAO.getTaskByName(userId, taskName);
+                //Correct----------------------------------------------------
+            }
+            else {
+                sendRedirectToPrintTaskServlet(request, response);
+            }
 
         } catch (DaoException e) {
             e.printStackTrace();

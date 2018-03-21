@@ -4,15 +4,15 @@ modalWindowType[true] = drawFileModalWindow;
 modalWindowType[false] = drawNoFileModalWindow;
 
 
-function drawModalWindows(taskId, fileName, taskName) {
+function drawModalWindows(/*taskId,*/ fileName, taskName) {
 
     var isFileExist = fileName !== NO_FILE;
 
-    modalWindowType[isFileExist](taskId, fileName, taskName);
+    modalWindowType[isFileExist](/*taskId,*/ fileName, taskName);
 }
 
 
-function drawFileModalWindow(taskId, fileName, taskName) {
+function drawFileModalWindow(/*taskId,*/ fileName, taskName) {
 
     var aside = document.createElement(ASIDE_TAG);
     var fileModalWindow = document.getElementById(FILE_MODAL_WINDOW);
@@ -46,10 +46,10 @@ function drawFileModalWindow(taskId, fileName, taskName) {
     form.setAttribute(CLASS_ATTRIBUTE, "mb-0");
 
     var input = document.createElement(INPUT_TAG);
-
+/*
     input.setAttribute(TYPE_ATTRIBUTE,HIDDEN_ATTRIBUTE);
     input.setAttribute(NAME_ATTRIBUTE,TASK_ID);
-    input.setAttribute(VALUE_ATTRIBUTE,taskId);
+    input.setAttribute(VALUE_ATTRIBUTE,taskId); */
 
     form.appendChild(input);
 
@@ -118,7 +118,7 @@ function drawFileModalWindow(taskId, fileName, taskName) {
     fileModalWindow.appendChild(aside);
 }
 
-function drawNoFileModalWindow(taskId, fileName, taskName) {
+function drawNoFileModalWindow(/*taskId,*/ fileName, taskName) {
 
     var aside = document.createElement(ASIDE_TAG);
     var fileModalWindow = document.getElementById(FILE_MODAL_WINDOW);
@@ -141,7 +141,6 @@ function drawNoFileModalWindow(taskId, fileName, taskName) {
     form.setAttribute(METHOD_ATTRIBUTE, POST_METHOD);
     form.setAttribute(ECTYPE,MULTIPART);
     form.setAttribute(CLASS_ATTRIBUTE, "mb-0");
-    form.setAttribute(ID_ATTRIBUTE, "uploadFile");
 
     var input = document.createElement(INPUT_TAG);
 
@@ -156,6 +155,7 @@ function drawNoFileModalWindow(taskId, fileName, taskName) {
     input.setAttribute(TYPE_ATTRIBUTE, FILE);
     input.setAttribute(VALUE_ATTRIBUTE, UPLOAD);
     input.setAttribute(CLASS_ATTRIBUTE, "form-control-file mb-1");
+    input.setAttribute(ID_ATTRIBUTE, "uploadFile"); ///
 
     form.appendChild(input);
 
@@ -163,6 +163,7 @@ function drawNoFileModalWindow(taskId, fileName, taskName) {
     input.setAttribute(TYPE_ATTRIBUTE, SUBMIT_ATTRIBUTE);
     input.setAttribute(VALUE_ATTRIBUTE, UPLOAD);
     input.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger btn-sm");
+    input.onclick = sendQueryToUploadFileServlet.bind(this, taskName);
 
     form.appendChild(input);
 
@@ -176,7 +177,7 @@ function drawNoFileModalWindow(taskId, fileName, taskName) {
     var closeButton = document.createElement(BUTTON_TAG);
 
     closeButton.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger");
-    closeButton.setAttribute(ONCLICK_ATTRIBUTE, "closeModalWindow();");
+    closeButton.setAttribute(ONCLICK_ATTRIBUTE, "closeModalWindow();"); //CORRECT
 
     closeButton.innerHTML = CLOSE_HREF;
 

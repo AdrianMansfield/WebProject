@@ -4,6 +4,8 @@ requestMethods[POST_METHOD] = sendPostRequest;
 
 requestMethods[GET_METHOD] = sendGetRequest;
 
+requestMethods[FILE] = sendPostWithFileRequest;
+
 function sendRequest(xmlHttpRequest, method, receivingFunction, servletUrl, query) {
 
 
@@ -34,6 +36,15 @@ function sendPostRequest(xmlHttpRequest, servletUrl, query) {
 
     xmlHttpRequest.setRequestHeader(HEADER_CONTENT_TYPE,
         HEADER_TEXT);
+
+    xmlHttpRequest.send(query);
+
+}
+
+
+function sendPostWithFileRequest(xmlHttpRequest, servletUrl, query) {
+
+    xmlHttpRequest.open(POST_METHOD, servletUrl, true);
 
     xmlHttpRequest.send(query);
 

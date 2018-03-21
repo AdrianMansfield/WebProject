@@ -133,6 +133,7 @@ public final class TaskDatabaseImplementation implements ITaskDAO {
                 taskPreparedStatement.setString(InsertTaskConstants.USER_ID_INDEX, userId);
                 taskPreparedStatement.setString(InsertTaskConstants.TASK_NAME_INDEX, task.getName());
                 taskPreparedStatement.setString(InsertTaskConstants.TASK_DESCRIPTION_INDEX, task.getDescription());
+                Date date = task.getDate();
                 taskPreparedStatement.setDate(InsertTaskConstants.DATE_INDEX, task.getDate());
                 taskPreparedStatement.setString(InsertTaskConstants.FILE_NAME_INDEX, task.getFileName());
                 taskPreparedStatement.executeUpdate();
@@ -212,6 +213,35 @@ public final class TaskDatabaseImplementation implements ITaskDAO {
             preparedStatement.setString(UpdateFileNameConstants.FILE_NAME_USER_ID_QUERY_INDEX, userId);
             preparedStatement.setString(UpdateFileNameConstants.FILE_NAME_TASK_NAME_QUERY_INDEX, task.getName());
             preparedStatement.executeUpdate();
+        }
+        catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+
+    ///CORRECT
+    @Override
+    public Task getTaskByName(String userId, String taskName) throws DaoException {
+        try(Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("Select * From task Where userId = ? and name = ?"))
+        {
+            preparedStatement.setString(1, userId);
+            preparedStatement.setString(2, taskName);
+            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+                int taskId = Constants.ZERO;
+                String description = null;
+                String stringDate = null;
+                String fileName = null;
+                if(resultSet.next()) {
+                    taskId = resultSet.getInt(1);
+                    description = resultSet.getString(SelectTaskById.TASK_DESCRIPTION_COLUMN_INDEX);
+                    stringDate = resultSet.getString(SelectTaskById.TASK_DATE_COLUMN_INDEX);
+                    fileName = resultSet.getString(SelectTaskById.TASK_FILE_NAME_COLUMN_INDEX);
+                }
+
+                return new Task(taskId, taskName, description, stringDate, fileName);
+            }
         }
         catch (SQLException e) {
             throw new DaoException(e);

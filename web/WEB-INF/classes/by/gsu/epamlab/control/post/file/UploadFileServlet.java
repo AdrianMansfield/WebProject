@@ -1,6 +1,7 @@
 package by.gsu.epamlab.control.post.file;
 
 import by.gsu.epamlab.constants.Constants;
+import by.gsu.epamlab.constants.FileConstants;
 import by.gsu.epamlab.model.FileOperations;
 import by.gsu.epamlab.constants.ParameterConstants;
 import by.gsu.epamlab.control.post.AbstractNonGetController;
@@ -8,6 +9,7 @@ import by.gsu.epamlab.exceptions.DaoException;
 import by.gsu.epamlab.model.factories.TaskDAOFactory;
 import by.gsu.epamlab.model.interfaces.ITaskDAO;
 import by.gsu.epamlab.model.task.Task;
+import org.json.simple.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +26,8 @@ public class UploadFileServlet extends AbstractNonGetController {
     @Override
     protected void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+
+            String connectionType = request.getParameter("from");
 
             HttpSession session =  request.getSession();
 
@@ -43,7 +47,16 @@ public class UploadFileServlet extends AbstractNonGetController {
 
             iTaskDAO.updateFileName(userId, task);
 
-            sendRedirectToPrintTaskServlet(request, response);
+            if(ParameterConstants.AJAX_PARAMETER.equals(connectionType)) {
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("taskName", taskName);
+                jsonObject.put("fileName", fileName);
+                response.getWriter().write(jsonObject.toJSONString());
+            }
+            else {
+                sendRedirectToPrintTaskServlet(request, response);
+            }
+
 
         } catch (DaoException e) {
 
