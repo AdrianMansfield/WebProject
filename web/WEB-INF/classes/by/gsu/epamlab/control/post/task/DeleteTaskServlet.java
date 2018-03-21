@@ -7,6 +7,8 @@ import by.gsu.epamlab.model.FileOperations;
 import by.gsu.epamlab.model.factories.TaskDAOFactory;
 import by.gsu.epamlab.model.interfaces.ITaskDAO;
 import by.gsu.epamlab.model.task.Task;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +22,8 @@ public class DeleteTaskServlet extends AbstractNonGetController {
     @Override
     protected void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+
+            String connectionType = request.getParameter("from");
 
             String userId = (String) request.getSession().getAttribute(ParameterConstants.USER_ID_PARAMETER);
 
@@ -35,7 +39,18 @@ public class DeleteTaskServlet extends AbstractNonGetController {
 
             iTaskDAO.removeTasks(taskIds);
 
-            sendRedirectToPrintTaskServlet(request, response);
+            if(ParameterConstants.AJAX_PARAMETER.equals(connectionType)) {
+                JSONObject jsonObject = new JSONObject();
+                JSONArray jsonArray = new JSONArray();
+                for(String taskId : taskIds) {
+                    jsonArray.add(taskId);
+                }
+                jsonObject.put(ParameterConstants.TASK_IDS_PARAMETER, jsonArray);
+                response.getWriter().write(jsonObject.toJSONString());
+            }
+            else {
+                sendRedirectToPrintTaskServlet(request, response);
+            }
 
         } catch (DaoException e) {
 

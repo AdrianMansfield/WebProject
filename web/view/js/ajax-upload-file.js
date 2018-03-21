@@ -1,14 +1,16 @@
 function sendQueryToUploadFileServlet(taskName) {
+
     var xmlHttpRequest = newXMLHttpRequest();
-    var formData = new FormData();
+
     var uploadFileForm = document.getElementById("uploadFile");
+
     var file = uploadFileForm.files[0];
-    var ajax = "ajax";
-    formData.append("from", ajax);
-    formData.append("taskName", taskName);
-    formData.append("file", file);
-    sendRequest(xmlHttpRequest, FILE, changeFileName, UPLOAD_FILE_SERVLET, formData);
+
+    sendRequest(xmlHttpRequest, FILE, changeFileName, UPLOAD_FILE_SERVLET, makeFormData(FROM_NAME_PARAMETER,
+        FROM_VALUE_PARAMETER, TASK_NAME, taskName, FILE, file));
+
     //xmlHttpRequest.close();
+
     return false;
 }
 
