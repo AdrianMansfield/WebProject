@@ -43,7 +43,7 @@
                 <c:import url="/view/jsp/jspchunks/addTasks.jsp"/>
             </div>
         </div>
-        <div class="col-md-6" id="task">
+        <div class="col-md-8" id="task">
             <c:if test="${not empty tasks}">
                 <h5 class="my-0 font-weight-normal text-center" id="tasksType">
                         ${taskType}

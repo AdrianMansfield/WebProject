@@ -1,10 +1,10 @@
 function sendQueryToPrintTaskServlet(value) {
     var xmlHttpRequest = newXMLHttpRequest();
     sendRequest(xmlHttpRequest, GET_METHOD, printTaskTable, PRINT_TASK_SERVLET, makeRequestBody(TASK_TYPE, value));
-    var tasksTypeHeader = document.getElementById("tasksType"); // It is pizdec
-    if(tasksTypeHeader) {
-        tasksTypeHeader.innerHTML = value;
-    }
+    // var tasksTypeHeader = document.getElementById("tasksType"); // It is pizdec
+    // if(tasksTypeHeader) {
+    //     tasksTypeHeader.innerHTML = value;
+    // }
 
     //xmlHttpRequest.close();
 }
@@ -27,9 +27,13 @@ function drawTaskTable(tasks, taskType) {
 
     var taskTable = document.getElementById("taskTable");
 
-    var thead = tableHeader(taskType);
+    if(tasks.length !== 0){
+        var thead = tableHeader(taskType);
 
-    taskTable.appendChild(thead);
+        taskTable.appendChild(thead);
+    }
+
+
 
     for (var counter in tasks) {
 
@@ -82,13 +86,19 @@ function tableHeader(taskType) {
     var thead = document.createElement("thead");
     var th = document.createElement("th");
 
-    th.innerHTML = 'complete';
+
+    if (taskType === 'BASKET' || taskType === 'FIXED'){
+        th.innerHTML = 'restore';
+    } else{
+        th.innerHTML = 'complete';
+    }
+
 
     thead.appendChild(th);
 
     th = document.createElement("th");
 
-    th.innerHTML = 'description';
+    th.innerHTML = 'task name';
 
     thead.appendChild(th);
 
@@ -114,7 +124,7 @@ function tableHeader(taskType) {
 
         checkbox.setAttribute(ID_ATTRIBUTE,"checkAll");
 
-        checkbox.onclick = toggleAll.bind(this,this);
+        // checkbox.onclick = toggleAll.bind(this,this);
 
         th.appendChild(checkbox);
 
@@ -190,6 +200,12 @@ function descriptionSecondTableRow(taskName, description) {
 
     td.setAttribute(COLSPAN_ATTRIBUTE, 5);
 
+    var h5 = document.createElement(H5_TAG);
+
+    h5.innerHTML = "description";
+
+    td.appendChild(h5);
+
     var p = document.createElement("p");
 
     p.innerHTML = description;
@@ -199,6 +215,7 @@ function descriptionSecondTableRow(taskName, description) {
     var a = document.createElement(A_TAG);
 
     a.setAttribute(HREF_ATTRIBUTE, "#" + taskName + CHANGE_DESCRIPTION);
+    a.setAttribute(CLASS_ATTRIBUTE, "mr-3");
 
     a.innerHTML = CHANGE_DESCRIPTION_HREF;
 
@@ -207,6 +224,7 @@ function descriptionSecondTableRow(taskName, description) {
     a = document.createElement(A_TAG);
 
     a.setAttribute(HREF_ATTRIBUTE, "#" + taskName + CHANGE_NAME);
+    a.setAttribute(CLASS_ATTRIBUTE, "mr-3");
 
     a.innerHTML = CHANGE_NAME_HREF;
 
@@ -215,6 +233,7 @@ function descriptionSecondTableRow(taskName, description) {
     a = document.createElement(A_TAG);
 
     a.setAttribute(HREF_ATTRIBUTE, "#" + taskName + CHANGE_DATE);
+    a.setAttribute(CLASS_ATTRIBUTE, "mr-3");
 
     a.innerHTML = CHANGE_DATE_HREF;
 
