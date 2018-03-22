@@ -1,11 +1,11 @@
 /* Стили для неактивного модального окна */
 .modalWindow {
     background: #fff;
-    left: 50%;
+    left: 20%;
     margin: -250px 0 0 -40%;
     position: absolute;
     top: -70%;
-    width: 80%;
+    width: 30%;
     border-radius: 5px;
     box-shadow: 0 3px 7px rgba(0,0,0,.25);
     -moz-box-shadow: 0 3px 7px rgba(0,0,0,.25);
