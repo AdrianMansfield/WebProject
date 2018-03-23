@@ -8,19 +8,15 @@ function drawModalWindows(/*taskId,*/ fileName, taskName) {
 
     var isFileExist = fileName !== NO_FILE;
 
-    document.getElementById("fileModalWindow").innerHTML = "";
+    removeAllElements(document.getElementById("fileModalWindow"));
 
     modalWindowType[isFileExist](/*taskId,*/ fileName, taskName);
 }
 
-
-function drawFileModalWindow(/*taskId,*/ fileName, taskName) {
-
+function getAside(headerContent){
     var aside = document.createElement(ASIDE_TAG);
-    var fileModalWindow = document.getElementById(FILE_MODAL_WINDOW);
 
     aside.setAttribute(CLASS_ATTRIBUTE,JS_MODAL_WINDOW);
-    //aside.setAttribute(ID_ATTRIBUTE,taskId);
 
     var header = document.createElement(HEADER_TAG);
     var h2 = document.createElement(H2_TAG);
@@ -29,6 +25,16 @@ function drawFileModalWindow(/*taskId,*/ fileName, taskName) {
 
     header.appendChild(h2);
     aside.appendChild(header);
+
+    return aside;
+}
+
+
+function drawFileModalWindow(fileName, taskName) {
+
+    var fileModalWindow = document.getElementById(FILE_MODAL_WINDOW);
+
+    var aside = getAside(CHOOSE_FILE_ACTION);
 
     var section = document.createElement(SECTION_TAG);
     var h5 = document.createElement(H5_TAG);
@@ -103,7 +109,9 @@ function drawFileModalWindow(/*taskId,*/ fileName, taskName) {
     var closeButton = document.createElement(BUTTON_TAG);
 
     closeButton.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger");
-    closeButton.setAttribute(ONCLICK_ATTRIBUTE,"closeModalWindow();");
+    closeButton.onclick = function () {
+        removeAllElements(fileModalWindow);
+    };
 
     closeButton.innerHTML = CLOSE_HREF;
 
@@ -112,20 +120,11 @@ function drawFileModalWindow(/*taskId,*/ fileName, taskName) {
     fileModalWindow.appendChild(aside);
 }
 
-function drawNoFileModalWindow(/*taskId,*/ fileName, taskName) {
+function drawNoFileModalWindow(fileName, taskName) {
 
-    var aside = document.createElement(ASIDE_TAG);
     var fileModalWindow = document.getElementById(FILE_MODAL_WINDOW);
 
-    aside.setAttribute(CLASS_ATTRIBUTE, JS_MODAL_WINDOW);
-
-    var header = document.createElement(HEADER_TAG);
-    var h2 = document.createElement(H2_TAG);
-
-    h2.innerHTML = UPLOAD_FILE;
-
-    header.appendChild(h2);
-    aside.appendChild(header);
+    var aside = getAside(UPLOAD_FILE);
 
     var section = document.createElement(SECTION_TAG);
     var form = document.createElement(FORM_ATTRIBUTE);
@@ -170,7 +169,9 @@ function drawNoFileModalWindow(/*taskId,*/ fileName, taskName) {
     var closeButton = document.createElement(BUTTON_TAG);
 
     closeButton.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger");
-    closeButton.setAttribute(ONCLICK_ATTRIBUTE, "closeModalWindow();"); //CORRECT
+    closeButton.onclick = function () {
+        removeAllElements(fileModalWindow);
+    };
 
     closeButton.innerHTML = CLOSE_HREF;
 
@@ -178,10 +179,4 @@ function drawNoFileModalWindow(/*taskId,*/ fileName, taskName) {
     aside.appendChild(footer);
     fileModalWindow.appendChild(aside);
 
-}
-
-function closeModalWindow() {
-    var fileModalWindow = document.getElementById(FILE_MODAL_WINDOW);
-    fileModalWindow.innerHTML = "";
-    
 }

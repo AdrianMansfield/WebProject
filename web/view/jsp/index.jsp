@@ -11,9 +11,10 @@
         <link rel="stylesheet" href="../../view/css/bars.css">
     </head>
     <body>
-        <div class="d-flex flex-column flex-md-row align-items-center p-0 px-md-4 mb-1 navbar-inverse">
-            <c:import url="${control}"/>
-        </div>
+    <c:import url="${control}"/>
+        <%--<div class="d-flex flex-column flex-md-row align-items-center p-0 px-md-4 mb-1 navbar-inverse">--%>
+            <%--<c:import url="${control}"/>--%>
+        <%--</div>--%>
         <main role="main" class="container">
             <h1>Application start page</h1>
             <p class="lead">Select an action <code>Login</code> or <code>Registration</code></p>

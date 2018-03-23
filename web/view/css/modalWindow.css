@@ -1,7 +1,7 @@
 /* Стили для неактивного модального окна */
 .modalWindow {
     background: #fff;
-    left: 20%;
+    left: 40%;
     margin: -250px 0 0 -40%;
     position: absolute;
     top: -70%;
