@@ -1,7 +1,6 @@
 function sendQueryToPrintTaskServlet(value) {
     var xmlHttpRequest = newXMLHttpRequest();
     sendRequest(xmlHttpRequest, GET_METHOD, printTaskTable, PRINT_TASK_SERVLET, makeRequestBody(TASK_TYPE, value));
-
     //xmlHttpRequest.close();
 }
 
@@ -21,6 +20,22 @@ function drawTaskTable(tasks, taskType) {
 
     var isMain = !isBasket && !isFixed;
 
+    var taskTypeHeader = document.getElementById("taskTypeHeader");
+
+    removeAllElements(taskTypeHeader);
+
+    // taskTypeHeader.innerHTML = "";
+
+    var h5 = document.createElement(H5_TAG);
+
+    h5.setAttribute(ID_ATTRIBUTE, "sectionName");
+
+    h5.setAttribute(NAME_ATTRIBUTE, taskType);
+
+    h5.innerHTML = taskType;
+
+    taskTypeHeader.appendChild(h5);
+
     var taskTable = document.getElementById("taskTable");
 
     if(tasks.length !== 0){
@@ -28,14 +43,6 @@ function drawTaskTable(tasks, taskType) {
 
         taskTable.appendChild(thead);
     }
-
-    // var p = document.createElement("p");
-    //
-    // p.setAttribute(ID_ATTRIBUTE, "sectionName"); //Correct. We need header, Andrew
-    //
-    // p.setAttribute(NAME_ATTRIBUTE, taskType);
-    //
-    // taskTable.appendChild(p);
 
     for (var counter in tasks) {
 
@@ -77,7 +84,7 @@ function printTask(task, isMain, isBasket, taskType) {
 
     taskTable.appendChild(tr);
 
-    tr = descriptionSecondTableRow(taskName, description);
+    tr = descriptionSecondTableRow(taskName, description, date,  taskId);
 
     tr.setAttribute(NAME_ATTRIBUTE, taskId);
 
@@ -107,13 +114,11 @@ function tableHeader(taskType) {
     var thead = document.createElement("thead");
     var th = document.createElement("th");
 
-
     if (taskType === 'BASKET' || taskType === 'FIXED'){
         th.innerHTML = 'restore';
     } else{
         th.innerHTML = 'complete';
     }
-
 
     thead.appendChild(th);
 
@@ -145,8 +150,6 @@ function tableHeader(taskType) {
 
         checkbox.setAttribute(ID_ATTRIBUTE,"checkAll");
 
-        // checkbox.onclick = toggleAll.bind(this,this);
-
         th.appendChild(checkbox);
 
         var label = document.createElement(LABEL_TAG);
@@ -166,7 +169,6 @@ function tableHeader(taskType) {
         thead.appendChild(th);
     }
 
-    // var thead = drawTableHeader(taskType);
     return thead;
 }
 
@@ -178,7 +180,7 @@ function firstTableRow(taskId, taskName, fileName, isMain, isBasket, taskType, d
 
     tr.appendChild(td);
 
-    td = taskNameTableData(taskName);
+    td = taskNameTableData(taskName, taskId);
 
     tr.appendChild(td);
 
@@ -210,7 +212,7 @@ function dateTableData(date) {
 }
 
 
-function descriptionSecondTableRow(taskName, description) {
+function descriptionSecondTableRow(taskName, description, date,  taskId) {
 
     var tr = document.createElement(TR_TAG);
 
@@ -234,34 +236,37 @@ function descriptionSecondTableRow(taskName, description) {
 
     td.appendChild(p);
 
+    var button = document.createElement(BUTTON_TAG);
+
+    button.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger mr-3");
+
+    button.innerHTML = CHANGE_DESCRIPTION_HREF;
+
+    button.onclick = drawChangeInfoModalWindow.bind(this,'description',taskId,description);
+
+    td.appendChild(button);
+
+    button = document.createElement(BUTTON_TAG);
+
+    button.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger mr-3");
+
+    button.innerHTML = CHANGE_NAME_HREF;
+
+    button.onclick = drawChangeInfoModalWindow.bind(this,'name',taskId,taskName);
+
+    td.appendChild(button);
+
+    button = document.createElement(BUTTON_TAG);
+
+    button.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger mr-3");
+
+    button.innerHTML = CHANGE_DATE_HREF;
+
+    button.onclick = drawChangeInfoModalWindow.bind(this,'date',taskId,date);
+
+    td.appendChild(button);
+
     var a = document.createElement(A_TAG);
-
-    a.setAttribute(HREF_ATTRIBUTE, "#" + taskName + CHANGE_DESCRIPTION);
-    a.setAttribute(CLASS_ATTRIBUTE, "mr-3");
-
-    a.innerHTML = CHANGE_DESCRIPTION_HREF;
-
-    td.appendChild(a);
-
-    a = document.createElement(A_TAG);
-
-    a.setAttribute(HREF_ATTRIBUTE, "#" + taskName + CHANGE_NAME);
-    a.setAttribute(CLASS_ATTRIBUTE, "mr-3");
-
-    a.innerHTML = CHANGE_NAME_HREF;
-
-    td.appendChild(a);
-
-    a = document.createElement(A_TAG);
-
-    a.setAttribute(HREF_ATTRIBUTE, "#" + taskName + CHANGE_DATE);
-    a.setAttribute(CLASS_ATTRIBUTE, "mr-3");
-
-    a.innerHTML = CHANGE_DATE_HREF;
-
-    td.appendChild(a);
-
-    a = document.createElement(A_TAG);
 
     a.setAttribute(HREF_ATTRIBUTE, "#");
 
@@ -394,13 +399,15 @@ function moveTaskTableData(taskId, isMain, taskType) {
     return td;
 }
 
-function taskNameTableData(taskName) {
+function taskNameTableData(taskName, taskId) {
 
     var td = document.createElement(TD_TAG);
 
     var a = document.createElement(A_TAG);
 
     a.setAttribute(HREF_ATTRIBUTE, "#" + taskName);
+
+    a.setAttribute(ID_ATTRIBUTE,taskId + taskName);
 
     a.innerHTML = taskName;
 

@@ -6,11 +6,11 @@
             <input type="hidden" name="taskType" value="${taskType}"/>
             <input type="hidden" name="taskId" value="${taskId}">
             <input type="hidden" name="infoType" value="date"/>
-            <textarea name="taskAttribute">
+            <textarea name="taskAttribute" class="form-control">
                 ${taskDate}
             </textarea>
             <input type="submit" class="btn btn-sm btn-outline-danger">
         </form>
-        <a href="#" class="btn">close</a>
+        <a href="#${taskName}" class="btn">close</a>
     </td>
 </tr>

@@ -28,22 +28,30 @@
     <script src="../../view/js/ajax-remove-task-from-table.js"></script>
     <script src="../../view/js/ajax-delete-tasks.js"></script>
     <script src="../../view/js/draw-table-header.js"></script>
+    <script src="../../view/js/draw-change-task-info-window.js"></script>
 </head>
 <body>
-<div class="d-flex flex-column flex-md-row align-items-center p-0 px-md-4 mb-1 navbar-inverse">
-    <h5 class="text-white my-0 mr-md-0 mb-1">ToDo App main page</h5>
-    <div class="form-inline above-table">
-        <c:import url="/view/jsp/buttons/taskButtons.jsp"/>
-    </div>
-    <c:import url="/view/jsp/buttons/exit.jsp"/>
-</div>
 
+<nav class="navbar-inverse navbar navbar-light">
+    <div class="row">
+        <div class="col-md-2">
+            <h5 class="text-white mt-1">ToDo App main page</h5>
+        </div>
+        <div class="col-md-5 offset-3">
+            <c:import url="/view/jsp/buttons/taskButtons.jsp"/>
+        </div>
+        <div class="col-md-2">
+            <c:import url="/view/jsp/buttons/exit.jsp"/>
+        </div>
+    </div>
+</nav>
 <main role="main">
     <div class="custom-row">
         <div class="col-md-2">
             <a href="#leftSlide" class="bigFont text-center">&#9998 Add Task</a>
         </div>
         <div class="col-md-8" id="task">
+            <div id="taskTypeHeader" class="text-center"></div>
             <div class="modalWindow" id="leftSlide">
                 <c:import url="/view/jsp/jspchunks/addTasks.jsp"/>
             </div>
