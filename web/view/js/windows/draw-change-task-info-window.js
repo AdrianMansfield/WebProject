@@ -19,62 +19,42 @@ function drawChangeNameWindow(attributeName, taskId, taskInfo) {
     aside.appendChild(header);
 
     var section = document.createElement(SECTION_TAG);
-    var form = document.createElement("form");
-
-    form.setAttribute(ACTION_ATTRIBUTE, CHANGE_TASK_INFO_SERVLET);
-
-    form.setAttribute(METHOD_ATTRIBUTE, POST_METHOD);
-
-    var input = document.createElement(INPUT_TAG);
-
-    input.setAttribute(TYPE_ATTRIBUTE, HIDDEN_ATTRIBUTE);
-
-    input.setAttribute(NAME_ATTRIBUTE, TASK_ID);
-
-    input.setAttribute(VALUE_ATTRIBUTE, taskId);
-
-    form.appendChild(input);
-
-    input = document.createElement(INPUT_TAG);
-
-    input.setAttribute(TYPE_ATTRIBUTE, HIDDEN_ATTRIBUTE);
-
-    input.setAttribute(NAME_ATTRIBUTE, INFO_TYPE);
-
-    input.setAttribute(VALUE_ATTRIBUTE, attributeName);
-
-    form.appendChild(input);
 
     var label = document.createElement(LABEL_TAG);
 
     label.innerHTML = "Enter new " + attributeName;
 
-    form.appendChild(label);
+    section.appendChild(label);
 
     var textarea = document.createElement(TEXTAREA_TAG);
 
-    textarea.setAttribute(NAME_ATTRIBUTE, TASK_ATTRIBUTE);
+    textarea.setAttribute(NAME_ATTRIBUTE, TASK_ATTRIBUTE); // ?
+
+    textarea.setAttribute(ID_ATTRIBUTE, TASK_ATTRIBUTE);
 
     textarea.setAttribute(CLASS_ATTRIBUTE,"form-control");
 
     textarea.innerHTML = taskInfo;
 
-    form.appendChild(textarea);
-
-    input = document.createElement(INPUT_TAG);
-
-    input.setAttribute(TYPE_ATTRIBUTE, SUBMIT_ATTRIBUTE);
-
-    input.setAttribute(CLASS_ATTRIBUTE, "btn btn-sm btn-outline-danger");
-
-    input.setAttribute(VALUE_ATTRIBUTE,"Change");
-
-    form.appendChild(input);
-
-    section.appendChild(form);
-    aside.appendChild(section);
+    section.appendChild(textarea);
 
     var button = document.createElement(BUTTON_TAG);
+
+    button.setAttribute(CLASS_ATTRIBUTE, "btn btn-sm btn-outline-danger");
+
+    button.innerHTML = "Change";
+
+    var event = function() {
+        sendRequestToChangeTaskInfo(taskId, attributeName);
+    };
+
+    button.addEventListener("click", event);
+
+    section.appendChild(button);
+
+    aside.appendChild(section);
+
+    button = document.createElement(BUTTON_TAG);
     button.setAttribute(CLASS_ATTRIBUTE,"btn btn-sm btn-outline-danger");
     button.innerHTML = "close";
 

@@ -155,7 +155,7 @@ function drawNoFileModalWindow(fileName, taskName) {
     input.setAttribute(TYPE_ATTRIBUTE, SUBMIT_ATTRIBUTE);
     input.setAttribute(VALUE_ATTRIBUTE, UPLOAD);
     input.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger btn-sm");
-    input.onclick = sendQueryToUploadFileServlet.bind(this, taskName);
+    input.onclick = sendRequestToUploadFileServlet.bind(this, taskName);
 
     form.appendChild(input);
 

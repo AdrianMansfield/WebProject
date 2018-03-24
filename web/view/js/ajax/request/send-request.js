@@ -8,7 +8,6 @@ requestMethods[FILE] = sendPostWithFileRequest;
 
 function sendRequest(xmlHttpRequest, method, receivingFunction, servletUrl, query) {
 
-
     xmlHttpRequest.onreadystatechange = function() {
         if (xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200) {
             var data = xmlHttpRequest.responseText;

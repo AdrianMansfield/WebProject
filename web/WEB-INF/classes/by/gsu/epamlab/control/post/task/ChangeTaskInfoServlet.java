@@ -30,13 +30,12 @@ public class ChangeTaskInfoServlet extends AbstractNonGetController {
                 long time = new SimpleDateFormat(Constants.PRINT_DATE_FORMAT).parse(taskAttribute).getTime();
                 Date date = new Date(time);
                 iTaskDAO.changeTaskInfo(taskId, infoType, date.toString());
+                taskAttribute = date.toString();
             } else {
                 iTaskDAO.changeTaskInfo(taskId, infoType, taskAttribute);
             }
 
             if(ParameterConstants.AJAX_PARAMETER.equals(connectionType)) {
-               // String userId = (String) request.getSession().getAttribute(ParameterConstants.USER_ID_PARAMETER);
-                //Task task = iTaskDAO.getTaskById(userId, taskId);
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("infoType", infoType);
                 jsonObject.put("taskAttribute", taskAttribute);
