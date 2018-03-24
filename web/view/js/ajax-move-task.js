@@ -7,7 +7,7 @@ function sendQueryToMoveTaskServlet(taskId, locationType) {
 
 function eraseTask(jsonObject) {
 
-    var taskId = jsonObject.taskId;
+    var taskId = jsonObject["taskId"];
 
     removeTaskFromTable(taskId);
 }

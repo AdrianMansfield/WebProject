@@ -24,8 +24,6 @@ function drawTaskTable(tasks, taskType) {
 
     removeAllElements(taskTypeHeader);
 
-    // taskTypeHeader.innerHTML = "";
-
     var h5 = document.createElement(H5_TAG);
 
     h5.setAttribute(ID_ATTRIBUTE, "sectionName");
@@ -190,7 +188,7 @@ function firstTableRow(taskId, taskName, fileName, isMain, isBasket, taskType, d
 
     if (taskType === "SOMEDAY") {
 
-        td = dateTableData(date);
+        td = dateTableData(taskId, date);
 
         tr.appendChild(td);
     }
@@ -202,9 +200,11 @@ function firstTableRow(taskId, taskName, fileName, isMain, isBasket, taskType, d
     return tr;
 }
 
-function dateTableData(date) {
+function dateTableData(taskId, date) {
 
     var td = document.createElement(TD_TAG);
+
+    td.setAttribute(ID_ATTRIBUTE, taskId + "date");
 
     td.innerHTML = date;
 
@@ -224,19 +224,27 @@ function descriptionSecondTableRow(taskName, description, date,  taskId) {
 
     td.setAttribute(COLSPAN_ATTRIBUTE, 5);
 
+    var div = document.createElement(DIV_TAG);
+
+    div.setAttribute(ID_ATTRIBUTE, taskId + 'info');
+
     var h5 = document.createElement(H5_TAG);
 
     h5.innerHTML = "description";
 
-    td.appendChild(h5);
+    div.appendChild(h5);
 
     var p = document.createElement("p");
 
     p.innerHTML = description;
 
-    td.appendChild(p);
+    div.appendChild(p);
+
+    td.appendChild(div);
 
     var button = document.createElement(BUTTON_TAG);
+
+    button.setAttribute(ID_ATTRIBUTE,taskId + 'description');
 
     button.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger mr-3");
 
@@ -248,21 +256,25 @@ function descriptionSecondTableRow(taskName, description, date,  taskId) {
 
     button = document.createElement(BUTTON_TAG);
 
+    button.setAttribute(ID_ATTRIBUTE,taskId + 'name');
+
     button.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger mr-3");
 
     button.innerHTML = CHANGE_NAME_HREF;
 
-    button.onclick = drawChangeInfoModalWindow.bind(this,'name',taskId,taskName);
+    button.onclick = drawChangeInfoModalWindow.bind(this, 'name', taskId, taskName);
 
     td.appendChild(button);
 
     button = document.createElement(BUTTON_TAG);
 
+    button.setAttribute(ID_ATTRIBUTE,taskId + 'date');
+
     button.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger mr-3");
 
     button.innerHTML = CHANGE_DATE_HREF;
 
-    button.onclick = drawChangeInfoModalWindow.bind(this,'date',taskId,date);
+    button.onclick = drawChangeInfoModalWindow.bind(this, 'date', taskId, date);
 
     td.appendChild(button);
 
@@ -343,7 +355,9 @@ function changeTaskInfoSecondRow(attributeName, taskId, taskInfo, formId, taskNa
 
     input.setAttribute(VALUE_ATTRIBUTE,"Change");
 
-    input.setAttribute(ONCLICK_ATTRIBUTE,"window.location.href='#"+taskName+"'");
+    input.onclick = function () {
+        window.location.href = "window.location.href='#"+taskName+"'"; //Correct
+    };
 
     form.appendChild(input);
 
@@ -407,7 +421,7 @@ function taskNameTableData(taskName, taskId) {
 
     a.setAttribute(HREF_ATTRIBUTE, "#" + taskName);
 
-    a.setAttribute(ID_ATTRIBUTE,taskId + taskName);
+    a.setAttribute(ID_ATTRIBUTE,taskId + 'name');
 
     a.innerHTML = taskName;
 

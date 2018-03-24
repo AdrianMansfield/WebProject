@@ -6,7 +6,7 @@ import javax.servlet.ServletContextListener;
 
 public class ApplicationContextParameter implements ServletContextListener {
     private static final String USER_IMPLEMENTATION = "userImplementation";
-    private static final String TASK_IMPLEMENTATION = "userImplementation";
+    private static final String TASK_IMPLEMENTATION = "taskImplementation";
     private static final String FILES_DIRECTORY = "filesDirectory";
     private static String userImplementation;
     private static String taskImplementation;
