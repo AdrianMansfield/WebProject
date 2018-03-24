@@ -12,14 +12,17 @@
     <link rel="stylesheet" href="../../view/css/table.css">
     <link rel="stylesheet" href="../../view/css/bars.css">
     <link rel="stylesheet" href="../../view/css/modalWindow.css">
-    <!-- Constants -->
+    <!-- Constants and general script -->
     <script src="../../view/js/general-constants.js"></script>
     <script src="../../view/js/tag-constants.js"></script>
     <script src="../../view/js/tag-attribute-constants.js"></script>
+    <script src="../../view/js/get-checked-checkbox.js"></script>
     <!-- Delete -->
     <script src="../../view/js/ajax/delete/remove-all-elements.js"></script>
     <script src="../../view/js/ajax/delete/delete-tasks.js"></script>
     <script src="../../view/js/ajax/delete/remove-task-from-table.js"></script>
+    <!-- File -->
+    <script src="../js/ajax/file/change-file-name.js"></script>
     <!-- Windows -->
     <script src="../../view/js/windows/dram-modal-window.js"></script>
     <script src="../../view/js/windows/draw-change-task-info-window.js"></script>

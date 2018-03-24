@@ -38,7 +38,7 @@ public abstract class AbstractFilter implements Filter {
     }
 
 
-    protected boolean badValues(String ... values) {
+    protected static boolean badValues(String ... values) {
         boolean good = false;
 
         for(String value : values) {

@@ -7,7 +7,7 @@ function fileNameTableData(taskId, fileName, taskName) {
 
     button.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger");
 
-    button.onclick = drawModalWindows.bind(this, fileName, taskName);
+    button.onclick = drawModalWindows.bind(this, taskId, fileName, taskName);
 
     button.innerHTML = fileName;
 

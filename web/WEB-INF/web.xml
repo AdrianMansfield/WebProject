@@ -155,12 +155,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>ChangeTaskInfoServlet</servlet-name>
-        <servlet-class>by.gsu.epamlab.control.post.task.ChangeTaskInfoServlet</servlet-class>
+        <servlet-name>ChangeTaskServlet</servlet-name>
+        <servlet-class>by.gsu.epamlab.control.post.task.ChangeTaskServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ChangeTaskInfoServlet</servlet-name>
-        <url-pattern>/ChangeTaskInfoServlet</url-pattern>
+        <servlet-name>ChangeTaskServlet</servlet-name>
+        <url-pattern>/ChangeTaskServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -247,6 +247,15 @@
     <filter-mapping>
         <filter-name>UploadFileFilter</filter-name>
         <url-pattern>/UploadFileServlet</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>ChangeTaskFilter</filter-name>
+        <filter-class>by.gsu.epamlab.control.filters.task.ChangeTaskFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ChangeTaskFilter</filter-name>
+        <url-pattern>/ChangeTaskFilter</url-pattern>
     </filter-mapping>
 
 

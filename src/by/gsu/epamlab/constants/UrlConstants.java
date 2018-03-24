@@ -22,4 +22,6 @@ public final class UrlConstants {
 
     public static final String LOGIN_SERVLET_URL = "/LoginServlet";
 
+    public static final String CHANGE_TASK_SERVLET = "/ChangeTaskServlet";
+
 }

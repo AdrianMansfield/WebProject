@@ -1,6 +1,7 @@
-package by.gsu.epamlab.control.post.task;
+package by.gsu.epamlab.control.post.file;
 
 import by.gsu.epamlab.constants.Constants;
+import by.gsu.epamlab.model.FileOperations;
 import by.gsu.epamlab.constants.ParameterConstants;
 import by.gsu.epamlab.control.post.AbstractNonGetController;
 import by.gsu.epamlab.exceptions.DaoException;
@@ -13,40 +14,50 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.List;
 
-public class ChangeTaskInfoServlet extends AbstractNonGetController {
+public class DeleteFileServlet extends AbstractNonGetController {
     @Override
     protected void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+
             String connectionType = request.getParameter(ParameterConstants.FROM_PARAMETER);
+
+            String userId = (String) request.getSession().getAttribute(ParameterConstants.USER_ID_PARAMETER);
+
             String taskId = request.getParameter(ParameterConstants.TASK_ID_PARAMETER);
-            String taskAttribute = request.getParameter(ParameterConstants.TASK_ATTRIBUTE_PARAMETER).trim();
-            String infoType = request.getParameter(ParameterConstants.INFO_TYPE).toUpperCase();
+
             ITaskDAO iTaskDAO = TaskDAOFactory.getTaskDAOFromFactory();
-            if (infoType.equals("DATE")) {
-                long time = new SimpleDateFormat(Constants.PRINT_DATE_FORMAT).parse(taskAttribute).getTime();
-                Date date = new Date(time);
-                iTaskDAO.changeTaskInfo(taskId, infoType, date.toString());
-                taskAttribute = date.toString();
-            } else {
-                iTaskDAO.changeTaskInfo(taskId, infoType, taskAttribute);
-            }
+
+            Task task =  iTaskDAO.getTaskById(userId, taskId);
+
+            String userLogin = (String) request.getSession().getAttribute(ParameterConstants.LOGIN_PARAMETER);
+
+            FileOperations.deleteFile(task, userLogin);
+
+            String oldFileName = task.getFileName();
+
+            task.setFileName(Constants.NO_FILE);
+
+            iTaskDAO.updateFileName(userId, task);
 
             if(ParameterConstants.AJAX_PARAMETER.equals(connectionType)) {
                 JSONObject jsonObject = new JSONObject();
-                jsonObject.put("infoType", infoType);
-                jsonObject.put("taskAttribute", taskAttribute);
-                jsonObject.put("taskId", taskId);
+                jsonObject.put("taskName", task.getName());
+                jsonObject.put("newFileName", Constants.NO_FILE);
+                jsonObject.put("oldFileName", oldFileName);
                 response.getWriter().write(jsonObject.toJSONString());
             }
             else {
                 sendRedirectToPrintTaskServlet(request, response);
             }
-        } catch (DaoException | ParseException e) {
+
+
+        } catch (DaoException e) {
+
             e.printStackTrace();
+
         }
     }
+
 }
