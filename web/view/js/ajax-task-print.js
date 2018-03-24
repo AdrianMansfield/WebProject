@@ -88,22 +88,6 @@ function printTask(task, isMain, isBasket, taskType) {
 
     taskTable.appendChild(tr);
 
-    tr = changeTaskInfoSecondRow('description', taskId, description, taskName + CHANGE_DESCRIPTION, taskName);
-
-    tr.setAttribute(NAME_ATTRIBUTE, taskId);
-
-    taskTable.appendChild(tr);
-
-    tr = changeTaskInfoSecondRow('name', taskId, taskName, taskName + CHANGE_NAME, taskName);
-
-    tr.setAttribute(NAME_ATTRIBUTE, taskId);
-
-    taskTable.appendChild(tr);
-
-    tr = changeTaskInfoSecondRow('date', taskId, date, taskName + CHANGE_DATE, taskName);
-
-    tr.setAttribute(NAME_ATTRIBUTE, taskId);
-
     taskTable.appendChild(tr);
 }
 
@@ -222,29 +206,27 @@ function descriptionSecondTableRow(taskName, description, date,  taskId) {
 
     var td = document.createElement(TD_TAG);
 
+    td.setAttribute(ID_ATTRIBUTE, taskId + 'info');
+
     td.setAttribute(COLSPAN_ATTRIBUTE, 5);
-
-    var div = document.createElement(DIV_TAG);
-
-    div.setAttribute(ID_ATTRIBUTE, taskId + 'info');
 
     var h5 = document.createElement(H5_TAG);
 
     h5.innerHTML = "description";
 
-    div.appendChild(h5);
+    td.appendChild(h5);
 
     var p = document.createElement("p");
 
+    p.setAttribute(ID_ATTRIBUTE,taskId +'description');
+
     p.innerHTML = description;
 
-    div.appendChild(p);
-
-    td.appendChild(div);
+    td.appendChild(p);
 
     var button = document.createElement(BUTTON_TAG);
 
-    button.setAttribute(ID_ATTRIBUTE,taskId + 'description');
+    button.setAttribute(NAME_ATTRIBUTE,'description');
 
     button.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger mr-3");
 
@@ -256,7 +238,7 @@ function descriptionSecondTableRow(taskName, description, date,  taskId) {
 
     button = document.createElement(BUTTON_TAG);
 
-    button.setAttribute(ID_ATTRIBUTE,taskId + 'name');
+    button.setAttribute(NAME_ATTRIBUTE,'name');
 
     button.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger mr-3");
 
@@ -268,7 +250,7 @@ function descriptionSecondTableRow(taskName, description, date,  taskId) {
 
     button = document.createElement(BUTTON_TAG);
 
-    button.setAttribute(ID_ATTRIBUTE,taskId + 'date');
+    button.setAttribute(NAME_ATTRIBUTE,'date');
 
     button.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger mr-3");
 
@@ -292,93 +274,6 @@ function descriptionSecondTableRow(taskName, description, date,  taskId) {
 
     return tr;
 }
-
-function changeTaskInfoSecondRow(attributeName, taskId, taskInfo, formId, taskName) {
-
-    var tr = document.createElement(TR_TAG);
-
-    tr.setAttribute(ID_ATTRIBUTE, formId);
-
-    tr.setAttribute(CLASS_ATTRIBUTE, MODAL_DESCRIPTION);
-
-    var td = document.createElement(TD_TAG);
-
-    td.setAttribute(COLSPAN_ATTRIBUTE, 5);
-
-    var form = document.createElement("form");
-
-    form.setAttribute(ACTION_ATTRIBUTE, CHANGE_TASK_INFO_SERVLET);
-
-    form.setAttribute(METHOD_ATTRIBUTE, POST_METHOD);
-
-    var input = document.createElement(INPUT_TAG);
-
-    input.setAttribute(TYPE_ATTRIBUTE, HIDDEN_ATTRIBUTE);
-
-    input.setAttribute(NAME_ATTRIBUTE, TASK_ID);
-
-    input.setAttribute(VALUE_ATTRIBUTE, taskId);
-
-    form.appendChild(input);
-
-    input = document.createElement(INPUT_TAG);
-
-    input.setAttribute(TYPE_ATTRIBUTE, HIDDEN_ATTRIBUTE);
-
-    input.setAttribute(NAME_ATTRIBUTE, INFO_TYPE);
-
-    input.setAttribute(VALUE_ATTRIBUTE, attributeName);
-
-    form.appendChild(input);
-
-    var label = document.createElement(LABEL_TAG);
-
-    label.innerHTML = "Enter new description";
-
-    form.appendChild(label);
-
-    var textarea = document.createElement(TEXTAREA_TAG);
-
-    textarea.setAttribute(NAME_ATTRIBUTE, TASK_ATTRIBUTE);
-
-    textarea.setAttribute(CLASS_ATTRIBUTE,"form-control");
-
-    textarea.innerHTML = taskInfo;
-
-    form.appendChild(textarea);
-
-    input = document.createElement(INPUT_TAG);
-
-    input.setAttribute(TYPE_ATTRIBUTE, BUTTON_TAG);
-
-    input.setAttribute(CLASS_ATTRIBUTE, "btn btn-sm btn-outline-danger");
-
-    input.setAttribute(VALUE_ATTRIBUTE,"Change");
-
-    input.onclick = function () {
-        window.location.href = "window.location.href='#"+taskName+"'"; //Correct
-    };
-
-    form.appendChild(input);
-
-    td.appendChild(form);
-
-    var a = document.createElement(A_TAG);
-
-    a.setAttribute(HREF_ATTRIBUTE, "#" + taskName);
-
-    a.setAttribute(CLASS_ATTRIBUTE, "btn");
-
-    a.innerHTML = CLOSE_HREF;
-
-    td.appendChild(a);
-
-    tr.appendChild(td);
-
-    return tr;
-
-}
-
 
 function moveTaskTableData(taskId, isMain, taskType) {
 
