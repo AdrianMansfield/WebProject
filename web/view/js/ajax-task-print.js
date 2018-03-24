@@ -218,7 +218,7 @@ function descriptionSecondTableRow(taskName, description, date,  taskId) {
 
     var p = document.createElement("p");
 
-    p.setAttribute(NAME_ATTRIBUTE,taskId + 'descriptionField');
+    p.setAttribute(ID_ATTRIBUTE,taskId +'description');
 
     p.innerHTML = description;
 
@@ -226,7 +226,7 @@ function descriptionSecondTableRow(taskName, description, date,  taskId) {
 
     var button = document.createElement(BUTTON_TAG);
 
-    button.setAttribute(NAME_ATTRIBUTE,taskId + 'description');
+    button.setAttribute(NAME_ATTRIBUTE,'description');
 
     button.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger mr-3");
 
@@ -238,7 +238,7 @@ function descriptionSecondTableRow(taskName, description, date,  taskId) {
 
     button = document.createElement(BUTTON_TAG);
 
-    button.setAttribute(NAME_ATTRIBUTE,taskId + 'name');
+    button.setAttribute(NAME_ATTRIBUTE,'name');
 
     button.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger mr-3");
 
@@ -250,7 +250,7 @@ function descriptionSecondTableRow(taskName, description, date,  taskId) {
 
     button = document.createElement(BUTTON_TAG);
 
-    button.setAttribute(NAME_ATTRIBUTE,taskId + 'date');
+    button.setAttribute(NAME_ATTRIBUTE,'date');
 
     button.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger mr-3");
 
