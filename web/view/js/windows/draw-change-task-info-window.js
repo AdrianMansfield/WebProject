@@ -45,7 +45,7 @@ function drawChangeNameWindow(attributeName, taskId, taskInfo) {
     button.innerHTML = "Change";
 
     var event = function() {
-        sendRequestToChangeTaskInfo(taskId, attributeName);
+        validateChangeTaskInfoForm(taskId,attributeName);
     };
 
     button.addEventListener("click", event);

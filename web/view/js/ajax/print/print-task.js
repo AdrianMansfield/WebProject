@@ -23,5 +23,4 @@ function printTask(task, isMain, isBasket, taskType) {
 
     taskTable.appendChild(tr);
 
-    taskTable.appendChild(tr);
 }

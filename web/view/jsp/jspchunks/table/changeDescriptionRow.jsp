@@ -6,7 +6,7 @@
             <input type="hidden" name="taskType" value="${taskType}"/>
             <input type="hidden" name="taskId" value="${taskId}">
             <input type="hidden" name="infoType" value="description"/>
-            <textarea name="taskAttribute" class="form-control">
+            <textarea name="taskAttribute" class="form-control" required>
                 ${description}
             </textarea>
             <input type="submit" class="btn btn-sm btn-outline-danger">

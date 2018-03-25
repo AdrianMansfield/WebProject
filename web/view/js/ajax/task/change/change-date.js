@@ -1,4 +1,16 @@
+function setMidnight(date) {
 
+    date.setHours(0);
+
+    date.setMinutes(0);
+
+    date.setSeconds(0);
+
+    date.setMilliseconds(0);
+
+    return date;
+
+}
 
 function changeDate(taskId, date, infoType) {
 
@@ -6,25 +18,33 @@ function changeDate(taskId, date, infoType) {
 
     tomorrowDate.setDate(tomorrowDate.getDate() + 1);
 
+    tomorrowDate = setMidnight(tomorrowDate);
+
     var taskDate = new Date(Date.parse(date));
 
-    var section;
+    taskDate = setMidnight(taskDate);
 
-    if(taskDate === tomorrowDate) {
+    var section = "";
+
+    if(taskDate > tomorrowDate) {
+
+        section = "SOMEDAY";
+
+    }
+    else if(taskDate<tomorrowDate) {
+
+        section = "TODAY";
+
+    }
+    else {
+
         section = "TOMORROW";
     }
 
-    else if(taskDate<tomorrowDate) {
-        section = "TODAY";
-    }
-    else {
-        section = "SOMEDAY";
-    }
 
     date = russianDateFormat(taskDate);
 
     var currentTaskType = document.getElementById("sectionName").getAttribute("name");
-
     if(currentTaskType === section) {
         sectionType[section](taskId, date, infoType);
     }

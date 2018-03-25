@@ -1,7 +1,7 @@
-function checkAll()
-{
-    var table = document.getElementById ('taskTable');
-    var checkboxes = table.querySelectorAll ('input[type=checkbox]');
-    var val = checkboxes[0].checked;
-    for (var i = 0; i < checkboxes.length; i++) checkboxes[i].checked = val;
+function toggle(source) {
+    var checkboxes = document.getElementsByName(TASK_IDS);
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i] !== source)
+            checkboxes[i].checked = source.checked;
+    }
 }

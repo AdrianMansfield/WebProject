@@ -1,6 +1,5 @@
 var actionType = {
     "date" : changeDate,
-    "name" : changeRecord,
     "description" : changeRecord
 };
 
@@ -12,8 +11,7 @@ var sectionType = {
 };
 
 var actionNumber = {
-    "date" : 2,
-    "name" : 1,
+    "date" : 1,
     "description" : 0
 };
 

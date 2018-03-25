@@ -15,6 +15,7 @@
     <!-- Constants and general script -->
     <script src="../../view/js/general-constants.js"></script>
     <script src="../../view/js/tag-constants.js"></script>
+    <script src="../../view/js/script.js"></script>
     <script src="../../view/js/tag-attribute-constants.js"></script>
     <script src="../../view/js/get-checked-checkbox.js"></script>
     <!-- Delete -->
@@ -22,18 +23,20 @@
     <script src="../../view/js/ajax/delete/delete-tasks.js"></script>
     <script src="../../view/js/ajax/delete/remove-task-from-table.js"></script>
     <!-- File -->
-    <script src="../js/ajax/file/change-file-name.js"></script>
+    <script src="../../view/js/ajax/file/change-file-name.js"></script>
     <!-- Windows -->
-    <script src="../../view/js/windows/dram-modal-window.js"></script>
+    <script src="../../view/js/windows/draw-file-action-window.js"></script>
     <script src="../../view/js/windows/draw-change-task-info-window.js"></script>
     <!-- Task -->
     <script src="../../view/js/ajax/task/add-task.js"></script>
     <script src="../../view/js/ajax/task/move-task.js"></script>
+    <script src="../../view/js/ajax/task/validate-input.js"></script>
     <!-- Change -->
     <script src="../../view/js/ajax/task/change/change-date.js"></script>
     <script src="../../view/js/ajax/task/change/change-task-attributes.js"></script>
     <!-- Print -->
     <script src="../../view/js/ajax/print/table/task-name.js"></script>
+    <script src="../../view/js/ajax/print/table/draw-table-header.js"></script>
     <script src="../../view/js/ajax/print/table/move-task.js"></script>
     <script src="../../view/js/ajax/print/table/move-basket-or-remove.js"></script>
     <script src="../../view/js/ajax/print/table/first-table-row.js"></script>
@@ -41,6 +44,7 @@
     <script src="../../view/js/ajax/print/table/description.js"></script>
     <script src="../../view/js/ajax/print/table/date.js"></script>
     <script src="../../view/js/ajax/print/print-task.js"></script>
+    <script src="../../view/js/ajax/print/table/draw-delete-button.js"></script>
     <script src="../../view/js/ajax/print/table/draw-table.js"></script>
     <!-- Requests -->
     <script src="../../view/js/ajax/request/new-xml-http-request.js"></script>
