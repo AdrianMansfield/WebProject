@@ -40,18 +40,6 @@ function descriptionSecondTableRow(taskName, description, date,  taskId) {
 
     button = document.createElement(BUTTON_TAG);
 
-    button.setAttribute(NAME_ATTRIBUTE,'name');
-
-    button.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger mr-3");
-
-    button.innerHTML = CHANGE_NAME_HREF;
-
-    button.onclick = drawChangeInfoModalWindow.bind(this, 'name', taskId, taskName);
-
-    td.appendChild(button);
-
-    button = document.createElement(BUTTON_TAG);
-
     button.setAttribute(NAME_ATTRIBUTE,'date');
 
     button.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger mr-3");

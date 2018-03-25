@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 
-<div class="table-container">
+<div class="table-container" id="tableContainer">
 
     <table class="text-center table-bordered table-hover" id="taskTable">
 
@@ -33,8 +33,6 @@
             <c:import url="/view/jsp/jspchunks/table/descriptionSecondTableRow.jsp"/>
 
             <c:import url="/view/jsp/jspchunks/table/changeDescriptionRow.jsp"/>
-
-            <c:import url="/view/jsp/jspchunks/table/changeNameRow.jsp"/>
 
             <c:import url="/view/jsp/jspchunks/table/changeDateRow.jsp"/>
 

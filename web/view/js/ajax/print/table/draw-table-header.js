@@ -1,22 +1,14 @@
-taskDayType = {};
 
-taskDayType['TODAY'] = drawTodayHeaderPart;
-taskDayType['TOMORROW'] = drawTomorrowHeaderPart;
-taskDayType['SOMEDAY'] = drawSomedayHeaderPart;
-taskDayType['FIXED'] = drawFixedHeaderPart;
-taskDayType['BASKET'] = drawBasketHeaderPart;
-
-function drawTableHeader(taskType) {
-    alert(taskType);
-    taskDayType[taskType]();
-}
-
-function drawTodayHeaderPart() {
+function tableHeader(taskType) {
 
     var thead = document.createElement("thead");
     var th = document.createElement("th");
 
-    th.innerHTML = 'complete';
+    if (taskType === 'BASKET' || taskType === 'FIXED'){
+        th.innerHTML = 'restore';
+    } else{
+        th.innerHTML = 'complete';
+    }
 
     thead.appendChild(th);
 
@@ -32,123 +24,42 @@ function drawTodayHeaderPart() {
 
     thead.appendChild(th);
 
-    th = document.createElement("th");
+    if (taskType === "SOMEDAY") {
 
-    th.innerHTML = 'delete';
+        th = document.createElement("th");
 
-    thead.appendChild(th);
+        th.innerHTML = 'date';
 
-    alert(thead);
+        thead.appendChild(th);
+    }
 
-    return thead;
-}
+    if (taskType === "BASKET"){
+        th = document.createElement("th");
 
-function drawTomorrowHeaderPart() {
-    drawTodayHeaderPart();
-}
+        var checkbox = document.createElement("checkbox");
 
-function drawSomedayHeaderPart() {
-    var thead = document.createElement("thead");
-    var th = document.createElement("th");
+        checkbox.setAttribute(ID_ATTRIBUTE,"checkAll");
 
-    th.innerHTML = 'complete';
+        // checkbox.setAttribute(ONCLICK_ATTRIBUTE,"toggle(this)");
 
-    thead.appendChild(th);
+        th.appendChild(checkbox);
 
-    th = document.createElement("th");
+        var label = document.createElement(LABEL_TAG);
 
-    th.innerHTML = 'task name';
+        label.setAttribute(FOR_ATTRIBUTE,"checkAll");
 
-    thead.appendChild(th);
+        label.innerHTML = "check all";
 
-    th = document.createElement("th");
+        th.appendChild(label);
 
-    th.innerHTML = 'file';
+        thead.appendChild(th);
+    } else {
+        th = document.createElement("th");
 
-    thead.appendChild(th);
+        th.innerHTML = 'to basket';
 
-    th = document.createElement("th");
-
-    th.innerHTML = 'date';
-
-    thead.appendChild(th);
-
-    th = document.createElement("th");
-
-    th.innerHTML = 'delete';
-
-    thead.appendChild(th);
-    return thead;
-}
-
-function drawFixedHeaderPart() {
-    var thead = document.createElement("thead");
-    var th = document.createElement("th");
-
-    th.innerHTML = 'restore';
-
-    thead.appendChild(th);
-
-    th = document.createElement("th");
-
-    th.innerHTML = 'task name';
-
-    thead.appendChild(th);
-
-    th = document.createElement("th");
-
-    th.innerHTML = 'file';
-
-    thead.appendChild(th);
-
-    th = document.createElement("th");
-
-    th.innerHTML = 'delete';
-
-    thead.appendChild(th);
-
-    return thead;
-}
-
-function drawBasketHeaderPart() {
-    var thead = document.createElement("thead");
-    var th = document.createElement("th");
-
-    th.innerHTML = 'restore';
-
-    thead.appendChild(th);
-
-    th = document.createElement("th");
-
-    th.innerHTML = 'task name';
-
-    thead.appendChild(th);
-
-    th = document.createElement("th");
-
-    th.innerHTML = 'file';
-
-    thead.appendChild(th);
-
-    th = document.createElement("th");
-
-    var checkbox = document.createElement("checkbox");
-
-    checkbox.setAttribute(ID_ATTRIBUTE, "checkAll");
-
-    // checkbox.onclick = toggleAll.bind(this,this);
-
-    th.appendChild(checkbox);
-
-    var label = document.createElement(LABEL_TAG);
-
-    label.setAttribute(FOR_ATTRIBUTE, "checkAll");
-
-    label.innerHTML = "check all";
-
-    th.appendChild(label);
-
-    thead.appendChild(th);
+        thead.appendChild(th);
+    }
 
     return thead;
 }

@@ -4,12 +4,7 @@ import by.gsu.epamlab.constants.database.TaskInfoChangeConstants;
 
 public enum TaskInfoChangeType {
 
-    NAME{
-        @Override
-        public String getChangeTaskInfoQuery() {
-            return TaskInfoChangeConstants.SQL_CHANGE_NAME;
-        }
-    }, DESCRIPTION{
+    DESCRIPTION{
         @Override
         public String getChangeTaskInfoQuery() {
             return TaskInfoChangeConstants.SQL_CHANGE_DESCRIPTION;
