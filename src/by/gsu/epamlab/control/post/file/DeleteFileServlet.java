@@ -43,6 +43,7 @@ public class DeleteFileServlet extends AbstractNonGetController {
 
             if(ParameterConstants.AJAX_PARAMETER.equals(connectionType)) {
                 JSONObject jsonObject = new JSONObject();
+                jsonObject.put("taskId", taskId);
                 jsonObject.put("taskName", task.getName());
                 jsonObject.put("newFileName", Constants.NO_FILE);
                 jsonObject.put("oldFileName", oldFileName);

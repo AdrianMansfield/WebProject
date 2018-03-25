@@ -54,13 +54,41 @@ function drawFileModalWindow(taskId, fileName, taskName) {
 
     colFirstDiv.setAttribute(CLASS_ATTRIBUTE, "col");
 
+    var form = document.createElement("form"); // --------------------------
+
+    form.setAttribute(METHOD_ATTRIBUTE, POST_METHOD);
+
+    form.setAttribute(ACTION_ATTRIBUTE, DOWNLOAD_FILE_SERVLET);
+
+    var input = document.createElement(INPUT_TAG);
+
+    input.setAttribute(TYPE_ATTRIBUTE, HIDDEN_ATTRIBUTE);
+
+    input.setAttribute(NAME_ATTRIBUTE, "taskNames");
+
+    input.setAttribute(VALUE_ATTRIBUTE, taskName);
+
+    form.appendChild(input);
+
+    input = document.createElement(INPUT_TAG);
+
+    input.setAttribute(TYPE_ATTRIBUTE, HIDDEN_ATTRIBUTE);
+
+    input.setAttribute(NAME_ATTRIBUTE, "fileNames");
+
+    input.setAttribute(VALUE_ATTRIBUTE, fileName);
+
+    form.appendChild(input);
+
     var downloadButton = document.createElement(BUTTON_TAG);
 
     downloadButton.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger");
 
     downloadButton.innerHTML = "Download";
 
-    colFirstDiv.appendChild(downloadButton);
+    form.appendChild(downloadButton);
+
+    colFirstDiv.appendChild(form); /// -----------------------------------
 
     div.appendChild(colFirstDiv);
 
@@ -202,7 +230,7 @@ function drawNoFileModalWindow(taskId, fileName, taskName) {
     button.innerHTML = 'Upload';
 
     var event = function () {
-        sendRequestToUploadFileServlet(taskName);
+        sendRequestToUploadFileServlet(taskId, taskName);
     };
 
     button.addEventListener("click",event);

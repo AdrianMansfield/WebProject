@@ -50,9 +50,7 @@ public class PrintTaskServlet extends AbstractNonPostController {
                 response.getWriter().write(jsonObject.toJSONString());
             }
             else {
-                session.setAttribute(ParameterConstants.TASK_LIST_NAME_PARAMETER, taskList);
-                session.setAttribute(ParameterConstants.TASK_TYPE_PARAMETER, taskType);
-                response.sendRedirect(UrlConstants.MAIN_URL);
+                request.getRequestDispatcher(UrlConstants.MAIN_URL).forward(request, response);
             }
 
 

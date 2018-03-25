@@ -1,17 +1,3 @@
-function setMidnight(date) {
-
-    date.setHours(0);
-
-    date.setMinutes(0);
-
-    date.setSeconds(0);
-
-    date.setMilliseconds(0);
-
-    return date;
-
-}
-
 function changeDate(taskId, date, infoType) {
 
     var tomorrowDate = new Date();
@@ -71,4 +57,18 @@ function russianDateFormat(date) {
     }
 
     return day + "." + month + "." + year;
+}
+
+function setMidnight(date) {
+
+    date.setHours(0);
+
+    date.setMinutes(0);
+
+    date.setSeconds(0);
+
+    date.setMilliseconds(0);
+
+    return date;
+
 }
