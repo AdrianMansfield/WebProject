@@ -12,23 +12,46 @@
     <link rel="stylesheet" href="../../view/css/table.css">
     <link rel="stylesheet" href="../../view/css/bars.css">
     <link rel="stylesheet" href="../../view/css/modalWindow.css">
+    <!-- Constants and general script -->
     <script src="../../view/js/general-constants.js"></script>
     <script src="../../view/js/tag-constants.js"></script>
     <script src="../../view/js/tag-attribute-constants.js"></script>
-    <script src="../../view/js/remove-all-elements-from-table.js"></script>
-    <script src="../../view/js/new-xml-http-request.js"></script>
-    <script src="../../view/js/send-request.js"></script>
-    <script src="../../view/js/ajax-task-print.js"></script>
     <script src="../../view/js/get-checked-checkbox.js"></script>
-    <script src="../../view/js/ajax-move-task.js"></script>
-    <script src="../../view/js/script.js"></script>
-    <script src="../../view/js/dram-modal-window.js"></script>
-    <script src="../../view/js/ajax-add-task.js"></script>
-    <script src="../../view/js/ajax-upload-file.js"></script>
-    <script src="../../view/js/ajax-remove-task-from-table.js"></script>
-    <script src="../../view/js/ajax-delete-tasks.js"></script>
-    <script src="../../view/js/draw-table-header.js"></script>
-    <script src="../../view/js/draw-change-task-info-window.js"></script>
+    <!-- Delete -->
+    <script src="../../view/js/ajax/delete/remove-all-elements.js"></script>
+    <script src="../../view/js/ajax/delete/delete-tasks.js"></script>
+    <script src="../../view/js/ajax/delete/remove-task-from-table.js"></script>
+    <!-- File -->
+    <script src="../js/ajax/file/change-file-name.js"></script>
+    <!-- Windows -->
+    <script src="../../view/js/windows/dram-modal-window.js"></script>
+    <script src="../../view/js/windows/draw-change-task-info-window.js"></script>
+    <!-- Task -->
+    <script src="../../view/js/ajax/task/add-task.js"></script>
+    <script src="../../view/js/ajax/task/move-task.js"></script>
+    <!-- Change -->
+    <script src="../../view/js/ajax/task/change/change-date.js"></script>
+    <script src="../../view/js/ajax/task/change/change-task-attributes.js"></script>
+    <!-- Print -->
+    <script src="../../view/js/ajax/print/table/task-name.js"></script>
+    <script src="../../view/js/ajax/print/table/move-task.js"></script>
+    <script src="../../view/js/ajax/print/table/move-basket-or-remove.js"></script>
+    <script src="../../view/js/ajax/print/table/first-table-row.js"></script>
+    <script src="../../view/js/ajax/print/table/file-name.js"></script>
+    <script src="../../view/js/ajax/print/table/description.js"></script>
+    <script src="../../view/js/ajax/print/table/date.js"></script>
+    <script src="../../view/js/ajax/print/print-task.js"></script>
+    <script src="../../view/js/ajax/print/table/draw-table.js"></script>
+    <!-- Requests -->
+    <script src="../../view/js/ajax/request/new-xml-http-request.js"></script>
+    <script src="../../view/js/ajax/request/send-request.js"></script>
+    <script src="../../view/js/ajax/request/request-to-upload-file.js"></script>
+    <script src="../../view/js/ajax/request/request-to-add-task.js"></script>
+    <script src="../../view/js/ajax/request/request-to-delete-task.js"></script>
+    <script src="../../view/js/ajax/request/request-to-change-task.js"></script>
+    <script src="../../view/js/ajax/request/request-to-move-task.js"></script>
+    <script src="../../view/js/ajax/request/request-to-print-task.js"></script>
+
 </head>
 <body>
 
