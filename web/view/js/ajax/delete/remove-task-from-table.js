@@ -4,7 +4,21 @@ function removeTaskFromTable(taskId) {
 
     var tr = document.getElementsByName(taskId);
 
-    for (var i = 0; i < tr.length; i++) {
-        taskTable.removeChild(tr[i]);
+    taskTable.removeChild(tr[0]);
+
+    taskTable.removeChild(tr[0]);
+
+    if(taskTable.rows.length === 0) {
+
+        removeAllElements(taskTable);
+
+        var currentTaskType = document.getElementById("sectionName").getAttribute("name");
+        if(currentTaskType === BASKET) {
+            document.getElementById('tableContainer').removeChild(document.getElementById("taskDeleteButton"));
+        }
     }
+
+
+
+
 }

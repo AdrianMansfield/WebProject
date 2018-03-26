@@ -10,15 +10,25 @@ function showDateField() {
 
 function printNewTask(jsonObject) {
 
-    var taskTable = document.getElementById("taskTable");
+    var taskType = jsonObject["taskType"];
 
-    if (taskTable.firstChild){
+    var section = document.getElementById("sectionName");
 
-        var taskType = jsonObject["taskType"];
+    if(section)  {
 
-        var currentTaskType = document.getElementById("sectionName").getAttribute("name");
+        var currentTaskType = section.getAttribute("name");
 
         if(taskType === currentTaskType) {
+
+            var taskTable = document.getElementById("taskTable");
+
+            if (!taskTable.firstChild) {
+
+                var th = tableHeader(taskType);
+
+                taskTable.appendChild(th);
+
+            }
 
 
             var isBasket = taskType === BASKET;
@@ -28,7 +38,9 @@ function printNewTask(jsonObject) {
             var task = jsonObject["task"];
 
             printTask(task, isMain, isBasket, taskType);
-
+            return;
         }
     }
+    sendQueryToPrintTaskServlet(taskType);
+
 }
