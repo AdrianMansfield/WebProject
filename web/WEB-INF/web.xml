@@ -67,14 +67,6 @@
         <servlet-name>main</servlet-name>
         <url-pattern>/main</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>errorPage</servlet-name>
-        <jsp-file>/view/jsp/jspchunks/errorPage.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>errorPage</servlet-name>
-        <url-pattern>/errorPage</url-pattern>
-    </servlet-mapping>
 
 
     <!-- SERVLET  -->
@@ -264,5 +256,15 @@
     <listener>
         <listener-class>by.gsu.epamlab.control.listeners.ApplicationContextParameter</listener-class>
     </listener>
+
+
+    <!-- Error page  -->
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/view/jsp/jspchunks/errorPage.jsp</location>
+    </error-page>
+
+
 
 </web-app>

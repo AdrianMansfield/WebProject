@@ -4,23 +4,25 @@ function validateAddTaskForm(taskType, taskName, description, date) {
     var taskDateInput = document.forms["addTaskForm"]["date"];
     var nameIsValid = validateNameField(taskName);
     var descriptionIsValid = validateDescriptionField(description);
-    if (taskType === "SOMEDAY"){
+    taskNameInput.setAttribute(CLASS_ATTRIBUTE, "form-control");
+    taskDescriptionInput.setAttribute(CLASS_ATTRIBUTE, "form-control");
+    taskDateInput.setAttribute(CLASS_ATTRIBUTE, "form-control");
+    if (taskType === "someday"){
         var dateIsValid = validateDateField(date);
     }
     if (!nameIsValid){
         taskNameInput.setAttribute(CLASS_ATTRIBUTE, "error-form-control");
-        taskDescriptionInput.setAttribute(CLASS_ATTRIBUTE, "form-control");
-        taskDateInput.setAttribute(CLASS_ATTRIBUTE, "form-control");
     } else if (!descriptionIsValid){
         taskDescriptionInput.setAttribute(CLASS_ATTRIBUTE, "error-form-control");
-        taskNameInput.setAttribute(CLASS_ATTRIBUTE, "form-control");
-        taskDateInput.setAttribute(CLASS_ATTRIBUTE, "form-control");
-    } else if (!dateIsValid && taskType === "SOMEDAY"){
+    } else if (!dateIsValid && taskType === "someday"){
         taskDateInput.setAttribute(CLASS_ATTRIBUTE, "error-form-control");
-        taskDescriptionInput.setAttribute(CLASS_ATTRIBUTE, "form-control");
-        taskNameInput.setAttribute(CLASS_ATTRIBUTE, "form-control");
-    } else
-        sendQueryToAddTaskServlet(taskType, taskName, description, date)
+    } else{
+        sendQueryToAddTaskServlet(taskType, taskName, description, date);
+        document.forms["addTaskForm"]["taskName"].value = '';
+        document.forms["addTaskForm"]["description"].value = '';
+        document.forms["addTaskForm"]["date"].value = '';
+    }
+
 
 }
 
@@ -59,7 +61,7 @@ function validateDescriptionField(description) {
 function validateDateField(date) {
     var regExp = /(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}/;
     var isSomeday = document.getElementById("someday").checked;
-    if (isSomeday && date === "" || !regExp.test(date)) {
+    if (isSomeday && date === "" && !regExp.test(date)) {
         return false;
     }
         return true;
