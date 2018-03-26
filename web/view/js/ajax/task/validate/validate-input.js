@@ -2,19 +2,17 @@ function validateAddTaskForm(taskType, taskName, description, date) {
     var taskNameInput = document.forms["addTaskForm"]["taskName"];
     var taskDescriptionInput = document.forms["addTaskForm"]["description"];
     var taskDateInput = document.forms["addTaskForm"]["date"];
-    var nameIsValid = validateNameField(taskName);
-    var descriptionIsValid = validateDescriptionField(description);
     taskNameInput.setAttribute(CLASS_ATTRIBUTE, "form-control");
     taskDescriptionInput.setAttribute(CLASS_ATTRIBUTE, "form-control");
     taskDateInput.setAttribute(CLASS_ATTRIBUTE, "form-control");
     if (taskType === "someday"){
         var dateIsValid = validateDateField(date);
     }
-    if (!nameIsValid){
+    if (isEmptyString(taskName)){
         taskNameInput.setAttribute(CLASS_ATTRIBUTE, "error-form-control");
-    } else if (!descriptionIsValid){
+    } else if (isEmptyString(description)){
         taskDescriptionInput.setAttribute(CLASS_ATTRIBUTE, "error-form-control");
-    } else if (!dateIsValid && taskType === "someday"){
+    } else if (dateIsValid && taskType === "someday"){
         taskDateInput.setAttribute(CLASS_ATTRIBUTE, "error-form-control");
     } else{
         sendQueryToAddTaskServlet(taskType, taskName, description, date);
@@ -22,14 +20,12 @@ function validateAddTaskForm(taskType, taskName, description, date) {
         document.forms["addTaskForm"]["description"].value = '';
         document.forms["addTaskForm"]["date"].value = '';
     }
-
-
 }
 
 function validateChangeTaskInfoForm(taskId, attributeName) {
     var textarea = document.getElementById(TASK_ATTRIBUTE);
-    var descriptionIsValid = validateDescriptionField(textarea.value);
-    if (!descriptionIsValid){
+    // var descriptionIsValid = isEmptyString(textarea.value);
+    if (isEmptyString(textarea.value)){
         textarea.setAttribute(CLASS_ATTRIBUTE, "error-form-control");
     } else {
         textarea.setAttribute(CLASS_ATTRIBUTE, "form-control");
@@ -38,32 +34,7 @@ function validateChangeTaskInfoForm(taskId, attributeName) {
             document.location.href = "#";
         }
         removeAllElements(document.getElementById(FILE_MODAL_WINDOW));
-
     }
 }
 
-function validateNameField(taskName) {
-    if (taskName === "") {
-        return false;
-    } else
-        return true;
-
-}
-
-function validateDescriptionField(description) {
-    if (description === "") {
-        return false;
-    } else
-        return true;
-
-}
-
-function validateDateField(date) {
-    var regExp = /(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}/;
-    var isSomeday = document.getElementById("someday").checked;
-    if (isSomeday && date === "" && !regExp.test(date)) {
-        return false;
-    }
-        return true;
-}
 

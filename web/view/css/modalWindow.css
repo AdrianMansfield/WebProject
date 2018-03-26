@@ -24,6 +24,10 @@
     -webkit-transition: all 0.4s ease-in-out;
 }
 
+
+/*
+стиили для заголовка модального окна
+*/
 .modalWindow header, .modalWindow footer {
     background: #f7f7f7;
     border-bottom: 1px solid #e7e7e7;
@@ -31,6 +35,10 @@
     -moz-border-radius: 5px 5px 0 0;
     -webkit-border-radius: 5px 5px 0 0;
 }
+
+/*
+тоже самое для подвала
+*/
 .modalWindow footer {
     border:none;
     border-top: 1px solid #e7e7e7;
@@ -38,27 +46,42 @@
     -moz-border-radius: 0 0 5px 5px;
     -webkit-border-radius: 0 0 5px 5px;
 }
+
+/*
+установка отступов для каждого их элементов модального окна
+*/
 .modalWindow section, .modalWindow header, .modalWindow footer {
     padding: 15px;
     z-index: 200;
 }
+
+/*
+отступы для заголовка второго уровня
+*/
 .modalWindow h2 {
     margin: 0;
 }
 
 
-
+/*
+стиили для начального положения модального окна изначального окно просто находиться сверху за пределами страницы
+*/
 .modalDescription {
    visibility: hidden;
-    position: absolute;
+   position: absolute;
 }
 
-
+/*
+стиили для конечного положения окна... когда мы переходим по специальной ссылке для модального окна
+*/
 .modalDescription:target {
     visibility: visible;
     position: relative;
 }
 
+/*
+класс для выдвижения модального окошка
+*/
 
 .jsModalWindow {
     background: #fff;

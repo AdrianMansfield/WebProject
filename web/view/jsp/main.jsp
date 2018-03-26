@@ -30,7 +30,9 @@
     <!-- Task -->
     <script src="../../view/js/ajax/task/add-task.js"></script>
     <script src="../../view/js/ajax/task/move-task.js"></script>
-    <script src="../../view/js/ajax/task/validate-input.js"></script>
+    <!-- Validate -->
+    <script src="../../view/js/ajax/task/validate/check-input.js"></script>
+    <script src="../../view/js/ajax/task/validate/validate-input.js"></script>
     <!-- Change -->
     <script src="../../view/js/ajax/task/change/change-date.js"></script>
     <script src="../../view/js/ajax/task/change/change-task-attributes.js"></script>

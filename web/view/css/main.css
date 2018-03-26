@@ -1,11 +1,13 @@
-.center_div {
-    margin: 0 auto;
-    width: 80%;
-}
-
+/*
+задает красный цвет для ссылки
+*/
 a {
     color: #f85c37;
 }
+
+/*
+убираем идиотские эффекты для ссылок при наведении
+*/
 
 a:hover, a:focus {
     color: #7b7b7b;
@@ -13,6 +15,9 @@ a:hover, a:focus {
     outline: 0;
 }
 
+/*
+изменяем горизонтальную линию... используется в регистрации и логине
+*/
 hr {
     display: block;
     height: 1px;
@@ -22,26 +27,29 @@ hr {
     padding: 0;
 }
 
-
-
-
+/*
+делаем чекбокс невидимым... что бы потом можно было нажимать на label и нажимался чекбокс
+*/
 .invisible-circle-label {
     cursor: pointer;
     visibility: hidden;
 }
 
-
+/*
+неотрисовывать элемент
+*/
 .noneDisplay{
     display: none;
 }
 
+/*
+отрисовывать элемент
+*/
 .displayElement{
     display: block;
 }
 
-.holder{
-    position:relative;
-}
+
 .block{
     position:absolute;
     left:0;
@@ -52,14 +60,18 @@ hr {
     padding:5px;
     display:none;
 }
-.holder:hover .block{
-    display:block;
-}
 
+/*
+задает большой размер шрифта для надписи Add task
+*/
 .bigFont{
     font-size: 2rem;
 }
 
+
+/*
+переписанный класс row из bootstrap... в оригинальном были отступы.. которые ломали нашу страничкуююю пришлось сделать так же но без отступов
+*/
 .custom-row{
     display: -webkit-box;
     display: -webkit-flex;
@@ -70,6 +82,10 @@ hr {
     flex-wrap: wrap;
 }
 
+
+/*
+переписанный класс form-control из bootstrap который делает input красивым... этот класс используется для того что бы делать поле красным при неправильном вводе
+*/
 .error-form-control {
     display: block;
     width: 100%;
@@ -89,7 +105,9 @@ hr {
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
 }
-
+/*
+дополнение к предыдущему классу тоже для красивостей
+*/
 .error-form-control:focus{
-    border: 1px solid rgba(0, 0, 0, 0.15);;
+    border: 1px solid rgba(0, 0, 0, 0.15);
 }
