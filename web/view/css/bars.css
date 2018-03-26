@@ -1,15 +1,16 @@
+/*
+отрисовка верхнего бара... параметры шрифтов и отступы текста от краев этой полоски
+*/
 .navbar {
     font-weight: 900;
     font-size: 20px;
     padding-top: 15px;
     padding-bottom: 15px;
 }
-
+/*
+задает цвет ... используется только для цвета верхнего бара
+*/
 .navbar-inverse {
     background: #2d2d2d;
     border-color: #2d2d2d;
-}
-
-.above-table{
-    margin-left: 37rem;
 }

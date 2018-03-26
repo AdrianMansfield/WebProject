@@ -1,22 +1,38 @@
+/*
+задает ширину таблицы что бы она была во всю ширину родительского элемента
+*/
 table{
     width: 100%;
 }
 
+/*
+задаем высоту каждой ячейки таблицы
+*/
 table td{
     height: 1rem;
 }
 
+/*
+стиль для того что бы label заполнял всю ячейку в которой находиться и при наведении на него будет изменять курсор
+*/
 table td label{
     display: block;
     height: 100%;
 }
 
+/*
+стиили для переноса текста в кнопке загрузки файла
+*/
 table td:nth-child(3) button{
     width: 25rem;
     word-break: break-all !important;
     white-space: normal !important;
 }
 
+
+/*
+стиль для того что бы label заполнял всю ячейку в которой находиться и при наведении на него будет изменять курсор
+*/
 .table-container label{
     width: 100%;
     cursor: pointer;
@@ -25,11 +41,17 @@ table td:nth-child(3) button{
 .table-container input:checked + label{
     background: rgba(0, 0, 0, 0.075);
 }
+
+/*
+задает высоту нащей таблицы в 500 пикселей... если будет больше 500 то появяться штуки которые двигают контент
+*/
 .table-container {
     height: 500px;
     overflow: auto;
 }
-
+/*
+текст по центру в заголовке таблицы
+*/
 th {
     text-align: center;
 }
