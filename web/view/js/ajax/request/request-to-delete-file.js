@@ -1,5 +1,8 @@
-function sendRequestToDeleteFileServlet() {
+function sendRequestToDeleteFileServlet(taskId) {
+
     var xmlHttpRequest = newXMLHttpRequest();
+
     sendRequest(xmlHttpRequest, POST_METHOD, changeFileName, "/DeleteFileServlet",
-        makeRequestBody());
+        makeRequestBody(TASK_ID, taskId));
+
 }

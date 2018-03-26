@@ -52,6 +52,7 @@
     <script src="../../view/js/ajax/request/request-to-upload-file.js"></script>
     <script src="../../view/js/ajax/request/request-to-add-task.js"></script>
     <script src="../../view/js/ajax/request/request-to-delete-task.js"></script>
+    <script src="../../view/js/ajax/request/request-to-delete-file.js"></script>
     <script src="../../view/js/ajax/request/request-to-change-task.js"></script>
     <script src="../../view/js/ajax/request/request-to-move-task.js"></script>
     <script src="../../view/js/ajax/request/request-to-print-task.js"></script>

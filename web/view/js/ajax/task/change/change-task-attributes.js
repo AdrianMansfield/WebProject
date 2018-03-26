@@ -16,8 +16,6 @@ var actionNumber = {
 };
 
 
-
-
 function changeAttribute(jSonObject) {
 
     var taskId = jSonObject["taskId"];

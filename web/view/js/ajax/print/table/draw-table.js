@@ -40,7 +40,7 @@ function drawTaskTable(jsonObject) {
 
 
     }
-        drawDeleteButton(taskType, task.length);
+        drawDeleteButton(taskType, tasks.length);
 }
 
 

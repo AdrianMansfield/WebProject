@@ -6,12 +6,23 @@ requestMethods[GET_METHOD] = sendGetRequest;
 
 requestMethods[FILE] = sendPostWithFileRequest;
 
-function sendRequest(xmlHttpRequest, method, receivingFunction, servletUrl, query) {
+function sendRequest(xmlHttpRequest, method, callBackFunction, servletUrl, query) {
 
     xmlHttpRequest.onreadystatechange = function() {
+
         if (xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200) {
+
+            //var regExp = /(\\{.*\\})+/;
+
             var data = xmlHttpRequest.responseText;
-            receivingFunction(JSON.parse(data));
+
+
+            var jsonObject = JSON.parse(data);
+
+            callBackFunction(jsonObject);
+
+
+
         }
     };
 

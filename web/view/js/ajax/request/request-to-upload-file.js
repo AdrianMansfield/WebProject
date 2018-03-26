@@ -1,4 +1,4 @@
-function sendRequestToUploadFileServlet(taskName) {
+function sendRequestToUploadFileServlet(taskId, taskName) {
 
     var xmlHttpRequest = newXMLHttpRequest();
 
@@ -7,6 +7,6 @@ function sendRequestToUploadFileServlet(taskName) {
     var file = uploadFileForm.files[0];
 
     sendRequest(xmlHttpRequest, FILE, changeFileName, UPLOAD_FILE_SERVLET, makeFormData(FROM_NAME_PARAMETER,
-        FROM_VALUE_PARAMETER, TASK_NAME, taskName, FILE, file));
+        FROM_VALUE_PARAMETER, TASK_NAME, taskName, FILE, file, TASK_ID, taskId));
 
 }

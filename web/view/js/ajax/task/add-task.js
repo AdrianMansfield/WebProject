@@ -9,20 +9,38 @@ function showDateField() {
 }
 
 function printNewTask(jsonObject) {
-    var taskType = jsonObject.taskType;
-    alert("hiiiiiiiii")
 
-    var taskTable = document.getElementById("taskTable");
-    if (taskType.firstChild){
-        var currentTaskType = document.getElementById("sectionName").getAttribute("name");
+    var taskType = jsonObject["taskType"];
 
-        var isBasket = taskType === BASKET;
-        var isFixed = taskType === FIXED;
-        var isMain = !isBasket && !isFixed;
+    var section = document.getElementById("sectionName");
+
+    if(section)  {
+
+        var currentTaskType = section.getAttribute("name");
 
         if(taskType === currentTaskType) {
-            var task = jsonObject.task;
+
+            var taskTable = document.getElementById("taskTable");
+
+            if (!taskTable.firstChild) {
+
+                var th = tableHeader(taskType);
+
+                taskTable.appendChild(th);
+
+            }
+
+
+            var isBasket = taskType === BASKET;
+            var isFixed = taskType === FIXED;
+            var isMain = !isBasket && !isFixed;
+
+            var task = jsonObject["task"];
+
             printTask(task, isMain, isBasket, taskType);
+            return;
         }
     }
+    sendQueryToPrintTaskServlet(taskType);
+
 }

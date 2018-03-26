@@ -49,6 +49,8 @@ public class UploadFileServlet extends AbstractNonGetController {
 
             if(ParameterConstants.AJAX_PARAMETER.equals(connectionType)) {
                 JSONObject jsonObject = new JSONObject();
+                String taskId = request.getParameter(ParameterConstants.TASK_ID_PARAMETER);//-----------------
+                jsonObject.put("taskId", taskId);
                 jsonObject.put("taskName", taskName);
                 jsonObject.put("newFileName", fileName);
                 jsonObject.put("oldFileName", Constants.NO_FILE);

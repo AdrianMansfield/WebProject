@@ -2,6 +2,8 @@
 
 function changeFileName(jsonObject) {
 
+    var taskId = jsonObject["taskId"];
+
     var taskName = jsonObject["taskName"];
 
     var newFileName = jsonObject["newFileName"];
@@ -10,10 +12,12 @@ function changeFileName(jsonObject) {
 
     var fileElement = document.getElementById(taskName + ";" +  oldFileName);
 
-    fileElement.onclick = drawModalWindows.bind(this, newFileName, taskName);
+    alert(fileElement);
+
+    fileElement.onclick = drawModalWindows.bind(this, taskId, newFileName, taskName);
 
     fileElement.setAttribute(ID_ATTRIBUTE, taskName + ";" + newFileName);
 
-    fileElement.innerHTML = fileName;
+    fileElement.innerHTML = newFileName;
 
 }
