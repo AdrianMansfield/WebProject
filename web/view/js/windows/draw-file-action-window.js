@@ -80,11 +80,22 @@ function drawFileModalWindow(taskId, fileName, taskName) {
 
     form.appendChild(input);
 
-    var downloadButton = document.createElement(BUTTON_TAG);
+    var downloadButton = document.createElement(INPUT_TAG);
 
     downloadButton.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger");
 
-    downloadButton.innerHTML = "Download";
+    downloadButton.setAttribute(TYPE_ATTRIBUTE,"submit");
+
+    downloadButton.setAttribute(VALUE_ATTRIBUTE,"Download");
+
+    var fix = function() {
+
+        form.submit();
+        removeAllElements(fileModalWindow);
+
+    };
+
+    downloadButton.addEventListener("click", fix);
 
     form.appendChild(downloadButton);
 
@@ -105,6 +116,7 @@ function drawFileModalWindow(taskId, fileName, taskName) {
     var event = function() {
 
         sendRequestToDeleteFileServlet(taskId);
+        removeAllElements(fileModalWindow);
 
     };
 
@@ -142,67 +154,6 @@ function drawFileModalWindow(taskId, fileName, taskName) {
 
 }
 
-// function drawNoFileModalWindow(taskId, fileName, taskName) {
-//
-//     var fileModalWindow = document.getElementById(FILE_MODAL_WINDOW);
-//
-//     var aside = getAside(UPLOAD_FILE);
-//
-//     var section = document.createElement(SECTION_TAG);
-//     var form = document.createElement(FORM_ATTRIBUTE);
-//
-//     form.setAttribute(ACTION_ATTRIBUTE, UPLOAD_FILE_SERVLET);
-//     form.setAttribute(METHOD_ATTRIBUTE, POST_METHOD);
-//     form.setAttribute(ECTYPE,MULTIPART);
-//     form.setAttribute(CLASS_ATTRIBUTE, "mb-0");
-//
-//     var input = document.createElement(INPUT_TAG);
-//
-//     input.setAttribute(TYPE_ATTRIBUTE, HIDDEN_ATTRIBUTE);
-//     input.setAttribute(NAME_ATTRIBUTE, TASK_NAME);
-//     input.setAttribute(VALUE_ATTRIBUTE, taskName);
-//
-//     form.appendChild(input);
-//
-//     input = document.createElement(INPUT_TAG);
-//     input.setAttribute(NAME_ATTRIBUTE, FILE);
-//     input.setAttribute(TYPE_ATTRIBUTE, FILE);
-//     input.setAttribute(VALUE_ATTRIBUTE, UPLOAD);
-//     input.setAttribute(CLASS_ATTRIBUTE, "form-control-file mb-1");
-//     input.setAttribute(ID_ATTRIBUTE, "uploadFile");
-//
-//     form.appendChild(input);
-//
-//     input = document.createElement(INPUT_TAG);
-//     input.setAttribute(TYPE_ATTRIBUTE, SUBMIT_ATTRIBUTE);
-//     input.setAttribute(VALUE_ATTRIBUTE, UPLOAD);
-//     input.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger btn-sm");
-//     input.onclick = sendRequestToUploadFileServlet.bind(this, taskName);
-//
-//     form.appendChild(input);
-//
-//     section.appendChild(form);
-//     aside.appendChild(section);
-//
-//     var footer = document.createElement(FOOTER_TAG);
-//
-//     footer.setAttribute(CLASS_ATTRIBUTE, FOOTER_TAG);
-//
-//     var closeButton = document.createElement(BUTTON_TAG);
-//
-//     closeButton.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger");
-//     closeButton.onclick = function () {
-//         removeAllElements(fileModalWindow);
-//     };
-//
-//     closeButton.innerHTML = CLOSE_HREF;
-//
-//     footer.appendChild(closeButton);
-//     aside.appendChild(footer);
-//     fileModalWindow.appendChild(aside);
-//
-// }
-
 function drawNoFileModalWindow(taskId, fileName, taskName) {
     var fileModalWindow = document.getElementById(FILE_MODAL_WINDOW);
 
@@ -230,6 +181,7 @@ function drawNoFileModalWindow(taskId, fileName, taskName) {
     button.innerHTML = 'Upload';
 
     var event = function () {
+        removeAllElements(fileModalWindow);
         sendRequestToUploadFileServlet(taskId, taskName);
     };
 
@@ -237,6 +189,26 @@ function drawNoFileModalWindow(taskId, fileName, taskName) {
 
     section.appendChild(button);
     aside.appendChild(section);
+    var footer = document.createElement(FOOTER_TAG);
+
+    footer.setAttribute(CLASS_ATTRIBUTE, FOOTER_TAG);
+
+    var closeButton = document.createElement(BUTTON_TAG);
+
+    closeButton.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger");
+
+    closeButton.onclick = function () {
+
+        removeAllElements(fileModalWindow);
+
+    };
+
+    closeButton.innerHTML = CLOSE_HREF;
+
+    footer.appendChild(closeButton);
+
+    aside.appendChild(footer);
+
     fileModalWindow.appendChild(aside);
 
 
