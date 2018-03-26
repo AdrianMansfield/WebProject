@@ -1,6 +1,7 @@
 package by.gsu.epamlab.model.database;
 
 import by.gsu.epamlab.constants.Constants;
+import by.gsu.epamlab.exceptions.NoDatabaseConnection;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -22,7 +23,7 @@ public class DatabaseConnection {
 
         } catch (NamingException e) {
 
-            e.printStackTrace();
+            throw new NoDatabaseConnection(e);
 
         }
     }
