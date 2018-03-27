@@ -12,7 +12,7 @@ import java.io.IOException;
 public abstract class AbstractNonPostController extends AbstractBaseController {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws  IOException {
         response.sendError(response.SC_BAD_REQUEST, ExceptionConstants.NON_POST_EXCEPTION_MESSAGE);
         throw new NonHttpMethodException(ExceptionConstants.NON_POST_EXCEPTION_MESSAGE);
     }

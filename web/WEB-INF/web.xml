@@ -32,6 +32,10 @@
         <param-name>filesDirectory</param-name>
         <param-value>C:\WebServerFiles</param-value>
     </context-param>
+    <context-param>
+        <param-name>resourceName</param-name>
+        <param-value>java:comp/env/jdbc/webproject</param-value>
+    </context-param>
 
     <!-- JSP  -->
 

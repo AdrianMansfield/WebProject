@@ -2,7 +2,7 @@
 <!-- For description changing -->
 <tr class="modalDescription" id="${taskName}ChangeDescription">
     <td colspan="5">
-        <form action="ChangeTaskInfoServlet" method="post">
+        <form action="ChangeTaskServlet" method="post">
             <input type="hidden" name="taskType" value="${taskType}"/>
             <input type="hidden" name="taskId" value="${taskId}">
             <input type="hidden" name="infoType" value="description"/>

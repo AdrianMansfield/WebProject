@@ -1,7 +1,6 @@
 package by.gsu.epamlab.control.post.file;
 
 import by.gsu.epamlab.constants.Constants;
-import by.gsu.epamlab.constants.FileConstants;
 import by.gsu.epamlab.model.FileOperations;
 import by.gsu.epamlab.constants.ParameterConstants;
 import by.gsu.epamlab.control.post.AbstractNonGetController;

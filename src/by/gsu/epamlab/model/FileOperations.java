@@ -73,7 +73,7 @@ public final class FileOperations {
 
     }
 
-    public static void deleteFile(Task task, String userLogin) throws DaoException {
+    public static void deleteFile(Task task, String userLogin)  {
 
         String string = ApplicationContextParameter.getFilesDirectory() + File.separator + userLogin + File.separator + task.getName() +
                 FileConstants.FILE_DELIMITER + task.getFileName();
@@ -92,7 +92,7 @@ public final class FileOperations {
         }
     }
 
-    public static void deleteFiles(String userId, List<Task> taskList, String userLogin) throws DaoException {
+    public static void deleteFiles(List<Task> taskList, String userLogin) {
 
         for(Task task : taskList) {
             deleteFile(task, userLogin);

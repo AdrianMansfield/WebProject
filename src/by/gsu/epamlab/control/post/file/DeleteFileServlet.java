@@ -14,11 +14,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+
 
 public class DeleteFileServlet extends AbstractNonGetController {
     @Override
-    protected void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void performTask(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
 
             String connectionType = request.getParameter(ParameterConstants.FROM_PARAMETER);

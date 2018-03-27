@@ -1,6 +1,5 @@
 package by.gsu.epamlab.control.post.authentication;
 
-import by.gsu.epamlab.model.user.Role;
 import by.gsu.epamlab.model.user.User;
 import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.constants.JspConstants;

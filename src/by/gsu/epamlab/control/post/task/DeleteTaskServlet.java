@@ -20,7 +20,7 @@ import java.util.List;
 public class DeleteTaskServlet extends AbstractNonGetController {
 
     @Override
-    protected void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void performTask(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
 
             String connectionType = request.getParameter("from");
@@ -35,7 +35,7 @@ public class DeleteTaskServlet extends AbstractNonGetController {
 
             String userLogin = (String) request.getSession().getAttribute(ParameterConstants.LOGIN_PARAMETER);
 
-            FileOperations.deleteFiles(userId, taskList, userLogin);
+            FileOperations.deleteFiles(taskList, userLogin);
 
             iTaskDAO.removeTasks(taskIds);
 

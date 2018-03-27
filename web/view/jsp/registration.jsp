@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="by.gsu.epamlab.constants.JspConstants" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+
 
 <html>
     <head>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="card-body">
                     <form action="RegistrationServlet" method="post">
-                        <c:import url="/view/jsp/jspchunks/authorizationInputs.jsp"/>
+                        <c:import url="/view/jsp/parts/authorizationInputs.jsp"/>
                     </form>
                 </div>
             </div>

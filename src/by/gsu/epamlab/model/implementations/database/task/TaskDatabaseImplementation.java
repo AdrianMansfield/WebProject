@@ -194,7 +194,6 @@ public final class TaskDatabaseImplementation implements ITaskDAO {
                 taskPreparedStatement.setString(InsertTaskConstants.USER_ID_INDEX, userId);
                 taskPreparedStatement.setString(InsertTaskConstants.TASK_NAME_INDEX, task.getName());
                 taskPreparedStatement.setString(InsertTaskConstants.TASK_DESCRIPTION_INDEX, task.getDescription());
-                Date date = task.getDate();
                 taskPreparedStatement.setDate(InsertTaskConstants.DATE_INDEX, task.getDate());
                 taskPreparedStatement.setString(InsertTaskConstants.FILE_NAME_INDEX, task.getFileName());
                 taskPreparedStatement.executeUpdate();

@@ -6,7 +6,6 @@ import by.gsu.epamlab.control.post.AbstractNonGetController;
 import by.gsu.epamlab.exceptions.DaoException;
 import by.gsu.epamlab.model.factories.TaskDAOFactory;
 import by.gsu.epamlab.model.interfaces.ITaskDAO;
-import by.gsu.epamlab.model.task.Task;
 import org.json.simple.JSONObject;
 
 import javax.servlet.ServletException;

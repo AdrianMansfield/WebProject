@@ -52,23 +52,6 @@ public abstract class AbstractBaseController extends HttpServlet {
     }
 
 
-    protected boolean goodValues(String ... values) {
-        boolean good = true;
-
-        for(String value : values) {
-
-            if(value == null || value.isEmpty()) {
-
-                good = false;
-
-                break;
-
-            }
-        }
-
-        return good;
-    }
-
     protected void sendRedirectToPrintTaskServlet(HttpServletRequest request,
                                                   HttpServletResponse response) throws IOException {
 

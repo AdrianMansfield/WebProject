@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 
-<%@ page import="by.gsu.epamlab.constants.JspConstants" %>
+
 <html>
 <head>
     <title>Main page</title>
@@ -31,7 +31,7 @@
     <script src="../../view/js/ajax/task/add-task.js"></script>
     <script src="../../view/js/ajax/task/move-task.js"></script>
     <!-- Validate -->
-    <script src="../../view/js/ajax/task/validate/check-input.js"></script>
+    <!--<script src="../../view/js/ajax/task/validate/check-input.js"></script>-->
     <script src="../../view/js/ajax/task/validate/validate-input.js"></script>
     <!-- Change -->
     <script src="../../view/js/ajax/task/change/change-date.js"></script>
@@ -83,14 +83,14 @@
         <div class="col-md-8" id="task">
             <div id="taskTypeHeader" class="text-center"></div>
             <div class="modalWindow" id="leftSlide">
-                <c:import url="/view/jsp/jspchunks/addTasks.jsp"/>
+                <c:import url="/view/jsp/parts/addTasks.jsp"/>
             </div>
             <c:if test="${not empty tasks}">
                 <h5 class="my-0 font-weight-normal text-center" id="tasksType">
                         ${taskType}
                 </h5>
             </c:if>
-            <c:import url="/view/jsp/jspchunks/taskOutput.jsp"/>
+            <c:import url="/view/jsp/parts/taskOutput.jsp"/>
         </div>
     </div>
     <div id="fileModalWindow"></div>
@@ -104,7 +104,7 @@
         </div>
     </c:if>
 
-    <c:import url="/view/jsp/jspchunks/developerName.jsp"/>
+    <c:import url="/view/jsp/parts/developerName.jsp"/>
 </footer>
 </body>
 </html>

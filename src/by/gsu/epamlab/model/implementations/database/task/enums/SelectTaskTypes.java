@@ -2,7 +2,6 @@ package by.gsu.epamlab.model.implementations.database.task.enums;
 
 import by.gsu.epamlab.constants.database.SelectTasksConstants;
 
-import java.sql.Connection;
 
 
 public enum SelectTaskTypes {

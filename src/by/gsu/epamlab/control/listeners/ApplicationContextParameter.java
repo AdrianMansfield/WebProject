@@ -8,9 +8,11 @@ public class ApplicationContextParameter implements ServletContextListener {
     private static final String USER_IMPLEMENTATION = "userImplementation";
     private static final String TASK_IMPLEMENTATION = "taskImplementation";
     private static final String FILES_DIRECTORY = "filesDirectory";
+    private static final String RESOURCE_NAME = "resourceName";
     private static String userImplementation;
     private static String taskImplementation;
     private static String filesDirectory;
+    private static String resourceName;
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
@@ -18,6 +20,7 @@ public class ApplicationContextParameter implements ServletContextListener {
         userImplementation = servletContext.getInitParameter(USER_IMPLEMENTATION);
         taskImplementation = servletContext.getInitParameter(TASK_IMPLEMENTATION);
         filesDirectory = servletContext.getInitParameter(FILES_DIRECTORY);
+        resourceName = servletContext.getInitParameter(RESOURCE_NAME);
     }
 
     @Override
@@ -25,6 +28,7 @@ public class ApplicationContextParameter implements ServletContextListener {
         userImplementation = null;
         taskImplementation = null;
         filesDirectory = null;
+        resourceName = null;
     }
 
     public static String getUserImplementationName() {
@@ -37,5 +41,9 @@ public class ApplicationContextParameter implements ServletContextListener {
 
     public static String getFilesDirectory() {
         return filesDirectory;
+    }
+
+    public static String getResourceName() {
+        return resourceName;
     }
 }

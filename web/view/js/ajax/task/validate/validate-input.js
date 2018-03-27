@@ -24,7 +24,7 @@ function validateAddTaskForm(taskType, taskName, description, date) {
 
 function validateChangeTaskInfoForm(taskId, attributeName) {
     var textarea = document.getElementById(TASK_ATTRIBUTE);
-    // var descriptionIsValid = isEmptyString(textarea.value);
+
     if (isEmptyString(textarea.value)){
         textarea.setAttribute(CLASS_ATTRIBUTE, "error-form-control");
     } else {

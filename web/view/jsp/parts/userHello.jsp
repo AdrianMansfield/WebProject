@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 
 
 <nav class="navbar-inverse navbar navbar-light">
@@ -10,7 +10,7 @@
             </h5>
         </div>
         <div class="col text-center">
-            <a class="p-2 text-dark" href="/main">Main page</a>
+            <a class="p-2 text-dark" href="main">Main page</a>
         </div>
         <div class="col">
             <c:import url="/view/jsp/buttons/exit.jsp"/>

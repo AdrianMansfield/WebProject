@@ -17,7 +17,7 @@ import java.io.IOException;
 public class MoveTaskServlet extends AbstractNonGetController {
     
     @Override
-    protected void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void performTask(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
 
             String connectionType = request.getParameter(ParameterConstants.FROM_PARAMETER);

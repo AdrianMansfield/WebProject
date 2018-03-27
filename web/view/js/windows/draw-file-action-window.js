@@ -13,7 +13,7 @@ function drawModalWindows(taskId, fileName, taskName) {
     modalWindowType[isFileExist](taskId, fileName, taskName);
 }
 
-function getAside(headerContent){
+function getAside(){
     var aside = document.createElement(ASIDE_TAG);
 
     aside.setAttribute(CLASS_ATTRIBUTE,JS_MODAL_WINDOW);
@@ -165,6 +165,7 @@ function drawNoFileModalWindow(taskId, fileName, taskName) {
     form.setAttribute(ECTYPE,MULTIPART);
     form.setAttribute(CLASS_ATTRIBUTE, "mb-0");
 
+
     var input = document.createElement(INPUT_TAG);
     input.setAttribute(NAME_ATTRIBUTE, FILE);
     input.setAttribute(TYPE_ATTRIBUTE, FILE);
@@ -181,8 +182,8 @@ function drawNoFileModalWindow(taskId, fileName, taskName) {
     button.innerHTML = 'Upload';
 
     var event = function () {
-        removeAllElements(fileModalWindow);
         sendRequestToUploadFileServlet(taskId, taskName);
+        setTimeout(removeAllElements(fileModalWindow), 1);
     };
 
     button.addEventListener("click",event);

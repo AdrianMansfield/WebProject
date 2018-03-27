@@ -13,7 +13,7 @@ import java.sql.Date;
 
 public class DownloadFileServlet extends AbstractNonGetController {
     @Override
-    protected void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         try {
 
             String taskName = request.getParameter(ParameterConstants.TASK_NAMES_PARAMETER);
