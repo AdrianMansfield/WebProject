@@ -16,13 +16,13 @@ public final class UserDatabaseImplementation implements IUserDAO {
     private UserDatabaseImplementation() {}
 
     @Override
-    public User getUser(String login, String password) throws DaoException {
+    public User getUser(String login, char [] password) throws DaoException {
         try(Connection connection = DatabaseConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(UserConstants.SQL_SELECT_USER))
         {
             User user = null;
             preparedStatement.setString(UserConstants.USER_QUERY_INDEX, login);
-            preparedStatement.setString(UserConstants.PASSWORD_QUERY_INDEX, password);
+            preparedStatement.setString(UserConstants.PASSWORD_QUERY_INDEX, new String(password));
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
                 if(resultSet.next()) {
                     user = new User(resultSet.getInt(UserConstants.ID_INDEX),
@@ -38,7 +38,7 @@ public final class UserDatabaseImplementation implements IUserDAO {
     }
 
     @Override
-    public boolean setUser(String login, String password) throws DaoException {
+    public boolean setUser(String login, char [] password) throws DaoException {
         try(Connection connection = DatabaseConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(UserConstants.SQL_INSERT_USER))
         {
@@ -47,7 +47,7 @@ public final class UserDatabaseImplementation implements IUserDAO {
             synchronized (this) {
                 if(user == null) {
                     preparedStatement.setString(UserConstants.USER_QUERY_INDEX, login);
-                    preparedStatement.setString(UserConstants.PASSWORD_QUERY_INDEX, password);
+                    preparedStatement.setString(UserConstants.PASSWORD_QUERY_INDEX, new String(password));
                     preparedStatement.setString(UserConstants.ROLE_QUERY_INDEX, Role.USER.toString());
                     preparedStatement.execute();
                     isAdded = true;

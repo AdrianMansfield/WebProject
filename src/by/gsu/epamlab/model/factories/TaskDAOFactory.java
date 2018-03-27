@@ -11,6 +11,7 @@ public class TaskDAOFactory {
     private enum Implementation {
 
         DATABASE {
+
             @Override
             void setImplementation() {
 
