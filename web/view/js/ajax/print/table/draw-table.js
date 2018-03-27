@@ -10,7 +10,7 @@ function drawTaskTable(jsonObject) {
 
     var tasks = jsonObject["tasks"];
 
-    var taskType = jsonObject["taskType"].toString();
+    var taskType = jsonObject["taskType"];
 
     var isBasket = taskType === BASKET;
 
@@ -18,7 +18,7 @@ function drawTaskTable(jsonObject) {
 
     var isMain = !isBasket && !isFixed;
 
-    var h5 = document.createElement(H5_TAG); //move that code to some suitable function !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    var h5 = document.createElement(H5_TAG);
 
     h5.setAttribute(ID_ATTRIBUTE, "sectionName");
 

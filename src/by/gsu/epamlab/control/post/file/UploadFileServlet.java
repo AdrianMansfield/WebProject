@@ -34,6 +34,8 @@ public class UploadFileServlet extends AbstractNonGetController {
 
             String userLogin = (String) session.getAttribute(ParameterConstants.LOGIN_PARAMETER);
 
+            String taskId = request.getParameter(ParameterConstants.TASK_ID_PARAMETER);
+
             String taskName = request.getParameter(ParameterConstants.TASK_NAME_PARAMETER);
 
             Part part = request.getPart(ParameterConstants.FILE_PARAMETER);
@@ -47,13 +49,19 @@ public class UploadFileServlet extends AbstractNonGetController {
             iTaskDAO.updateFileName(userId, task);
 
             if(ParameterConstants.AJAX_PARAMETER.equals(connectionType)) {
+
                 JSONObject <String, String> jsonObject = new JSONObject<>();
-                String taskId = request.getParameter(ParameterConstants.TASK_ID_PARAMETER);//-----------------
+
                 jsonObject.put("taskId", taskId);
+
                 jsonObject.put("taskName", taskName);
+
                 jsonObject.put("newFileName", fileName);
+
                 jsonObject.put("oldFileName", Constants.NO_FILE);
+
                 response.getWriter().write(jsonObject.toJSONString());
+
             }
             else {
                 sendRedirectToPrintTaskServlet(request, response);
