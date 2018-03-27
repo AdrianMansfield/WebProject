@@ -26,7 +26,7 @@ public class UploadFileServlet extends AbstractNonGetController {
     protected void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
 
-            String connectionType = request.getParameter("from");
+            String connectionType = request.getParameter(ParameterConstants.FROM_PARAMETER);
 
             HttpSession session =  request.getSession();
 
@@ -52,13 +52,13 @@ public class UploadFileServlet extends AbstractNonGetController {
 
                 JSONObject <String, String> jsonObject = new JSONObject<>();
 
-                jsonObject.put("taskId", taskId);
+                jsonObject.put(ParameterConstants.TASK_ID_PARAMETER, taskId);
 
-                jsonObject.put("taskName", taskName);
+                jsonObject.put(ParameterConstants.TASK_NAME_PARAMETER, taskName);
 
-                jsonObject.put("newFileName", fileName);
+                jsonObject.put(ParameterConstants.NEW_FILE_NAME, fileName);
 
-                jsonObject.put("oldFileName", Constants.NO_FILE);
+                jsonObject.put(ParameterConstants.OLD_FILE_NAME, Constants.NO_FILE);
 
                 response.getWriter().write(jsonObject.toJSONString());
 

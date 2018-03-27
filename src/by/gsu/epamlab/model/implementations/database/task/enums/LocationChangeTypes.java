@@ -1,6 +1,6 @@
 package by.gsu.epamlab.model.implementations.database.task.enums;
 
-import by.gsu.epamlab.constants.database.TaskFunctionConstants;
+import by.gsu.epamlab.model.implementations.database.constants.TaskFunctionConstants;
 
 public enum LocationChangeTypes {
     MAIN {

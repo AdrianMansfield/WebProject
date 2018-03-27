@@ -66,7 +66,7 @@ public class AddTaskServlet extends AbstractNonGetController {
             }
 
         } catch (DaoException e) {
-            e.printStackTrace();
+            jumpError(UrlConstants.ERROR_PAGE, e.getMessage(), request, response);
         }
     }
 

@@ -17,7 +17,7 @@
         Description:<textarea name="description" class="form-control" required></textarea>
         <div id="dateField" class="noneDisplay">
             Date: <input type="text" id="datepicker" class="form-control " name="date"
-                         pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" data-valid-example="24.02.2018"
+                         pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" data-valid-example="24.02.2118"
                          placeholder="dd.mm.yyyy"/>
         </div>
         <input type="submit" value="Add" class=" btn btn-outline-danger float-left btn-sm"

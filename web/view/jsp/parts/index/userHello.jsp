@@ -10,7 +10,7 @@
             </h5>
         </div>
         <div class="col text-center">
-            <a class="p-2 text-dark" href="main">Main page</a>
+            <a class="p-2 text-dark" href="../main">Main page</a>
         </div>
         <div class="col">
             <c:import url="/view/jsp/buttons/exit.jsp"/>

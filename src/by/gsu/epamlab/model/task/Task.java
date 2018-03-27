@@ -94,9 +94,9 @@ public class Task implements JsonAware, Comparable<Task> {
         JSONObject <String, String> jsonObject = new JSONObject<>();
         jsonObject.put(ParameterConstants.TASK_ID_PARAMETER, String.valueOf(id));
         jsonObject.put(ParameterConstants.TASK_NAME_PARAMETER, name);
-        jsonObject.put("description", description);
-        jsonObject.put("fileName", fileName);
-        jsonObject.put("date", getStringDate());
+        jsonObject.put(ParameterConstants.DESCRIPTION_PARAMETER, description);
+        jsonObject.put(ParameterConstants.FILE_NAME, fileName);
+        jsonObject.put(ParameterConstants.DATE_PARAMETER, getStringDate());
         return jsonObject;
     }
 

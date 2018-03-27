@@ -42,12 +42,19 @@ public class DeleteFileServlet extends AbstractNonGetController {
             iTaskDAO.updateFileName(userId, task);
 
             if(ParameterConstants.AJAX_PARAMETER.equals(connectionType)) {
+
                 JSONObject <String, String> jsonObject = new JSONObject<>();
-                jsonObject.put("taskId", taskId);
-                jsonObject.put("taskName", task.getName());
-                jsonObject.put("newFileName", Constants.NO_FILE);
-                jsonObject.put("oldFileName", oldFileName);
+
+                jsonObject.put(ParameterConstants.TASK_ID_PARAMETER, taskId);
+
+                jsonObject.put(ParameterConstants.TASK_NAME_PARAMETER, task.getName());
+
+                jsonObject.put(ParameterConstants.NEW_FILE_NAME, Constants.NO_FILE);
+
+                jsonObject.put(ParameterConstants.OLD_FILE_NAME, oldFileName);
+
                 response.getWriter().write(jsonObject.toJSONString());
+
             }
             else {
                 sendRedirectToPrintTaskServlet(request, response);

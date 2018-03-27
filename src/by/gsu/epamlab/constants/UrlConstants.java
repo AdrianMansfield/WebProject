@@ -24,4 +24,6 @@ public final class UrlConstants {
 
     public static final String CHANGE_TASK_SERVLET = "/ChangeTaskServlet";
 
+    public static final String ERROR_PAGE = "/error";
+
 }

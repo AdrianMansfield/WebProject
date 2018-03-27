@@ -33,7 +33,6 @@ public class PrintTaskServlet extends AbstractNonPostController {
             if(taskType == null) {
                 taskType = (String) session.getAttribute(ParameterConstants.TASK_TYPE_PARAMETER);
             }
-
             taskType = taskType.toUpperCase();
             String userId = (String)session.getAttribute(ParameterConstants.USER_ID_PARAMETER);
             ITaskDAO iTaskDAO = TaskDAOFactory.getTaskDAOFromFactory();
@@ -50,6 +49,8 @@ public class PrintTaskServlet extends AbstractNonPostController {
                 response.getWriter().write(jsonObject.toJSONString());
             }
             else {
+                request.setAttribute(ParameterConstants.TASK_TYPE_PARAMETER, taskType);
+                request.setAttribute(ParameterConstants.TASK_LIST_NAME_PARAMETER, taskList);
                 request.getRequestDispatcher(UrlConstants.MAIN_URL).forward(request, response);
             }
 

@@ -1,8 +1,8 @@
-package by.gsu.epamlab.constants.database;
+package by.gsu.epamlab.model.implementations.database.constants;
 
-public final class SelectTaskById {
+public final class SelectTask {
 
-    private SelectTaskById() {}
+    private SelectTask() {}
 
     public static final String SELECT_TASK_BY_ID = "Select * From task Where userId = ? and id = ?";
 
@@ -10,9 +10,11 @@ public final class SelectTaskById {
 
     public static final String SELECT_TASK_BY_IDS_TAIL = ")";
 
+    public static final String SELECT_TASK_BY_NAME = "Select * From task Where userId = ? and name = ?";
+
     public static final int USER_ID = 1;
 
-    public static final int TASK_ID = 2;
+    public static final int TASK_PARAMETER = 2;
 
     public static final int TASK_ID_COLUMN_INDEX = 1;
 

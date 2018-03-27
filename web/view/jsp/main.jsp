@@ -83,14 +83,14 @@
         <div class="col-md-8" id="task">
             <div id="taskTypeHeader" class="text-center"></div>
             <div class="modalWindow" id="leftSlide">
-                <c:import url="/view/jsp/parts/addTasks.jsp"/>
+                <c:import url="/view/jsp/parts/main/addTasks.jsp"/>
             </div>
             <c:if test="${not empty tasks}">
                 <h5 class="my-0 font-weight-normal text-center" id="tasksType">
                         ${taskType}
                 </h5>
             </c:if>
-            <c:import url="/view/jsp/parts/taskOutput.jsp"/>
+            <c:import url="/view/jsp/parts/main/taskOutput.jsp"/>
         </div>
     </div>
     <div id="fileModalWindow"></div>

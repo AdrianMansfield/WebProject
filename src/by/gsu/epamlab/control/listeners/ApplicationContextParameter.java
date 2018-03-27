@@ -1,5 +1,7 @@
 package by.gsu.epamlab.control.listeners;
 
+import by.gsu.epamlab.constants.JspConstants;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -16,11 +18,17 @@ public class ApplicationContextParameter implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
+
         ServletContext servletContext = servletContextEvent.getServletContext();
+
         userImplementation = servletContext.getInitParameter(USER_IMPLEMENTATION);
+
         taskImplementation = servletContext.getInitParameter(TASK_IMPLEMENTATION);
+
         filesDirectory = servletContext.getInitParameter(FILES_DIRECTORY);
+
         resourceName = servletContext.getInitParameter(RESOURCE_NAME);
+
     }
 
     @Override

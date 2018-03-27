@@ -71,6 +71,14 @@
         <servlet-name>main</servlet-name>
         <url-pattern>/main</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>errorPage</servlet-name>
+        <jsp-file>/view/jsp/errorPage.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>errorPage</servlet-name>
+        <url-pattern>/error</url-pattern>
+    </servlet-mapping>
 
 
     <!-- SERVLET  -->

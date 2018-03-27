@@ -18,6 +18,9 @@ import java.util.List;
 
 public final class FileOperations {
 
+    private static final int END_OF_STREAM = -1;
+
+
     private FileOperations() {}
 
     public static String uploadFile(Part part, String userLogin, String taskName) throws IOException {
@@ -62,7 +65,7 @@ public final class FileOperations {
                 OutputStream outputStream = response.getOutputStream())
             {
                 int i;
-                while((i=bufferedInputStream.read())!=-1){ //need a constant
+                while((i=bufferedInputStream.read()) != END_OF_STREAM)  {
                     outputStream.write(i);
                 }
             }
