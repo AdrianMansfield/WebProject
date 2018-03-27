@@ -41,9 +41,13 @@ public class DeleteTaskServlet extends AbstractNonGetController {
             iTaskDAO.removeTasks(taskIds);
 
             if(ParameterConstants.AJAX_PARAMETER.equals(connectionType)) {
+
                 JSONObject<String, JSONArray> jsonObject = new JSONObject<>();
+
                 jsonObject.put(ParameterConstants.TASK_IDS_PARAMETER, JsonOperations.getStringJsonArray(taskIds));
+
                 response.getWriter().write(jsonObject.toJSONString());
+
             }
             else {
                 sendRedirectToPrintTaskServlet(request, response);

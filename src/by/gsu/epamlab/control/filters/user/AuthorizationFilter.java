@@ -17,7 +17,9 @@ public class AuthorizationFilter extends AbstractFilter {
 
     @Override
     public void filter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+
         HttpServletRequest request = (HttpServletRequest) servletRequest;
+
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         String role = (String) request.getSession().getAttribute(ParameterConstants.ROLE_PARAMETER);

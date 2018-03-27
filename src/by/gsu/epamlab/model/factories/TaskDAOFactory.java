@@ -23,11 +23,13 @@ public class TaskDAOFactory {
     }
 
     public static ITaskDAO getTaskDAOFromFactory() {
+
         if(iTaskDAO == null) {
 
             Implementation.valueOf(ApplicationContextParameter.getTaskImplementationName()).setImplementation();
 
         }
+
         return iTaskDAO;
     }
 }

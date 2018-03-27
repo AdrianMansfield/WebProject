@@ -40,15 +40,11 @@ public class PrintTaskServlet extends AbstractNonPostController {
             List<Task> taskList = iTaskDAO.getTasks(userId, taskType);
 
             if(ParameterConstants.AJAX_PARAMETER.equals(connectionType)) {
-                JSONObject <String, JSONArray> jsonObject = new JSONObject<>();
+                JSONObject <String, Object> jsonObject = new JSONObject<>();
 
                 jsonObject.put(ParameterConstants.TASK_LIST_NAME_PARAMETER, JsonOperations.getJsonArray(taskList));
 
-                JSONArray<String> jsonArray = new JSONArray<>();
-
-                jsonArray.add(taskType);
-
-                jsonObject.put(ParameterConstants.TASK_TYPE_PARAMETER, jsonArray);
+                jsonObject.put(ParameterConstants.TASK_TYPE_PARAMETER, taskType);
                 response.setContentType(Constants.JSON_CONTENT_TYPE);
                 response.setCharacterEncoding(Constants.UTF8_CHARACTER_ENCODING);
                 response.getWriter().write(jsonObject.toJSONString());

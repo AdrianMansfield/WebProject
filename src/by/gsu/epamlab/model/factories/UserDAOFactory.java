@@ -30,9 +30,13 @@ public class UserDAOFactory {
     }
 
     public static IUserDAO getUserDAOFromFactory() {
+
         if(iUserDAO == null) {
+
             Implementation.valueOf(ApplicationContextParameter.getUserImplementationName()).setImplementation();
+
         }
+
         return iUserDAO;
     }
 }

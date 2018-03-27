@@ -3,6 +3,7 @@ package by.gsu.epamlab.model;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import java.util.Collections;
 import java.util.List;
 
 public final class JsonOperations {
@@ -23,9 +24,7 @@ public final class JsonOperations {
     public static JSONArray<String> getStringJsonArray(String [] list) {
         JSONArray<String> jsonArray = new JSONArray<>();
 
-        for(String string : list) {
-            jsonArray.add(string);
-        }
+        Collections.addAll(jsonArray, list);
 
         return jsonArray;
     }

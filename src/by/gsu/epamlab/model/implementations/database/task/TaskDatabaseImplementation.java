@@ -189,15 +189,25 @@ public final class TaskDatabaseImplementation implements ITaskDAO {
         )
         {
             boolean isNotExists = isNotExists(connection, userId, task.getName());
+
             if(isNotExists) {
+
                 AddTaskDateTypes.valueOf(taskType).setTaskDate(task);
+
                 taskPreparedStatement.setString(InsertTaskConstants.USER_ID_INDEX, userId);
+
                 taskPreparedStatement.setString(InsertTaskConstants.TASK_NAME_INDEX, task.getName());
+
                 taskPreparedStatement.setString(InsertTaskConstants.TASK_DESCRIPTION_INDEX, task.getDescription());
+
                 taskPreparedStatement.setDate(InsertTaskConstants.DATE_INDEX, task.getDate());
+
                 taskPreparedStatement.setString(InsertTaskConstants.FILE_NAME_INDEX, task.getFileName());
+
                 taskPreparedStatement.executeUpdate();
+
             }
+
             return isNotExists;
 
         }
@@ -210,10 +220,15 @@ public final class TaskDatabaseImplementation implements ITaskDAO {
         try(PreparedStatement preparedStatement = connection.prepareStatement(SelectTaskNameConstants
                 .SQL_SELECT_SELECT_TASK_NAME))
         {
+
             preparedStatement.setString(SelectTaskNameConstants.USER_ID_INDEX, userId);
+
             preparedStatement.setString(SelectTaskNameConstants.TASK_NAME_INDEX, taskName);
+
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
+
                 return !resultSet.next();
+
             }
         }
     }
@@ -231,7 +246,9 @@ public final class TaskDatabaseImplementation implements ITaskDAO {
 
         }
         catch (SQLException e) {
+
             throw new DaoException(e);
+
         }
     }
 
@@ -241,11 +258,13 @@ public final class TaskDatabaseImplementation implements ITaskDAO {
         try(Connection connection = DatabaseConnection.getConnection();
 
         PreparedStatement preparedStatement = connection.prepareStatement(TaskInfoChangeType.valueOf(infoType).getChangeTaskInfoQuery())){
+
             preparedStatement.setString(TaskInfoChangeConstants.ID_INDEX, taskId);
 
             preparedStatement.setString(TaskInfoChangeConstants.TASK_INFO_INDEX, taskAttribute);
 
             preparedStatement.executeUpdate();
+
 
         } catch (SQLException e){
 

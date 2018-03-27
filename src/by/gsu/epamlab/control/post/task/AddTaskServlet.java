@@ -51,12 +51,15 @@ public class AddTaskServlet extends AbstractNonGetController {
 
             if(ParameterConstants.AJAX_PARAMETER.equals(connectionType)) {
                 task = iTaskDAO.getTaskByName(userId, taskName);
-                JSONObject <String, JSONObject> jsonObject = new JSONObject<>();
+
+                JSONObject <String, Object> jsonObject = new JSONObject<>();
+
                 jsonObject.put("task", task.toJson());
-                JSONObject<String, String> jsonObjectString = new JSONObject<>();
-                jsonObjectString.put(ParameterConstants.TASK_TYPE_PARAMETER, taskType);
-                jsonObject.put(ParameterConstants.TASK_TYPE_PARAMETER, jsonObjectString);
+
+                jsonObject.put(ParameterConstants.TASK_TYPE_PARAMETER, taskType);
+
                 response.getWriter().write(jsonObject.toJSONString());
+
             }
             else {
                 sendRedirectToPrintTaskServlet(request, response);
