@@ -1,6 +1,6 @@
 package by.gsu.epamlab.model.implementations.database.user;
 
-import by.gsu.epamlab.constants.database.UserConstants;
+import by.gsu.epamlab.model.implementations.database.constants.UserConstants;
 import by.gsu.epamlab.model.database.DatabaseConnection;
 import by.gsu.epamlab.model.interfaces.IUserDAO;
 import by.gsu.epamlab.model.user.Role;

@@ -7,9 +7,10 @@ import by.gsu.epamlab.control.listeners.ApplicationContextParameter;
 
 public class UserDAOFactory {
 
-    private static IUserDAO iUserDAO;
+    private static volatile IUserDAO iUserDAO;
 
     private enum Implementation {
+
         RAM {
 
             @Override
@@ -30,9 +31,21 @@ public class UserDAOFactory {
     }
 
     public static IUserDAO getUserDAOFromFactory() {
-        if(iUserDAO == null) {
-            Implementation.valueOf(ApplicationContextParameter.getUserImplementationName()).setImplementation();
+
+        IUserDAO localIUserDAO = iUserDAO;
+
+        if (localIUserDAO == null) {
+
+            synchronized (UserDAOFactory.class) {
+
+               localIUserDAO = iUserDAO;
+
+                if (localIUserDAO == null) {
+                    Implementation.valueOf(ApplicationContextParameter.getUserImplementationName()).setImplementation();
+                }
+            }
         }
+
         return iUserDAO;
     }
 }

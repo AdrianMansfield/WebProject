@@ -6,6 +6,7 @@ import by.gsu.epamlab.exceptions.DaoException;
 import java.util.List;
 
 public interface ITaskDAO {
+
     List<Task> getTasks(String userId, String taskType) throws DaoException;
 
     boolean addTask(String userId, Task task, String taskType) throws DaoException;
@@ -22,7 +23,6 @@ public interface ITaskDAO {
 
     void changeTaskInfo(String taskId, String infoType, String taskAttribute) throws DaoException;
 
-    //void updateFilesName(String userId, List<Task> taskList) throws DaoException;
-
     Task getTaskByName(String userId, String taskName) throws DaoException;
+
 }

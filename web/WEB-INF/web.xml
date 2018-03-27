@@ -32,6 +32,10 @@
         <param-name>filesDirectory</param-name>
         <param-value>C:\WebServerFiles</param-value>
     </context-param>
+    <context-param>
+        <param-name>resourceName</param-name>
+        <param-value>java:comp/env/jdbc/webproject</param-value>
+    </context-param>
 
     <!-- JSP  -->
 
@@ -66,6 +70,14 @@
     <servlet-mapping>
         <servlet-name>main</servlet-name>
         <url-pattern>/main</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>errorPage</servlet-name>
+        <jsp-file>/view/jsp/errorPage.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>errorPage</servlet-name>
+        <url-pattern>/error</url-pattern>
     </servlet-mapping>
 
 

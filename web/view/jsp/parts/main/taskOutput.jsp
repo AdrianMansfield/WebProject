@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 
 <div class="table-container" id="tableContainer">
 
@@ -11,7 +11,7 @@
         <c:set var="isSomeday" value="SOMEDAY" scope="request"/>
 
         <c:if test="${not empty tasks}">
-            <c:import url="/view/jsp/jspchunks/table/tableHeader.jsp"/>
+            <c:import url="/view/jsp/parts/main/table/tableHeader.jsp"/>
         </c:if>
 
 
@@ -28,23 +28,23 @@
             <c:set var="formNumber" value="${status.index}" scope="request"/>
             <c:set var="taskDate" value="${task.getStringDate()}" scope="request"/>
 
-            <c:import url="/view/jsp/jspchunks/table/firstTableRow.jsp"/>
+            <c:import url="/view/jsp/parts/main/table/firstTableRow.jsp"/>
 
-            <c:import url="/view/jsp/jspchunks/table/descriptionSecondTableRow.jsp"/>
+            <c:import url="/view/jsp/parts/main/table/descriptionSecondTableRow.jsp"/>
 
-            <c:import url="/view/jsp/jspchunks/table/changeDescriptionRow.jsp"/>
+            <c:import url="/view/jsp/parts/main/table/changeDescriptionRow.jsp"/>
 
-            <c:import url="/view/jsp/jspchunks/table/changeDateRow.jsp"/>
+            <c:import url="/view/jsp/parts/main/table/changeDateRow.jsp"/>
 
-            <c:import url="/view/jsp/jspchunks/table/chooseFileAction.jsp"/>
+            <c:import url="/view/jsp/parts/main/table/chooseFileAction.jsp"/>
 
-            <c:import url="/view/jsp/jspchunks/table/uploadFile.jsp"/>
+            <c:import url="/view/jsp/parts/main/table/uploadFile.jsp"/>
 
         </c:forEach>
         </tbody>
 
     </table>
 
-    <c:import url="/view/jsp/jspchunks/table/deleteTaskForm.jsp"/>
+    <c:import url="/view/jsp/parts/main/table/deleteTaskForm.jsp"/>
 
 </div>

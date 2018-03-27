@@ -3,7 +3,7 @@ package by.gsu.epamlab.model.implementations.database.task;
 import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.model.implementations.database.task.enums.*;
 import by.gsu.epamlab.model.task.Task;
-import by.gsu.epamlab.constants.database.*;
+import by.gsu.epamlab.model.implementations.database.constants.*;
 import by.gsu.epamlab.model.database.DatabaseConnection;
 import by.gsu.epamlab.exceptions.DaoException;
 import by.gsu.epamlab.model.interfaces.ITaskDAO;
@@ -74,13 +74,13 @@ public final class TaskDatabaseImplementation implements ITaskDAO {
 
         try(Connection connection = DatabaseConnection.getConnection();
 
-        PreparedStatement preparedStatement = connection.prepareStatement(SelectTaskById.SELECT_TASK_BY_ID))
+        PreparedStatement preparedStatement = connection.prepareStatement(SelectTask.SELECT_TASK_BY_ID))
 
         {
 
-            preparedStatement.setString(SelectTaskById.USER_ID, userId);
+            preparedStatement.setString(SelectTask.USER_ID, userId);
 
-            preparedStatement.setString(SelectTaskById.TASK_ID, taskId);
+            preparedStatement.setString(SelectTask.TASK_PARAMETER, taskId);
 
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
 
@@ -94,13 +94,13 @@ public final class TaskDatabaseImplementation implements ITaskDAO {
 
                 if(resultSet.next()) {
 
-                    taskName = resultSet.getString(SelectTaskById.TASK_NAME_COLUMN_INDEX);
+                    taskName = resultSet.getString(SelectTask.TASK_NAME_COLUMN_INDEX);
 
-                    description = resultSet.getString(SelectTaskById.TASK_DESCRIPTION_COLUMN_INDEX);
+                    description = resultSet.getString(SelectTask.TASK_DESCRIPTION_COLUMN_INDEX);
 
-                    stringDate = resultSet.getString(SelectTaskById.TASK_DATE_COLUMN_INDEX);
+                    stringDate = resultSet.getString(SelectTask.TASK_DATE_COLUMN_INDEX);
 
-                    fileName = resultSet.getString(SelectTaskById.TASK_FILE_NAME_COLUMN_INDEX);
+                    fileName = resultSet.getString(SelectTask.TASK_FILE_NAME_COLUMN_INDEX);
 
                 }
 
@@ -116,6 +116,7 @@ public final class TaskDatabaseImplementation implements ITaskDAO {
     }
 
     private String getParameterListForOperatorIn(int count) {
+
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append(Constants.QUESTION_MARK);
@@ -132,15 +133,14 @@ public final class TaskDatabaseImplementation implements ITaskDAO {
     public List<Task> getTasksById(String userId, String [] taskIds) throws DaoException {
 
         try(Connection connection = DatabaseConnection.getConnection();
-
-            PreparedStatement preparedStatement = connection.prepareStatement(SelectTaskById.SELECT_TASK_BY_IDS_HEAD
-                + getParameterListForOperatorIn(taskIds.length) + SelectTaskById.SELECT_TASK_BY_IDS_TAIL))
+            PreparedStatement preparedStatement = connection.prepareStatement(SelectTask.SELECT_TASK_BY_IDS_HEAD
+                + getParameterListForOperatorIn(taskIds.length) + SelectTask.SELECT_TASK_BY_IDS_TAIL))
 
         {
 
-            preparedStatement.setString(SelectTaskById.USER_ID, userId);
+            preparedStatement.setString(SelectTask.USER_ID, userId);
 
-            int i = SelectTaskById.USER_ID + 1;
+            int i = SelectTask.USER_ID + 1;
 
             for(String taskId : taskIds) {
 
@@ -154,15 +154,15 @@ public final class TaskDatabaseImplementation implements ITaskDAO {
 
                 while(resultSet.next()) {
 
-                    int taskId = resultSet.getInt(SelectTaskById.TASK_ID_COLUMN_INDEX);
+                    int taskId = resultSet.getInt(SelectTask.TASK_ID_COLUMN_INDEX);
 
-                    String taskName = resultSet.getString(SelectTaskById.TASK_NAME_COLUMN_INDEX);
+                    String taskName = resultSet.getString(SelectTask.TASK_NAME_COLUMN_INDEX);
 
-                    String description = resultSet.getString(SelectTaskById.TASK_DESCRIPTION_COLUMN_INDEX);
+                    String description = resultSet.getString(SelectTask.TASK_DESCRIPTION_COLUMN_INDEX);
 
-                    String stringDate = resultSet.getString(SelectTaskById.TASK_DATE_COLUMN_INDEX);
+                    String stringDate = resultSet.getString(SelectTask.TASK_DATE_COLUMN_INDEX);
 
-                    String fileName = resultSet.getString(SelectTaskById.TASK_FILE_NAME_COLUMN_INDEX);
+                    String fileName = resultSet.getString(SelectTask.TASK_FILE_NAME_COLUMN_INDEX);
 
                     Task task = new Task(taskId, taskName, description, stringDate, fileName);
 
@@ -189,16 +189,25 @@ public final class TaskDatabaseImplementation implements ITaskDAO {
         )
         {
             boolean isNotExists = isNotExists(connection, userId, task.getName());
+
             if(isNotExists) {
+
                 AddTaskDateTypes.valueOf(taskType).setTaskDate(task);
+
                 taskPreparedStatement.setString(InsertTaskConstants.USER_ID_INDEX, userId);
+
                 taskPreparedStatement.setString(InsertTaskConstants.TASK_NAME_INDEX, task.getName());
+
                 taskPreparedStatement.setString(InsertTaskConstants.TASK_DESCRIPTION_INDEX, task.getDescription());
-                Date date = task.getDate();
+
                 taskPreparedStatement.setDate(InsertTaskConstants.DATE_INDEX, task.getDate());
+
                 taskPreparedStatement.setString(InsertTaskConstants.FILE_NAME_INDEX, task.getFileName());
+
                 taskPreparedStatement.executeUpdate();
+
             }
+
             return isNotExists;
 
         }
@@ -211,10 +220,15 @@ public final class TaskDatabaseImplementation implements ITaskDAO {
         try(PreparedStatement preparedStatement = connection.prepareStatement(SelectTaskNameConstants
                 .SQL_SELECT_SELECT_TASK_NAME))
         {
+
             preparedStatement.setString(SelectTaskNameConstants.USER_ID_INDEX, userId);
+
             preparedStatement.setString(SelectTaskNameConstants.TASK_NAME_INDEX, taskName);
+
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
+
                 return !resultSet.next();
+
             }
         }
     }
@@ -232,7 +246,9 @@ public final class TaskDatabaseImplementation implements ITaskDAO {
 
         }
         catch (SQLException e) {
+
             throw new DaoException(e);
+
         }
     }
 
@@ -242,11 +258,13 @@ public final class TaskDatabaseImplementation implements ITaskDAO {
         try(Connection connection = DatabaseConnection.getConnection();
 
         PreparedStatement preparedStatement = connection.prepareStatement(TaskInfoChangeType.valueOf(infoType).getChangeTaskInfoQuery())){
+
             preparedStatement.setString(TaskInfoChangeConstants.ID_INDEX, taskId);
 
             preparedStatement.setString(TaskInfoChangeConstants.TASK_INFO_INDEX, taskAttribute);
 
             preparedStatement.executeUpdate();
+
 
         } catch (SQLException e){
 
@@ -311,19 +329,18 @@ public final class TaskDatabaseImplementation implements ITaskDAO {
     }
 
 
-    ///CORRECT
     @Override
     public Task getTaskByName(String userId, String taskName) throws DaoException {
 
         try(Connection connection = DatabaseConnection.getConnection();
 
-            PreparedStatement preparedStatement = connection.prepareStatement("Select * From task Where userId = ? and name = ?"))
+            PreparedStatement preparedStatement = connection.prepareStatement(SelectTask.SELECT_TASK_BY_NAME))
 
         {
 
-            preparedStatement.setString(1, userId);
+            preparedStatement.setString(SelectTask.USER_ID, userId);
 
-            preparedStatement.setString(2, taskName);
+            preparedStatement.setString(SelectTask.TASK_PARAMETER, taskName);
 
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
 
@@ -337,13 +354,13 @@ public final class TaskDatabaseImplementation implements ITaskDAO {
 
                 if(resultSet.next()) {
 
-                    taskId = resultSet.getInt(1);
+                    taskId = resultSet.getInt(SelectTask.TASK_ID_COLUMN_INDEX);
 
-                    description = resultSet.getString(SelectTaskById.TASK_DESCRIPTION_COLUMN_INDEX);
+                    description = resultSet.getString(SelectTask.TASK_DESCRIPTION_COLUMN_INDEX);
 
-                    stringDate = resultSet.getString(SelectTaskById.TASK_DATE_COLUMN_INDEX);
+                    stringDate = resultSet.getString(SelectTask.TASK_DATE_COLUMN_INDEX);
 
-                    fileName = resultSet.getString(SelectTaskById.TASK_FILE_NAME_COLUMN_INDEX);
+                    fileName = resultSet.getString(SelectTask.TASK_FILE_NAME_COLUMN_INDEX);
                 }
 
                 return new Task(taskId, taskName, description, stringDate, fileName);

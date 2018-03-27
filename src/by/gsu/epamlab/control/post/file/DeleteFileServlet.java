@@ -14,11 +14,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+
 
 public class DeleteFileServlet extends AbstractNonGetController {
     @Override
-    protected void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void performTask(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
 
             String connectionType = request.getParameter(ParameterConstants.FROM_PARAMETER);
@@ -42,12 +42,19 @@ public class DeleteFileServlet extends AbstractNonGetController {
             iTaskDAO.updateFileName(userId, task);
 
             if(ParameterConstants.AJAX_PARAMETER.equals(connectionType)) {
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put("taskId", taskId);
-                jsonObject.put("taskName", task.getName());
-                jsonObject.put("newFileName", Constants.NO_FILE);
-                jsonObject.put("oldFileName", oldFileName);
+
+                JSONObject <String, String> jsonObject = new JSONObject<>();
+
+                jsonObject.put(ParameterConstants.TASK_ID_PARAMETER, taskId);
+
+                jsonObject.put(ParameterConstants.TASK_NAME_PARAMETER, task.getName());
+
+                jsonObject.put(ParameterConstants.NEW_FILE_NAME, Constants.NO_FILE);
+
+                jsonObject.put(ParameterConstants.OLD_FILE_NAME, oldFileName);
+
                 response.getWriter().write(jsonObject.toJSONString());
+
             }
             else {
                 sendRedirectToPrintTaskServlet(request, response);

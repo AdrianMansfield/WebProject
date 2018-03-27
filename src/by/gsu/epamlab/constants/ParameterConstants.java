@@ -42,4 +42,10 @@ public final class ParameterConstants {
 
     public static final String INFO_TYPE = "infoType";
 
+    public static final String NEW_FILE_NAME = "newFileName";
+
+    public static final String OLD_FILE_NAME = "oldFileName";
+
+    public static final String FILE_NAME = "fileName";
+
 }

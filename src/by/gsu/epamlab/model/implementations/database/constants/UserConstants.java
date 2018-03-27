@@ -1,4 +1,4 @@
-package by.gsu.epamlab.constants.database;
+package by.gsu.epamlab.model.implementations.database.constants;
 
 public final class UserConstants {
 

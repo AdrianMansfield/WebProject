@@ -4,7 +4,6 @@ import by.gsu.epamlab.constants.ErrorConstants;
 import by.gsu.epamlab.constants.ParameterConstants;
 import by.gsu.epamlab.constants.UrlConstants;
 import by.gsu.epamlab.control.filters.AbstractFilter;
-import com.sun.deploy.net.HttpRequest;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;

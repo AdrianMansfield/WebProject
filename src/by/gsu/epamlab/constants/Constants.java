@@ -5,8 +5,6 @@ public final class Constants {
 
     private Constants() {}
 
-    public static final String RESOURCE_NAME = "java:comp/env/jdbc/webproject";
-
     public static final String KEY_ERROR_MESSAGE = "errorMessage";
 
     public static final String EMPTY_DATA = "Empty login or password!";
@@ -33,8 +31,8 @@ public final class Constants {
 
     public static final String SOMEDAY = "SOMEDAY";
 
-    public static String COMMA = ",";
+    public static final String COMMA = ",";
 
-    public static String QUESTION_MARK = "?";
+    public static final String QUESTION_MARK = "?";
 
 }

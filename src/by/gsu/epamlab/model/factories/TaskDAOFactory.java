@@ -5,7 +5,8 @@ import by.gsu.epamlab.model.interfaces.ITaskDAO;
 import by.gsu.epamlab.control.listeners.ApplicationContextParameter;
 
 public class TaskDAOFactory {
-    private static ITaskDAO iTaskDAO;
+
+    private static volatile ITaskDAO iTaskDAO;
 
     private enum Implementation {
 
@@ -23,11 +24,21 @@ public class TaskDAOFactory {
     }
 
     public static ITaskDAO getTaskDAOFromFactory() {
-        if(iTaskDAO == null) {
 
-            Implementation.valueOf(ApplicationContextParameter.getTaskImplementationName()).setImplementation();
+        ITaskDAO localTaskDao = iTaskDAO;
 
+        if(localTaskDao == null) {
+
+            synchronized (TaskDAOFactory.class) {
+
+                localTaskDao = iTaskDAO;
+
+                if (localTaskDao == null) {
+                    Implementation.valueOf(ApplicationContextParameter.getTaskImplementationName()).setImplementation();
+                }
+            }
         }
+
         return iTaskDAO;
     }
 }

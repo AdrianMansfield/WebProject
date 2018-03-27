@@ -18,6 +18,9 @@ import java.util.List;
 
 public final class FileOperations {
 
+    private static final int END_OF_STREAM = -1;
+
+
     private FileOperations() {}
 
     public static String uploadFile(Part part, String userLogin, String taskName) throws IOException {
@@ -62,7 +65,7 @@ public final class FileOperations {
                 OutputStream outputStream = response.getOutputStream())
             {
                 int i;
-                while((i=bufferedInputStream.read())!=-1){ //need a constant
+                while((i=bufferedInputStream.read()) != END_OF_STREAM)  {
                     outputStream.write(i);
                 }
             }
@@ -73,7 +76,7 @@ public final class FileOperations {
 
     }
 
-    public static void deleteFile(Task task, String userLogin) throws DaoException {
+    public static void deleteFile(Task task, String userLogin)  {
 
         String string = ApplicationContextParameter.getFilesDirectory() + File.separator + userLogin + File.separator + task.getName() +
                 FileConstants.FILE_DELIMITER + task.getFileName();
@@ -92,7 +95,7 @@ public final class FileOperations {
         }
     }
 
-    public static void deleteFiles(String userId, List<Task> taskList, String userLogin) throws DaoException {
+    public static void deleteFiles(List<Task> taskList, String userLogin) {
 
         for(Task task : taskList) {
             deleteFile(task, userLogin);

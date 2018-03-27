@@ -6,7 +6,6 @@ import by.gsu.epamlab.control.post.AbstractNonGetController;
 import by.gsu.epamlab.exceptions.DaoException;
 import by.gsu.epamlab.model.factories.TaskDAOFactory;
 import by.gsu.epamlab.model.interfaces.ITaskDAO;
-import by.gsu.epamlab.model.task.Task;
 import org.json.simple.JSONObject;
 
 import javax.servlet.ServletException;
@@ -36,11 +35,16 @@ public class ChangeTaskServlet extends AbstractNonGetController {
             }
 
             if(ParameterConstants.AJAX_PARAMETER.equals(connectionType)) {
-                JSONObject jsonObject = new JSONObject();
+                JSONObject<String, String> jsonObject = new JSONObject<>();
+
                 jsonObject.put("infoType", infoType);
+
                 jsonObject.put("taskAttribute", taskAttribute);
+
                 jsonObject.put("taskId", taskId);
+
                 response.getWriter().write(jsonObject.toJSONString());
+
             }
             else {
                 sendRedirectToPrintTaskServlet(request, response);

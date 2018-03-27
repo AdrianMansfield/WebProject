@@ -18,7 +18,7 @@ function drawTaskTable(jsonObject) {
 
     var isMain = !isBasket && !isFixed;
 
-    var h5 = document.createElement(H5_TAG); //move that code to some suitable function !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    var h5 = document.createElement(H5_TAG);
 
     h5.setAttribute(ID_ATTRIBUTE, "sectionName");
 
@@ -38,9 +38,9 @@ function drawTaskTable(jsonObject) {
 
         printTask(tasks[counter], isMain, isBasket, taskType);
 
-
     }
-        drawDeleteButton(taskType, tasks.length);
+
+    drawDeleteButton(taskType, tasks.length);
 }
 
 

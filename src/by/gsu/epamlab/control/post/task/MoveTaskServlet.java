@@ -17,7 +17,7 @@ import java.io.IOException;
 public class MoveTaskServlet extends AbstractNonGetController {
     
     @Override
-    protected void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void performTask(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
 
             String connectionType = request.getParameter(ParameterConstants.FROM_PARAMETER);
@@ -34,7 +34,7 @@ public class MoveTaskServlet extends AbstractNonGetController {
 
             if(ParameterConstants.AJAX_PARAMETER.equals(connectionType)) {
 
-                JSONObject jsonObject = new JSONObject();
+                JSONObject <String, String> jsonObject = new JSONObject<>();
 
                 jsonObject.put(ParameterConstants.TASK_ID_PARAMETER,taskId);
 

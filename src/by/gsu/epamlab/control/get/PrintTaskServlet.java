@@ -33,23 +33,24 @@ public class PrintTaskServlet extends AbstractNonPostController {
             if(taskType == null) {
                 taskType = (String) session.getAttribute(ParameterConstants.TASK_TYPE_PARAMETER);
             }
-
             taskType = taskType.toUpperCase();
             String userId = (String)session.getAttribute(ParameterConstants.USER_ID_PARAMETER);
             ITaskDAO iTaskDAO = TaskDAOFactory.getTaskDAOFromFactory();
             List<Task> taskList = iTaskDAO.getTasks(userId, taskType);
 
             if(ParameterConstants.AJAX_PARAMETER.equals(connectionType)) {
-                JSONArray jsonArrayTaskList = JsonOperations.getJsonArray(taskList);
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put(ParameterConstants.TASK_LIST_NAME_PARAMETER, jsonArrayTaskList);
+                JSONObject <String, Object> jsonObject = new JSONObject<>();
+
+                jsonObject.put(ParameterConstants.TASK_LIST_NAME_PARAMETER, JsonOperations.getJsonArray(taskList));
+
                 jsonObject.put(ParameterConstants.TASK_TYPE_PARAMETER, taskType);
-                session.setAttribute(ParameterConstants.TASK_LIST_NAME_PARAMETER, new ArrayList<>());
                 response.setContentType(Constants.JSON_CONTENT_TYPE);
                 response.setCharacterEncoding(Constants.UTF8_CHARACTER_ENCODING);
                 response.getWriter().write(jsonObject.toJSONString());
             }
             else {
+                request.setAttribute(ParameterConstants.TASK_TYPE_PARAMETER, taskType);
+                request.setAttribute(ParameterConstants.TASK_LIST_NAME_PARAMETER, taskList);
                 request.getRequestDispatcher(UrlConstants.MAIN_URL).forward(request, response);
             }
 
