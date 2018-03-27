@@ -270,13 +270,4 @@
     </listener>
 
 
-    <!-- Error page  -->
-
-    <error-page>
-        <error-code>500</error-code>
-        <location>/view/jsp/jspchunks/errorPage.jsp</location>
-    </error-page>
-
-
-
 </web-app>

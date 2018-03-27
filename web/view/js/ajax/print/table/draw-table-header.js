@@ -4,7 +4,7 @@ function tableHeader(taskType) {
     var thead = document.createElement("thead");
     var th = document.createElement("th");
 
-    if (taskType === 'BASKET' || taskType === 'FIXED'){
+    if (isBasket(taskType) || isFixed(taskType)){
         th.innerHTML = 'restore';
     } else{
         th.innerHTML = 'complete';
@@ -24,7 +24,7 @@ function tableHeader(taskType) {
 
     thead.appendChild(th);
 
-    if (taskType === "SOMEDAY") {
+    if (isSomeday(taskType)) {
 
         th = document.createElement("th");
 
@@ -33,20 +33,20 @@ function tableHeader(taskType) {
         thead.appendChild(th);
     }
 
-    if (taskType === "BASKET"){
+    if (isBasket(taskType)){
         th = document.createElement("th");
 
-        var checkbox = document.createElement("checkbox");
+        var checkbox = document.createElement(CHECKBOX_TAG);
 
         checkbox.setAttribute(ID_ATTRIBUTE,"checkAll");
-
-        // checkbox.setAttribute(ONCLICK_ATTRIBUTE,"toggle(this)");
 
         th.appendChild(checkbox);
 
         var label = document.createElement(LABEL_TAG);
 
         label.setAttribute(FOR_ATTRIBUTE,"checkAll");
+
+        label.addEventListener("click",checkAll);
 
         label.innerHTML = "check all";
 

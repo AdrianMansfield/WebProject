@@ -12,11 +12,11 @@ function drawTaskTable(jsonObject) {
 
     var taskType = jsonObject["taskType"];
 
-    var isBasket = taskType === BASKET;
+    // var isBasket = taskType === BASKET;
+    //
+    // var isFixed = taskType === FIXED;
 
-    var isFixed = taskType === FIXED;
-
-    var isMain = !isBasket && !isFixed;
+    var isMain = !isBasket(taskType) && !isFixed(taskType);
 
     var h5 = document.createElement(H5_TAG);
 
@@ -36,7 +36,7 @@ function drawTaskTable(jsonObject) {
 
     for (var counter in tasks) {
 
-        printTask(tasks[counter], isMain, isBasket, taskType);
+        printTask(tasks[counter], isMain, isBasket(taskType), taskType);
 
     }
 
