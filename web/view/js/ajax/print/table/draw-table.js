@@ -10,7 +10,7 @@ function drawTaskTable(jsonObject) {
 
     var tasks = jsonObject["tasks"];
 
-    var taskType = jsonObject["taskType"];
+    var taskType = jsonObject["taskType"].toString();
 
     var isBasket = taskType === BASKET;
 
@@ -38,9 +38,9 @@ function drawTaskTable(jsonObject) {
 
         printTask(tasks[counter], isMain, isBasket, taskType);
 
-
     }
-        drawDeleteButton(taskType, tasks.length);
+
+    drawDeleteButton(taskType, tasks.length);
 }
 
 

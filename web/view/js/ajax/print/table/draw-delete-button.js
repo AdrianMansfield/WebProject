@@ -1,4 +1,5 @@
 function drawDeleteButton(taskType, tasksLength) {
+
     if (document.getElementById("taskDeleteButton")){
         document.getElementById('tableContainer').removeChild(document.getElementById("taskDeleteButton"));
     }

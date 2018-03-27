@@ -34,7 +34,7 @@ public class MoveTaskServlet extends AbstractNonGetController {
 
             if(ParameterConstants.AJAX_PARAMETER.equals(connectionType)) {
 
-                JSONObject jsonObject = new JSONObject();
+                JSONObject <String, String> jsonObject = new JSONObject<>();
 
                 jsonObject.put(ParameterConstants.TASK_ID_PARAMETER,taskId);
 

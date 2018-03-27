@@ -10,7 +10,7 @@ function throwTaskTableData(taskId, isBasket) {
 
         button.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger");
 
-        button.onclick = sendQueryToMoveTaskServlet.bind(this, taskId, locationType); //think about it
+        button.onclick = sendQueryToMoveTaskServlet.bind(this, taskId, locationType);
 
         button.innerHTML = 'Throw';
 

@@ -4,6 +4,7 @@ import by.gsu.epamlab.constants.ParameterConstants;
 import by.gsu.epamlab.control.post.AbstractNonGetController;
 import by.gsu.epamlab.exceptions.DaoException;
 import by.gsu.epamlab.model.FileOperations;
+import by.gsu.epamlab.model.JsonOperations;
 import by.gsu.epamlab.model.factories.TaskDAOFactory;
 import by.gsu.epamlab.model.interfaces.ITaskDAO;
 import by.gsu.epamlab.model.task.Task;
@@ -40,12 +41,8 @@ public class DeleteTaskServlet extends AbstractNonGetController {
             iTaskDAO.removeTasks(taskIds);
 
             if(ParameterConstants.AJAX_PARAMETER.equals(connectionType)) {
-                JSONObject jsonObject = new JSONObject();
-                JSONArray jsonArray = new JSONArray();
-                for(String taskId : taskIds) {
-                    jsonArray.add(taskId);
-                }
-                jsonObject.put(ParameterConstants.TASK_IDS_PARAMETER, jsonArray);
+                JSONObject<String, JSONArray> jsonObject = new JSONObject<>();
+                jsonObject.put(ParameterConstants.TASK_IDS_PARAMETER, JsonOperations.getStringJsonArray(taskIds));
                 response.getWriter().write(jsonObject.toJSONString());
             }
             else {

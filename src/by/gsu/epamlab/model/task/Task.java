@@ -1,6 +1,6 @@
 package by.gsu.epamlab.model.task;
 
-import by.gsu.epamlab.model.Jsonable;
+import by.gsu.epamlab.model.JsonAware;
 import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.constants.ParameterConstants;
 import org.json.simple.JSONObject;
@@ -9,7 +9,7 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-public class Task implements Jsonable, Comparable<Task> {
+public class Task implements JsonAware, Comparable<Task> {
     private int id;
     private String name;
     private String description;
@@ -91,8 +91,8 @@ public class Task implements Jsonable, Comparable<Task> {
 
 
     public JSONObject toJson() {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put(ParameterConstants.TASK_ID_PARAMETER, id);
+        JSONObject <String, String> jsonObject = new JSONObject<>();
+        jsonObject.put(ParameterConstants.TASK_ID_PARAMETER, String.valueOf(id));
         jsonObject.put(ParameterConstants.TASK_NAME_PARAMETER, name);
         jsonObject.put("description", description);
         jsonObject.put("fileName", fileName);

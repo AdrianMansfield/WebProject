@@ -35,7 +35,7 @@ public class ChangeTaskServlet extends AbstractNonGetController {
             }
 
             if(ParameterConstants.AJAX_PARAMETER.equals(connectionType)) {
-                JSONObject jsonObject = new JSONObject();
+                JSONObject<String, String> jsonObject = new JSONObject<>();
                 jsonObject.put("infoType", infoType);
                 jsonObject.put("taskAttribute", taskAttribute);
                 jsonObject.put("taskId", taskId);

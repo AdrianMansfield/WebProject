@@ -1,4 +1,5 @@
 function printTask(task, isMain, isBasket, taskType) {
+
     var taskTable = document.getElementById("taskTable");
 
     var taskId = task["taskId"];
