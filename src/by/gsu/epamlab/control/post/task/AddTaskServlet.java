@@ -54,7 +54,7 @@ public class AddTaskServlet extends AbstractNonGetController {
 
                 JSONObject <String, Object> jsonObject = new JSONObject<>();
 
-                jsonObject.put("task", task.toJson());
+                jsonObject.put(ParameterConstants.TASK, task.toJson());
 
                 jsonObject.put(ParameterConstants.TASK_TYPE_PARAMETER, taskType);
 

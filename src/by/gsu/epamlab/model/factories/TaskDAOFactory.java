@@ -35,7 +35,9 @@ public class TaskDAOFactory {
                 localTaskDao = iTaskDAO;
 
                 if (localTaskDao == null) {
+
                     Implementation.valueOf(ApplicationContextParameter.getTaskImplementationName()).setImplementation();
+
                 }
             }
         }

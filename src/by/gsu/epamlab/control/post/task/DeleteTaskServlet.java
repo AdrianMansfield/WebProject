@@ -50,7 +50,9 @@ public class DeleteTaskServlet extends AbstractNonGetController {
 
             }
             else {
+
                 sendRedirectToPrintTaskServlet(request, response);
+
             }
 
         } catch (DaoException e) {

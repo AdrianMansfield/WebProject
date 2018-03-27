@@ -48,4 +48,6 @@ public final class ParameterConstants {
 
     public static final String FILE_NAME = "fileName";
 
+    public static final String TASK = "task";
+
 }

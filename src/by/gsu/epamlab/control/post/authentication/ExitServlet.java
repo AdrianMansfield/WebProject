@@ -16,13 +16,22 @@ public class ExitServlet extends AbstractAuthorizationController {
 
     @Override
     protected void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         HttpSession session = request.getSession();
+
         session.invalidate();
+
         setCookie(response, ParameterConstants.USER_ID_PARAMETER, Constants.EMPTY_STRING, Constants.ZERO);
+
         setCookie(response, ParameterConstants.ROLE_PARAMETER, Constants.EMPTY_STRING, Constants.ZERO);
+
         setCookie(response, ParameterConstants.LOGIN_PARAMETER, Constants.EMPTY_STRING, Constants.ZERO);
+
         session = request.getSession();
+
         session.setAttribute(JspConstants.ATTRIBUTE_CONTROL, JspConstants.STARTING_PAGE_FOR_VISITOR);
+
         response.sendRedirect(UrlConstants.INDEX_URL);
+
     }
 }
