@@ -3,16 +3,10 @@
 <html>
     <head>
         <title>Error page</title>
+        <link rel="stylesheet" href="../../view/css/error-page.css">
     </head>
     <body>
-         Request from ${pageContext.errorData.requestURI} isFailed
-    <br>
-        Servlet name ${pageContext.errorData.servletName}
-    <br>
-        Status code ${pageContext.errorData.statusCode}
-    <br>
-        Exception ${pageContext.errorData.statusCode}
-    <br>
-        Message from exception ${pageContext.exception.message}
+        <h1 class="warningHeader">!!!WARNING!!!</h1>
+      <h1>${errorMessage}</h1>
     </body>
 </html>

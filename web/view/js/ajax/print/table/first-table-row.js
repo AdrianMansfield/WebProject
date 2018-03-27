@@ -14,7 +14,7 @@ function firstTableRow(taskId, taskName, fileName, isMain, isBasket, taskType, d
 
     tr.appendChild(td);
 
-    if (taskType === "SOMEDAY") {
+    if (isSomeday(taskType)) {
 
         td = dateTableData(taskId, date);
 

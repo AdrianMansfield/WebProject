@@ -13,7 +13,7 @@ function removeTaskFromTable(taskId) {
         removeAllElements(taskTable);
 
         var currentTaskType = document.getElementById("sectionName").getAttribute("name");
-        if(currentTaskType === BASKET) {
+        if(isBasket(currentTaskType)) {
             document.getElementById('tableContainer').removeChild(document.getElementById("taskDeleteButton"));
         }
     }

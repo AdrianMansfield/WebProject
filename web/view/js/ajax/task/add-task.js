@@ -31,13 +31,11 @@ function printNewTask(jsonObject) {
             }
 
 
-            var isBasket = taskType === BASKET;
-            var isFixed = taskType === FIXED;
-            var isMain = !isBasket && !isFixed;
+            var isMain = !isBasket(taskType) && !isFixed(taskType);
 
             var task = jsonObject["task"];
 
-            printTask(task, isMain, isBasket, taskType);
+            printTask(task, isMain, isBasket(taskType), taskType);
             return;
         }
     }
