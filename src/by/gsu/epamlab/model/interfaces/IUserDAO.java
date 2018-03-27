@@ -4,8 +4,8 @@ import by.gsu.epamlab.model.user.User;
 import by.gsu.epamlab.exceptions.DaoException;
 
 public interface IUserDAO {
-    User getUser(String login, String password) throws DaoException;
+    User getUser(String login, char [] password) throws DaoException;
 
-    boolean setUser(String login, String password) throws DaoException;
+    boolean setUser(String login, char [] password) throws DaoException;
 
 }

@@ -22,7 +22,7 @@ public class LoginServlet extends AbstractAuthorizationController {
 
             String login = request.getParameter(ParameterConstants.LOGIN_PARAMETER);
 
-            String password = request.getParameter(ParameterConstants.PASSWORD_PARAMETER);
+            char [] password = request.getParameter(ParameterConstants.PASSWORD_PARAMETER).toCharArray();
 
             IUserDAO iUserDAO = UserDAOFactory.getUserDAOFromFactory();
 
