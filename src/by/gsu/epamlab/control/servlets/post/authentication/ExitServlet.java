@@ -1,4 +1,4 @@
-package by.gsu.epamlab.control.post.authentication;
+package by.gsu.epamlab.control.servlets.post.authentication;
 
 import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.constants.JspConstants;

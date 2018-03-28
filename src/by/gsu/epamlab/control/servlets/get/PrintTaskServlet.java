@@ -1,4 +1,4 @@
-package by.gsu.epamlab.control.get;
+package by.gsu.epamlab.control.servlets.get;
 
 import by.gsu.epamlab.model.JsonOperations;
 import by.gsu.epamlab.model.task.Task;
@@ -8,7 +8,6 @@ import by.gsu.epamlab.constants.UrlConstants;
 import by.gsu.epamlab.model.factories.TaskDAOFactory;
 import by.gsu.epamlab.exceptions.DaoException;
 import by.gsu.epamlab.model.interfaces.ITaskDAO;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import javax.servlet.*;
@@ -16,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class PrintTaskServlet extends AbstractNonPostController {

@@ -1,7 +1,7 @@
-package by.gsu.epamlab.control.post.task;
+package by.gsu.epamlab.control.servlets.post.task;
 
 import by.gsu.epamlab.constants.ParameterConstants;
-import by.gsu.epamlab.control.post.AbstractNonGetController;
+import by.gsu.epamlab.control.servlets.post.AbstractNonGetController;
 import by.gsu.epamlab.exceptions.DaoException;
 import by.gsu.epamlab.model.FileOperations;
 import by.gsu.epamlab.model.JsonOperations;
@@ -21,7 +21,7 @@ import java.util.List;
 public class DeleteTaskServlet extends AbstractNonGetController {
 
     @Override
-    protected void performTask(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void performTask(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
 
             String connectionType = request.getParameter("from");
@@ -57,7 +57,7 @@ public class DeleteTaskServlet extends AbstractNonGetController {
 
         } catch (DaoException e) {
 
-            e.printStackTrace();
+            throw new ServletException(e);
 
         }
     }

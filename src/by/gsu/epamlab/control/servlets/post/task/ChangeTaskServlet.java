@@ -1,8 +1,8 @@
-package by.gsu.epamlab.control.post.task;
+package by.gsu.epamlab.control.servlets.post.task;
 
 import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.constants.ParameterConstants;
-import by.gsu.epamlab.control.post.AbstractNonGetController;
+import by.gsu.epamlab.control.servlets.post.AbstractNonGetController;
 import by.gsu.epamlab.exceptions.DaoException;
 import by.gsu.epamlab.model.factories.TaskDAOFactory;
 import by.gsu.epamlab.model.interfaces.ITaskDAO;
@@ -67,7 +67,7 @@ public class ChangeTaskServlet extends AbstractNonGetController {
 
         } catch (DaoException | ParseException e) {
 
-            e.printStackTrace();
+            throw new ServletException(e);
 
         }
     }

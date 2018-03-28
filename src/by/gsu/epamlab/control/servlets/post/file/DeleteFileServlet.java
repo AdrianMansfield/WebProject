@@ -1,9 +1,9 @@
-package by.gsu.epamlab.control.post.file;
+package by.gsu.epamlab.control.servlets.post.file;
 
 import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.model.FileOperations;
 import by.gsu.epamlab.constants.ParameterConstants;
-import by.gsu.epamlab.control.post.AbstractNonGetController;
+import by.gsu.epamlab.control.servlets.post.AbstractNonGetController;
 import by.gsu.epamlab.exceptions.DaoException;
 import by.gsu.epamlab.model.factories.TaskDAOFactory;
 import by.gsu.epamlab.model.interfaces.ITaskDAO;
@@ -18,7 +18,7 @@ import java.io.IOException;
 
 public class DeleteFileServlet extends AbstractNonGetController {
     @Override
-    protected void performTask(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void performTask(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
 
             String connectionType = request.getParameter(ParameterConstants.FROM_PARAMETER);
@@ -63,7 +63,7 @@ public class DeleteFileServlet extends AbstractNonGetController {
 
         } catch (DaoException e) {
 
-            e.printStackTrace();
+            throw new ServletException(e);
 
         }
     }

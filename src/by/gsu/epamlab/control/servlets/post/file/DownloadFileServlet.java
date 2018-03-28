@@ -1,9 +1,9 @@
-package by.gsu.epamlab.control.post.file;
+package by.gsu.epamlab.control.servlets.post.file;
 
 import by.gsu.epamlab.model.FileOperations;
 import by.gsu.epamlab.model.task.Task;
 import by.gsu.epamlab.constants.*;
-import by.gsu.epamlab.control.post.AbstractNonGetController;
+import by.gsu.epamlab.control.servlets.post.AbstractNonGetController;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -41,7 +41,7 @@ public class DownloadFileServlet extends AbstractNonGetController {
         }
         catch (IOException e) {
 
-            e.printStackTrace();
+            throw new ServletException(e);
 
         }
 
