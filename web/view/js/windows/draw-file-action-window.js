@@ -186,7 +186,7 @@ function drawNoFileModalWindow(taskId, fileName, taskName) {
         setTimeout(removeAllElements(fileModalWindow), 1);
     };
 
-    button.addEventListener("click",event);
+    button.addEventListener(CLICK,event);
 
     section.appendChild(button);
     aside.appendChild(section);

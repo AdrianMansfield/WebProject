@@ -97,7 +97,7 @@
 </main>
 <footer class="footer fixed-bottom">
     <c:if test="${not empty errorMessage}">
-        <div class="alert alert-danger text-center">
+        <div class="alert alert-danger text-center" id="hiddenErrorMessage">
             <h5>
                 <c:out value="${errorMessage}"/>
             </h5>
