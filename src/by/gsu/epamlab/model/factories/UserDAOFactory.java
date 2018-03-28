@@ -41,7 +41,9 @@ public class UserDAOFactory {
                localIUserDAO = iUserDAO;
 
                 if (localIUserDAO == null) {
+
                     Implementation.valueOf(ApplicationContextParameter.getUserImplementationName()).setImplementation();
+
                 }
             }
         }

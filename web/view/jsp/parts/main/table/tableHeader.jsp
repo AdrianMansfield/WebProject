@@ -7,20 +7,20 @@
 
 <th>file</th>
 
-<c:if test="${taskType eq 'BASKET'}">
+<c:if test="${isBasket}">
 
     <th>delete</th>
 
 </c:if>
 
 
-<c:if test="${taskType ne 'BASKET'}">
+<c:if test="${!isBasket}">
 
     <th>to basket</th>
 
 </c:if>
 
-<c:if test="${taskType eq 'SOMEDAY'}">
+<c:if test="${isSomeday}">
 
     <th>date</th>
 

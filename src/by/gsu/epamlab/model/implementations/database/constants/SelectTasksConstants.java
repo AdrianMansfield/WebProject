@@ -15,12 +15,17 @@ public final class SelectTasksConstants {
     public static final String SQL_SELECT_BASKET_TASKS = "Select * from task Where userId = ? and date <> ? and location = 'BASKET'";
 
     public static final int USER_ID_INDEX = 1;
+
     public static final int DATE_INDEX = 2;
 
     public static final int TASK_ID_TABLE_INDEX = 1;
+
     public static final int TASK_NAME_TABLE_INDEX = 3;
+
     public static final int TASK_DEPARTMENT_TABLE_INDEX = 4;
+
     public static final int TASK_DATE_TABLE_INDEX = 5;
+
     public static final int TASK_FILE_NAME_TABLE_INDEX = 6;
 
 }

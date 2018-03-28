@@ -64,7 +64,9 @@ public class UploadFileServlet extends AbstractNonGetController {
 
             }
             else {
+
                 sendRedirectToPrintTaskServlet(request, response);
+
             }
 
 

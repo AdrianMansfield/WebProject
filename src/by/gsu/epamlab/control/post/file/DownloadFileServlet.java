@@ -29,10 +29,14 @@ public class DownloadFileServlet extends AbstractNonGetController {
             boolean isExist = FileOperations.downloadFile(response, userLogin, task);
 
             if(isExist) {
+
                 jumpPage(UrlConstants.MAIN_URL, request, response);
+
             }
             else {
+
                 jumpError(UrlConstants.MAIN_URL, ErrorConstants.FILE_DOES_NOT_EXIST_ERROR, request, response);
+
             }
         }
         catch (IOException e) {

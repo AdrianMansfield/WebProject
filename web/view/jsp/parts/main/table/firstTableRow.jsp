@@ -9,7 +9,7 @@
     <!-- Form for add to basket and remove task -->
     <c:import url="/view/jsp/parts/main/table/throwTaskTableData.jsp"/>
 
-    <c:if test="${taskType eq 'SOMEDAY'}">
+    <c:if test="${isSomeday}">
         <c:import url="/view/jsp/parts/main/table/taskDateTableData.jsp"/>
     </c:if>
 
