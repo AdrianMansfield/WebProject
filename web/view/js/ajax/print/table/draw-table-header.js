@@ -28,7 +28,7 @@ function tableHeader(taskType) {
 
         th = document.createElement("th");
 
-        th.innerHTML = 'date';
+        th.innerHTML = DATE;
 
         thead.appendChild(th);
     }
@@ -46,7 +46,7 @@ function tableHeader(taskType) {
 
         label.setAttribute(FOR_ATTRIBUTE,"checkAll");
 
-        label.addEventListener("click",checkAll);
+        label.addEventListener(CLICK,checkAll);
 
         label.innerHTML = "check all";
 

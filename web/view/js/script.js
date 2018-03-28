@@ -3,7 +3,7 @@ function isChecked(chekbox) {
 }
 
 function checkAll() {
-    var checkboxNodeList = document.getElementsByName("taskIds");
+    var checkboxNodeList = document.getElementsByName(TASK_IDS);
     var checkboxArray = Array.prototype.slice.call(checkboxNodeList);
     if (checkboxArray.every(isChecked)) {
         for (var i = 0; i < checkboxArray.length; i++) {
@@ -11,19 +11,19 @@ function checkAll() {
         }
     } else {
         for (var i = 0; i < checkboxArray.length; i++) {
-            checkboxArray[i].checked = "checked";
+            checkboxArray[i].checked = CHECKED;
         }
     }
 }
 
 function isBasket(taskType){
-    return taskType === "BASKET";
+    return taskType === BASKET;
 }
 
 function isFixed(taskType) {
-    return taskType === "FIXED";
+    return taskType === FIXED;
 }
 
 function isSomeday(taskType) {
-    return taskType === "SOMEDAY";
+    return taskType === SOMEDAY;
 }

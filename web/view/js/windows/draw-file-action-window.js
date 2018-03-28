@@ -8,7 +8,7 @@ function drawModalWindows(taskId, fileName, taskName) {
 
     var isFileExist = fileName !== NO_FILE;
 
-    removeAllElements(document.getElementById("fileModalWindow"));
+    removeAllElements(document.getElementById(FILE_MODAL_WINDOW));
 
     modalWindowType[isFileExist](taskId, fileName, taskName);
 }
@@ -54,7 +54,7 @@ function drawFileModalWindow(taskId, fileName, taskName) {
 
     colFirstDiv.setAttribute(CLASS_ATTRIBUTE, "col");
 
-    var form = document.createElement("form"); // --------------------------
+    var form = document.createElement(FORM_ATTRIBUTE); // --------------------------
 
     form.setAttribute(METHOD_ATTRIBUTE, POST_METHOD);
 
@@ -64,7 +64,7 @@ function drawFileModalWindow(taskId, fileName, taskName) {
 
     input.setAttribute(TYPE_ATTRIBUTE, HIDDEN_ATTRIBUTE);
 
-    input.setAttribute(NAME_ATTRIBUTE, "taskNames");
+    input.setAttribute(NAME_ATTRIBUTE, TASK_NAMES);
 
     input.setAttribute(VALUE_ATTRIBUTE, taskName);
 
@@ -74,7 +74,7 @@ function drawFileModalWindow(taskId, fileName, taskName) {
 
     input.setAttribute(TYPE_ATTRIBUTE, HIDDEN_ATTRIBUTE);
 
-    input.setAttribute(NAME_ATTRIBUTE, "fileNames");
+    input.setAttribute(NAME_ATTRIBUTE, FILE_NAMES);
 
     input.setAttribute(VALUE_ATTRIBUTE, fileName);
 
@@ -84,7 +84,7 @@ function drawFileModalWindow(taskId, fileName, taskName) {
 
     downloadButton.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger");
 
-    downloadButton.setAttribute(TYPE_ATTRIBUTE,"submit");
+    downloadButton.setAttribute(TYPE_ATTRIBUTE,SUBMIT_ATTRIBUTE);
 
     downloadButton.setAttribute(VALUE_ATTRIBUTE,"Download");
 
@@ -95,7 +95,7 @@ function drawFileModalWindow(taskId, fileName, taskName) {
 
     };
 
-    downloadButton.addEventListener("click", fix);
+    downloadButton.addEventListener(CLICK, fix);
 
     form.appendChild(downloadButton);
 
@@ -103,7 +103,7 @@ function drawFileModalWindow(taskId, fileName, taskName) {
 
     div.appendChild(colFirstDiv);
 
-    var colSecondDiv = document.createElement("div");
+    var colSecondDiv = document.createElement(DIV_TAG);
 
     colSecondDiv.setAttribute(CLASS_ATTRIBUTE, "col");
 
@@ -120,7 +120,7 @@ function drawFileModalWindow(taskId, fileName, taskName) {
 
     };
 
-    deleteButton.addEventListener("click", event);
+    deleteButton.addEventListener(CLICK, event);
 
     colSecondDiv.appendChild(deleteButton);
 
@@ -179,7 +179,7 @@ function drawNoFileModalWindow(taskId, fileName, taskName) {
     var button = document.createElement(BUTTON_TAG);
 
     button.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger btn-sm");
-    button.innerHTML = 'Upload';
+    button.innerHTML = UPLOAD;
 
     var event = function () {
         sendRequestToUploadFileServlet(taskId, taskName);

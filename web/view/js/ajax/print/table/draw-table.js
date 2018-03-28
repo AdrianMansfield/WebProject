@@ -2,7 +2,7 @@ function drawTaskTable(jsonObject) {
 
     var taskTypeHeader = document.getElementById("taskTypeHeader");
 
-    var taskTable = document.getElementById("taskTable");
+    var taskTable = document.getElementById(TASK_TABLE);
 
     removeAllElements(taskTable);
 
@@ -12,15 +12,11 @@ function drawTaskTable(jsonObject) {
 
     var taskType = jsonObject["taskType"];
 
-    // var isBasket = taskType === BASKET;
-    //
-    // var isFixed = taskType === FIXED;
-
     var isMain = !isBasket(taskType) && !isFixed(taskType);
 
     var h5 = document.createElement(H5_TAG);
 
-    h5.setAttribute(ID_ATTRIBUTE, "sectionName");
+    h5.setAttribute(ID_ATTRIBUTE, SECTION_NAME);
 
     h5.setAttribute(NAME_ATTRIBUTE, taskType);
 

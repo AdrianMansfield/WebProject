@@ -1,6 +1,6 @@
 function drawChangeInfoModalWindow(attributeName, taskId, taskInfo) {
 
-    removeAllElements(document.getElementById("fileModalWindow"));
+    removeAllElements(document.getElementById(FILE_MODAL_WINDOW));
     drawChangeNameWindow(attributeName, taskId, taskInfo);
 }
 
@@ -28,11 +28,11 @@ function drawChangeNameWindow(attributeName, taskId, taskInfo) {
 
     var textarea = document.createElement(TEXTAREA_TAG);
 
-    textarea.setAttribute(NAME_ATTRIBUTE, TASK_ATTRIBUTE); // ?
+    textarea.setAttribute(NAME_ATTRIBUTE, TASK_ATTRIBUTE);
 
     textarea.setAttribute(ID_ATTRIBUTE, TASK_ATTRIBUTE);
 
-    textarea.setAttribute(CLASS_ATTRIBUTE,"form-control");
+    textarea.setAttribute(CLASS_ATTRIBUTE,FORM_CONTROL);
 
     textarea.innerHTML = taskInfo;
 
@@ -48,7 +48,7 @@ function drawChangeNameWindow(attributeName, taskId, taskInfo) {
         validateChangeTaskInfoForm(taskId,attributeName);
     };
 
-    button.addEventListener("click", event);
+    button.addEventListener(CLICK, event);
 
     section.appendChild(button);
 

@@ -6,7 +6,7 @@ function taskNameTableData(taskName, taskId) {
 
     a.setAttribute(HREF_ATTRIBUTE, "#" + taskName);
 
-    a.setAttribute(ID_ATTRIBUTE,taskId + 'name');
+    a.setAttribute(ID_ATTRIBUTE,taskId + NAME_ATTRIBUTE);
 
     a.innerHTML = taskName;
 

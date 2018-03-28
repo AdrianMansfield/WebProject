@@ -30,6 +30,8 @@ var BASKET = "BASKET";
 
 var FIXED = "FIXED";
 
+var SOMEDAY = "SOMEDAY";
+
 var NO_FILE = "No file";
 
 var CHANGE_DESCRIPTION = "ChangeDescription";
@@ -90,9 +92,21 @@ var UPLOAD_FILE = "Upload file";
 
 var TASK_NAME = "taskName";
 
+var TASK_NAMES = "taskNames";
+
 var FILE = "file";
 
 var UPLOAD = "Upload";
+
+var TASK_TABLE = "taskTable";
+
+var SECTION_NAME = "sectionName";
+
+var TASK_DELETE_BUTTON = "taskDeleteButton";
+
+var DATE = "date";
+
+var INFO = "info";
 
 
 

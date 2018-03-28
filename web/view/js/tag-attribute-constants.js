@@ -24,9 +24,17 @@ var HIDDEN_ATTRIBUTE = "hidden";
 
 var METHOD_ATTRIBUTE = "method";
 
+var TABLE_CONTAINER = "tableContainer";
+
 var ACTION_ATTRIBUTE = "action";
 
 var HREF_ATTRIBUTE = "href";
+
+var CHECKED = "checked";
+
+var FORM_CONTROL = "form-control";
+
+var CLICK = "click";
 
 var COLSPAN_ATTRIBUTE = "colspan";
 
