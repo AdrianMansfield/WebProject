@@ -12,15 +12,15 @@ function printNewTask(jsonObject) {
 
     var taskType = jsonObject["taskType"];
 
-    var section = document.getElementById("sectionName");
+    var section = document.getElementById(SECTION_NAME);
 
     if(section)  {
 
-        var currentTaskType = section.getAttribute("name");
+        var currentTaskType = section.getAttribute(NAME_ATTRIBUTE);
 
         if(taskType === currentTaskType) {
 
-            var taskTable = document.getElementById("taskTable");
+            var taskTable = document.getElementById(TASK_TABLE);
 
             if (!taskTable.firstChild) {
 

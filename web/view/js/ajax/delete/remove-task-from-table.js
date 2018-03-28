@@ -1,6 +1,6 @@
 function removeTaskFromTable(taskId) {
 
-    var taskTable = document.getElementById("taskTable");
+    var taskTable = document.getElementById(TASK_TABLE);
 
     var tr = document.getElementsByName(taskId);
 
@@ -12,9 +12,9 @@ function removeTaskFromTable(taskId) {
 
         removeAllElements(taskTable);
 
-        var currentTaskType = document.getElementById("sectionName").getAttribute("name");
+        var currentTaskType = document.getElementById(SECTION_NAME).getAttribute(NAME_ATTRIBUTE);
         if(isBasket(currentTaskType)) {
-            document.getElementById('tableContainer').removeChild(document.getElementById("taskDeleteButton"));
+            document.getElementById(TABLE_CONTAINER).removeChild(document.getElementById(TASK_DELETE_BUTTON));
         }
     }
 
