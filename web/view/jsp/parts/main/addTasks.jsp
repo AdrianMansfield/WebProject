@@ -10,12 +10,12 @@
             <label for="today">Today</label>
             <input type="radio" value="tomorrow" name="taskType" id="tomorrow" onclick="hideDateField();"/>
             <label for="tomorrow">Tomorrow</label>
-            <input type="radio" value="someday" name="taskType" id="someday" onclick="showDateField();"/>
+            <input type="radio" value="someday" name="taskType" id="someday" onclick="hideDateField();"/>
             <label for="someday">Someday</label>
         </p>
         Name:<input name="taskName" class="form-control" required/>
         Description:<textarea name="description" class="form-control" required></textarea>
-        <div id="dateField" class="noneDisplay">
+        <div id="dateField">
             Date: <input type="text" id="datepicker" class="form-control " name="date"
                          pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" data-valid-example="24.02.2118"
                          placeholder="dd.mm.yyyy"/>

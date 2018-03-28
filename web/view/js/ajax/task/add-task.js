@@ -1,12 +1,12 @@
 function hideDateField() {
     var taskDateInput = document.getElementById('dateField');
     taskDateInput.setAttribute(CLASS_ATTRIBUTE,"noneDisplay");
+    var somedayCheckbox = document.getElementById("someday");
+    if (somedayCheckbox.checked){
+        taskDateInput.setAttribute(CLASS_ATTRIBUTE,"displayElement");
+    }
 }
 
-function showDateField() {
-    var taskDateInput = document.getElementById('dateField');
-    taskDateInput.setAttribute(CLASS_ATTRIBUTE,"displayElement");
-}
 
 function printNewTask(jsonObject) {
 
