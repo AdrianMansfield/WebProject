@@ -78,7 +78,7 @@
 <main role="main">
     <div class="custom-row">
         <div class="col-md-2">
-            <a href="#leftSlide" class="bigFont text-center">&#9998 Add Task</a>
+            <a href="#leftSlide" class="bigFont text-center" onclick="hideDateField()">&#9998 Add Task</a>
         </div>
         <div class="col-md-8" id="task">
             <div id="taskTypeHeader" class="text-center"></div>
