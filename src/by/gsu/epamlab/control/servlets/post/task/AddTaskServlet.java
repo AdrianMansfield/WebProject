@@ -1,4 +1,4 @@
-package by.gsu.epamlab.control.post.task;
+package by.gsu.epamlab.control.servlets.post.task;
 
 import by.gsu.epamlab.model.task.Task;
 import by.gsu.epamlab.constants.Constants;
@@ -6,7 +6,7 @@ import by.gsu.epamlab.constants.ErrorConstants;
 import by.gsu.epamlab.constants.ParameterConstants;
 import by.gsu.epamlab.constants.UrlConstants;
 import by.gsu.epamlab.model.factories.TaskDAOFactory;
-import by.gsu.epamlab.control.post.AbstractNonGetController;
+import by.gsu.epamlab.control.servlets.post.AbstractNonGetController;
 import by.gsu.epamlab.exceptions.DaoException;
 import by.gsu.epamlab.model.interfaces.ITaskDAO;
 import org.json.simple.JSONObject;
@@ -66,7 +66,9 @@ public class AddTaskServlet extends AbstractNonGetController {
             }
 
         } catch (DaoException e) {
-            jumpError(UrlConstants.ERROR_PAGE, e.getMessage(), request, response);
+
+            throw new ServletException(e);
+
         }
     }
 

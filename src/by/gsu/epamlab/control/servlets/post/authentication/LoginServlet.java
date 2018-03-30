@@ -1,6 +1,6 @@
-package by.gsu.epamlab.control.post.authentication;
+package by.gsu.epamlab.control.servlets.post.authentication;
 
-
+import by.gsu.epamlab.model.user.User;
 import by.gsu.epamlab.constants.ErrorConstants;
 import by.gsu.epamlab.constants.ParameterConstants;
 import by.gsu.epamlab.constants.UrlConstants;
@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class RegistrationServlet extends AbstractAuthorizationController {
-
+public class LoginServlet extends AbstractAuthorizationController {
 
     @Override
-    protected void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void performTask(HttpServletRequest request,
+                               HttpServletResponse response) throws ServletException, IOException {
         try {
 
             String login = request.getParameter(ParameterConstants.LOGIN_PARAMETER);
@@ -26,21 +26,23 @@ public class RegistrationServlet extends AbstractAuthorizationController {
 
             IUserDAO iUserDAO = UserDAOFactory.getUserDAOFromFactory();
 
-            boolean isAdded = iUserDAO.setUser(login, password);
+            User user = iUserDAO.getUser(login, password);
 
-            if(isAdded) {
+            if(user == null) {
 
-                jumpPage(UrlConstants.LOGIN_SERVLET_URL, request, response);
+                jumpError(UrlConstants.LOGIN_URL, ErrorConstants.INVALID_LOGIN_OR_PASSWORD_ERROR, request, response);
 
-            }
-            else {
-
-                jumpError(UrlConstants.REGISTRATION_URL, ErrorConstants.INVALID_LOGIN_OR_PASSWORD_ERROR, request, response);
+                return;
 
             }
+
+            setUserAuthorization(user, request, response);
+
+            jumpPage(UrlConstants.MAIN_URL, request, response);
+
         } catch (DaoException e) {
 
-            jumpError(UrlConstants.REGISTRATION_URL, ErrorConstants.SERVER_ERROR, request, response);
+            throw new ServletException(e);
 
         }
     }

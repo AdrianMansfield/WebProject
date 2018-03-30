@@ -1,10 +1,10 @@
-package by.gsu.epamlab.control.post.authentication;
+package by.gsu.epamlab.control.servlets.post.authentication;
 
 import by.gsu.epamlab.model.user.User;
 import by.gsu.epamlab.constants.Constants;
 import by.gsu.epamlab.constants.JspConstants;
 import by.gsu.epamlab.constants.ParameterConstants;
-import by.gsu.epamlab.control.post.AbstractNonGetController;
+import by.gsu.epamlab.control.servlets.post.AbstractNonGetController;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
