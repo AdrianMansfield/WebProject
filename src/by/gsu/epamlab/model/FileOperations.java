@@ -23,8 +23,19 @@ public final class FileOperations {
 
     private FileOperations() {}
 
+    public static String extractFileName(Part part) {
+        String contentDisp = part.getHeader("content-disposition");
+        String[] items = contentDisp.split(";");
+        for (String s : items) {
+            if (s.trim().startsWith("filename")) {
+                return s.substring(s.indexOf("=") + 2, s.length()-1);
+            }
+        }
+        return "";
+    }
+
     public static String uploadFile(Part part, String userLogin, String taskName) throws IOException {
-        String fileName = part.getSubmittedFileName();
+        String fileName = extractFileName(part);
         if(Constants.EMPTY_STRING.equals(fileName)) {
             fileName = Constants.NO_FILE;
         }

@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="../../view/css/authorization.css">
         <link rel="stylesheet" href="../../view/css/bars.css">
     </head>
-    <body class="bg-faded">
+    <body>
         <div class="bg-danger text-center">
             <c:if test="${not empty errorMessage}">
                 <h5 class="text-white"><c:out value="${errorMessage}"/></h5>

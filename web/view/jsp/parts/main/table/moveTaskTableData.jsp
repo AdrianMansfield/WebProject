@@ -14,7 +14,7 @@
             <input name = "locationType" type = "hidden" value = "main"/>
             <c:set scope = "page" var = "icon" value = "&#10226"/>
         </c:if>
-        <input type="submit" value = "${icon}" class = "btn-outline-danger" />
+        <input type="submit" value = "${icon}" class = " btn btn-outline-danger" />
 
     </form>
 </td>

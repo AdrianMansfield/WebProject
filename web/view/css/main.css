@@ -2,7 +2,21 @@
 задает красный цвет для ссылки
 */
 a {
-    color: #f85c37;
+    color: #00ADB5;
+}
+
+body{
+    background-color: #393E46;
+    color: white;
+}
+
+
+
+button, input[type="submit"]{
+    color: #00ADB5 !important;
+    background-image: none;
+    background-color: transparent;
+    border-color: #00ADB5 !important;
 }
 
 /*

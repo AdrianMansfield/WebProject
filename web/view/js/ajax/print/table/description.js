@@ -30,7 +30,7 @@ function descriptionSecondTableRow(taskName, description, date,  taskId) {
 
     button.setAttribute(NAME_ATTRIBUTE,DESCRIPTION);
 
-    button.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger mr-3");
+    button.setAttribute(CLASS_ATTRIBUTE,"btn mr-3");
 
     button.innerHTML = CHANGE_DESCRIPTION_HREF;
 
@@ -42,7 +42,7 @@ function descriptionSecondTableRow(taskName, description, date,  taskId) {
 
     button.setAttribute(NAME_ATTRIBUTE,DATE);
 
-    button.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger mr-3");
+    button.setAttribute(CLASS_ATTRIBUTE,"btn mr-3");
 
     button.innerHTML = CHANGE_DATE_HREF;
 

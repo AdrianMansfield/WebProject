@@ -8,7 +8,7 @@ function drawDeleteButton(taskType, tasksLength) {
         var button = document.createElement(BUTTON_TAG);
         button.setAttribute(FORM_ATTRIBUTE, DELETE);
         button.setAttribute(ID_ATTRIBUTE, TASK_DELETE_BUTTON);
-        button.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger");
+        button.setAttribute(CLASS_ATTRIBUTE,"btn float-right mr-4");
         button.innerHTML = DELETE;
 
         var event = function () {

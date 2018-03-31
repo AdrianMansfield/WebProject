@@ -22,6 +22,8 @@ function getAside(){
 
     var h2 = document.createElement(H2_TAG);
 
+    h2.setAttribute(CLASS_ATTRIBUTE,"ml-2");
+
     h2.innerHTML = CHOOSE_FILE_ACTION;
 
     header.appendChild(h2);
@@ -41,6 +43,7 @@ function drawFileModalWindow(taskId, fileName, taskName) {
     var section = document.createElement(SECTION_TAG);
 
     var h5 = document.createElement(H5_TAG);
+    h5.setAttribute(CLASS_ATTRIBUTE,"ml-2");
 
     h5.innerHTML = fileName;
 
@@ -54,7 +57,7 @@ function drawFileModalWindow(taskId, fileName, taskName) {
 
     colFirstDiv.setAttribute(CLASS_ATTRIBUTE, "col");
 
-    var form = document.createElement(FORM_ATTRIBUTE); // --------------------------
+    var form = document.createElement(FORM_ATTRIBUTE);
 
     form.setAttribute(METHOD_ATTRIBUTE, POST_METHOD);
 
@@ -82,7 +85,7 @@ function drawFileModalWindow(taskId, fileName, taskName) {
 
     var downloadButton = document.createElement(INPUT_TAG);
 
-    downloadButton.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger");
+    downloadButton.setAttribute(CLASS_ATTRIBUTE, "btn");
 
     downloadButton.setAttribute(TYPE_ATTRIBUTE,SUBMIT_ATTRIBUTE);
 
@@ -99,7 +102,7 @@ function drawFileModalWindow(taskId, fileName, taskName) {
 
     form.appendChild(downloadButton);
 
-    colFirstDiv.appendChild(form); /// -----------------------------------
+    colFirstDiv.appendChild(form);
 
     div.appendChild(colFirstDiv);
 
@@ -136,7 +139,7 @@ function drawFileModalWindow(taskId, fileName, taskName) {
 
     var closeButton = document.createElement(BUTTON_TAG);
 
-    closeButton.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger");
+    closeButton.setAttribute(CLASS_ATTRIBUTE, "btn float-right");
 
     closeButton.onclick = function () {
 
@@ -178,7 +181,7 @@ function drawNoFileModalWindow(taskId, fileName, taskName) {
 
     var button = document.createElement(BUTTON_TAG);
 
-    button.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger btn-sm");
+    button.setAttribute(CLASS_ATTRIBUTE, "btn"); //sm
     button.innerHTML = UPLOAD;
 
     var event = function () {
@@ -196,7 +199,7 @@ function drawNoFileModalWindow(taskId, fileName, taskName) {
 
     var closeButton = document.createElement(BUTTON_TAG);
 
-    closeButton.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger");
+    closeButton.setAttribute(CLASS_ATTRIBUTE, "btn");
 
     closeButton.onclick = function () {
 

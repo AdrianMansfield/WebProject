@@ -9,7 +9,7 @@ function drawChangeNameWindow(attributeName, taskId, taskInfo) {
     var aside = document.createElement(ASIDE_TAG);
     var fileModalWindow = document.getElementById(FILE_MODAL_WINDOW);
 
-    aside.setAttribute(CLASS_ATTRIBUTE,JS_MODAL_WINDOW);
+    aside.setAttribute(CLASS_ATTRIBUTE, JS_MODAL_WINDOW);
     var header = document.createElement(HEADER_TAG);
     var h2 = document.createElement(H2_TAG);
 
@@ -32,30 +32,28 @@ function drawChangeNameWindow(attributeName, taskId, taskInfo) {
 
     textarea.setAttribute(ID_ATTRIBUTE, TASK_ATTRIBUTE);
 
-    textarea.setAttribute(CLASS_ATTRIBUTE,FORM_CONTROL);
+    textarea.setAttribute(CLASS_ATTRIBUTE, FORM_CONTROL);
 
     textarea.innerHTML = taskInfo;
 
     section.appendChild(textarea);
 
-    var button = document.createElement(BUTTON_TAG);
+    var changeButton = document.createElement(BUTTON_TAG);
 
-    button.setAttribute(CLASS_ATTRIBUTE, "btn btn-sm btn-outline-danger");
+    changeButton.setAttribute(CLASS_ATTRIBUTE, "btn"); //sm
 
-    button.innerHTML = "Change";
+    changeButton.innerHTML = "Change";
 
-    var event = function() {
-        validateChangeTaskInfoForm(taskId,attributeName);
+    var event = function () {
+        validateChangeTaskInfoForm(taskId, attributeName);
     };
 
-    button.addEventListener(CLICK, event);
-
-    section.appendChild(button);
+    changeButton.addEventListener(CLICK, event);
 
     aside.appendChild(section);
 
-    button = document.createElement(BUTTON_TAG);
-    button.setAttribute(CLASS_ATTRIBUTE,"btn btn-sm btn-outline-danger");
+    var button = document.createElement(BUTTON_TAG);
+    button.setAttribute(CLASS_ATTRIBUTE, "btn float-right");
     button.innerHTML = "close";
 
     button.onclick = function () {
@@ -65,6 +63,7 @@ function drawChangeNameWindow(attributeName, taskId, taskInfo) {
     var footer = document.createElement(FOOTER_TAG);
 
     footer.setAttribute(CLASS_ATTRIBUTE, FOOTER_TAG);
+    footer.appendChild(changeButton);
     footer.appendChild(button);
     aside.appendChild(footer);
     fileModalWindow.appendChild(aside);

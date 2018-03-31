@@ -6,7 +6,7 @@
 
 <div class="table-container" id="tableContainer">
 
-    <table class="text-center table-bordered table-hover" id="taskTable">
+    <table class="text-center" id="taskTable">
 
         <c:set var = "isBasket" value = "${taskType eq JspConstants.BASKET}" scope = "request"/>
         <c:set var = "isFixed" value = "${taskType eq JspConstants.FIXED}" scope = "request"/>

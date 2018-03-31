@@ -14,9 +14,13 @@ function moveTaskTableData(taskId, isMain) {
 
     var button = document.createElement(BUTTON_TAG);
 
-    button.setAttribute(VALUE_ATTRIBUTE, "&#10004");
+    button.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-success");
 
-    button.setAttribute(CLASS_ATTRIBUTE, "btn btn-outline-danger");
+    var i = document.createElement(I_TAG);
+
+    i.setAttribute(CLASS_ATTRIBUTE,"fa fa-check");
+
+    button.appendChild(i);
 
     button.onclick = sendQueryToMoveTaskServlet.bind(this, taskId, locationType);
 

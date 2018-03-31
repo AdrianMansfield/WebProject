@@ -5,6 +5,7 @@ import by.gsu.epamlab.constants.ErrorConstants;
 import by.gsu.epamlab.constants.ParameterConstants;
 import by.gsu.epamlab.constants.UrlConstants;
 import by.gsu.epamlab.control.filters.AbstractFilter;
+import by.gsu.epamlab.model.FileOperations;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -31,7 +32,7 @@ public class UploadFileFilter extends AbstractFilter {
 
         Part part = request.getPart(ParameterConstants.FILE_PARAMETER);
 
-        String fileName = part.getSubmittedFileName();
+        String fileName = FileOperations.extractFileName(part);
 
         if(Constants.EMPTY_STRING.equals(fileName)) {
             jumpError(UrlConstants.MAIN_URL, ErrorConstants.DID_NOT_CHOOSE_FILE_FOR_UPLOAD_ERROR, request, response);

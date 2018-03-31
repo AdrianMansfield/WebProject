@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="../../view/css/bootstrap.css">
         <link rel="stylesheet" href="../../view/css/main.css">
         <link rel="stylesheet" href="../../view/css/bars.css">
+        <link rel="stylesheet" href="../../view/css/fontawesome-all.css">
     </head>
     <body>
     <c:import url="${control}"/>

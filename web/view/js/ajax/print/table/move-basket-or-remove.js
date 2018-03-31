@@ -10,9 +10,13 @@ function throwTaskTableData(taskId, isBasket) {
 
         button.setAttribute(CLASS_ATTRIBUTE,"btn btn-outline-danger");
 
-        button.onclick = sendQueryToMoveTaskServlet.bind(this, taskId, locationType);
+        var i = document.createElement(I_TAG);
 
-        button.innerHTML = 'Throw';
+        i.setAttribute(CLASS_ATTRIBUTE,"fa fa-trash-alt");
+
+        button.appendChild(i);
+
+        button.onclick = sendQueryToMoveTaskServlet.bind(this, taskId, locationType);
 
         td.appendChild(button);
     }

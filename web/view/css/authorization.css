@@ -3,6 +3,7 @@
 задает отступ от верхней границы... ширину и высоту
 */
 .card {
+    background: #222831;
     margin-top: 14rem;
     width: 30rem;
     height: 20rem;

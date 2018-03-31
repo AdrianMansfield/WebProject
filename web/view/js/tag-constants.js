@@ -29,3 +29,5 @@ var HEADER_TAG = "header";
 var DIV_TAG = "div";
 
 var P_TAG = "p";
+
+var I_TAG = "i";
